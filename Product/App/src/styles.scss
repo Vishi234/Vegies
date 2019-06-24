@@ -1,1 +1,166 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=greek-ext,latin-ext";
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+    color: #333;
+    font-size: 12px;
+    letter-spacing: .1px;
+    overflow-x: hidden;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+p {
+    font-size: 14px;
+    line-height: 23px;
+}
+
+.fa {
+    display: grid;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #808080;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    a:focus {
+        text-decoration: none;
+    }
+
+a, div, svg, path, circle, rect {
+    transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+}
+
+ul {
+    background: 0;
+    font-weight: inherit;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+    ul li {
+        list-style: none;
+    }
+
+::-webkit-scrollbar {
+    width: 8px;
+    background: #323a45;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+}
+
+h2 {
+    font-size: 1.71em;
+    line-height: 1em;
+}
+
+.p_table > footer a, .search_button, .tabs_nav, h3 {
+    font-size: 1.4em;
+}
+
+h4 {
+    font-size: 1.25em;
+}
+
+h5 {
+    font-size: 1.15em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, main, meter, nav, output, progress, section, source, video {
+    display: block;
+}
+
+mark, rp, rt, ruby, summary, time {
+    display: inline;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, command, datalist, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, source, span, strike, strong, sub, sup, table, tbody, tdvideo, tfoot, th, thead, tr, tt, u, ul, var {
+    background: 0;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+a {
+    text-decoration: none;
+    outline: 0 !important;
+    color: #007bff;
+}
+
+b, strong {
+    font-weight: 500 !important;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+q {
+    quotes: none;
+}
+
+table, table td {
+    padding: 0;
+    border: 0;
+    border-collapse: collapse;
+}
+
+img {
+    max-width: 100%;
+}
+
+button, input {
+    outline: 0;
+}
+
+    button::-moz-focus-inner {
+        border: 0;
+    }
+
+h1, h2, h3, h4, h5, h6 p {
+    background: 0;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
