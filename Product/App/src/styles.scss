@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=greek-ext,latin-ext";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 body {
     font-family: 'Roboto', sans-serif !important;
-    color: #333;
+    color: #666;
     font-size: 12px;
     letter-spacing: .1px;
     overflow-x: hidden;
@@ -163,4 +164,8 @@ h1, h2, h3, h4, h5, h6 p {
 
 .pull-right {
     float: right;
+}
+.header
+{
+    display: inline-block;
 }
