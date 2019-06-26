@@ -1,6 +1,7 @@
 .top-bar {
   display: inline-block;
   width: 100%;
+  background: #fff;
 }
 .tagline {
   width: 100%;
@@ -21,6 +22,10 @@
 .trmenu > li > a:hover {
   color: #4caf50;
   text-decoration: underline;
+}
+.header {
+  background: #fff;
+  
 }
 .searchbar {
   display: inline-block;
@@ -50,6 +55,7 @@
   padding: 9px;
   padding-right: 0px;
   cursor: pointer;
+  border-right: 1px solid #ccc;
 }
 .categorylist > span > svg {
   float: right;
@@ -57,7 +63,7 @@
 }
 .searchfield .custom-input {
   padding: 10px;
-  padding-left: 0px;
+  padding-left: 10px;
 }
 .searchbtn > a {
   padding: 10px 17px;
@@ -67,7 +73,8 @@
 }
 .hdrlogin > a {
   display: inline-block;
-  padding: 10px;
+  padding: 10px 0px;
+  padding-left: 10px;
   font-size: 14px;
   color: #666;
   border-radius: 10px 10px 0px 0px;
@@ -86,6 +93,10 @@
   background: #333;
   color: #fff;
 }
+.hdrlogin > a[aria-expanded="true"] svg
+{
+    fill: #fff;
+}
 // .hdrlogin > a:hover {
 //   background: #333;
 //   color: #fff;
@@ -101,7 +112,7 @@
   border: none;
   background: #333;
   color: #fff;
-  border-radius: 0px 4px 10px 10px;
+  border-radius: 0px 10px 10px 10px;
   width: 210px;
 }
 .hdrlogin .dropdown-item:hover {
@@ -151,7 +162,8 @@ hr {
 }
 .hdrcart > a {
   display: block;
-  padding: 11px;
+  padding: 11px 0px;
+  padding-right: 0px;
   font-size: 14px;
 }
 .hdrcart > a > svg {
