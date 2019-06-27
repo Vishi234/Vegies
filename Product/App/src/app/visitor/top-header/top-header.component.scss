@@ -1,0 +1,26 @@
+.top-bar {
+    display: inline-block;
+    width: 100%;
+    background: #333;
+  }
+  .tagline {
+    width: 100%;
+  }
+  .tagline p {
+    padding: 8px;
+  }
+  .trmenu > li {
+    display: block;
+    float: left;
+  }
+  .trmenu > li > a {
+    padding: 5px 10px;
+    display: block;
+    color: rgba(255,255,255,0.8);
+    font-weight: 200;
+    font-size: 11px;
+    border-right: 1px solid rgba(255,255,255,0.4);
+  }
+  .trmenu > li > a:hover {
+    color: rgba(255,255,255,1);
+  }
