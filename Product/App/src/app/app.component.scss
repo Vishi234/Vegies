@@ -1,7 +1,7 @@
 .top-bar {
   display: inline-block;
   width: 100%;
-  background: #fff;
+  background: #333;
 }
 .tagline {
   width: 100%;
@@ -14,26 +14,29 @@
   float: left;
 }
 .trmenu > li > a {
-  padding: 10px;
+  padding: 5px 10px;
   display: block;
-  color: #666;
-  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+  font-weight: 200;
+  font-size: 11px;
+  border-right: 1px solid rgba(255,255,255,0.4);
 }
 .trmenu > li > a:hover {
-  color: #4caf50;
-  text-decoration: underline;
+  color: rgba(255,255,255,1);
 }
 .header {
   background: #fff;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  padding-top: 10px;
   
 }
 .searchbar {
   display: inline-block;
-  width: 100%;
+  width: 114%;
 }
 .citytop {
   padding: 11px;
-  font-size: 14px;
   cursor: pointer;
 }
 .citytop svg:nth-child(2) {
@@ -43,50 +46,56 @@
 .searchsection {
   border: 1px solid #4caf50;
   width: 80%;
-  font-size: 14px;
+  border-radius: 4px;
 }
 .searchfield {
-  width: 65%;
+  width: 64%;
 }
 .searchfield input {
   width: 100%;
 }
 .categorylist {
-  padding: 9px;
-  padding-right: 0px;
-  cursor: pointer;
-  border-right: 1px solid #ccc;
+  padding: 5px;
+    margin: 5px;
+    padding-right: 0px;
+    cursor: pointer;
+    border-right: 1px solid #ccc;
 }
 .categorylist > span > svg {
   float: right;
   margin: 4px 10px;
 }
 .searchfield .custom-input {
-  padding: 10px;
+  padding: 11px;
   padding-left: 10px;
 }
 .searchbtn > a {
-  padding: 10px 17px;
+  padding: 8px 15px;
   background: #4caf50;
   color: #fff;
   display: block;
+  font-size: 16px;
 }
 .hdrlogin > a {
   display: inline-block;
   padding: 10px 0px;
   padding-left: 10px;
-  font-size: 14px;
+  /* font-size: 14px; */
   color: #666;
   border-radius: 10px 10px 0px 0px;
   transition: 0ms;
+}
+.hdrlogin
+{
+  margin-right: 5px;
 }
 .hdrlogin > a > span {
   float: right;
   margin: 3px 11px;
 }
 .hdrlogin > a > svg {
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   fill: #666;
 }
 .hdrlogin > a[aria-expanded="true"] {
@@ -161,11 +170,10 @@ hr {
   display: block;
   padding: 11px 0px;
   padding-right: 0px;
-  font-size: 14px;
 }
 .hdrcart > a > svg {
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   color: #666;
   float: left;
 }
@@ -176,14 +184,18 @@ hr {
 }
 .itemcount {
   background: #fff;
-  padding: 0px 4px;
-  position: absolute;
-  border-radius: 24px;
-  margin-left: -88px;
-  margin-top: -8px;
-  font-size: 10px;
-  text-align: center;
-  border: 1px solid #4caf50;
-  color: #666;
-  font-weight: 500;
+    padding: 2px 3px;
+    position: absolute;
+    border-radius: 24px;
+    margin-left: -75px;
+    margin-top: -12px;
+    font-size: 10px;
+    text-align: center;
+    border: 1px solid #4caf50;
+    color: #666;
+    font-weight: 500;
+}
+.headermenu
+{
+  float: right;
 }
