@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { MatInputModule,ErrorStateMatcher,ShowOnDirtyErrorStateMatcher, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
+import { MatInputModule,MatDialogModule,ErrorStateMatcher,ShowOnDirtyErrorStateMatcher, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { ContainerComponent } from './visitor/container/container.component';
 import { HomeComponent } from './visitor/home/home.component';
 import { RegisterComponent } from './vendor/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './vendor/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContainerComponent,
     HomeComponent,
     RegisterComponent,
-    
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,11 +35,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule, 
     MatButtonModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[RegisterComponent,LoginComponent]
 })
 export class AppModule { }

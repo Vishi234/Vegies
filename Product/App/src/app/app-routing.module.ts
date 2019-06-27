@@ -5,15 +5,14 @@ import { ContainerComponent } from './visitor/container/container.component';
 import { RegisterComponent } from './vendor/register/register.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
+  {
+    path: '',
     component: ContainerComponent,
     children: [
-      { path: '', redirectTo:'index', pathMatch: 'full'},
-      { path: 'index', component: HomeComponent},
+      { path: '', redirectTo: 'index', pathMatch: 'full' },
+      { path: 'index', component: HomeComponent },
     ]
-},
-  { path: 'vendor/register', component:RegisterComponent},
+  }
 ];
 
 @NgModule({

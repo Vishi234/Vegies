@@ -1,0 +1,18 @@
+<div class="registerarea">
+  <div class="authcard">
+    <span class="title">Login</span>
+    <p>Get your requirement full filled by single done.</p>
+    <hr>
+    <form class="vendregister">
+      <mat-form-field appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="!this.valid">Login</button>
+    </form>
+  </div>
+</div>
