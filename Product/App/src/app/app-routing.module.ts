@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './visitor/home/home.component';
 import { ContainerComponent } from './visitor/container/container.component';
-import { RegisterComponent } from './vendor/register/register.component';
+import {CategoryComponent} from './admin/category/category.component'
 
 const routes: Routes = [
   {
@@ -11,8 +11,9 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'index', pathMatch: 'full' },
       { path: 'index', component: HomeComponent },
-    ]
-  }
+    ],
+  },
+  { path :'admin/category',component:CategoryComponent}
 ];
 
 @NgModule({
