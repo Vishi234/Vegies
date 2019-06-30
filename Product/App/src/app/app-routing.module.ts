@@ -4,6 +4,7 @@ import { HomeComponent } from './visitor/home/home.component';
 import { ContainerComponent } from './visitor/container/container.component';
 import { DashboardComponent } from './vendor/dashboard/dashboard.component';
 import { VendorContainerComponent } from './vendor/container/container.component';
+import {CategoryComponent} from './admin/category/category.component'
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'vendor/dashboard', pathMatch: 'full' },
       { path: 'vendor/dashboard', component: DashboardComponent },
     ]
-  }
+  },
+  { path :'admin/category',component:CategoryComponent}
 ];
 
 @NgModule({
