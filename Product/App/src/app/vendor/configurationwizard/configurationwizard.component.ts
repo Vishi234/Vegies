@@ -49,26 +49,26 @@ export class ConfigurationwizardComponent implements OnInit {
         startWith<string>(''),
         map(name => this._filter(name))
       );
-      this.mapsAPILoader.load().then(
-        O=>{
-          let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement,
-            {
-              types:["address"]
-            });
-            autocomplete.addListener("place_changed",()=>
-            {
-              this.ngZone.run(()=>
-              {
-                let place:google.maps.places.PlaceResult = autocomplete.getPlace();
-                if(place.geometry === undefined || place.geometry === null)
-                {
-                  return;
-                }
-              })
-            })
-        }
+      // this.mapsAPILoader.load().then(
+      //   O=>{
+      //     let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement,
+      //       {
+      //         types:["address"]
+      //       });
+      //       autocomplete.addListener("place_changed",()=>
+      //       {
+      //         this.ngZone.run(()=>
+      //         {
+      //           let place:google.maps.places.PlaceResult = autocomplete.getPlace();
+      //           if(place.geometry === undefined || place.geometry === null)
+      //           {
+      //             return;
+      //           }
+      //         })
+      //       })
+      //   }
        
-      )
+      // )
   }
   private _filter(name: string): String[] {
     const filterValue = name.toLowerCase();

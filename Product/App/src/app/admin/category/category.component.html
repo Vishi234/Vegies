@@ -1,57 +1,60 @@
 <div class="row pt-5">
-  <div class="class md-6 mx-auto">
-    <div class="class rounded-0">
-      <div class="class card-header">
-          <form class="form">
-          <mat-form-field>
-            <mat-select placeholder="Select Product Type" required name="productCat"
-              [(ngModel)]="categoryData.productCat">
-              <mat-option value="1">Main Category</mat-option>
-              <mat-option value="2">Sub Category</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <ng-container *ngIf="categoryData.productCat ==1">
-            <!-- <div *ngIf="categoryData.productCat ==1; then thenBlock else elseBlock"> -->
+    <div class="class md-6 mx-auto">
+      <div class="class rounded-0">
+        <div class="class card-header">
+            <form class="form">
             <mat-form-field>
-              <input matInput placeholder="Category Name" [(ngModel)]="categoryData.catName" name="catName" required>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Category Alias" [(ngModel)]="categoryData.catAlias" name="catAlias">
-            </mat-form-field>
-            <mat-checkbox [(ngModel)]="categoryData.catActive" name="catActive">Active</mat-checkbox>
-            <br>
-            <br>
-            <button mat-button (click)="addCategoryData()">Click me!</button>
-          </ng-container>
-
-          <ng-container *ngIf="categoryData.productCat ==2">
-            <mat-form-field>
-                <!-- <div *ngFor='let catName of catResponse'>
-                    <div>{{ catName.name }}</div>
-                </div> -->
-              <mat-select placeholder="Select Category Name" required name="mainProduct"
-                [(ngModel)]="subCategoryData.mainProduct">
-                <mat-option *ngFor='let catName of catResponse' value="catName.id">{{catName.name}}</mat-option>
-                <!-- <mat-option value="2">Sub Category</mat-option> -->
+              <mat-select placeholder="Select Product Type" required name="productCat"
+                [(ngModel)]="categoryData.productCat">
+                <mat-option value="1">Main Category</mat-option>
+                <mat-option value="2">Sub Category</mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Sub Category Name" [(ngModel)]="subCategoryData.subCatName" name="subCatName"
-                required>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Sub Category Alias" [(ngModel)]="subCategoryData.subCatAlias" name="subCatAlias">
-            </mat-form-field>
-            <mat-checkbox [(ngModel)]="subCategoryData.subCatActive" name="subCatActive">Active</mat-checkbox>
-            <br>
-            <br>
-            <button mat-button (click)="addSubCategoryData()">Click me!</button>
-          </ng-container>
-          <!-- </div> -->
-
-        </form>
-        <!-- <mat-raised-button></mat-raised-button> -->
+            <ng-container *ngIf="categoryData.productCat ==1">
+              <!-- <div *ngIf="categoryData.productCat ==1; then thenBlock else elseBlock"> -->
+              <mat-form-field>
+                <input matInput placeholder="Category Name" [(ngModel)]="categoryData.catName" name="catName" required>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Category Alias" [(ngModel)]="categoryData.catAlias" name="catAlias">
+              </mat-form-field>
+              <mat-checkbox [(ngModel)]="categoryData.Active" name="catActive">Active</mat-checkbox>
+              <br>
+              <br>
+              <button mat-button (click)="addCategoryData()">Click me!</button>
+            </ng-container>
+  
+            <ng-container *ngIf="categoryData.productCat ==2">
+              <!-- <mat-form-field>
+                <mat-select placeholder="Select Category Name" required name="mainProduct"
+                  [(ngModel)]="categoryData.mainProduct">
+                  <mat-option *ngFor='let catName of catResponse' value="catName.id">{{catName.name}}</mat-option>
+                </mat-select>
+              </mat-form-field> -->
+              <mat-form-field>
+                  <mat-select placeholder="Select Category Name" required name="mainProduct"
+                    [(ngModel)]="categoryData.mainProduct">
+                    <mat-option value="3">Main Category</mat-option>
+                    <mat-option value="4">Sub Category</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Sub Category Name" [(ngModel)]="categoryData.subCatName" name="subCatName"
+                  required>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Sub Category Alias" [(ngModel)]="categoryData.subCatAlias" name="subCatAlias">
+              </mat-form-field>
+              <mat-checkbox [(ngModel)]="categoryData.Active" name="subCatActive">Active</mat-checkbox>
+              <br>
+              <br>
+              <button mat-button (click)="addCategoryData()">Click me!</button>
+            </ng-container>
+            <!-- </div> -->
+  
+          </form>
+          <!-- <mat-raised-button></mat-raised-button> -->
+        </div>
       </div>
     </div>
   </div>
-</div>

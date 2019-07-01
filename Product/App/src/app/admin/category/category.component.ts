@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminCategoryService } from './admin-category.service'
+import { categoryFields } from './categoryFields';
 
 @Component({
   selector: 'app-category',
@@ -9,7 +10,7 @@ import { AdminCategoryService } from './admin-category.service'
 export class CategoryComponent implements OnInit {
 
   constructor(private _adminCategory : AdminCategoryService) { }
-  categoryData={}
+  categoryData=new categoryFields(0,'','',1,0,'','','A',0,1);
   subCategoryData={}
   catResponse:any;
   ngOnInit() {

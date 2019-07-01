@@ -11,12 +11,12 @@
   },
   "browser": {
     "http": false,
-    "https":false,
+    "https": false,
     "net": false,
     "path": false,
     "stream": false,
     "tls": false
-},
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.0.1",
