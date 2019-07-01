@@ -18,11 +18,8 @@ export class HeaderComponent implements OnInit {
   OpenLoginModal() {
     this.dialog.open(LoginComponent, { disableClose: true })
   }
+  
   ngOnInit() {
   }
 }
-@Component({
-  selector: 'vendor-register-dialog',
-  templateUrl: '../../vendor/register/register.component.html',
-})
-export class VendorRegisterDialog { }
+

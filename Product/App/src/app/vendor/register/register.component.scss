@@ -45,3 +45,15 @@
   margin: 0;
   margin-bottom: 10px;
 }
+.closebtn {
+  display: inline-block;
+  float: right;
+  position: absolute;
+  right: 50px;
+  top: -35px;
+  z-index: 9999;
+}
+.closebtn > svg {
+  height: 15px;
+  width: 15px;
+}

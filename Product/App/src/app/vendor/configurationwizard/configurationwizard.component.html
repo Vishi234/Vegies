@@ -1,0 +1,73 @@
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Whats your need?</ng-template>
+      <!-- <mat-form-field>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field> -->
+      <mat-form-field class="catselectcustom">
+        <mat-label>Select Categories</mat-label>
+        <select matNativeControl>
+          <option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</option>
+        </select>
+      </mat-form-field>
+      <div class="dailylistbox">
+        <span class="title">Choose Option</span>
+        <div class="listboxitem">
+          <mat-selection-list #shoes [formControl]="selectFormControl">
+            <mat-form-field style="width:100%;">
+              <input #search autocomplete="off" placeholder="Search" aria-label="Search" matInput
+                [formControl]="searchTextboxControl" />
+              <!-- <button [disableRipple]="true" *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="clearSearch($event)">
+                <mat-icon>close</mat-icon>
+              </button> -->
+            </mat-form-field>
+            <div class="listitem">
+              <span class="noresult" *ngIf="(filteredOptions | async).length == 0">
+                No Result Found
+              </span>
+              <mat-list-option (onSelectionChange)="selectionChange($event)" [value]="option"
+                *ngFor="let option of filteredOptions | async">
+                {{option}}
+              </mat-list-option>
+            </div>
+          </mat-selection-list>
+          <!-- <p>
+          Options selected: {{shoes.selectedOptions.selected.length}}
+        </p> -->
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Where to deliver?</ng-template>
+      <mat-form-field>
+        <!-- <input matInput placeholder="Address" formControlName="secondCtrl" required> -->
+        <div class="container">
+          <h1>Google Maps Places Autocomplete Using Angular 2</h1>
+          <div class="form-group">
+            <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+              class="form-control" #search>
+          </div>
+        </div>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>What you choosedy?</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
