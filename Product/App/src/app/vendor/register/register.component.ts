@@ -8,9 +8,12 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 })
 
 export class RegisterComponent implements OnInit {
-
+  registerUser={}
   constructor( public dialog: MatDialog) {
     
+   }
+   onSubmit(){
+     console.log("data",this.registerUser)
    }
    closeDialog() {
     this.dialog.closeAll()

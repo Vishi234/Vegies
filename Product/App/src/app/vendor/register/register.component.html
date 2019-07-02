@@ -12,28 +12,47 @@
     <span class="title">Register</span>
     <p>Get your requirement full filled by single done.</p>
     <hr>
-    <form class="vendregister">
+    <form class="vendregister" #user="ngForm" novalidate (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Organisation Name</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="registerUser.orgName" #name="ngModel" 
+        name="orgName" [class.is-invalid]="name.invalid && name.touched" required>
       </mat-form-field>
+      <small class="text-danger" [class.d-none]="name.valid || name.untouched">
+          Organisation Name is required
+      </small>
       <mat-form-field appearance="outline">
-        <mat-label>First Name</mat-label>
-        <input matInput>
+        <mat-label>Full Name</mat-label>
+        <input matInput [(ngModel)]="registerUser.fullName"  name="fullName" #fullName="ngModel" [class.is-invalid]="fullName.invalid && fullName.touched" required>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <small class="text-danger" [class.d-none]="fullName.valid || fullName.untouched">
+          Full Name is required
+      </small>
+      <!-- <mat-form-field appearance="outline">
         <mat-label>Last Name</mat-label>
         <input matInput>
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-form-field appearance="outline">
         <mat-label>Email <Address></Address>
         </mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="registerUser.email" name="email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" 
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+           required>
       </mat-form-field>
+      <div *ngIf="email.errors && (email.dirty || email.touched)">
+        <small class="text-danger" *ngIf="email.errors.required" [class.d-none]="email.valid || email.untouched">Email is required</small>
+        <small class="text-danger" *ngIf="email.errors.pattern" >Please insert a valid email.</small>
+      </div>
       <mat-form-field appearance="outline">
         <mat-label>Mobile</mat-label>
-        <input matInput>
+        <input matInput matInput #mobile="ngModel" name="mobile" pattern="^\d{10}$" required
+        [class.is-invalid]="mobile.invalid && mobile.touched" [(ngModel)]="registerUser.mobile" >
       </mat-form-field>
+      <div *ngIf="mobile.errors && (mobile.invalid || mobile.touched)">
+          <small class="text-danger" *ngIf="mobile.errors.required" [class.d-none]="mobile.valid || mobile.untouched">Mobile number is required</small>
+          <small class="text-danger" *ngIf="mobile.errors.pattern" >Mobile number must be 10 digits</small>
+      </div>
+      <button mat-raised-button color="primary" [disabled]="user.form.invalid">Register</button>
     </form>
   </div>
 </div>
