@@ -7,7 +7,7 @@
   width: 100%;
   z-index: 999;
 }
-.searchbar {
+searchbar {
   display: inline-block;
   width: 114%;
 }
@@ -172,62 +172,8 @@ hr {
   font-weight: 500;
 }
 
-.headermenu {
-  float: right;
-}
 .menubar {
   a {
-    background: #fff;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    position: fixed;
-    width: 100%;
-    z-index: 999;
-    
-  }
-  .searchbar {
-    display: inline-block;
-    width: 114%;
-  }
-  .citytop {
-    padding: 11px;
-    cursor: pointer;
-  }
-  .citytop svg:nth-child(2) {
-    float: right;
-    margin: 4px 10px;
-  }
-  .searchsection {
-    border: 1px solid #4caf50;
-    width: 80%;
-    border-radius: 4px;
-  }
-  .searchfield {
-    width: 64%;
-  }
-  .searchfield input {
-    width: 100%;
-  }
-  .categorylist {
-    padding: 5px;
-      margin: 5px;
-      padding-right: 0px;
-      cursor: pointer;
-      border-right: 1px solid #ccc;
-  }
-  .categorylist > span > svg {
-    float: right;
-    margin: 4px 10px;
-  }
-  .searchfield .custom-input {
-    padding: 10px;
-    padding-left: 10px;
-  }
-  .searchbtn > a {
-    padding: 8px 15px;
-    background: #4caf50;
-    color: #fff;
     display: block;
     float: right;
     background: transparent;
@@ -253,15 +199,11 @@ hr {
     display: block;
   }
 }
-
 .menubar > a > svg {
   height: 20px;
   width: 20px;
   float: right;
 }
-
-// SideBar CSS
-
 .sidebar {
   height: 80%;
   background: #333;
@@ -290,7 +232,6 @@ hr {
     background: #333;
     padding-left: 0px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-
     border-left: 4px solid #333;
     height: auto !important;
     margin-bottom: 0px;

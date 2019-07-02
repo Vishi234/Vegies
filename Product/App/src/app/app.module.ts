@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { MatInputModule,MatListModule,MatStepperModule, MatExpansionModule, MatDialogModule,ErrorStateMatcher,ShowOnDirtyErrorStateMatcher,MatCheckboxModule, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
+import {MatFormFieldModule,MatCardModule, MatInputModule,MatListModule,MatStepperModule, MatExpansionModule, MatDialogModule,ErrorStateMatcher,ShowOnDirtyErrorStateMatcher,MatCheckboxModule, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule,HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import {AdminCategoryService} from './admin/category/admin-category.service'
     BrowserAnimationsModule,
     FormsModule,   
     ReactiveFormsModule, 
+    MatFormFieldModule,
     MatInputModule, 
     MatButtonModule,
     MatSelectModule, 
@@ -52,6 +54,8 @@ import {AdminCategoryService} from './admin/category/admin-category.service'
 	  MatExpansionModule,
     MatStepperModule,
     MatListModule,
+    MatCardModule,
+    MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBb1-CCxWk4r7byFIduqkNOc9QPPxSdcyA',
       libraries: ["places"]

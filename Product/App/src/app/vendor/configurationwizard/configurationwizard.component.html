@@ -1,15 +1,12 @@
-<mat-horizontal-stepper linear #stepper>
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Whats your need?</ng-template>
-      <!-- <mat-form-field>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field> -->
+      <ng-template matStepLabel>Create your own Checklist</ng-template>
       <mat-form-field class="catselectcustom">
-        <mat-label>Select Categories</mat-label>
-        <select matNativeControl>
-          <option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</option>
-        </select>
+        <mat-label>Toppings</mat-label>
+        <mat-select [formControl]="toppings" multiple>
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
       </mat-form-field>
       <div class="dailylistbox">
         <span class="title">Choose Option</span>
@@ -19,9 +16,9 @@
               <input #search autocomplete="off" placeholder="Search" aria-label="Search" matInput
                 [formControl]="searchTextboxControl" />
               <!-- <button [disableRipple]="true" *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="clearSearch($event)">
-                <mat-icon>close</mat-icon>
-              </button> -->
+                        (click)="clearSearch($event)">
+                        <mat-icon>close</mat-icon>
+                      </button> -->
             </mat-form-field>
             <div class="listitem">
               <span class="noresult" *ngIf="(filteredOptions | async).length == 0">
@@ -34,8 +31,8 @@
             </div>
           </mat-selection-list>
           <!-- <p>
-          Options selected: {{shoes.selectedOptions.selected.length}}
-        </p> -->
+                  Options selected: {{shoes.selectedOptions.selected.length}}
+                </p> -->
         </div>
       </div>
       <div>
@@ -43,19 +40,16 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+  <mat-step [stepControl]="secondFormGroup" optional>
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Where to deliver?</ng-template>
-      <mat-form-field>
-        <!-- <input matInput placeholder="Address" formControlName="secondCtrl" required> -->
-        <div class="container">
-          <h1>Google Maps Places Autocomplete Using Angular 2</h1>
-          <div class="form-group">
-            <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off"
-              class="form-control" #search>
-          </div>
-        </div>
-      </mat-form-field>
+      <ng-template matStepLabel>Enter your shipping location.</ng-template>
+      <div class="configlocation">
+        <mat-form-field>
+          <input matInput placeholder="Address" matGoogleMapsAutocomplete [country]="in"
+            (onAutocompleteSelected)="onAutocompleteSelected($event)" (onLocationSelected)="onLocationSelected($event)"
+            formControlName="secondCtrl" required>
+        </mat-form-field>
+      </div>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -63,8 +57,36 @@
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>What you choosedy?</ng-template>
-    You are now done.
+    <ng-template matStepLabel>Verify Checklist</ng-template>
+    <mat-card>
+      <mat-card-title>My Checklist
+        <hr />
+      </mat-card-title>
+
+      <mat-card-content>
+        <!-- <ul>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+          <li>dasjdlasldjlasjdlkasjldkjasldjd</li>
+        </ul> -->
+      </mat-card-content>
+    </mat-card>
+    <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+    <mat-card>
+      <mat-card-title>Shipping Location
+        <hr />
+      </mat-card-title>
+      <mat-card-content>
+          Sunday Bazar Road, Chander Vihar, Nilothi, Delhi, India
+      </mat-card-content>
+    </mat-card>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>

@@ -1,26 +1,37 @@
-import { Component, ViewChild, OnInit, ElementRef,NgZone } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+///<reference types="@types/googlemaps" />
+import {Title} from '@angular/platform-browser';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { MapsAPILoader } from '@agm/core';
-import { google } from '@google/maps';
+import {Location, Appearance} from '@angular-material-extensions/google-maps-autocomplete';
+import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
   selector: 'app-configurationwizard',
   templateUrl: './configurationwizard.component.html',
-  styleUrls: ['./configurationwizard.component.scss']
+  styleUrls: ['./configurationwizard.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ConfigurationwizardComponent implements OnInit {
+  public appearance = Appearance;
+  public zoom: number;
+  public latitude: number;
+  public longitude: number;
+  public selectedAddress: PlaceResult;
+
   constructor(
     private _formBuilder: FormBuilder,
-    private mapsAPILoader: MapsAPILoader, private ngZone: NgZone
-    ) { }
+    private titleService: Title
+  ) { }
+  google : any;
+
   toppings = new FormControl();
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   isOptional = false;
-  @ViewChild('search', { static: true }) public searchElement: ElementRef;
+
   selectFormControl = new FormControl();
   searchTextboxControl = new FormControl();
   selectedValues = [];
@@ -36,6 +47,7 @@ export class ConfigurationwizardComponent implements OnInit {
     'C3'
   ]
   filteredOptions: Observable<any[]>;
+
   ngOnInit() {
 
     this.firstFormGroup = this._formBuilder.group({
@@ -49,38 +61,38 @@ export class ConfigurationwizardComponent implements OnInit {
         startWith<string>(''),
         map(name => this._filter(name))
       );
-      this.mapsAPILoader.load().then(
-        O=>{
-          let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement,
-            {
-              types:["address"]
-            });
-            autocomplete.addListener("place_changed",()=>
-            {
-              this.ngZone.run(()=>
-              {
-                let place:google.maps.places.PlaceResult = autocomplete.getPlace();
-                if(place.geometry === undefined || place.geometry === null)
-                {
-                  return;
-                }
-              })
-            })
-        }
-       
-      )
+    this.titleService.setTitle('Home | @angular-material-extensions/google-maps-autocomplete');
+    this.zoom = 10;
+    this.latitude = 52.520008;
+    this.longitude = 13.404954;
+ 
+    this.setCurrentPosition();
+  }
+  private setCurrentPosition() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
+  }
+  onAutocompleteSelected(result: PlaceResult) {
+    console.log('onAutocompleteSelected: ', result);
+  }
+ 
+  onLocationSelected(location: Location) {
+    console.log('onLocationSelected: ', location);
+    this.latitude = location.latitude;
+    this.longitude = location.longitude;
   }
   private _filter(name: string): String[] {
     const filterValue = name.toLowerCase();
     this.setSelectedValues();
     this.selectFormControl.patchValue(this.selectedValues);
     let filteredList = this.data.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-    console.log(filteredList);
+    
     return filteredList
-  }
-  clearSearch(event) {
-    event.stopPropagation();
-    this.searchTextboxControl.patchValue('');
   }
   setSelectedValues() {
     if (this.selectFormControl.value && this.selectFormControl.value.length > 0) {

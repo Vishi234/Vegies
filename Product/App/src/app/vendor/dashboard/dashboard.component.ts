@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { ConfigurationwizardComponent } from '../../vendor/configurationwizard/configurationwizard.component';
 
 @Component({

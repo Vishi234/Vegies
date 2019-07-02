@@ -1,34 +1,30 @@
-.dailylistbox
-{
-    width: 300px;
-    display: block;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    
+.dailylistbox {
+  width: 300px;
+  display: block;
+  margin: 20px auto;
+  border: 1px solid #ccc;
 }
-.dailylistbox .title
-{
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #eee;
-    border-bottom: 1px solid #ccc;
-    font-weight: 400;
-    font-size: 14px;
+.dailylistbox .title {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+  font-weight: 400;
+  font-size: 14px;
 }
-.listitem
-{
-    height: 245px;
-    overflow: auto;
+.listitem {
+  height: 120px;
+  overflow: auto;
 }
-.noresult
-{
-        padding: 10px;
-    font-size: 14px;
+.noresult {
+  padding: 10px;
+  font-size: 14px;
 }
-.catselectcustom
-{
-    display: block;
-    margin: 0 auto;
-    width: 300px;
+.catselectcustom {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
 }
+
+
