@@ -26,12 +26,16 @@ module.exports = (function () {
             request.input("P_USER_ID", sql.NVarChar, req.body.OPER_TYPE)
             request.input("IS_ACTIVE", sql.Bit, req.body.Active)
             request.input("P_OPER", sql.Char, req.body.OPER_TYPE)
-            request.output("FLAG", sql.Char, req.body.REPORT_ID)
-            request.output("MSG", sql.NVarChar, req.body.REPORT_ID)
-                .execute('SP_PRODUCT_CATEGORY_AMD').then(function (err, recordsets, returnvalue) {
-                    console.log("recordsetsrecordsets1", recordsets)
-                    console.log("anssssssssssssssssss", request.parameters.FLAG.value);
-                    console.log("returnvalue1", returnvalue)
+			request.output("FLAG", sql.Char(1));
+            request.output("MSG", sql.VarChar(100));
+            request.execute('SP_PRODUCT_CATEGORY_AMD').then
+			(function (err, recordsets, returnvalue) {
+
+					var records=err.recordset;
+					var flag=err.output.FLAG;
+					var msg=err.output.MSG;
+					 
+					
                 }).catch(function (err) {
                     sql.close();
                     console.log('ERROR1::: ' + err)
