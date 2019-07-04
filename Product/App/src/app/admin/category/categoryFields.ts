@@ -7,7 +7,7 @@ export class categoryFields {
         public mainProduct:number,
         public subCatName:string,
         public subCatAlias:string,
-        public OPER_TYPE:string,
+        public OPER_TYPE:string,    
         public catId:number,
         public P_CAT_ID:number,
        // public REPORT_ID:number

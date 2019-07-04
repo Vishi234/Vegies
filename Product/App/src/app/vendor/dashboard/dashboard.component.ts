@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
   ngOnInit() {
-    this.dialog.open(ConfigurationwizardComponent, { disableClose: true })
+    //this.dialog.open(ConfigurationwizardComponent, { disableClose: true })
   }
 
 }

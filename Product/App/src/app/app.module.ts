@@ -6,7 +6,7 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule,HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
-
+import{MDBBootstrapModule} from 'angular-bootstrap-md'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopHeaderComponent } from './visitor/top-header/top-header.component';
@@ -56,6 +56,7 @@ import {AdminCategoryService} from './admin/category/admin-category.service'
     MatListModule,
     MatCardModule,
     MatGoogleMapsAutocompleteModule,
+    MDBBootstrapModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBb1-CCxWk4r7byFIduqkNOc9QPPxSdcyA',
       libraries: ["places"]
