@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {MatFormFieldModule,MatCardModule, MatInputModule,MatListModule,MatStepperModule, MatExpansionModule, MatDialogModule,ErrorStateMatcher,ShowOnDirtyErrorStateMatcher,MatCheckboxModule, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
+import {MatFormFieldModule,MatCardModule,MatSlideToggleModule, MatInputModule,MatListModule,MatStepperModule, MatExpansionModule, MatDialogModule,ErrorStateMatcher,ShowOnDirtyErrorStateMatcher,MatCheckboxModule, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule,HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import{MDBBootstrapModule} from 'angular-bootstrap-md'
+import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopHeaderComponent } from './visitor/top-header/top-header.component';
@@ -22,6 +23,9 @@ import { VendorContainerComponent } from './vendor/container/container.component
 import { ConfigurationwizardComponent } from './vendor/configurationwizard/configurationwizard.component';
 import { CategoryComponent } from './admin/category/category.component';
 import {AdminCategoryService} from './admin/category/admin-category.service'
+import { LoaderComponent } from './common/components/loader/loader.component'
+import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +40,8 @@ import {AdminCategoryService} from './admin/category/admin-category.service'
     VendorContainerComponent,
     ConfigurationwizardComponent,
     CategoryComponent,
-
+    LoaderComponent,
+    AgGridComponent
   ],
   imports: [
     BrowserModule,
@@ -62,11 +67,15 @@ import {AdminCategoryService} from './admin/category/admin-category.service'
       libraries: ["places"]
 	}),
     MatCheckboxModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule.withComponents([]),
+    MatSlideToggleModule
   ],
   providers: [AdminCategoryService,
     {provide: [ErrorStateMatcher,HTTP_INTERCEPTORS], useClass: ShowOnDirtyErrorStateMatcher,
-    multi:true}
+    multi:true},
+    AgGridComponent,
+    LoaderComponent
   ],
   bootstrap: [AppComponent],
   entryComponents:[RegisterComponent,LoginComponent,ConfigurationwizardComponent]

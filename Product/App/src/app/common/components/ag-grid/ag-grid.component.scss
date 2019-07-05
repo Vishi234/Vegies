@@ -1,0 +1,57 @@
+.ag-theme-balham
+{
+    -webkit-font-smoothing: antialiased;
+    background-color: white;
+    color: #666;
+    font-family: "Muli", sans-serif!important;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+}
+.gridContainer {
+    position: relative;
+    box-shadow: none;
+}
+.paginationField {
+    position: absolute;
+    right: 18%;
+    width: 30%;
+    bottom: -2px;
+    display: flex;
+    align-items: center;
+}
+
+.paginationField mat-form-field {
+    width: 20%;
+}
+
+.paginationField span {
+    color: rgba(0, 0, 0, 0.54);
+    margin-right: 10px;
+}
+
+@media (min-width:1025px) and (max-width:1200px) {
+    .paginationField {
+        right: 25%;
+    }
+}
+
+@media (max-width:1024px) {
+    .paginationField {
+        left: 3%;
+        right: inherit;
+    }
+}
+
+@media (max-width:425px) {
+    .paginationField span{
+        display: none;
+    }
+    .paginationField mat-form-field {
+        width: 80%;
+    }
+    .ag-theme-material .ag-paging-panel {
+        flex-direction: column;
+        padding-left: 40%;
+    }
+}

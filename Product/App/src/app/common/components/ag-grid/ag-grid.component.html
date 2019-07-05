@@ -1,0 +1,16 @@
+<div class="gridContainer mat-elevation-z8 data-table">
+    <ag-grid-angular [gridOptions]="gridOptions" style="width: 100%; height: 450px;" class="ag-theme-balham"
+        [suppressColumnVirtualisation]="true">
+    </ag-grid-angular>
+
+    <div class="paginationField">
+        <span>Items per page: </span>
+        <!-- <mat-form-field>
+            <mat-select [(ngModel)]="pageSize" (selectionChange)="changePageSize();">
+                <mat-option *ngFor="let size of configService.pagingOptions" [value]="size">{{size}}</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+    </div>
+</div>
+
+<app-loader *ngIf="loading"></app-loader>

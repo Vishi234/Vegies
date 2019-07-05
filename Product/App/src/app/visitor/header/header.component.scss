@@ -6,7 +6,7 @@
   position: fixed;
   width: 100%;
   z-index: 999;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 searchbar {
   display: inline-block;
@@ -26,7 +26,7 @@ searchbar {
   border-radius: 4px;
   background: #fff;
   overflow: hidden;
-  color:#666;
+  color: #666;
 }
 .searchfield {
   width: 64%;
@@ -61,7 +61,7 @@ searchbar {
   padding: 10px 0px;
   padding-left: 10px;
   /* font-size: 14px; */
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   border-radius: 4px 4px 0px 0px;
   transition: 0ms;
   padding-bottom: 19px;
@@ -77,16 +77,15 @@ searchbar {
 .hdrlogin > a > svg {
   height: 20px;
   width: 20px;
-  fill: rgba(255,255,255,0.8);
+  fill: rgba(255, 255, 255, 0.8);
   margin: 1px 0px;
 }
 .hdrlogin > a[aria-expanded="true"] {
   background: #fff;
   color: #666;
 }
-.hdrlogin > a[aria-expanded="true"] svg
-{
-  fill:#666;
+.hdrlogin > a[aria-expanded="true"] svg {
+  fill: #666;
 }
 // .hdrlogin > a:hover {
 //   background: #333;
@@ -161,13 +160,13 @@ hr {
 .hdrcart > a > svg {
   height: 20px;
   width: 20px;
-  fill: rgba(255,255,255,0.8);
+  fill: rgba(255, 255, 255, 0.8);
   float: left;
 }
 .hdrcart > a > span:nth-child(2) {
   margin: 3px 11px;
   float: left;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 .itemcount {
   padding: 2px 3px;
@@ -190,7 +189,7 @@ hr {
     display: block;
     float: right;
     background: transparent;
-    width: 50px;
+    width: 51px;
     padding-top: 10px;
     height: 52px;
     padding-left: 15px;
@@ -200,13 +199,12 @@ hr {
   }
   &:hover .sidebar {
     display: block;
-
   }
   &:hover > a {
     background: #fff;
     cursor: pointer;
     transition: none;
-    
+    box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.1);
   }
   &:hover > a > svg {
     fill: #4caf50;
@@ -220,7 +218,7 @@ hr {
   height: 20px;
   width: 20px;
   float: right;
-  fill: rgba(255,255,255,0.8);
+  fill: rgba(255, 255, 255, 0.8);
 }
 .sidebar {
   height: 500px;
@@ -230,6 +228,7 @@ hr {
   margin-left: -76%;
   width: 180px;
   display: none;
+  box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.1);
 }
 .sidebar .title {
   display: block;
@@ -274,16 +273,16 @@ hr {
 .largesubmenu {
   display: none;
   position: absolute;
-    top: 0;
-    background: #fafafa;
-    padding: 12px;
-    margin-left: 180px;
-    width: 500px;
-    height: 500px;
-    z-index: 999999;
-    border: 1px solid #e5e5e5;
-    border-left: 0px;
-  
+  top: 0;
+  background: #fafafa;
+  padding: 12px;
+  margin-left: 180px;
+  width: 500px;
+  height: 500px;
+  z-index: 999999;
+  border: 1px solid #e5e5e5;
+  border-left: 0px;
+  box-shadow: 8px 4px 17px 0 rgba(0, 0, 0, 0.1);
 }
 .rightcontent {
   width: 75%;
