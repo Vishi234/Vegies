@@ -1,1 +1,9 @@
-<p>Dashboard</p>
+<!-- <div class="searchSection">
+    <mat-form-field>
+        <input matInput #search [disabled]="disabled" type="search" placeholder="Search">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+</div> -->
+<app-ag-grid [dataSource]="dataSource">
+</app-ag-grid>
+<app-loader *ngIf="loading"></app-loader>

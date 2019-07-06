@@ -1,11 +1,12 @@
 .header {
-  background: #fff;
+  background: #283442;
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
   padding-top: 10px;
   position: fixed;
   width: 100%;
   z-index: 999;
+  color: rgba(255, 255, 255, 0.8);
 }
 searchbar {
   display: inline-block;
@@ -20,9 +21,12 @@ searchbar {
   margin: 4px 10px;
 }
 .searchsection {
-  border: 1px solid #4caf50;
   width: 80%;
+  /* border-radius: 4px; */
   border-radius: 4px;
+  background: #fff;
+  overflow: hidden;
+  color: #666;
 }
 .searchfield {
   width: 64%;
@@ -42,7 +46,7 @@ searchbar {
   margin: 4px 10px;
 }
 .searchfield .custom-input {
-  padding: 10px;
+  padding: 11px;
   padding-left: 10px;
 }
 .searchbtn > a {
@@ -57,9 +61,11 @@ searchbar {
   padding: 10px 0px;
   padding-left: 10px;
   /* font-size: 14px; */
-  color: #666;
-  border-radius: 10px 10px 0px 0px;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px 4px 0px 0px;
   transition: 0ms;
+  padding-bottom: 19px;
+  margin-bottom: -14px;
 }
 .hdrlogin {
   margin-right: 5px;
@@ -71,14 +77,16 @@ searchbar {
 .hdrlogin > a > svg {
   height: 20px;
   width: 20px;
-  fill: #666;
+  fill: rgba(255, 255, 255, 0.8);
   margin: 1px 0px;
 }
 .hdrlogin > a[aria-expanded="true"] {
-  background: #333;
-  color: #fff;
+  background: #fff;
+  color: #666;
 }
-
+.hdrlogin > a[aria-expanded="true"] svg {
+  fill: #666;
+}
 // .hdrlogin > a:hover {
 //   background: #333;
 //   color: #fff;
@@ -92,9 +100,9 @@ searchbar {
   margin-left: 0px;
   box-shadow: none;
   border: none;
-  background: #333;
-  color: #fff;
-  border-radius: 0px 10px 10px 10px;
+  background: #fff;
+  color: #666;
+  border-radius: 0px 4px 4px 4px;
   width: 210px;
 }
 .hdrlogin .dropdown-item:hover {
@@ -105,14 +113,14 @@ searchbar {
   background-color: rgba(0, 0, 0, 0.1);
 }
 .hdrlogin .dropdown-item {
-  color: #fff;
+  color: #666;
   font-size: 12px;
   padding: 0.6rem 1.5rem;
 }
 .hdrlogin .dropdown-item > svg {
   height: 17px;
   width: 17px;
-  fill: #fff;
+  fill: #666;
   margin-right: 10px;
 }
 .drop-bottom {
@@ -122,12 +130,14 @@ searchbar {
 }
 .drop-bottom p {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
+  color: #666;
+  font-weight: 600;
 }
 .drop-bottom > span > a {
   display: block;
-  color: #fff;
+  color: #666;
   font-size: 14px;
+  text-decoration: underline;
 }
 .drop-bottom > a {
   display: block;
@@ -150,52 +160,57 @@ hr {
 .hdrcart > a > svg {
   height: 20px;
   width: 20px;
-  color: #666;
+  fill: rgba(255, 255, 255, 0.8);
   float: left;
 }
 .hdrcart > a > span:nth-child(2) {
   margin: 3px 11px;
   float: left;
-  color: #666;
+  color: rgba(255, 255, 255, 0.8);
 }
 .itemcount {
-  background: #fff;
   padding: 2px 3px;
   position: absolute;
   border-radius: 24px;
   margin-left: -75px;
   margin-top: -12px;
+  background: #0083ca;
   font-size: 10px;
   text-align: center;
-  border: 1px solid #4caf50;
-  color: #666;
+  border: 1px solid #0083ca;
+  color: #fff;
   font-weight: 500;
 }
 
 .menubar {
+  display: inline-block;
+  width: 100%;
   a {
     display: block;
     float: right;
     background: transparent;
-    width: 50px;
+    width: 51px;
     padding-top: 10px;
-    height: 55px;
+    height: 52px;
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: -28px;
+    transition: none;
   }
   &:hover .sidebar {
     display: block;
   }
   &:hover > a {
-    background: #333;
+    background: #fff;
     cursor: pointer;
-    border-radius: 6px 6px 0px 0px;
+    transition: none;
+    box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.1);
   }
   &:hover > a > svg {
     fill: #4caf50;
+    transition: none;
   }
-  &:hover .overlay {
+  &:hover #bdy .overlay {
     display: block;
   }
 }
@@ -203,20 +218,22 @@ hr {
   height: 20px;
   width: 20px;
   float: right;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .sidebar {
-  height: 80%;
-  background: #333;
+  height: 500px;
+  background: #fff;
   position: absolute;
-  margin-top: 23%;
-  margin-left: -97.1%;
-  width: 219px;
+  margin-top: 22%;
+  margin-left: -76%;
+  width: 180px;
   display: none;
+  box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.1);
 }
 .sidebar .title {
   display: block;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: #000;
   margin: 10px;
   margin-bottom: 5px;
   font-weight: 700;
@@ -226,13 +243,14 @@ hr {
   width: 100%;
   a {
     display: block;
+    font-size: 11px;
     width: 100%;
     padding: 12px 15px !important;
-    color: #fff;
-    background: #333;
+    color: #666;
+    background: #fff;
     padding-left: 0px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: 4px solid #333;
+    border-bottom: 1px solid #e5e5e5;
+    border-left: 4px solid #fff;
     height: auto !important;
     margin-bottom: 0px;
   }
@@ -240,10 +258,12 @@ hr {
     display: block;
   }
   &:hover > a {
-    background: #fff;
     color: #0083ca;
+    border-right: 0px;
     border-left: 4px solid #0083ca;
     z-index: 999;
+    background: #fafafa;
+    /* border: solid 0.9px #e5e5e5; */
   }
 }
 
@@ -252,17 +272,17 @@ hr {
 }
 .largesubmenu {
   display: none;
-  position: fixed;
-  top: 14%;
-  background: #fff;
+  position: absolute;
+  top: 0;
+  background: #fafafa;
   padding: 12px;
-  width: 45%;
-  margin-left: 16.1%;
-  height: 74.2%;
+  margin-left: 180px;
+  width: 500px;
+  height: 500px;
   z-index: 999999;
-  border: 1px solid #ccc;
+  border: 1px solid #e5e5e5;
   border-left: 0px;
-  
+  box-shadow: 8px 4px 17px 0 rgba(0, 0, 0, 0.1);
 }
 .rightcontent {
   width: 75%;
@@ -270,14 +290,4 @@ hr {
   right: 0;
   position: absolute;
   z-index: -1;
-}
-.overlay {
-  position: fixed;
-  top: 14%;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: -99;
-  display: none;
 }
