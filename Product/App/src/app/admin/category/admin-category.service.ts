@@ -12,8 +12,7 @@ export class AdminCategoryService {
   private _adminCategoryUrl='http://localhost:8080/api/admin/category'
 
   adminCategory(user:any){
-    console.log("hiiiiiiiii",user)
-    return this.http.post<any>(this._adminCategoryUrl,user);
+    return this.http.post<any>(this._adminCategoryUrl,user)
   }
   getAPIData(){
     console.log("userrrrrrrrrr")

@@ -7,51 +7,48 @@ import { categoryFields } from './categoryFields';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit 
-{
+export class CategoryComponent implements OnInit {
 
-  constructor(private _adminCategory : AdminCategoryService) { }
-  categoryData=new categoryFields(0,'','',1,0,'','','A',0,1);
-  subCategoryData={}
-  catResponse:any;
+  constructor(private _adminCategory: AdminCategoryService) { }
+  categoryData = new categoryFields(0, '', '', 1, 0, '', '', 'A', 0, 1);
+  subCategoryData = {}
+  catResponse: any;
+  rowData: any;
   ngOnInit() {
-    this._adminCategory.getAPIData().subscribe((response)=>{
+    this._adminCategory.getAPIData().subscribe((response) => {
       console.log('response is ', response)
-      this.catResponse=response;
-      // console.log("rowdatatttttt",this._adminCategory)
-      // var result = Object.keys(response).map(function(key) {
-      // return [Number(key), response[key]];
-      // });
-      // //this.catResponse=result[1][1];
-      // console.log("outtttttt",result)
-  },(error) => {
+      this.catResponse = response;
+    }, (error) => {
       console.log('error is ', error)
-  })
+    })
   }
 
-  addCategoryData()
-  {
-    console.log("hiiiiiiiiiiii",this.categoryData);
-    this._adminCategory.adminCategory(this.categoryData).subscribe((res)=>
-    {
-    
-        console.log('response---',res.body);
-      });  
-
+  addCategoryData() {
+    console.log("hiiiiiiiiiiii", this.categoryData);
+    this._adminCategory.adminCategory(this.categoryData).subscribe(response => {
+      var result = Object.keys(response).map(function (key) {
+        return [Number(key), response[key]];
+      });
+      this.rowData = result[1][1];
+      console.log("response is", this.rowData)
+    }, (error) => {
+      console.log('error is ', error)
+    })
   }
 
-  addSubCategoryData()
-   {
-
-    this._adminCategory.adminCategory(this.subCategoryData).subscribe((res)=>{
-
-        console.log('Response body---',res.body);
+  addSubCategoryData() {
+    this._adminCategory.adminCategory(this.subCategoryData)
+      .subscribe((res) => {
+        console.log('Response body---', res);
       },
-    (error)=>{
-      console.log(error);
-    })  
-
-
+        (error) => {
+          console.log(error);
+        })
   }
+
+  columnDefs = [
+    { headerName: 'CATEGORY_ID', field: 'CATEGORY_ID', sortable: true, filter: true, checkboxSelection: true },
+    { headerName: 'CATEGORY_NAME', field: 'CATEGORY_NAME' }
+  ];
 
 }
