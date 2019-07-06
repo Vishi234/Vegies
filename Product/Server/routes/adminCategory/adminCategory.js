@@ -13,7 +13,6 @@ module.exports = (function () {
         res.send('Hello ExternalRoutes!');
     });
     adminCategory.post("/category", function (req, res) {
-        console.log("reqqqqqqq", req.body);
         sql.connect(dbConfig).then(function (output11) {
             var request = new sql.Request();
             request.input("P_INSERT_TYPE", sql.Int, req.body.productCat)
