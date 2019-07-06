@@ -8,6 +8,13 @@ module.exports = (function () {
         database: 'Vegies'
     };
     var adminCategory = require('express').Router();
+	
+	var connection = sql.connect(dbConfig, function (err) {
+    if (err)
+        throw err; 
+	});
+	module.exports = connection;
+
 
     adminCategory.get('/', function (req, res) {
         res.send('Hello ExternalRoutes!');
@@ -29,23 +36,19 @@ module.exports = (function () {
 			request.output("FLAG", sql.Char(1));
             request.output("MSG", sql.VarChar(100));
             request.execute('SP_PRODUCT_CATEGORY_AMD').then
-			(function (err, recordsets, returnvalue) {
-
+			(function (err, recordsets, returnvalue) 
+			{
+					
 					var records=err.recordset;
 					var flag=err.output.FLAG;
 					var msg=err.output.MSG;
-					 
+					res.send(err);
+					sql.close();
 					
-                }).catch(function (err) {
+                }).catch(function (err)
+				{
                     sql.close();
-                    console.log('ERROR1::: ' + err)
-                    console.log("----")
-                    console.log(err)
-                    console.log("====")
-                    //console.log(recordsets)
-                    console.log("----")
-                    //console.log('ERROR2::: '+ sqlOutput);
-                    //console.log('ERROR3::: '+ request.parameters.sqlOutput.value);
+
                 });
         }).catch((err) => {
             sql.close();
