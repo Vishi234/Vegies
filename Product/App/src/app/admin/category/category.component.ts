@@ -7,8 +7,7 @@ import { categoryFields } from './categoryFields';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit 
-{
+export class CategoryComponent implements OnInit {
 
   constructor(private _adminCategory : AdminCategoryService) { }
   categoryData=new categoryFields(0,'','',1,0,'','','A',0,1);
@@ -18,9 +17,9 @@ export class CategoryComponent implements OnInit
     this._adminCategory.getAPIData().subscribe((response)=>{
       console.log('response is ', response)
       this.catResponse=response;
-      // console.log("rowdatatttttt",this._adminCategory)
+    //   console.log("rowdatatttttt",this._adminCategory)
       // var result = Object.keys(response).map(function(key) {
-      // return [Number(key), response[key]];
+      //   return [Number(key), response[key]];
       // });
       // //this.catResponse=result[1][1];
       // console.log("outtttttt",result)
@@ -29,29 +28,30 @@ export class CategoryComponent implements OnInit
   })
   }
 
-  addCategoryData()
-  {
+  addCategoryData(){
     console.log("hiiiiiiiiiiii",this.categoryData);
-    this._adminCategory.adminCategory(this.categoryData).subscribe((res)=>
-    {
-    
-        console.log('response---',res.body);
-      });  
-
+    this._adminCategory.adminCategory(this.categoryData)
+    .subscribe(
+      catData=>{
+        localStorage.setItem('token',catData.token);
+        console.log(catData)
+      },
+      err=>console.error(err)
+    )
+    //console.log(this.registerUserData);
   }
 
-  addSubCategoryData()
-   {
-
-    this._adminCategory.adminCategory(this.subCategoryData).subscribe((res)=>{
-
-        console.log('Response body---',res.body);
+  addSubCategoryData(){
+    console.log("hiiiiiiiiiiii",this.subCategoryData);
+    this._adminCategory.adminCategory(this.subCategoryData)
+    .subscribe(
+      subCatData=>{
+        localStorage.setItem('token',subCatData.token);
+        console.log(subCatData)
       },
-    (error)=>{
-      console.log(error);
-    })  
-
-
+      err=>console.error(err)
+    )
+    //console.log(this.registerUserData);
   }
 
 }
