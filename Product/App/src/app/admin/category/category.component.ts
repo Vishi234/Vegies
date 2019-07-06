@@ -16,6 +16,10 @@ export class CategoryComponent implements OnInit {
   rowData: any;
   ngOnInit() {
     this._adminCategory.getAPIData().subscribe((response) => {
+      var result = Object.keys(response).map(function (key) {
+        return [Number(key), response[key]];
+      });
+      this.rowData = result[1][1];
       console.log('response is ', response)
       this.catResponse = response;
     }, (error) => {

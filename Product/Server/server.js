@@ -22,36 +22,3 @@ app.use(function (req, res, next) {
 var adminCategory = require('./routes/adminCategory/adminCategory');
 app.use('/api/admin', adminCategory);
 
-
-// //Function to connect to database and execute query
-// var  executeQuery = function(res, query){             
-//      sql.connect(dbConfig, function (err) {
-//          if (err) {   
-//                      console.log("Error while connecting database :- " + err);
-//                      res.send(err);
-//                   }
-//                   else {
-//                          // create Request object
-//                          var request = new sql.Request();
-//                          // query to the database
-//                          request.query(query, function (err, res1) {
-//                            if (err) {
-//                                       console.log("Error while querying database :- " + err);
-//                                       res.send(err);
-//                                      }
-//                                      else {
-//                                         console.log("hhhhhhhhhhhhhhhh");
-//                                        res.send(res1);
-//                                        sql.close()
-//                                             }
-//                                });
-//                        }
-//       });           
-// }
-
-// //GET APIs
-// app.get("/api/user", function(req , res){
-//                 var query = "select * from mst_course";
-//                 executeQuery (res, query);
-// });
-
