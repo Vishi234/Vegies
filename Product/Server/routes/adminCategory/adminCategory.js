@@ -8,6 +8,13 @@ module.exports = (function () {
         database: 'Vegies'
     };
     var adminCategory = require('express').Router();
+	
+	var connection = sql.connect(dbConfig, function (err) {
+    if (err)
+        throw err; 
+	});
+	module.exports = connection;
+
 
     adminCategory.get('/', function (req, res) {
         res.send('Hello ExternalRoutes!');
@@ -25,22 +32,22 @@ module.exports = (function () {
             request.input("P_USER_ID", sql.NVarChar, req.body.OPER_TYPE)
             request.input("IS_ACTIVE", sql.Bit, req.body.Active)
             request.input("P_OPER", sql.Char, req.body.OPER_TYPE)
-            request.output("FLAG", sql.Char, req.body.REPORT_ID)
-            request.output("MSG", sql.NVarChar, req.body.REPORT_ID)
-                .execute('SP_PRODUCT_CATEGORY_AMD').then(function (err, recordsets, returnvalue) {
-                    console.log("recordsetsrecordsets1", recordsets)
-                    console.log("anssssssssssssssssss", request.parameters.FLAG.value);
-                    console.log("returnvalue1", returnvalue)
-                }).catch(function (err) {
+			request.output("FLAG", sql.Char(1));
+            request.output("MSG", sql.VarChar(100));
+            request.execute('SP_PRODUCT_CATEGORY_AMD').then
+			(function (err, recordsets, returnvalue) 
+			{
+					
+					var records=err.recordset;
+					var flag=err.output.FLAG;
+					var msg=err.output.MSG;
+					res.send(err);
+					sql.close();
+					
+                }).catch(function (err)
+				{
                     sql.close();
-                    console.log('ERROR1::: ' + err)
-                    console.log("----")
-                    console.log(err)
-                    console.log("====")
-                    //console.log(recordsets)
-                    console.log("----")
-                    //console.log('ERROR2::: '+ sqlOutput);
-                    //console.log('ERROR3::: '+ request.parameters.sqlOutput.value);
+
                 });
         }).catch((err) => {
             sql.close();
