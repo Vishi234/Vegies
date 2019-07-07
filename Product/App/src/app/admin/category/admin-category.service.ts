@@ -5,18 +5,28 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminCategoryService {
+export class AdminCategoryService 
+{
 
   constructor(private http: HttpClient) { }
+  private _adminCategoryUrl='http://localhost:8080/api/admin/category';
+  private _subCatUrl='http://localhost:8080/api/admin/subCategory';
 
-  private _adminCategoryUrl='http://localhost:8080/api/admin/category'
-
-  adminCategory(user:any){
-    return this.http.post<any>(this._adminCategoryUrl,user)
+  AddCategory(user:any)
+  {
+  // console.log("hiiiiiiiii",user)
+    return this.http.post<any>(this._adminCategoryUrl,user);
   }
-  getAPIData(){
-    console.log("userrrrrrrrrr")
-    return this.http.get('http://localhost:8080/api/admin/category')
+  GetCategoryList(){
+    return this.http.get(this._adminCategoryUrl)
+  }
+  AddSubCategory(user:any){
+    console.log("hiiiiiiiii",user)
+    return this.http.post<any>(this._subCatUrl,user);
+  }
+  GetSubCategoryList()
+  {
+    return this.http.get(this._subCatUrl)
   }
 
 }
