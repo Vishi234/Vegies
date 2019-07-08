@@ -1,91 +1,57 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
-import { MatDialog, MatTableDataSource,MatPaginator } from '@angular/material';
-
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatTableDataSource, MatPaginator } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 import { ConfigurationwizardComponent } from '../../vendor/configurationwizard/configurationwizard.component';
+
+export interface PeriodicElement {
+  productId: number,
+  productName: string;
+  unitPrice: number,
+  qty: number,
+  unitMeasure: string,
+  totalPrice: number
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 },
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 }
+];
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['select', 'productName', 'unitPrice', 'qty', 'unitMeasure','totalPrice'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  // loading: boolean;
-  // dataSource: any;
-  // columnDefs: any = [
-  //   {
-  //     fieldName: 'title',
-  //     headerName: 'Item Name',
-  //     width: 500,
-  //   },
-  //   {
-  //     fieldName: 'module',
-  //     headerName: 'Unit Price'
-  //   },
-  //   {
-  //     fieldName: 'associatedWith',
-  //     headerName: 'Quantity'
-  //   },
-  //   {
-  //     fieldName: 'modifiedByOn',
-  //     headerName: 'Unit Measure'
-  //   },
-  //   {
-  //     fieldName: 'modifiedByOn',
-  //     headerName: 'Total Price'
-  //   },
-  //   {
-  //     fieldName: 'modifiedByOn',
-  //     headerName: 'Action'
-  //   },
-  //   {
-  //     width: 50,
-  //     cellRenderer: () => {
-  //       return '<span style="cursor:pointer" class="viewIcon"><center>' +
-  //         '<i class="material-icons" title="copy">content_copy</i></center></span>';
-  //     }
-  //     //, onCellClicked: (row) => this.openDialog(row)
-  //   }
-  // ];
+  selection = new SelectionModel<PeriodicElement>(true, []);
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: PeriodicElement): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.productId + 1}`;
+  }
   constructor(public dialog: MatDialog) {
 
   }
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    // this.loading = true;
-    // this.dataSource = { data: null, fields: this.columnDefs };
-    // this.loading = false;
-    //this.dialog.open(ConfigurationwizardComponent, { disableClose: true })
-
+    //this.dialog.open(ConfigurationwizardComponent);
   }
-
 }
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];

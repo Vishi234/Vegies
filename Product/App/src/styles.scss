@@ -419,6 +419,10 @@ h6 p {
 hr {
   margin: 0px;
 }
+.mat-table
+{
+  font-family: inherit;
+}
 .mat-card {
   margin-bottom: 30px;
 }
@@ -436,4 +440,56 @@ hr {
 }
 .slider .carousel-item {
   height: 100% !important;
+}
+.mat-elevation-z8
+{
+  box-shadow: none;
+  width: 100%;
+}
+tr.mat-header-row
+{
+  height: 0px!important;
+}
+th.mat-header-cell
+{
+  font-size: 12px;
+  color: #fff;
+  line-height: 1.4;
+  /* text-transform: uppercase; */
+  background-color: #283442;
+  padding: 10px!important;
+}
+tr.mat-row
+{
+  height: 30px!important;
+}
+td.mat-cell
+{
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 10px!important;
+}
+.mat-paginator-page-size
+{
+  display: contents!important;
+}
+.mat-table tbody tr:nth-child(even) {
+  background-color: #eaf8e6;
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background
+{
+  background-color: #0083ca!important;
+}
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background
+{
+  background-color: #0083ca!important;
+}
+.mat-cell .mat-form-field
+{
+  width: 70px;
+  height: 0px;
+}
+.mat-table .mat-form-field-appearance-legacy .mat-form-field-infix
+{
+  margin-top: -15px;
 }
