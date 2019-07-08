@@ -1,12 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {MatFormFieldModule,MatCardModule,MatSlideToggleModule, MatInputModule,MatListModule,MatStepperModule, MatExpansionModule, MatDialogModule,ErrorStateMatcher,ShowOnDirtyErrorStateMatcher,MatCheckboxModule, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
-import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule,HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  MatFormFieldModule, MatCardModule, MatSlideToggleModule, MatInputModule, MatListModule, MatStepperModule,
+  MatExpansionModule, MatDialogModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatCheckboxModule, MatButtonModule,
+  MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule
+} from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
-import{MDBBootstrapModule} from 'angular-bootstrap-md'
+import { MDBBootstrapModule } from 'angular-bootstrap-md'
 import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +26,7 @@ import { SidebarComponent } from './vendor/sidebar/sidebar.component';
 import { VendorContainerComponent } from './vendor/container/container.component';
 import { ConfigurationwizardComponent } from './vendor/configurationwizard/configurationwizard.component';
 import { CategoryComponent } from './admin/category/category.component';
-import {AdminCategoryService} from './admin/category/admin-category.service'
+import { AdminCategoryService } from './admin/category/admin-category.service'
 import { LoaderComponent } from './common/components/loader/loader.component'
 import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
 
@@ -41,22 +45,23 @@ import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
     ConfigurationwizardComponent,
     CategoryComponent,
     LoaderComponent,
-    AgGridComponent
+    AgGridComponent,
+    MatPaginator
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    FormsModule,   
-    ReactiveFormsModule, 
+    FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule, 
+    MatInputModule,
     MatButtonModule,
-    MatSelectModule, 
+    MatSelectModule,
     MatIconModule,
     MatDialogModule,
-	  MatExpansionModule,
+    MatExpansionModule,
     MatStepperModule,
     MatListModule,
     MatCardModule,
@@ -65,19 +70,23 @@ import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBb1-CCxWk4r7byFIduqkNOc9QPPxSdcyA',
       libraries: ["places"]
-	}),
+    }),
     MatCheckboxModule,
     HttpClientModule,
     AgGridModule.withComponents([]),
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTableModule,
+    MatTooltipModule
   ],
   providers: [AdminCategoryService,
-    {provide: [ErrorStateMatcher,HTTP_INTERCEPTORS], useClass: ShowOnDirtyErrorStateMatcher,
-    multi:true},
+    {
+      provide: [ErrorStateMatcher, HTTP_INTERCEPTORS], useClass: ShowOnDirtyErrorStateMatcher,
+      multi: true
+    },
     AgGridComponent,
     LoaderComponent
   ],
   bootstrap: [AppComponent],
-  entryComponents:[RegisterComponent,LoginComponent,ConfigurationwizardComponent]
+  entryComponents: [RegisterComponent, LoginComponent, ConfigurationwizardComponent]
 })
 export class AppModule { }
