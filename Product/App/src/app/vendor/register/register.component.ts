@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-
+import { RegisterService } from './register.service'
+import { registerModel } from './registerModel';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -8,13 +9,22 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 })
 
 export class RegisterComponent implements OnInit {
-  registerUser={}
-  constructor( public dialog: MatDialog) {
-    
+  constructor( public dialog: MatDialog,public vendorRegis:RegisterService) {
    }
-   onSubmit(){
-     console.log("data",this.registerUser)
-   }
+   registerUser = new registerModel(1,'','','','','',1,1,0);
+
+   vendorSignup() {
+    console.log("data",this.registerUser)
+    this.vendorRegis.vendorRegistration(this.registerUser).subscribe(response => {
+      // var result = Object.keys(response).map(function (key) {
+      //   return [Number(key), response[key]];
+      // });
+      console.log("responsewwwwww",response)
+    }, (error) => {
+      console.log('error is ', error)
+    })
+  } 
+
    closeDialog() {
     this.dialog.closeAll()
   }

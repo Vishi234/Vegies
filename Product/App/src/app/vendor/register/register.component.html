@@ -12,7 +12,7 @@
     <span class="title">Register</span>
     <p>Get your requirement full filled by single done.</p>
     <hr>
-    <form class="vendregister" #user="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <form class="vendregister" #user="ngForm" novalidate (ngSubmit)="vendorSignup()">
       <mat-form-field appearance="outline">
         <mat-label>Organisation Name</mat-label>
         <input matInput [(ngModel)]="registerUser.orgName" #name="ngModel" 

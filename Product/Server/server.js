@@ -4,6 +4,7 @@ var app = express();
 const jwt=require('jsonwebtoken');
 app.use(bodyParser.json()); 
 var dbConfig=require("./config/dbConfig");
+var vendor=require('./routes/vendor/vendorServer')
 //CORS Middleware
 app.use(function (req, res, next) {
     //Enabling CORS 
@@ -21,4 +22,5 @@ app.use(function (req, res, next) {
 
 var adminCategory = require('./routes/adminCategory/adminCategory');
 app.use('/api/admin', adminCategory);
+app.use('/api/vendor', vendor);
 
