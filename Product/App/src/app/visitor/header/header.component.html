@@ -48,64 +48,17 @@
                         </svg>
                         <div class="sidebar">
                             <span class="title">Top Categories</span>
-                            <div class="leftmenu">
+                            <div class="leftmenu" *ngIf="filtersLoaded | async">
                                 <ul>
-                                    <li>
+                                    <li *ngFor="let list of catList">
                                         <a href="javascript:void(0)">
-                                            Fruit and Vegetable
+                                                {{list}}
                                         </a>
-                                        <div class="largesubmenu">
+                                        <!-- <div class="largesubmenu">
                                             kdsa;dka;skd;ask
-                                        </div>
+                                        </div> -->
                                     </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            Fruit and Vegetable
-                                        </a>
-                                        <div class="largesubmenu">
-                                            Vishal
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            Fruit and Vegetable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            Fruit and Vegetable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            Fruit and Vegetable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            Fruit and Vegetable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            Fruit and Vegetable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            Fruit and Vegetable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            Fruit and Vegetable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            Fruit and Vegetable
-                                        </a>
-                                    </li>
+                                   
                                 </ul>
                             </div>
 

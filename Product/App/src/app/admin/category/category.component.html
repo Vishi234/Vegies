@@ -21,23 +21,22 @@
               <mat-checkbox [(ngModel)]="categoryData.Active" name="catActive">Active</mat-checkbox>
               <br>
               <br>
-              <button mat-button (click)="addCategoryData()">Click me!</button>
+              <button mat-button (click)="AddCategory()" class="md-raised md-cornered" style="background-color: palegreen;margin-bottom:5px">Submit</button>
+
+              <ag-grid-angular style="width: 625px; overflow:scroll; height: 300px;"class="ag-theme-balham"   [rowData]="rowData" [columnDefs]="columnDefs">
+              </ag-grid-angular>
             </ng-container>
   
             <ng-container *ngIf="categoryData.productCat ==2">
-              <!-- <mat-form-field>
-                <mat-select placeholder="Select Category Name" required name="mainProduct"
-                  [(ngModel)]="categoryData.mainProduct">
-                  <mat-option *ngFor='let catName of catResponse' value="catName.id">{{catName.name}}</mat-option>
-                </mat-select>
-              </mat-form-field> -->
+        
               <mat-form-field>
-                  <mat-select placeholder="Select Category Name" required name="mainProduct"
-                    [(ngModel)]="categoryData.mainProduct">
-                    <mat-option value="3">Main Category</mat-option>
-                    <mat-option value="4">Sub Category</mat-option>
-                  </mat-select>
+                  <mat-select placeholder="Select Category Name" required name="mainProduct" [(ngModel)]="categoryData.mainProduct">
+                    <mat-option *ngFor='let catName of categoryList' value="catName.CATEGORY_ID">{{catName.CATEGORY_NAME}}</mat-option>
+                  
+                  </mat-select> 
                 </mat-form-field>
+
+
               <mat-form-field>
                 <input matInput placeholder="Sub Category Name" [(ngModel)]="categoryData.subCatName" name="subCatName"
                   required>
@@ -48,13 +47,21 @@
               <mat-checkbox [(ngModel)]="categoryData.Active" name="subCatActive">Active</mat-checkbox>
               <br>
               <br>
-              <button mat-button (click)="addCategoryData()">Click me!</button>
+              <button mat-button (click)="AddSubCategory()" class="md-raised md-cornered" style="background-color: palegreen;margin-bottom:5px">Submit</button>
+
+              
+              <ag-grid-angular style="width: 800px; overflow:scroll; height: 300px;"class="ag-theme-balham"    [rowData]="rowDatSubCat" [columnDefs]="columnDefSubCat">
+              </ag-grid-angular>
             </ng-container>
             <!-- </div> -->
   
           </form>
+        
+
+       
           <!-- <mat-raised-button></mat-raised-button> -->
         </div>
       </div>
     </div>
   </div>
+
