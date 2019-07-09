@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { MatDialog, MatTableDataSource, MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ConfigurationwizardComponent } from '../../vendor/configurationwizard/configurationwizard.component';
@@ -9,12 +9,33 @@ export interface PeriodicElement {
   unitPrice: number,
   qty: number,
   unitMeasure: string,
-  totalPrice: number
+  totalPrice: number,
+  discount:number
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 },
-  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 }
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0,discount:0 },
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0},
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 ,discount:0}
 ];
 
 @Component({
@@ -23,9 +44,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'productName', 'unitPrice', 'qty', 'unitMeasure','totalPrice'];
+  displayedColumns: string[] = ['select', 'productName', 'unitPrice', 'qty', 'unitMeasure','totalPrice','discount'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -52,6 +74,7 @@ export class DashboardComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     //this.dialog.open(ConfigurationwizardComponent);
   }
 }

@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   MatFormFieldModule, MatCardModule, MatSlideToggleModule, MatInputModule, MatListModule, MatStepperModule,
   MatExpansionModule, MatDialogModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatCheckboxModule, MatButtonModule,
-  MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule
+  MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule,MatMenuModule,MatToolbarModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -76,7 +76,9 @@ import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
     AgGridModule.withComponents([]),
     MatSlideToggleModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule,
+    MatToolbarModule
   ],
   providers: [AdminCategoryService,
     {
