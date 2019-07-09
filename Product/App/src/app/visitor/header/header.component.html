@@ -52,23 +52,28 @@
                                 <ul>
                                     <li *ngFor="let list of catList">
                                         <a href="javascript:void(0)">
-                                             {{list.CATEGORY_ID}}   {{list.CATEGORY_NAME}}
+                                            {{list.CATEGORY_ID}} {{list.CATEGORY_NAME}}
                                         </a>
-                                        <div *ngFor="let subList of subCatList" class="largesubmenu">
-                                          
-                                          <!-- <span ng-if="(list.CATEGORY_ID | filter: subList.CATEGORY_ID: true )">   -->
-                                            <span> {{subList.CATEGORY_ID}}</span>
-                                            <span *ngIf='list.CATEGORY_ID == subList.CATEGORY_ID'>                                       
-                                            {{subList.SUBCAT_NAME}}
-                                          </span>
+                                        <div class="largesubmenu" *ngIf="subCatList.length > 0">
+                                            <ul>
+                                                <li *ngFor="let subList of subCatList">
+                                                    <a href="javascript:void(0)" *ngIf='list.CATEGORY_ID == subList.CATEGORY_ID'>
+                                                        <span> {{subList.CATEGORY_ID}}</span>
+                                                        <span>
+                                                            {{subList.SUBCAT_NAME}}
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <!-- <span ng-if="(list.CATEGORY_ID | filter: subList.CATEGORY_ID: true )">   -->
                                         </div>
                                     </li>
-                                   
+
                                 </ul>
                             </div>
 
                         </div>
-                        
+
                     </a>
 
                 </span>
