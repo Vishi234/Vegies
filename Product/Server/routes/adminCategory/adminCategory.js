@@ -1,10 +1,28 @@
 var sql = require("mssql");
-var db = require("../../config/dbConfig")
-module.exports = (function () {
+var db = require("../../config/dbConfig");
+var app = require('express').Router();
+
+module.exports = (function () 
+{
     'use strict';
-    var app = require('express').Router();
-    //POST API
-    app.post("/category", function (req, res) {
+
+	 app.get("/category", function (req, res) 
+	 {
+		console.log('Invoked Category');
+        var query = "select * from MST_PRODUCT_CATEGORY";
+         executeQuery(res,query);
+    //  console.log("hhhhhhhhhh",data)
+	// 	res.send(data);
+     });
+	  app.get("/subCategory", function (req, res) 
+		{
+		console.log('Invoked SubCategory');
+		  var query = "select * from MST_PRODUCT_SUBCATEGORY";
+		  executeQuery(res,query);
+		//   res.send(data);	
+		});
+     app.post("/category", function (req, res) 
+	 {
         console.log("body", req.body)
         db.connect().then(function (request) {
             return request.request()
@@ -35,31 +53,7 @@ module.exports = (function () {
         })
     });
 
-    var executeQuery = function (res, query) {
-        db.connect().then(function (request) {
-            return request.request()
-                .query(query, function (err, res1) {
-                    if (err) {
-                        console.log("Error while querying database :- " + err);
-                        res.send(err);
-                    }
-                    else {
-                        res.send(res1);
-                        db.close()
-                    }
-                });
-        });
-    }
-
-    //GET APIs
-    app.get("/category", function (req, res) {
-        var query = "select * from MST_PRODUCT_CATEGORY";
-        executeQuery(res, query);
-    });
-
-//----------------------sunil--------
-
-  app.post("/subCategory", function (req, res) {
+	app.post("/subCategory", function (req, res) {
         console.log("body", req.body)
         db.connect().then(function (request) {
             return request.request()
@@ -90,30 +84,25 @@ module.exports = (function () {
         })
     });
 
-    var executeQuery = function (res, query) {
+	
+    var executeQuery = function (res,query) {
         db.connect().then(function (request) {
             return request.request()
-                .query(query, function (err, res1) {
-                    if (err) {
-                        console.log("Error while querying database :- " + err);
-                        res.send(err);
+                .query(query, function (err, getResponse) {
+                    if (err) {					
+                         console.log("Error while querying database :- " + err);
+                         res.send(err);
+                         db.close();
                     }
                     else {
-                        res.send(res1);
-                        db.close()
+					    //console.log("test",getResponse)
+                        res.send(getResponse);
+                       db.close();
+                      
                     }
                 });
         });
     }
-
-    //GET APIs
-    app.get("/subCategory", function (req, res) 
-	{
-	console.log('-------------get subcat invoked');
-	 db.close();
-        var query = "select * from MST_PRODUCT_SUBCATEGORY";
-        executeQuery(res, query);
-    });
 
     return app;
 })();

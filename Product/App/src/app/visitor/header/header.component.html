@@ -52,11 +52,16 @@
                                 <ul>
                                     <li *ngFor="let list of catList">
                                         <a href="javascript:void(0)">
-                                                {{list}}
+                                             {{list.CATEGORY_ID}}   {{list.CATEGORY_NAME}}
                                         </a>
-                                        <!-- <div class="largesubmenu">
-                                            kdsa;dka;skd;ask
-                                        </div> -->
+                                        <div *ngFor="let subList of subCatList" class="largesubmenu">
+                                          
+                                          <!-- <span ng-if="(list.CATEGORY_ID | filter: subList.CATEGORY_ID: true )">   -->
+                                            <span> {{subList.CATEGORY_ID}}</span>
+                                            <span *ngIf='list.CATEGORY_ID == subList.CATEGORY_ID'>                                       
+                                            {{subList.SUBCAT_NAME}}
+                                          </span>
+                                        </div>
                                     </li>
                                    
                                 </ul>

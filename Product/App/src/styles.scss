@@ -69,16 +69,6 @@ a:focus {
   text-decoration: none;
 }
 
-a,
-div,
-svg,
-path,
-circle,
-rect {
-  transition: all 0.3s linear;
-  -webkit-transition: all 0.3s linear;
-}
-
 ul {
   background: 0;
   font-weight: inherit;
@@ -99,7 +89,7 @@ ul li {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3f51b5;
+  background: #ccc;
   border-radius: 4px;
 }
 
@@ -131,131 +121,6 @@ h6 {
   margin: 0;
   padding: 0;
   border: 0;
-}
-
-article,
-aside,
-audio,
-canvas,
-command,
-datalist,
-details,
-embed,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-keygen,
-main,
-meter,
-nav,
-output,
-progress,
-section,
-source,
-video {
-  display: block;
-}
-
-mark,
-rp,
-rt,
-ruby,
-summary,
-time {
-  display: inline;
-}
-
-a,
-abbr,
-acronym,
-address,
-applet,
-article,
-aside,
-audio,
-b,
-big,
-blockquote,
-body,
-canvas,
-caption,
-center,
-cite,
-code,
-command,
-datalist,
-dd,
-del,
-details,
-dfn,
-div,
-dl,
-dt,
-em,
-embed,
-fieldset,
-figcaption,
-figure,
-font,
-footer,
-form,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-header,
-hgroup,
-html,
-i,
-iframe,
-img,
-ins,
-kbd,
-keygen,
-label,
-legend,
-li,
-meter,
-nav,
-object,
-ol,
-output,
-p,
-pre,
-progress,
-q,
-s,
-samp,
-section,
-small,
-source,
-span,
-strike,
-strong,
-sub,
-sup,
-table,
-tbody,
-tdvideo,
-tfoot,
-th,
-thead,
-tr,
-tt,
-u,
-ul,
-var {
-  background: 0;
-  font-weight: inherit;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  vertical-align: top;
 }
 
 a {
@@ -349,8 +214,8 @@ h6 p {
   width: 100%;
 }
 .leftpanel {
-    padding: 10px;
-    display: block;
+  padding: 10px;
+  display: block;
 }
 .rightpanel {
   padding: 10px;
@@ -419,6 +284,9 @@ h6 p {
 hr {
   margin: 0px;
 }
+.mat-table {
+  font-family: inherit;
+}
 .mat-card {
   margin-bottom: 30px;
 }
@@ -436,4 +304,112 @@ hr {
 }
 .slider .carousel-item {
   height: 100% !important;
+}
+.mat-elevation-z8 {
+  // box-shadow: none;
+  width: 100%;
+}
+tr.mat-header-row {
+  height: 0px !important;
+}
+th.mat-header-cell {
+  font-size: 12px;
+  color: #fff;
+  line-height: 1.4;
+  /* text-transform: uppercase; */
+  background-color: #283442;
+  padding: 10px !important;
+}
+tr.mat-row {
+  height: 30px !important;
+}
+td.mat-cell {
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 10px !important;
+}
+.mat-paginator-page-size {
+  display: contents !important;
+}
+.mat-table tbody tr:nth-child(even) {
+  background-color: #eaf8e6;
+}
+.mat-checkbox-frame {
+  border: 1px solid rgb(221, 219, 218) !important;
+  border-radius: 2px !important;
+  border-width: 1px !important;
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #0083ca !important;
+}
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #0083ca !important;
+}
+.mat-cell .mat-form-field {
+  width: 70px;
+  height: 0px;
+}
+.mat-table .mat-form-field-appearance-legacy .mat-form-field-infix {
+  margin-top: -15px;
+}
+
+table {
+  width: 100%;
+}
+.mat-paginator {
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+}
+.mat-table thead {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 45px;
+}
+.mat-table tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  max-height: 300px;
+  height: auto;
+}
+.mat-paginator-outer-container {
+  height: 50px;
+}
+.mat-paginator-container {
+  min-height: 30px !important;
+}
+button:focus {
+  outline: none !important;
+}
+.table-action {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.mat-button {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+}
+.mat-menu-panel {
+  margin-top: 5px;
+  border-radius: 0px;
+}
+.mat-menu-content:not(:empty) {
+  padding: 0px !important;
+}
+.mat-menu-item {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 10px !important;
+  height: 25px !important;
+  padding: 0 10px !important;
+}
+.mat-toolbar.mat-primary {
+  height: 40px;
+  font-family: inherit;
+  font-size: 16px;
 }

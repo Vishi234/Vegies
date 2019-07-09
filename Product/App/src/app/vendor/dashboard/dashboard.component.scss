@@ -1,0 +1,52 @@
+.checklist-table tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 100px;
+}
+
+.checklist-table thead tr {
+  display: block;
+}
+
+.checklist-table thead {
+  background: black;
+  color: #fff;
+}
+
+.checklist-table th,
+.checklist-table td {
+  padding: 5px;
+  text-align: left;
+  width: 200px;
+}
+.table-action .mat-button {
+  line-height: 1.875rem;
+  padding: 0 0.5rem;
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(221, 219, 218);
+  color: rgb(112, 110, 107);
+  border: 1px solid rgb(221, 219, 218);
+  min-width: 10px;
+  width: 45px;
+}
+.table-action button .material-icons:nth-child(1) {
+  font-size: 16px !important;
+  color: rgb(112, 110, 107) !important;
+}
+.table-action button .material-icons:nth-child(2) {
+  font-size: 20px !important;
+  color: rgb(112, 110, 107) !important;
+  margin-left: -3px !important;
+}
+.table-action button:hover,
+:focus {
+  background: #fff !important;
+}
+.table-action button:hover,
+:focus i {
+  color: rgba(0, 68, 135, 1) !important;
+}
+.table-action button {
+  margin-right: 5px;
+}
