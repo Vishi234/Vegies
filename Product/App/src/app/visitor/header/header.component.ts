@@ -24,31 +24,59 @@ export class HeaderComponent implements OnInit {
   public catList:any;
   subCatList:any;
   filtersLoaded: Promise<boolean>;
+  newSubCat=[];
 
   ngOnInit() 
   {
 
     this._adminCategory.GetCategoryList().subscribe((response) => 
     {
-      var result = Object.keys(response).map(function (key) 
+    // this.catList = Object.keys(response["recordsets"][0]).map((key) => [key, response["recordsets"][0][key]]);
+      this.catList = response["recordsets"][0].map((x:any)=>
       {
-        return [Number(key), response[key]];
-      });
-      this.catList = response["recordsets"][0].map((x:any)=>x.CATEGORY_NAME) ;
-      console.log("hiiiiiiiiii",this.catList)
+      return  {"CATEGORY_ID" : x.CATEGORY_ID,"CATEGORY_NAME" : x.CATEGORY_NAME}
+      }) ;
+      console.log('this.catList',this.catList);
      
-      //console.log('Category List-->',this.catList[0].CATEGORY_NAME);
-      this.filtersLoaded = Promise.resolve(true);
-     }, (error) => {
-      console.log('error is ', error)
-    });
+      this._adminCategory.GetSubCategoryList().subscribe((response) => 
+      {
+      
+       this.subCatList = response["recordset"].map((x:any)=>
+       {
+        return  {"CATEGORY_ID" : x.CATEGORY_ID, "SUBCAT_ID" : x.SUBCAT_ID,"SUBCAT_NAME" : x.SUBCAT_NAME}
+       });
+       console.log('this.subCatList',this.subCatList);
 
-    this._adminCategory.GetSubCategoryList().subscribe((response) => 
-    {
-     this.subCatList= response["recordset"];
+      //  for(let j=0;j<this.catList.length;j++)
+      //  {
+      //  for(let i=0;i<this.subCatList.length;i++)
+      //  {
+      //     if(this.catList[j].CATEGORY_ID==this.subCatList[i].CATEGORY_ID)
+      //     {
+      //     this.newSubCat.push(this.subCatList[i].SUBCAT_NAME);
+      //     }
+      //  }
+      // }
+     //  console.log('this.subCatList',this.newSubCat);
+       this.filtersLoaded = Promise.resolve(true);
+       }, (error) => {
+        console.log('error is ', error)
+      });
+
+      
      }, (error) => {
       console.log('error is ', error)
     });
+    // if(this.filtersLoaded)
+    // {
+    //   this._adminCategory.GetSubCategoryList().subscribe((response) => 
+    //   {
+    //    this.subCatList= response["recordset"];
+    //    }, (error) => {
+    //     console.log('error is ', error)
+    //   });
+    // }
+    
 
   }
 }
