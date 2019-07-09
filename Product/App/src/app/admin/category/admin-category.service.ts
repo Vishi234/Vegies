@@ -14,18 +14,19 @@ export class AdminCategoryService
 
   AddCategory(user:any)
   {
-  // console.log("hiiiiiiiii",user)
     return this.http.post<any>(this._adminCategoryUrl,user);
   }
   GetCategoryList(){
+  //  console.log('helllooooooooooooooooo')
     return this.http.get(this._adminCategoryUrl)
   }
   AddSubCategory(user:any){
-    console.log("hiiiiiiiii",user)
+  // console.log("hiiiiiiiii",user)
     return this.http.post<any>(this._subCatUrl,user);
   }
   GetSubCategoryList()
   {
+  //  console.log('helllooooooooooooooooo11111111111')
     return this.http.get(this._subCatUrl)
   }
 
