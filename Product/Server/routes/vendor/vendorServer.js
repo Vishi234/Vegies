@@ -8,63 +8,95 @@ module.exports = (function () {
     var password = generator.generate({
         length: 10,
         numbers: true,
-        symbols:true
+        symbols: true
     });
-    console.log(password,"password")
+    console.log(password, "password")
     var app = require('express').Router();
     //POST API
-    app.post("/registration",function(req,res){
-        console.log("register",req.body)
-        let user =req.body;
-        sendMail(user,info=>{
-           res.send(info);
-        }).then(
-                db.connect().then(function (request) {
-                    return request.request()
-                        .input("U_TYPE", sql.NVarChar, req.body.userType)
-                        .input("U_ORG_NM", sql.NVarChar, req.body.orgName)
-                        .input("U_FNAME", sql.NVarChar, req.body.fullName)
-                        .input("U_PHONE", sql.NVarChar, req.body.mobile)
-                        .input("MAIL", sql.Int, req.body.email)
-                        .input("U_PASS", sql.NVarChar, req.body.password)
-                        .input("U_MAIL_VERIFY", sql.Bit, req.body.mailVerify)
-                        .input("U_LOGIN_ATTMPT", sql.Int, req.body.loginAttemp)
-                        .output("Result", sql.VarChar(100))
-                        .execute('USER_REGISRATION').then(result => {
-                            res.send(result);
-                            db.close();
-                        })
-                        .catch(function (err) {
-                            db.close();
-    
-                        });
-                })
-        )
+    app.post("/registration", function (req, res) {
+        console.log("register", req.body)
+        let user = req.body;
+        sendMail(user, info => {
+            //console.log("eeeeeeeee",err);
+            //res.send(info)
+            console.log("infooooo",info);
+           var host=req.get('host');
+
+           app.get('/verify',function(req,res){
+            console.log(req.protocol+":/"+req.get('host'));
+            if((req.protocol+"://"+req.get('host'))==("http://"+host))
+            {
+                console.log("Domain is matched. Information is from Authentic email");
+                if(req.query.id==rand)
+                {
+                    console.log("email is verified");
+                    res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+                }
+                else
+                {
+                    console.log("email is not verified");
+                    res.end("<h1>Bad Request</h1>");
+                }
+            }
+            else
+            {
+                res.end("<h1>Request is from unknown source");
+            }
+            });
+            
+
+            console.log("hosttttttttttt",host);
+            db.connect().then(function (request) {
+                console.log("test111111111111");
+                return request.request()
+                    .input("U_TYPE", sql.NVarChar, req.body.userType)
+                    .input("U_ORG_NM", sql.NVarChar, req.body.orgName)
+                    .input("U_FNAME", sql.NVarChar, req.body.fullName)
+                    .input("U_PHONE", sql.NVarChar, req.body.mobile)
+                    .input("MAIL", sql.NVarChar, req.body.email)
+                    .input("U_PASS", sql.NVarChar, password)
+                    .input("U_MAIL_VERIFY", sql.Bit, req.body.mailVerify)
+                    .input("U_LOGIN_ATTMPT", sql.Int, req.body.loginAttemp)
+                    .output("Result", sql.VarChar(100))
+                    .execute('USER_REGISRATION').then(result => {
+                        console.log("resulttttttttttt",result)
+                        res.status(200).send(result)
+                        db.close();
+                    })
+                    .catch(function (err) {
+                        console.log("error is",err)
+                        db.close();
+
+                    });
+            })
+        }).catch(function (err) {
+            console.log("final error",err)
+        });
     })
 
-    async function sendMail(user,callback){
-        console.log("user details",user)
-        let transporter = nodemailer.createTransport({
+    async function sendMail(user, callback) {
+        console.log("user details", user)
+            let transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: 'ajay14052019@gmail.com', // generated ethereal user
-              pass: 'Testing@12' // generated ethereal password
+                user: 'ajay14052019@gmail.com', // generated ethereal user
+                pass: 'Testing@12' // generated ethereal password
             }
-          });
-    
+        });
 
-    let mailOptions = {
-        from: '"SVJ Group"', // sender address
-        to: user.email, // list of receivers
-        subject: "Hello to SVJ Group", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Email</b>: "+user.email+"<br><b>Password</b>:"+password // html body
-      };
 
-    let info=await transporter.sendMail(mailOptions);
-    callback(info);
+        let mailOptions = {
+            from: '"SVJ Group"', // sender address
+            to: user.email, // list of receivers
+            subject: "Hello to SVJ Group", // Subject line
+            text: "Hello world?", // plain text body
+            html: "<b>Email</b>: " + user.email + "<br><b>Password</b>:" + password // html body
+        };
+
+        let info = await transporter.sendMail(mailOptions);
+        callback(info);
     }
     // app.post("/registration", function (req, res) {
     //     console.log("body", req.body)
