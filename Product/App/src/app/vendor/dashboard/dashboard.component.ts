@@ -1,58 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatTableDataSource, MatPaginator } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 import { ConfigurationwizardComponent } from '../../vendor/configurationwizard/configurationwizard.component';
+
+export interface PeriodicElement {
+  productId: number,
+  productName: string;
+  unitPrice: number,
+  qty: number,
+  unitMeasure: string,
+  totalPrice: number
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 },
+  { productId: 1, productName: 'Hydrogen', unitPrice: 1.0079, qty: 0, unitMeasure: '0', totalPrice: 0 }
+];
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  loading: boolean;
-  dataSource: any;
-  columnDefs: any = [
-    {
-      fieldName: 'title',
-      headerName: 'Item Name',
-      width: 500,
-    },
-    {
-      fieldName: 'module',
-      headerName: 'Unit Price'
-    },
-    {
-      fieldName: 'associatedWith',
-      headerName: 'Quantity'
-    },
-    {
-      fieldName: 'modifiedByOn',
-      headerName: 'Unit Measure'
-    },
-    {
-      fieldName: 'modifiedByOn',
-      headerName: 'Total Price'
-    },
-    {
-      fieldName: 'modifiedByOn',
-      headerName: 'Action'
-    },
-    {
-      width: 50,
-      cellRenderer: () => {
-        return '<span style="cursor:pointer" class="viewIcon"><center>' +
-          '<i class="material-icons" title="copy">content_copy</i></center></span>';
-      }
-      //, onCellClicked: (row) => this.openDialog(row)
+  displayedColumns: string[] = ['select', 'productName', 'unitPrice', 'qty', 'unitMeasure','totalPrice'];
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  selection = new SelectionModel<PeriodicElement>(true, []);
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: PeriodicElement): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-  ];
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.productId + 1}`;
+  }
   constructor(public dialog: MatDialog) {
 
   }
   ngOnInit() {
-    this.loading = true;
-    this.dataSource = { data: null, fields: this.columnDefs };
-    this.loading = false;
-    //this.dialog.open(ConfigurationwizardComponent, { disableClose: true })
-    
+    //this.dialog.open(ConfigurationwizardComponent);
   }
-
 }
