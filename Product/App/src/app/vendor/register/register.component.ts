@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
       // var result = Object.keys(response).map(function (key) {
       //   return [Number(key), response[key]];
       // });
-      console.log("responsewwwwww",response)
+      console.log("responsewwwwww",response.output.Result)
     }, (error) => {
       console.log('error is ', error)
     })
