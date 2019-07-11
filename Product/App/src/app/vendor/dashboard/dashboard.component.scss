@@ -50,3 +50,23 @@
 .table-action button {
   margin-right: 5px;
 }
+.vendordtl {
+  display: block;
+  margin-bottom: 10px;
+}
+.vendordtl span:nth-child(1) {
+  font-size:18px;
+  font-weight: 600;
+}
+.vendordtl span:nth-child(2) {
+  font-size: 12px;
+  opacity: 0.6;
+  font-weight: 600;
+  float: right;
+  margin-top: 6px;
+}
+fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}

@@ -2,7 +2,14 @@ import { Component, OnInit ,ViewChild} from '@angular/core';
 import { MatDialog, MatTableDataSource, MatPaginator ,MatSort} from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ConfigurationwizardComponent } from '../../vendor/configurationwizard/configurationwizard.component';
+/*
+Left menu options
 
+1) Price fluctuation slider
+2) Task Scheduler
+3) Reporting
+4) My Account
+*/
 export interface PeriodicElement {
   productId: number,
   productName: string;
@@ -76,6 +83,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    //this.dialog.open(ConfigurationwizardComponent);
+    this.dialog.open(ConfigurationwizardComponent,{disableClose:true});
   }
 }

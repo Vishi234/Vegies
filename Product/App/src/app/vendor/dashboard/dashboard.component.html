@@ -1,108 +1,120 @@
 <div class="vendordtl">
     <span>Welcome,Vishal Singh </span>
-    <span>| Last Login : {{today | date:'dd-MM-yyyy hh:mm:ss a':'+0530'}}</span>
-
+    <span>Last Login : 12-Jan-2018 12:12:12</span>
 </div>
+
 <mat-toolbar color="primary" *ngIf="dataSource.data.length ===0 ">No checklist has been configured till now. Please
     configure it.</mat-toolbar>
 <div class="" *ngIf="dataSource.data.length > 0">
-    <div class="table-action">
-        <button mat-button>
-            Submit Requirement
-            <i class="material-icons">
-                send
-            </i>
-        </button>
-        <button mat-button [matMenuTriggerFor]="menu">
-            <i class="material-icons">
-                settings
-            </i>
-            <i class="material-icons">
-                arrow_drop_down
-            </i>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item>Add Item</button>
-            <button mat-menu-item>Update Existing </button>
-            <button mat-menu-item>Delete</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="export">
-            <i class="material-icons">
-                file_download
-            </i>
-            <i class="material-icons">
-                arrow_drop_down
-            </i>
-        </button>
-        <mat-menu #export="matMenu">
-            <button mat-menu-item>Download Csv</button>
-            <button mat-menu-item>Download Excel</button>
-            <button mat-menu-item>Download PDF</button>
-        </mat-menu>
+    <mat-card>
+        <mat-card-title>
+            Checklist
+        </mat-card-title>
+        <mat-card-subtitle>
+            choose your daily requirement, enter quantity, submit it.
+        </mat-card-subtitle>
+        <mat-card-content>
+            <div class="table-action">
+                <button mat-button>
+                    Submit Requirement
+                    <i class="material-icons">
+                        send
+                    </i>
+                </button>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <i class="material-icons">
+                        settings
+                    </i>
+                    <i class="material-icons">
+                        arrow_drop_down
+                    </i>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Add Item</button>
+                    <button mat-menu-item>Update Existing </button>
+                    <button mat-menu-item>Delete</button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="export">
+                    <i class="material-icons">
+                        file_download
+                    </i>
+                    <i class="material-icons">
+                        arrow_drop_down
+                    </i>
+                </button>
+                <mat-menu #export="matMenu">
+                    <button mat-menu-item>Download Csv</button>
+                    <button mat-menu-item>Download Excel</button>
+                    <button mat-menu-item>Download PDF</button>
+                </mat-menu>
 
-    </div>
-    <table mat-table [dataSource]="dataSource" matSort class="checklist-table">
-        <!-- Checkbox Column -->
-        <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-                </mat-checkbox>
-            </th>
-            <td mat-cell *matCellDef="let row">
-                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                    [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-                </mat-checkbox>
-            </td>
-        </ng-container>
-        <!-- Position Column -->
-        <ng-container matColumnDef="productName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
-        </ng-container>
+            </div>
+            <table mat-table [dataSource]="dataSource" matSort class="checklist-table">
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                        </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="productName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+                </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="unitPrice">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Price </th>
-            <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
-        </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="unitPrice">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
+                </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="qty">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
-            <td mat-cell *matCellDef="let element">
-                <mat-form-field>
-                    <input matInput value="{{element.qty}}">
-                </mat-form-field>
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="discount">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Discount(%)</th>
-            <td mat-cell *matCellDef="let element"> {{element.discount}} </td>
-        </ng-container>
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="unitMeasure">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Measure </th>
-            <td mat-cell *matCellDef="let element">
-                <mat-form-field>
-                    <select matNativeControl required>
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </mat-form-field>
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="totalPrice">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Price</th>
-            <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
-        </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="qty">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-form-field>
+                            <input matInput value="{{element.qty}}">
+                        </mat-form-field>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="discount">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Discount(%)</th>
+                    <td mat-cell *matCellDef="let element"> {{element.discount}} </td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="unitMeasure">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Measure </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-form-field>
+                            <select matNativeControl required>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </mat-form-field>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="totalPrice">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Price</th>
+                    <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+                </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
-        </tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+    </mat-card>
+
 </div>
