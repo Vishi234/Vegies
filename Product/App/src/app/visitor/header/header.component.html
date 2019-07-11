@@ -57,12 +57,27 @@
                                         <div class="largesubmenu" *ngIf="subCatList.length > 0">
                                             <ul>
                                                 <li *ngFor="let subList of subCatList">
-                                                    <a href="javascript:void(0)" *ngIf='list.CATEGORY_ID == subList.CATEGORY_ID'>
+                                                    <a href="javascript:void(0)"
+                                                        *ngIf='list.CATEGORY_ID == subList.CATEGORY_ID'>
                                                         <span> {{subList.CATEGORY_ID}}</span>
                                                         <span>
                                                             {{subList.SUBCAT_NAME}}
                                                         </span>
                                                     </a>
+                                                    <div class="largesubmenu-three" *ngIf="subCatList.length > 0">
+                                                        <ul>
+                                                            <li *ngFor="let subList of subCatList">
+                                                                <a href="javascript:void(0)"
+                                                                    *ngIf='list.CATEGORY_ID == subList.CATEGORY_ID'>
+                                                                    <span> {{subList.CATEGORY_ID}}</span>
+                                                                    <span>
+                                                                        {{subList.SUBCAT_NAME}}
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <!-- <span ng-if="(list.CATEGORY_ID | filter: subList.CATEGORY_ID: true )">   -->
+                                                    </div>
                                                 </li>
                                             </ul>
                                             <!-- <span ng-if="(list.CATEGORY_ID | filter: subList.CATEGORY_ID: true )">   -->

@@ -1,5 +1,5 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
-import { MatDialog, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatDialog, MatTableDataSource, MatPaginator ,MatSort} from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ConfigurationwizardComponent } from '../../vendor/configurationwizard/configurationwizard.component';
 
@@ -44,11 +44,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'productName', 'unitPrice', 'qty', 'unitMeasure','totalPrice','discount'];
+  displayedColumns: string[] = ['select', 'productName', 'unitPrice', 'qty','discount', 'unitMeasure','totalPrice'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -75,6 +75,7 @@ export class DashboardComponent implements OnInit {
   }
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     //this.dialog.open(ConfigurationwizardComponent);
   }
 }

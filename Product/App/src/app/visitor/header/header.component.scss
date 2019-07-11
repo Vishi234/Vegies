@@ -84,6 +84,7 @@ searchbar {
 .hdrlogin > a[aria-expanded="true"] {
   background: #fff;
   color: #666;
+  box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.1);
 }
 .hdrlogin > a[aria-expanded="true"] svg {
   fill: #666;
@@ -105,6 +106,7 @@ searchbar {
   color: #666;
   border-radius: 0px 4px 4px 4px;
   width: 210px;
+  box-shadow: 0 12px 17px 0 rgba(0, 0, 0, 0.1);
 }
 .hdrlogin .dropdown-item:hover {
   background-color: rgba(0, 0, 0, 0.1);
@@ -229,7 +231,7 @@ hr {
   margin-left: -76%;
   width: 180px;
   display: none;
-  box-shadow: 0 4px 17px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.1);
 }
 .sidebar .title {
   display: block;
@@ -239,14 +241,17 @@ hr {
   margin-bottom: 5px;
   font-weight: 700;
 }
+.leftmenu > ul > li:nth-child(1) a {
+  border-top: 1px solid #e5e5e5;
+}
 .leftmenu > ul > li {
   display: block;
   width: 100%;
   a {
     display: block;
-    font-size: 11px;
+    font-size: 12px;
     width: 100%;
-    padding: 12px 15px !important;
+    padding: 8px 15px !important;
     color: #666;
     background: #fff;
     padding-left: 0px;
@@ -276,19 +281,71 @@ hr {
   position: absolute;
   top: 0;
   background: #fafafa;
-  padding: 12px;
   margin-left: 180px;
-  width: 500px;
+  width: 250px;
   height: 500px;
   z-index: 999999;
-  border: 1px solid #e5e5e5;
   border-left: 0px;
-  box-shadow: 8px 4px 17px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 15px 4px 17px 0 rgba(0, 0, 0, 0.1);
 }
+
 .rightcontent {
   width: 75%;
   margin-top: 1%;
   right: 0;
   position: absolute;
   z-index: -1;
+}
+.largesubmenu > ul > li:nth-child(1) > a {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.largesubmenu > ul > li {
+  display: block;
+  width: 100%;
+  a {
+    float: left;
+    background-color: transparent;
+    border-left: none;
+    padding-bottom: 7px !important;
+    width: 100%;
+  }
+  &:hover .largesubmenu-three {
+    display: block;
+  }
+  &:hover > a {
+    border-right: 0px;
+    z-index: 999;
+    background: #fff !important;
+  }
+}
+.largesubmenu-three {
+  display: none;
+  position: absolute;
+  top: 0px;
+  background: #ffff;
+  margin-left: 249px;
+  width: 250px;
+  height: 500px;
+  z-index: 999999;
+  border-left: 0px;
+  box-shadow: 15px 4px 17px 0 rgba(0, 0, 0, 0.1);
+}
+.largesubmenu-three > ul > li {
+  display: block;
+  width: 100%;
+  a {
+    float: left;
+    border-top: none !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+    background-color: transparent;
+    border-left: none;
+    padding-bottom: 7px !important;
+    width: 100%;
+  }
+  &:hover > a {
+    border-right: 0px;
+    z-index: 999;
+    background: #fafafa !important;
+  }
 }
