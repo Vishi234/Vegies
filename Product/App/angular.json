@@ -88,13 +88,11 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/angular-bootstrap-md/scss/bootstrap.scss",
-              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "../node_modules/jquery/dist/jquery.js",
+              "../node_modules/owl.carousel/dist/owl.carousel.js"
             ]
           }
         },
@@ -124,6 +122,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "App"
 }

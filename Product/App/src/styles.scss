@@ -29,7 +29,9 @@ $App-theme: mat-light-theme($App-primary, $App-accent, $App-warn);
 @import "https://fonts.googleapis.com/css?family=Muli:200,300,400,600,700&display=swap";
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css";
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import"../node_modules/owl.carousel/dist/assets/owl.carousel.css";
+@import"../node_modules/owl.carousel/dist/assets/owl.theme.default.css";
 
 body {
   font-family: "Muli", sans-serif;
@@ -426,4 +428,85 @@ th.mat-sort-header-sorted {
 .mat-toolbar.mat-primary span:nth-child(3)
 {
   float: right;
+}
+.mat-dialog-container
+{
+  border-radius: 0px!important;
+}
+.modalbase
+{
+  padding: 0px;
+    width: 700px;
+}
+.modal-header
+{
+  background: #283442;
+  border-radius: 0px;
+  color: rgba(255,255,255,0.8);
+  padding: 16px;
+}
+.modal-header .title
+{
+  font-size: 16px;
+}
+.modal-header .title i
+{
+  float: left;
+  margin-right: 7px;
+}
+.modal-header .close a
+{
+  color: #fff;
+}
+.carousel-multi-item .controls-top {
+  text-align: center;
+  margin-bottom: 1.88rem;
+}
+.carousel-multi-item .controls-top .btn-floating {
+  background: #4285f4;
+}
+a.waves-effect, a.waves-light {
+  display: inline-block;
+}
+.btn-floating {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+  width: 47px;
+  height: 47px;
+  position: relative;
+  z-index: 1;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  transition: all .2s ease-in-out;
+  margin: 10px;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+}
+.waves-effect {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-floating svg {
+  display: inline-block;
+  width: inherit;
+  text-align: center;
+  color: #fff;
+  font-size: 1.35rem;
+  line-height: 47px;
+  margin-top: 11px;
+}
+.carousel
+{
+  outline: none;
+}
+.owl-carousel {
+  width: 90% !important;
+  margin: 10% auto;
 }
