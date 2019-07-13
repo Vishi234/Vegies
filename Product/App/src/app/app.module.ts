@@ -6,6 +6,9 @@ import {
   MatExpansionModule, MatDialogModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatCheckboxModule, MatButtonModule,
   MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule,MatMenuModule,MatToolbarModule
 } from '@angular/material';
+// Import your library
+import { OwlModule } from 'ngx-owl-carousel';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
@@ -78,7 +81,8 @@ import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
     MatTableModule,
     MatTooltipModule,
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    OwlModule
   ],
   providers: [AdminCategoryService,
     {
