@@ -1,6 +1,7 @@
 ///<reference types="@types/googlemaps" />
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Location, Appearance} from '@angular-material-extensions/google-maps-autocomplete';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, Validators,FormGroup } from '@angular/forms';
+import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
 import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
@@ -15,10 +16,103 @@ export class ConfigurationwizardComponent implements OnInit {
   public latitude: number;
   public longitude: number;
   public selectedAddress: PlaceResult;
+  toggle: boolean = false;
+  toppings = new FormControl('', [Validators.required]);
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  items: Array<any> = [];
+  productSelectionGroup: FormGroup;
+  locationFormGroup: FormGroup;
+  inreaseHeight() {
+    this.toggle = !this.toggle;
 
+  }
+  onValChange(lbl, value) {
+    if (value.length > 0) {
+      document.getElementById("lblName" + lbl).innerHTML = "Selected";
+    }
+    else {
+      document.getElementById("lblName" + lbl).innerHTML = "Select Item";
+    }
+  }
   constructor(
-  ) { }
-  google : any;
+  ) {
+    this.items = [
+      {
+        name: "Everfresh Flowers",
+        image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg",
+        unit: "1 Kg",
+        oldPrice: "Rs 250",
+        newPrice: "Rs 30",
+        id: "1"
+
+      },
+      {
+        name: "Festive Deer",
+        image: "https://www.bigbasket.com/media/uploads/p/s/10000159_25-fresho-potato.jpg",
+        unit: "1 Kg",
+        oldPrice: "Rs 250",
+        newPrice: "Rs 30",
+        id: "2"
+      },
+      {
+        name: "Morning Greens",
+        image: "https://www.bigbasket.com/media/uploads/p/s/10000200_17-fresho-tomato-hybrid.jpg",
+        unit: "1 Kg",
+        oldPrice: "Rs 250",
+        newPrice: "Rs 30",
+        id: "3"
+      },
+      {
+        name: "Bunch of Love",
+        image: "https://www.bigbasket.com/media/uploads/p/s/10000068_22-fresho-capsicum-green.jpg",
+        unit: "1 Kg",
+        oldPrice: "Rs 250",
+        newPrice: "Rs 30",
+        id: "4"
+      },
+      {
+        name: "Blue Clear",
+        image: "https://www.bigbasket.com/media/uploads/p/s/241600_5-tata-salt-salt-iodized.jpg",
+        unit: "1 Kg",
+        oldPrice: "Rs 250",
+        newPrice: "Rs 30",
+        id: "5"
+      },
+      {
+        name: "Evening Clouds",
+        image: "https://www.bigbasket.com/media/uploads/p/s/283426_2-india-gate-basmati-rice-feast-rozzana.jpg",
+        unit: "1 Kg",
+        oldPrice: "Rs 250",
+        newPrice: "Rs 30",
+        id: "6"
+      },
+      {
+        name: "Fontains in Shadows",
+        image: "https://www.bigbasket.com/media/uploads/p/s/10000188_11-fresho-palak.jpg",
+        unit: "1 Kg",
+        oldPrice: "Rs 250",
+        newPrice: "Rs 30",
+        id: "7"
+      },
+      {
+        name: "Kites in the Sky",
+        image: "https://www.bigbasket.com/media/uploads/p/s/40026269_2-milkfood-rich-desi-ghee.jpg",
+        unit: "1 Kg",
+        oldPrice: "Rs 250",
+        newPrice: "Rs 30",
+        id: "8"
+      },
+      {
+        name: "Sun Streak",
+        image: "https://www.bigbasket.com/media/uploads/p/s/10000668_12-fresho-cucumber-english.jpg",
+        unit: "1 Kg",
+        oldPrice: "Rs 250",
+        newPrice: "Rs 30",
+        id: "9"
+      }
+    ]
+  }
+  google: any;
   ngOnInit() {
     this.zoom = 10;
     this.latitude = 52.520008;
@@ -37,14 +131,14 @@ export class ConfigurationwizardComponent implements OnInit {
   onAutocompleteSelected(result: PlaceResult) {
     console.log('onAutocompleteSelected: ', result);
   }
- 
+
   onLocationSelected(location: Location) {
     console.log('onLocationSelected: ', location);
     this.latitude = location.latitude;
     this.longitude = location.longitude;
   }
-  title = 'OwlCarousel2 in Angular7 with Custom Navigation Arrows';
- 
+
+
   carouselOptions = {
     margin: 25,
     nav: true,
@@ -71,44 +165,7 @@ export class ConfigurationwizardComponent implements OnInit {
       }
     }
   }
- 
-  images = [
-    {
-      text: "Everfresh Flowers",
-      image: "https://freakyjolly.com/demo/jquery/PreloadJS/images/1.jpg"
-    },
-    {
-      text: "Festive Deer",
-      image: "https://freakyjolly.com/demo/jquery/PreloadJS/images/2.jpg"
-    },
-    {
-      text: "Morning Greens",
-      image: "https://freakyjolly.com/demo/jquery/PreloadJS/images/3.jpg"
-    },
-    {
-      text: "Bunch of Love",
-      image: "https://freakyjolly.com/demo/jquery/PreloadJS/images/4.jpg"
-    },
-    {
-      text: "Blue Clear",
-      image: "https://freakyjolly.com/demo/jquery/PreloadJS/images/5.jpg"
-    },
-    {
-      text: "Evening Clouds",
-      image: "https://freakyjolly.com/demo/jquery/PreloadJS/images/7.jpg"
-    },
-    {
-      text: "Fontains in Shadows",
-      image: "https://freakyjolly.com/demo/jquery/PreloadJS/images/8.jpg"
-    },
-    {
-      text: "Kites in the Sky",
-      image: "https://freakyjolly.com/demo/jquery/PreloadJS/images/9.jpg"
-    },
-    {
-      text: "Sun Streak",
-      image: "https://freakyjolly.com/demo/jquery/PreloadJS/images/10.jpg"
-    }
-  ]
- 
+
+
+
 }
