@@ -1,0 +1,15 @@
+[
+{ 
+    "_id" : ObjectId("5d2b7a6209746f24c054cead"), 
+    "userType" : "1", 
+    "orgName" : "Tombolo", 
+    "fullName" : "jss", 
+    "email" : "jatashankarsingh128@gmail.com", 
+    "mobile" : "8076903869", 
+    "password" : "", 
+    "mailVerify" : "1", 
+    "mobleVerify" : "1", 
+    "loginAttemp" : NumberInt(0), 
+    "__v" : NumberInt(0)
+}
+]

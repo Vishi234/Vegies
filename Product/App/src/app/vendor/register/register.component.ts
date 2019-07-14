@@ -12,6 +12,7 @@ import {Router} from '@angular/router'
 export class RegisterComponent implements OnInit {
   constructor( public dialog: MatDialog,public vendorRegis:RegisterService,private router:Router) {
    }
+
    registerUser = new registerModel(1,'','','','','',1,1,0);
 
    vendorSignup() {

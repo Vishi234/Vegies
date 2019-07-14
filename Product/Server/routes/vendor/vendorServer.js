@@ -1,8 +1,8 @@
-var db = require("../../config/dbConfig")
-console.log("dbbbbbbbb",db);
+var db = require("../../config/dbConfig");
 var sql = require("mssql");
 const nodemailer = require("nodemailer");
 var generator = require('generate-password');
+var model=require("./vendorModel");
 var mailOptions, host;
 
 module.exports = (function () {
@@ -16,37 +16,54 @@ module.exports = (function () {
     var app = require('express').Router();
     //POST API
     app.post("/registration", function (req, res) {
-        host = req.get('host');
-        let user = req.body;
-        host = req.get('host');
-        db.connect().then(function (request) {
-            return request.request()
-                .input("U_TYPE", sql.NVarChar, req.body.userType)
-                .input("U_ORG_NM", sql.NVarChar, req.body.orgName)
-                .input("U_FNAME", sql.NVarChar, req.body.fullName)
-                .input("U_PHONE", sql.NVarChar, req.body.mobile)
-                .input("MAIL", sql.NVarChar, req.body.email)
-                .input("U_PASS", sql.NVarChar, password)
-                .input("U_MAIL_VERIFY", sql.Bit, req.body.mailVerify)
-                .input("U_LOGIN_ATTMPT", sql.Int, req.body.loginAttemp)
-                .output("Result", sql.VarChar(100))
-                .execute('USER_REGISRATION').then(result => {
-                    res.status(200).send(result)
-                    if (result.output.Result == 'USER REGISTERED SUCCESSFULLY') {
-                        sendMail(user, info => {
-                        }).catch(function (err) {
-                            console.log("Mail Sending errors", err)
-                        });
-                    }
-                    db.close();
-                })
-                .catch(function (err) {
-                    console.log("error is", err)
-                    db.close();
-
+        let registerData = req.body;
+        console.log("cateeeeeeeeeee", registerData);
+        let registerationSave = new model.register(registerData)
+        registerationSave.save().then((items => {
+            console.log("dataaaaaaaaaa", items);
+            res.status(400).send("Registration successfully");
+                sendMail(registerData, info => {
+                }).catch(function (err) {
+                    console.log("Mail Sending errors", err)
                 });
+        })).catch(err => {
+            console.log("error is", err)
+            res.status(400).send("unable to save to database");
         })
-    })
+    });
+
+    // app.post("/registration", function (req, res) {
+    //     host = req.get('host');
+    //     let user = req.body;
+    //     host = req.get('host');
+    //     db.connect().then(function (request) {
+    //         return request.request()
+    //             .input("U_TYPE", sql.NVarChar, req.body.userType)
+    //             .input("U_ORG_NM", sql.NVarChar, req.body.orgName)
+    //             .input("U_FNAME", sql.NVarChar, req.body.fullName)
+    //             .input("U_PHONE", sql.NVarChar, req.body.mobile)
+    //             .input("MAIL", sql.NVarChar, req.body.email)
+    //             .input("U_PASS", sql.NVarChar, password)
+    //             .input("U_MAIL_VERIFY", sql.Bit, req.body.mailVerify)
+    //             .input("U_LOGIN_ATTMPT", sql.Int, req.body.loginAttemp)
+    //             .output("Result", sql.VarChar(100))
+    //             .execute('USER_REGISRATION').then(result => {
+    //                 res.status(200).send(result)
+    //                 if (result.output.Result == 'USER REGISTERED SUCCESSFULLY') {
+    //                     sendMail(user, info => {
+    //                     }).catch(function (err) {
+    //                         console.log("Mail Sending errors", err)
+    //                     });
+    //                 }
+    //                 db.close();
+    //             })
+    //             .catch(function (err) {
+    //                 console.log("error is", err)
+    //                 db.close();
+
+    //             });
+    //     })
+    // })
 
 
     app.post("/login", function (req, res) {

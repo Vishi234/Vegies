@@ -12,32 +12,25 @@ export class CategoryComponent implements OnInit {
   constructor(private _adminCategory: AdminCategoryService) { }
 
   
-  categoryData = new categoryFields(0, '', '', 1, 0, '', '', 'A', 0, 1);
+  categoryData = new categoryFields(0, '', '', 1);
+  subCategoryData={};
  // subCategoryData = new categoryFields(2, '', '', 1, 0, '', '', 'A', 0, 1);
   catResponse: any;
   rowData: any;
   rowDatSubCat:any;
-  categoryList: any[];
+  categoryList: any;
   ngOnInit() 
   {
     this._adminCategory.GetCategoryList().subscribe((response) => 
     {
-      var result = Object.keys(response).map(function (key) 
-      {
-        return [Number(key), response[key]];
-      });
-      this.rowData = result[1][1];
-      this.catResponse = response;
-      this.categoryList =  this.catResponse.recordsets[0];
-
+      this.categoryList = response;
+      console.log("aaaaaaaaaya",this.categoryList)
      }, (error) => {
       console.log('error is ', error)
     });
 
     this._adminCategory.GetSubCategoryList().subscribe((response) => 
     {
-
-   
       this.rowDatSubCat = response["recordset"];
       console.log('data',this.rowDatSubCat);
      }, (error) => {
@@ -59,8 +52,8 @@ export class CategoryComponent implements OnInit {
   } 
 
   AddSubCategory() {
-    console.log('subCategoryData-',this.categoryData);
-    this._adminCategory.AddSubCategory(this.categoryData)
+    console.log('subCategoryData-',this.subCategoryData);
+    this._adminCategory.AddSubCategory(this.subCategoryData)
       .subscribe((res) => {
         console.log('Response body---', res);
       },

@@ -14,9 +14,9 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType,Content-Type, Accept, Authorization");
     next();
 });
-
+console.log("portttttt",dbConfig.app.port);
 //Setting up server
- var server = app.listen(process.env.PORT || 8080, function () {
+ var server = app.listen(process.env.PORT || dbConfig.app.port, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
  });
