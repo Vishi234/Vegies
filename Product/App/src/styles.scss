@@ -30,8 +30,6 @@ $App-theme: mat-light-theme($App-primary, $App-accent, $App-warn);
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import"../node_modules/owl.carousel/dist/assets/owl.carousel.css";
-@import"../node_modules/owl.carousel/dist/assets/owl.theme.default.css";
 
 body {
   font-family: "Muli", sans-serif;
@@ -420,42 +418,34 @@ button:focus {
 th.mat-sort-header-sorted {
   color: #fff;
 }
-.mat-toolbar.mat-primary
-{
+.mat-toolbar.mat-primary {
   height: 36px;
   display: block;
 }
-.mat-toolbar.mat-primary span:nth-child(3)
-{
+.mat-toolbar.mat-primary span:nth-child(3) {
   float: right;
 }
-.mat-dialog-container
-{
-  border-radius: 0px!important;
+.mat-dialog-container {
+  border-radius: 0px !important;
 }
-.modalbase
-{
+.modalbase {
   padding: 0px;
-    width: 700px;
+  width: 700px;
 }
-.modal-header
-{
+.modal-header {
   background: #283442;
   border-radius: 0px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   padding: 16px;
 }
-.modal-header .title
-{
+.modal-header .title {
   font-size: 16px;
 }
-.modal-header .title i
-{
+.modal-header .title i {
   float: left;
   margin-right: 7px;
 }
-.modal-header .close a
-{
+.modal-header .close a {
   color: #fff;
 }
 .carousel-multi-item .controls-top {
@@ -465,11 +455,12 @@ th.mat-sort-header-sorted {
 .carousel-multi-item .controls-top .btn-floating {
   background: #4285f4;
 }
-a.waves-effect, a.waves-light {
+a.waves-effect,
+a.waves-light {
   display: inline-block;
 }
 .btn-floating {
-  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
   width: 47px;
   height: 47px;
   position: relative;
@@ -477,7 +468,7 @@ a.waves-effect, a.waves-light {
   vertical-align: middle;
   display: inline-block;
   overflow: hidden;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   margin: 10px;
   border-radius: 50%;
   padding: 0;
@@ -502,11 +493,28 @@ a.waves-effect, a.waves-light {
   line-height: 47px;
   margin-top: 11px;
 }
-.carousel
-{
-  outline: none;
+.ng2-carouselamos {
+  display: -webkit-box !important;
 }
-.owl-carousel {
-  width: 90% !important;
-  margin: 10% auto;
+.item-content .mat-button-toggle-group {
+  width: 100%;
+  margin-top: 10px;
+  font-family: inherit;
+}
+.item-content .mat-button-toggle {
+  width: 100%;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  background: #283442;
+}
+.item-content .mat-button-toggle-button {
+  width: 100%;
+  font-family: inherit;
+}
+.item-content .mat-button-toggle-checked {
+  background-color: #4caf50 !important;
+}
+label {
+  margin: 0px;
 }

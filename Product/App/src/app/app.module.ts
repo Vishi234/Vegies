@@ -4,10 +4,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   MatFormFieldModule, MatCardModule, MatSlideToggleModule, MatInputModule, MatListModule, MatStepperModule,
   MatExpansionModule, MatDialogModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatCheckboxModule, MatButtonModule,
-  MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule,MatMenuModule,MatToolbarModule
+  MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule,MatMenuModule,MatToolbarModule,MatButtonToggleModule
 } from '@angular/material';
 // Import your library
-import { OwlModule } from 'ngx-owl-carousel';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -82,7 +82,8 @@ import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
     MatTooltipModule,
     MatMenuModule,
     MatToolbarModule,
-    OwlModule
+    Ng2CarouselamosModule,
+    MatButtonToggleModule
   ],
   providers: [AdminCategoryService,
     {
