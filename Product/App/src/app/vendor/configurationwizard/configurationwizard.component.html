@@ -19,18 +19,19 @@
             <mat-form-field>
               <mat-select placeholder="Select Category" required [formControl]="toppings" multiple>
                 <mat-select-trigger>
-                  {{toppings.value ? toppings.value[0] : ''}}
+                  {{toppings.value ? toppings.keys : ''}}
                   <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
                     (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
                   </span>
                 </mat-select-trigger>
-                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                <mat-option *ngFor="let subCatName of subCatList" [value]="subCatName._id">{{subCatName.subCatName}}</mat-option>
               </mat-select>
               <mat-error *ngIf="toppings.hasError('required')">
                 This field is required
               </mat-error>
             </mat-form-field>
           </div>
+          
           <div id="container" class="owl-carousel">
             <div ng2-carouselamos class="slides-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next"
               [$item]="item">

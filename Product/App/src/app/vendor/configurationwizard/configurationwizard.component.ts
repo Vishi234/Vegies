@@ -1,8 +1,9 @@
 ///<reference types="@types/googlemaps" />
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, Validators,FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
 import PlaceResult = google.maps.places.PlaceResult;
+import { AdminCategoryService } from '../../admin/category/admin-category.service'
 
 @Component({
   selector: 'app-configurationwizard',
@@ -18,7 +19,8 @@ export class ConfigurationwizardComponent implements OnInit {
   public selectedAddress: PlaceResult;
   toggle: boolean = false;
   toppings = new FormControl('', [Validators.required]);
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  public subCatList: Array<any> = [];
+  //toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   items: Array<any> = [];
   productSelectionGroup: FormGroup;
   locationFormGroup: FormGroup;
@@ -34,7 +36,7 @@ export class ConfigurationwizardComponent implements OnInit {
       document.getElementById("lblName" + lbl).innerHTML = "Select Item";
     }
   }
-  constructor(
+  constructor(private _vendorDetails: AdminCategoryService
   ) {
     this.items = [
       {
@@ -118,6 +120,19 @@ export class ConfigurationwizardComponent implements OnInit {
     this.latitude = 52.520008;
     this.longitude = 13.404954;
     this.setCurrentPosition();
+
+    this._vendorDetails.GetSubCategoryList().subscribe((response) => {
+      Object.entries(response).forEach(
+        ([key, value]) => {
+          this.subCatList.push(value)
+        }
+      );
+      this.subCatList.map((val: any) => {
+        return ({ "_id": val._id, "subCatName": val.subCatName })
+      })
+    }, (error) => {
+      console.log('error is ', error)
+    });
   }
   private setCurrentPosition() {
     if ('geolocation' in navigator) {

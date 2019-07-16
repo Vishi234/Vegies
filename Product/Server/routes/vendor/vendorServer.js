@@ -18,6 +18,7 @@ module.exports = (function () {
     app.post("/registration", function (req, res) {
         let registerData = req.body;
         console.log("cateeeeeeeeeee", registerData);
+        registerData.password=password;
         let registerationSave = new model.register(registerData)
         registerationSave.save().then((items => {
             console.log("dataaaaaaaaaa", items);

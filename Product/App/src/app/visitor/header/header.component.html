@@ -52,16 +52,17 @@
                                 <ul>
                                     <li *ngFor="let list of catList">
                                         <a href="javascript:void(0)">
-                                            {{list.CATEGORY_ID}} {{list.CATEGORY_NAME}}
+                                            <!-- {{list._id}}  -->
+                                            {{list.catName}}
                                         </a>
                                         <div class="largesubmenu" *ngIf="subCatList.length > 0">
                                             <ul>
                                                 <li *ngFor="let subList of subCatList">
                                                     <a href="javascript:void(0)"
-                                                        *ngIf='list.CATEGORY_ID == subList.CATEGORY_ID'>
-                                                        <span> {{subList.CATEGORY_ID}}</span>
+                                                        *ngIf='list._id == subList.mainProduct'>
+                                                        <!-- <span> {{subList._id}}</span> -->
                                                         <span>
-                                                            {{subList.SUBCAT_NAME}}
+                                                            {{subList.subCatName}}
                                                         </span>
                                                     </a>
                                                     <div class="largesubmenu-three" *ngIf="subCatList.length > 0">
