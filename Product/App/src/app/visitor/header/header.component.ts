@@ -31,53 +31,19 @@ export class HeaderComponent implements OnInit {
 
     this._adminCategory.GetCategoryList().subscribe((response) => 
     {
-    // this.catList = Object.keys(response["recordsets"][0]).map((key) => [key, response["recordsets"][0][key]]);
-      this.catList = response["recordsets"][0].map((x:any)=>
-      {
-      return  {"CATEGORY_ID" : x.CATEGORY_ID,"CATEGORY_NAME" : x.CATEGORY_NAME}
-      }) ;
+      this.catList = response;
       console.log('this.catList',this.catList);
-     
       this._adminCategory.GetSubCategoryList().subscribe((response) => 
-      {
-      
-       this.subCatList = response["recordset"].map((x:any)=>
-       {
-        return  {"CATEGORY_ID" : x.CATEGORY_ID, "SUBCAT_ID" : x.SUBCAT_ID,"SUBCAT_NAME" : x.SUBCAT_NAME}
-       });
+      {      
+       this.subCatList = response;
        console.log('this.subCatList',this.subCatList);
-
-      //  for(let j=0;j<this.catList.length;j++)
-      //  {
-      //  for(let i=0;i<this.subCatList.length;i++)
-      //  {
-      //     if(this.catList[j].CATEGORY_ID==this.subCatList[i].CATEGORY_ID)
-      //     {
-      //     this.newSubCat.push(this.subCatList[i].SUBCAT_NAME);
-      //     }
-      //  }
-      // }
-     //  console.log('this.subCatList',this.newSubCat);
        this.filtersLoaded = Promise.resolve(true);
        }, (error) => {
         console.log('error is ', error)
-      });
-
-      
+      });      
      }, (error) => {
       console.log('error is ', error)
     });
-    // if(this.filtersLoaded)
-    // {
-    //   this._adminCategory.GetSubCategoryList().subscribe((response) => 
-    //   {
-    //    this.subCatList= response["recordset"];
-    //    }, (error) => {
-    //     console.log('error is ', error)
-    //   });
-    // }
-    
-
   }
 }
 
