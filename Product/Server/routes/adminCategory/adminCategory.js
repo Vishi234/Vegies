@@ -30,7 +30,7 @@ module.exports = (function () {
         let categorySave = new model.Category(categoryData)
         categorySave.save().then((items => {
             console.log("dataaaaaaaaaa", items);
-            res.status(400).send("Category added successfully");
+            res.status(200).send(items);
         })).catch(err => {
             console.log("errwwww", err)
             res.status(400).send("unable to save to database");
@@ -43,7 +43,7 @@ module.exports = (function () {
         let subCategorySave = new model.subCategory(subCategoryData)
         subCategorySave.save().then((items => {
             console.log("dataaaaaaaaaa", items);
-            res.status(400).send("Sub Category added successfully");
+            res.status(200).send("Sub Category added successfully");
         })).catch(err => {
             console.log("errwwww", err)
             res.status(400).send("unable to save to database");

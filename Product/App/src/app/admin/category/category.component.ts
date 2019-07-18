@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminCategoryService } from './admin-category.service'
 import { categoryFields } from './categoryFields';
 
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -11,29 +12,46 @@ export class CategoryComponent implements OnInit {
 
   constructor(private _adminCategory: AdminCategoryService) { }
 
-  
+
   categoryData = new categoryFields(0, '', '', 1);
-  subCategoryData={};
- // subCategoryData = new categoryFields(2, '', '', 1, 0, '', '', 'A', 0, 1);
+  subCategoryData = {};
   catResponse: any;
-  rowData: any;
-  rowDatSubCat:any;
+  catName: any;
+  public catData: Array<any> = [];
+  public subCatData: Array<any> = [];
+  rowDatSubCat: any;
   categoryList: any;
-  ngOnInit() 
-  {
-    this._adminCategory.GetCategoryList().subscribe((response) => 
-    {
+  ngOnInit() {
+    this._adminCategory.GetCategoryList().subscribe((response) => {
       this.categoryList = response;
-      console.log("aaaaaaaaaya",this.categoryList)
-     }, (error) => {
+      Object.entries(response).forEach(
+        ([key, value]) => {
+          this.catData.push(value)
+        }
+      );
+      this.catData.map((val: any) => {
+        return ({ "_id": val._id, "catName": val.catName, "catAlias": val.catAlias })
+      })
+    }, (error) => {
       console.log('error is ', error)
     });
 
-    this._adminCategory.GetSubCategoryList().subscribe((response) => 
-    {
-      this.rowDatSubCat = response["recordset"];
-      console.log('data',this.rowDatSubCat);
-     }, (error) => {
+    this._adminCategory.GetSubCategoryList().subscribe((response) => {
+      Object.entries(response).forEach(
+        ([key, value]) => {
+          this.subCatData.push(value)
+        }
+      );
+
+      this.rowDatSubCat = this.subCatData.map((val: any) => {
+        this.catName = this.categoryList.filter((ele: any) => ele._id == val.mainProduct)
+        return ({
+          "_id": val._id, "subCatName": val.subCatName,
+          "subCatAlias": val.subCatAlias
+          , "catName": this.catName[0].catName
+        })
+      })
+    }, (error) => {
       console.log('error is ', error)
     });
 
@@ -41,18 +59,14 @@ export class CategoryComponent implements OnInit {
 
   AddCategory() {
     this._adminCategory.AddCategory(this.categoryData).subscribe(response => {
-      var result = Object.keys(response).map(function (key) {
-        return [Number(key), response[key]];
-      });
-      this.rowData = result[1][1];
-      console.log("response is", this.rowData)
+      console.log("Response is",response);
     }, (error) => {
       console.log('error is ', error)
     })
-  } 
+  }
 
   AddSubCategory() {
-    console.log('subCategoryData-',this.subCategoryData);
+    console.log('subCategoryData-', this.subCategoryData);
     this._adminCategory.AddSubCategory(this.subCategoryData)
       .subscribe((res) => {
         console.log('Response body---', res);
@@ -61,33 +75,29 @@ export class CategoryComponent implements OnInit {
           console.log(error);
         })
   }
-  
-  myCellRenderer (params) 
-  {
+
+  myCellRenderer(params) {
     var eDiv = document.createElement('div');
     eDiv.innerHTML = "&nbsp; <span style='cursor:pointer;' title='Edit Record'><img class='editIcon' src='src/assets/icons/edit.png'   userId='' /></span>";
     var domElement = document.createElement("span");
 
-    var eButton = eDiv.querySelectorAll('.editIcon')[0];   
-        eButton.addEventListener('click', function() 
-        {
-            console.log('button was clicked!!',params);
-        });
+    var eButton = eDiv.querySelectorAll('.editIcon')[0];
+    eButton.addEventListener('click', function () {
+      console.log('button was clicked!!', params);
+    });
     return eDiv;
   }
 
   columnDefs = [
-    { headerName:'Edit',field:'',  cellRenderer: this.myCellRenderer},
-    { headerName: 'CATEGORY_ID', field: 'CATEGORY_ID', sortable: true, filter: true },
-    { headerName: 'CATEGORY_NAME', field: 'CATEGORY_NAME' }
+    { headerName: 'Edit', field: '', cellRenderer: this.myCellRenderer },
+    { headerName: 'Category Name', field: 'catName' },
+    { headerName: 'Category Alias', field: 'catAlias' }
   ];
 
   columnDefSubCat = [
-    { headerName:'Edit',field:'',  cellRenderer: this.myCellRenderer},
-    { headerName: 'CATEGORY_ID', field: 'CATEGORY_ID', sortable: true, filter: true },
-    { headerName: 'SUBCATEGORY_NAME', field: 'SUBCAT_NAME' },
-    { headerName: 'SUBCATEGORY_ID', field: 'SUBCATEGORY_ID', sortable: true, filter: true },
-    { headerName: 'SUBCATEGORY_DESC', field: 'SUBCAT_DESC' }
+    { headerName: 'Edit', field: '', cellRenderer: this.myCellRenderer },
+    { headerName: 'CATEGORY_ID', field: 'catName', sortable: true, filter: true },
+    { headerName: 'SUBCATEGORY_NAME', field: 'subCatName' },
+    { headerName: 'SUBCATEGORY_DESC', field: 'subCatAlias' }
   ];
-
 }
