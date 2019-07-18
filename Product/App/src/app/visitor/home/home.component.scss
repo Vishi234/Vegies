@@ -1,0 +1,59 @@
+.whychoose
+{
+    display: inline-block;
+    width: 100%;
+}
+.whychooseinr
+{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+}
+.whychooseinr .title
+{
+    font-size: 22px;
+}
+.whylist>ul>li
+{
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+.whylist>ul>li>a
+{
+    display: inline-block;
+    border: 1px solid #ccc;
+    width: 262px;
+    border-radius: 7px;
+}
+.whylist>ul>li>a>span.whyicon 
+{
+    padding: 10px;
+    border-right: 1px solid #ccc;
+}
+.whylist>ul>li>a>span.whyicon svg
+{
+    height: 40px;
+    width: 40px;
+}
+.whylist>ul>li>a>div.wnycontent
+{
+    padding: 5px;
+    color: #666;
+    width: 76%;
+}
+.whylist>ul>li>a>div.wnycontent h3
+{
+    margin-bottom: 3px;
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+}
+.whylist>ul>li>a>div.wnycontent p
+{
+    margin: 0px;
+    line-height: 15px;
+    font-size: 12px;
+}
