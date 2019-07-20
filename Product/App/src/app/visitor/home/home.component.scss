@@ -1,59 +1,116 @@
-.whychoose
-{
-    display: inline-block;
-    width: 100%;
+.mat-card {
+  background-color: #fff;
+  padding: 25px 40px 40px;
+  width: 100%;
+  margin: 18px auto;
+  font-family: inherit;
+  border-radius: 10px;
 }
-.whychooseinr
-{
-    display: block;
-    width: 80%;
-    margin: 0 auto;
-    padding: 10px;
+.mat-card-title {
+  color: #393939;
+  font-size: 18px;
 }
-.whychooseinr .title
-{
-    font-size: 22px;
+.mat-card-title > a {
+  font-size: 14px;
+  text-decoration: underline;
 }
-.whylist>ul>li
-{
-    display: block;
-    float: left;
-    margin-right: 10px;
+.mat-card-content > ul > li {
+  display: inline-block;
 }
-.whylist>ul>li>a
-{
-    display: inline-block;
-    border: 1px solid #ccc;
-    width: 262px;
-    border-radius: 7px;
+.mat-card-content > ul > li:not(:last-child) {
+  margin-right: 30px;
 }
-.whylist>ul>li>a>span.whyicon 
-{
-    padding: 10px;
-    border-right: 1px solid #ccc;
+.mat-card-content > ul > li > a {
+  display: block;
+  height: 120px;
+  width: 120px;
+  border-radius: 80px;
 }
-.whylist>ul>li>a>span.whyicon svg
-{
-    height: 40px;
-    width: 40px;
+.mat-card-content > ul > li:nth-child(even) > a {
+  background: #ff6933;
 }
-.whylist>ul>li>a>div.wnycontent
-{
-    padding: 5px;
-    color: #666;
-    width: 76%;
+.mat-card-content > ul > li:nth-child(odd) > a {
+  background: #f6b001;
 }
-.whylist>ul>li>a>div.wnycontent h3
-{
-    margin-bottom: 3px;
-    font-weight: 600;
-    font-size: 16px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 3px;
+
+.item-discount .product-label {
+  position: absolute;
+  top: 2px;
+  width: 21.7%;
+  background: #fff;
 }
-.whylist>ul>li>a>div.wnycontent p
+.item-discount .discount-label {
+  position: absolute;
+  bottom: 2px;
+  width: 21.7%;
+  background: #fff;
+}
+.flip-card {
+  background-color: transparent;
+  border: 1px solid #f1f1f1;
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  margin-right: 32px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #cfe6f6;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: #0083ca;
+  color: white;
+  transform: rotateY(180deg);
+}
+.product-label {
+  font-size: 18px;
+  padding: 20px;
+}
+.discount-label b {
+  display: block;
+  height: 45px;
+  width: 45px;
+  margin: 0 auto;
+  padding: 10px 0;
+  font-size: 16px;
+  background: rgba(255, 0, 0, 0.9);
+  border-radius: 70px;
+}
+.mat-card-subtitle
 {
-    margin: 0px;
-    line-height: 15px;
-    font-size: 12px;
+  display: inline-block;
+  width: 100%;
+}
+.mat-card-subtitle a
+{
+  font-weight: 600;
+  text-decoration: underline;
 }
