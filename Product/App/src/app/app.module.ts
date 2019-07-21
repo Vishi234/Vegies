@@ -4,7 +4,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   MatFormFieldModule, MatCardModule, MatSlideToggleModule, MatInputModule, MatListModule, MatStepperModule,
   MatExpansionModule, MatDialogModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatCheckboxModule, MatButtonModule,
-  MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule,MatMenuModule,MatToolbarModule,MatButtonToggleModule
+  MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule,MatMenuModule,MatToolbarModule,MatButtonToggleModule,
+  MatTabsModule
 } from '@angular/material';
 // Import your library
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
@@ -83,7 +84,8 @@ import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
     MatMenuModule,
     MatToolbarModule,
     Ng2CarouselamosModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTabsModule
   ],
   providers: [AdminCategoryService,
     {
