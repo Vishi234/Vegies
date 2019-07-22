@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { RegisterComponent } from '../../vendor/register/register.component';
 import { LoginComponent } from '../../vendor/login/login.component';
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
+import { LoginRegisterComponent } from '../../visitor/login-register/login-register.component';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(RegisterComponent, { disableClose: true })
   }
   OpenLoginModal() {
-    this.dialog.open(LoginComponent, { disableClose: true })
+    this.dialog.open(LoginRegisterComponent, { disableClose: true })
   }
   
   public catList:any;
