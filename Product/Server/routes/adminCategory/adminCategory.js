@@ -49,5 +49,39 @@ module.exports = (function () {
             res.status(400).send("unable to save to database");
         })
     });
+    app.post("/product", function (req, res) 
+	{
+        console.log("product Data===>",req.body);
+        let productData = req.body;
+        let productDataSave = new model.product(productData)
+        productDataSave.save().then((items => 
+		{
+            console.log("dataaaaaaaaaa", items);
+            res.status(400).send("Product added successfully");
+        })).catch(err => {
+            console.log("errwwww", err)
+            res.status(400).send("unable to save to database");
+        })
+    });
+    app.put("/product", function (req, res) {
+        console.log("product Data===>",req.body);
+        let productData = req.body;
+        let productDataSave = new model.product(productData)
+        productDataSave.save().then((items => 
+		{
+            console.log("dataaaaaaaaaa", items);
+            res.status(400).send("Product updated successfully");
+        })).catch(err => {
+            console.log("errwwww", err)
+            res.status(400).send("unable to save to database");
+        })
+    });
+    app.get("/product", function (req, res) {
+        console.log('Invoked product');
+        model.product.find().then(getproduct=>{
+            console.log("product--",getproduct)
+            res.send(getproduct);
+        })	
+    });
     return app;
 })();
