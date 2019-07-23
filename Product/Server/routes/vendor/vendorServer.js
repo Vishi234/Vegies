@@ -3,6 +3,7 @@ var sql = require("mssql");
 const nodemailer = require("nodemailer");
 var generator = require('generate-password');
 var model=require("./vendorModel");
+const jwt=require("jsonwebtoken");
 var mailOptions, host;
 
 module.exports = (function () {
@@ -20,9 +21,11 @@ module.exports = (function () {
         console.log("cateeeeeeeeeee", registerData);
         registerData.password=password;
         let registerationSave = new model.register(registerData)
-        registerationSave.save().then((items => {
-            console.log("dataaaaaaaaaa", items);
-            res.status(400).send("Registration successfully");
+        registerationSave.save().then((userDetails => {
+           // console.log("dataaaaaaaaaa", userDetails);
+            let payload={subject:userDetails._id}
+            let token=jwt.sign(payload,'secretKey')
+            res.status(400).send({token});
                 sendMail(registerData, info => {
                 }).catch(function (err) {
                     console.log("Mail Sending errors", err)
@@ -68,6 +71,25 @@ module.exports = (function () {
 
 
     app.post("/login", function (req, res) {
+    let userData=req.body;
+    model.register.findOne({email:userData.email},(error,user)=>{
+       if(error){
+          console.log(error);
+       }else{
+          if(!user){
+             res.status(401).send('Invalid email');
+          }else{
+             if(user.password!=userData.password){
+                res.status(401).send("Invalid Password")
+             }else{
+                 console.log("hiiiiiiiiii")
+                 let payload={subject:user._id}
+                 let token=jwt.sign(payload,'secretKey')
+                res.status(200).send({token});
+             }
+          }
+       }
+    })
         // db.getConnection((err, conn) => {
         //     console.log("hiiiiiiiiii",conn)
         //     // conn.then(function (request) {
@@ -85,26 +107,26 @@ module.exports = (function () {
         //     //         });
         //     // })
         // })
-        return new Promise((resolve,reject)=>{
-            db.connect().then(function (request) {
-                return request.request()
-                    .input("UserName", sql.NVarChar, req.body.email)
-                    .input("Password", sql.NVarChar, req.body.password)
-                    .output("Result", sql.VarChar(100))
-                    .execute('USER_LOGIN').then(result => {
-                        resolve(res.status(200).send(result));
-                        db.close();
-                    })
-                    .catch(function (err) {
-                        console.log("error is", err)
-                        db.close();
-                        reject(err);
-                    });
-            })
-        }).catch((err)=>{
-            db.close();
-            reject(err);
-        })
+        // return new Promise((resolve,reject)=>{
+        //     db.connect().then(function (request) {
+        //         return request.request()
+        //             .input("UserName", sql.NVarChar, req.body.email)
+        //             .input("Password", sql.NVarChar, req.body.password)
+        //             .output("Result", sql.VarChar(100))
+        //             .execute('USER_LOGIN').then(result => {
+        //                 resolve(res.status(200).send(result));
+        //                 db.close();
+        //             })
+        //             .catch(function (err) {
+        //                 console.log("error is", err)
+        //                 db.close();
+        //                 reject(err);
+        //             });
+        //     })
+        // }).catch((err)=>{
+        //     db.close();
+        //     reject(err);
+        // })
     })
 
 

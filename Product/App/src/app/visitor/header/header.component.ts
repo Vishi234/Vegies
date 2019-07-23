@@ -3,6 +3,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { RegisterComponent } from '../../vendor/register/register.component';
 import { LoginComponent } from '../../vendor/login/login.component';
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,7 @@ import { AdminCategoryService } from '../../admin/category/admin-category.servic
 export class HeaderComponent implements OnInit {
 
   //constructor(public dialog: MatDialog) { }
-  constructor(private _adminCategory: AdminCategoryService,public dialog: MatDialog) { }
+  constructor(private _adminCategory: AdminCategoryService,public dialog: MatDialog,private _router:Router) { }
   
   OpenRegisterModal() {
     this.dialog.open(RegisterComponent, { disableClose: true })
@@ -39,9 +41,23 @@ export class HeaderComponent implements OnInit {
        console.log('this.subCatList',this.subCatList);
        this.filtersLoaded = Promise.resolve(true);
        }, (error) => {
+        console.log("header11",error);
+        if(error instanceof HttpErrorResponse){
+          if(error.status===401){
+            console.log("22222222222222attttt");
+            this._router.navigate(['/'])
+          }
+        }
         console.log('error is ', error)
       });      
      }, (error) => {
+      console.log("header",error);
+      if(error instanceof HttpErrorResponse){
+        if(error.status===401){
+          console.log("22222222222222attttt");
+          this._router.navigate(['/'])
+        }
+      }
       console.log('error is ', error)
     });
   }

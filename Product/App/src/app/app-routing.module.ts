@@ -5,6 +5,7 @@ import { ContainerComponent } from './visitor/container/container.component';
 import { DashboardComponent } from './vendor/dashboard/dashboard.component';
 import { VendorContainerComponent } from './vendor/container/container.component';
 import {CategoryComponent} from './admin/category/category.component'
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
       { path: 'vendor/dashboard', component: DashboardComponent },
     ]
   },
-  { path :'admin/category',component:CategoryComponent}
+  { path :'admin/category',component:CategoryComponent,canActivate:[AuthGuard]}
+   
 ];
 
 @NgModule({
