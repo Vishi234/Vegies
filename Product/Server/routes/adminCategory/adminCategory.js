@@ -28,14 +28,14 @@ module.exports = (function () {
     app.get("/category", function (req, res) {
         console.log('Invoked Category');
         model.Category.find().then(getCategory=>{
-            console.log("getCategoryyyyyyy",getCategory)
+            //console.log("getCategoryyyyyyy",getCategory)
             res.send(getCategory);
         })
     });
     app.get("/subCategory",function (req, res) {
         console.log('Invoked SubCategory');
         model.subCategory.find().then(getsubCategory=>{
-            console.log("getCategoryyyyyyy",getsubCategory)
+            //console.log("getCategoryyyyyyy",getsubCategory)
             res.send(getsubCategory);
         })	
     });

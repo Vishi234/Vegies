@@ -8,6 +8,7 @@ import {LoginService} from './vendor/login/login.service'
 })
 export class AuthGuard implements CanActivate {
   constructor(private _login:LoginService,private _route:Router){}
+
   canActivate():boolean{
     if(this._login.loggedIn()){
       return true
