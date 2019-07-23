@@ -16,12 +16,25 @@ var categorySchema = new Schema({
         Active: {type: Number, require: true},
         })
         var subCategory = mongoose.model('subCategory', subCategorySchema);
+ 
+        var productSchema = new Schema({
+            catName: {type: String, require: true},
+            subCatName: {type: String, require: true},
+            unitMeasure: {type: String, require: true},
+            productName: {type: String,unique: true,  require: true},
+            productAlias: {type: String, require: true},
+            price: {type: String, require: true},
+            discount: {type: String, require: true},
+            active: {type: Number, require: true}
+            })
+            var product = mongoose.model('product', productSchema);
+            
+            module.exports={
+                Category:Category,
+                subCategory:subCategory,
+                product:product
+            }
 
         
-        module.exports={
-            Category:Category,
-            subCategory:subCategory
-        }
-    
 
     

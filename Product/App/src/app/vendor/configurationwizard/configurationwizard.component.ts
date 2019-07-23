@@ -24,6 +24,7 @@ export class ConfigurationwizardComponent implements OnInit {
   items: Array<any> = [];
   productSelectionGroup: FormGroup;
   locationFormGroup: FormGroup;
+  selectedPro = [];
   inreaseHeight() {
     this.toggle = !this.toggle;
 
@@ -31,10 +32,15 @@ export class ConfigurationwizardComponent implements OnInit {
   onValChange(lbl, value) {
     if (value.length > 0) {
       document.getElementById("lblName" + lbl).innerHTML = "Selected";
+      this.selectedPro.push(this.getProductById(lbl));
+      console.log(this.selectedPro);
     }
     else {
       document.getElementById("lblName" + lbl).innerHTML = "Select Item";
     }
+  }
+  getProductById(id){
+    return this.items.find(x => x.id === id);
   }
   constructor(private _vendorDetails: AdminCategoryService
   ) {

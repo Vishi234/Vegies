@@ -4,7 +4,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   MatFormFieldModule, MatCardModule, MatSlideToggleModule, MatInputModule, MatListModule, MatStepperModule,
   MatExpansionModule, MatDialogModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatCheckboxModule, MatButtonModule,
-  MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule,MatMenuModule,MatToolbarModule,MatButtonToggleModule
+  MatSelectModule, MatIconModule,MatPaginator,MatTableModule,MatTooltipModule,MatMenuModule,MatToolbarModule,MatButtonToggleModule,
+  MatTabsModule
 } from '@angular/material';
 // Import your library
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
@@ -34,6 +35,7 @@ import { LoaderComponent } from './common/components/loader/loader.component'
 import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
 import { AuthGuard } from './auth.guard';
 import {TokenInterceptorService} from './token-interceptor.service'
+import { LoginRegisterComponent } from './visitor/login-register/login-register.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import {TokenInterceptorService} from './token-interceptor.service'
     CategoryComponent,
     LoaderComponent,
     AgGridComponent,
-    MatPaginator
+    MatPaginator,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,8 @@ import {TokenInterceptorService} from './token-interceptor.service'
     MatMenuModule,
     MatToolbarModule,
     Ng2CarouselamosModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTabsModule
   ],
   providers: [AdminCategoryService,
     {
@@ -102,6 +106,6 @@ import {TokenInterceptorService} from './token-interceptor.service'
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [RegisterComponent, LoginComponent, ConfigurationwizardComponent]
+  entryComponents: [RegisterComponent, LoginComponent, ConfigurationwizardComponent,LoginRegisterComponent]
 })
 export class AppModule { }

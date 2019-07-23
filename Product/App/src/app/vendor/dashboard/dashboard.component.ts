@@ -83,6 +83,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    //this.dialog.open(ConfigurationwizardComponent,{disableClose:true});
+    this.dialog.open(ConfigurationwizardComponent,{disableClose:true});
   }
 }

@@ -1,6 +1,6 @@
 <div class="header">
     <div class="container">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-2 col-xs-12 col-sm-12 col-md-12 p-0">
                 <div class="logo pull-left">
 
@@ -52,7 +52,6 @@
                                 <ul>
                                     <li *ngFor="let list of catList">
                                         <a href="javascript:void(0)">
-                                            <!-- {{list._id}}  -->
                                             {{list.catName}}
                                         </a>
                                         <div class="largesubmenu" *ngIf="subCatList.length > 0">
@@ -60,7 +59,6 @@
                                                 <li *ngFor="let subList of subCatList">
                                                     <a href="javascript:void(0)"
                                                         *ngIf='list._id == subList.mainProduct'>
-                                                        <!-- <span> {{subList._id}}</span> -->
                                                         <span>
                                                             {{subList.subCatName}}
                                                         </span>
@@ -77,11 +75,11 @@
                                                                 </a>
                                                             </li>
                                                         </ul>
-                                                        <!-- <span ng-if="(list.CATEGORY_ID | filter: subList.CATEGORY_ID: true )">   -->
+                                                        
                                                     </div>
                                                 </li>
                                             </ul>
-                                            <!-- <span ng-if="(list.CATEGORY_ID | filter: subList.CATEGORY_ID: true )">   -->
+                                            
                                         </div>
                                     </li>
 
@@ -302,6 +300,46 @@
                             <span class="itemcount">10</span>
                         </a>
                     </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-lg-2 col-xs-12 col-sm-4 col-md-2">
+
+            </div>
+            <div class="col-lg-7 col-xs-12 col-sm-3 col-md-7">
+                <div class="erp-menu">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                Pricing
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 col-sm-5 col-md-3">
+                <div class="erp-rmenu">
+                    <span class="pull-left">
+                        <a href="javascript:void(0)" (click)="OpenLoginModal();">
+                            Login/Register
+                        </a>
+                    </span>
+                    <span class="pull-right">
+                        <a href="javascript:void(0)">
+                            Request A Demo
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>
