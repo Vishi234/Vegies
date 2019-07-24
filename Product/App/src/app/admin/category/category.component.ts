@@ -14,7 +14,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private _adminCategory: AdminCategoryService) { }
+  constructor(private _adminCategory: AdminCategoryService ) { }
 
 
   categoryData = new categoryFields(0, '', '', 1);
@@ -28,6 +28,11 @@ export class CategoryComponent implements OnInit {
   categoryList: any;
   subCatList:any;
   rowDataProduct:any;
+  public files: any[];
+
+
+  selectedFile: File = null;
+  fd = new FormData();
   oper=true;
   ngOnInit() {
     this._adminCategory.GetCategoryList().subscribe((response) => {
@@ -126,6 +131,38 @@ export class CategoryComponent implements OnInit {
       }
     });
   }
+
+
+  url: any;
+  onSelectFile(event) { // called each time file input changes
+    debugger;
+
+    this.selectedFile = <File>event.target.files[0];
+    this.fd.append('file', this.selectedFile, this.selectedFile.name);
+
+    // console.log('file upload')
+      if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]); // read file as data url     
+        this.files = event.target.files;
+        reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url=event.target['result'];
+        this.onUpload();     
+         }
+      }
+  }
+
+  onUpload() {
+    this._adminCategory.AddProductImages(this.fd)
+    .subscribe((res) => {
+      console.log('Response body---', res);
+    },
+      (error) => {
+        console.log(error);
+      });
+  }
+
+  
   myCellRenderer(params) {
     var eDiv = document.createElement('div');
     eDiv.innerHTML = "&nbsp; <span style='cursor:pointer;' title='Edit Record'><img class='editIcon' src='src/assets/icons/edit.png'   userId='' /></span>";
@@ -147,15 +184,18 @@ export class CategoryComponent implements OnInit {
     eButton.addEventListener('click', function () 
     {
       console.log('button was clicked!!', params);
-      debugger;this.oper=false;
-      this.productData.catName=params.data.catName;
-      this.productData.subCatName=params.data.subCatName;
-      this.productData.unitMeasure=params.data.unitMeasure;
-      this.productData.productName=params.data.productName;
-      this.productData.productAlias=params.data.productAlias;
-      this.productData.price=params.data.price;
-      this.productData.discount=params.data.discount;
-      this.productData.active=params.data.active;
+      debugger;
+      this.oper=false;
+      this.productData=
+      {
+        catName : params.data.catName,
+        unitMeasure:params.data.unitMeasure,
+        productName:params.data.productName,
+        productAlias:params.data.productAlias,
+        price:params.data.price,
+        discount:params.data.discount,
+        active:params.data.active
+      }
     });
     return eDiv;
   }

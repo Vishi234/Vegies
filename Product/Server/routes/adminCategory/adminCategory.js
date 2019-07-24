@@ -2,8 +2,10 @@ var sql = require("mssql");
 var config = require("../../config/dbConfig");
 var app = require('express').Router();
 var model = require('./adminModel');
+const multer = require("multer");
+const fs = require("fs");
 
-
+//const router = express.Router();
 
 module.exports = (function () {
     'use strict';
@@ -63,7 +65,28 @@ module.exports = (function () {
             res.status(400).send("unable to save to database");
         })
     });
-    app.put("/product", function (req, res) {
+
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, './upload')
+        },
+        filename: function (req, file, cb) {
+            cb(null, file.originalname)
+        }
+        })
+        const upload = multer({
+            storage: storage
+        })
+
+  
+    app.post('/product/images',  upload.single('file'), (req, res) => 
+       {      
+        const filename = req.file.filename;
+        const path = req.file.path;
+        res.json({'message': 'File uploaded'});
+      });
+
+     app.put("/product", function (req, res) {
         console.log("product Data===>",req.body);
         let productData = req.body;
         let productDataSave = new model.product(productData)
