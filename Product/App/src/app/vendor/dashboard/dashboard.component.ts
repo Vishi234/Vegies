@@ -1,8 +1,8 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import { MatDialog, MatTableDataSource, MatPaginator ,MatSort} from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
+import {ActivatedRoute} from '@angular/router'
 import { ConfigurationwizardComponent } from '../../vendor/configurationwizard/configurationwizard.component';
-import {LoginService} from '../../vendor/login/login.service'
 /*
 Left menu options
 
@@ -78,13 +78,14 @@ export class DashboardComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.productId + 1}`;
   }
-  constructor(public dialog: MatDialog,private _modelcheck:LoginService) {
+  constructor(public dialog: MatDialog,private route: ActivatedRoute) {
 
   }
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    if(this._modelcheck.loggedIn)
-    this.dialog.open(ConfigurationwizardComponent,{disableClose:true});
+    //if(+this.route.snapshot.paramMap.get('id')==1){
+      this.dialog.open(ConfigurationwizardComponent,{disableClose:true});
+    //}
   }
 }

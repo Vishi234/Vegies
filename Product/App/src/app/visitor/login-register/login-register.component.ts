@@ -19,7 +19,7 @@ export class LoginRegisterComponent implements OnInit {
       res=>{
         console.log("0000000000000000000000000",res.Attemp)
         localStorage.setItem('token',res.token)
-        this.router.navigate(['/']);
+        this.router.navigate(['/vendor/dashboard',res.Attemp]);
       },
       err=>console.error(err)
     )

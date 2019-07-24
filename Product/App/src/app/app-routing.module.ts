@@ -21,7 +21,7 @@ const routes: Routes = [
     component: VendorContainerComponent,
     children: [
       { path: '', redirectTo: 'vendor/dashboard', pathMatch: 'full' },
-      { path: 'vendor/dashboard', component: DashboardComponent },
+      { path: 'vendor/dashboard/:id', component: DashboardComponent },
     ]
   },
   { path :'admin/category',component:CategoryComponent,canActivate:[AuthGuard]}
