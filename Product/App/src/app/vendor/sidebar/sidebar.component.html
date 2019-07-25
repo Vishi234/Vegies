@@ -1,28 +1,48 @@
-<mat-accordion>
+<mat-accordion [multi]="true">
   <mat-expansion-panel [expanded]="true">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Your Checklist
+        My Account
       </mat-panel-title>
       <mat-panel-description>
-        Track, return or buy things again
+        Manage your account.
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
-      <mat-list-item> Profile Information </mat-list-item>
-      <mat-list-item> Manage Address </mat-list-item>
-      <mat-list-item> PAN Card Information </mat-list-item>
+      <mat-list-item>Profile Information</mat-list-item>
+      <mat-list-item>Manage Address</mat-list-item>
+      <mat-list-item>Change Password</mat-list-item>
     </mat-list>
   </mat-expansion-panel>
-  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel [expanded]="true">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Self aware panel
+        My Chechklist
       </mat-panel-title>
       <mat-panel-description>
-        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        Manage your checklist.
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
+    <mat-list>
+      <mat-list-item>Create Checklist</mat-list-item>
+      <mat-list-item>Add Item</mat-list-item>
+      <mat-list-item>Delete Checklist</mat-list-item>
+      <mat-list-item>Send Requirement</mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Reporting
+      </mat-panel-title>
+      <mat-panel-description>
+        Generate report.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>Daily Report</mat-list-item>
+      <mat-list-item>Monthly Report</mat-list-item>
+      <mat-list-item>Custom Report</mat-list-item>
+    </mat-list>
   </mat-expansion-panel>
 </mat-accordion>

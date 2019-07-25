@@ -34,6 +34,7 @@ import { AdminCategoryService } from './admin/category/admin-category.service'
 import { LoaderComponent } from './common/components/loader/loader.component'
 import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
 import { LoginRegisterComponent } from './visitor/login-register/login-register.component';
+import { OutputGraphComponent } from './vendor/output-graph/output-graph.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { LoginRegisterComponent } from './visitor/login-register/login-register.
     LoaderComponent,
     AgGridComponent,
     MatPaginator,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    OutputGraphComponent
   ],
   imports: [
     BrowserModule,

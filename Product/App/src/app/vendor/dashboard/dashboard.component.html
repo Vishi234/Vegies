@@ -5,6 +5,7 @@
 
 <mat-toolbar color="primary" *ngIf="dataSource.data.length ===0 ">No checklist has been configured till now. Please
     configure it.</mat-toolbar>
+<app-output-graph></app-output-graph>
 <div class="" *ngIf="dataSource.data.length > 0">
     <mat-card>
         <mat-card-title>
@@ -17,9 +18,6 @@
             <div class="table-action">
                 <button mat-button>
                     Submit Requirement
-                    <i class="material-icons">
-                        send
-                    </i>
                 </button>
                 <button mat-button [matMenuTriggerFor]="menu">
                     <i class="material-icons">

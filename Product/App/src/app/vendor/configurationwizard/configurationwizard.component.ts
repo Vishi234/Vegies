@@ -1,5 +1,6 @@
 ///<reference types="@types/googlemaps" />
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
 import PlaceResult = google.maps.places.PlaceResult;
@@ -14,16 +15,14 @@ import { AdminCategoryService } from '../../admin/category/admin-category.servic
 export class ConfigurationwizardComponent implements OnInit {
   public appearance = Appearance;
   public zoom: number;
-  public latitude: number;
-  public longitude: number;
+  public latitude: number = 51.678418;
+  public longitude: number = 7.809007;
   public selectedAddress: PlaceResult;
   toggle: boolean = false;
-  toppings = new FormControl('', [Validators.required]);
+  toppings = new FormControl();
   public subCatList: Array<any> = [];
-  //toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   items: Array<any> = [];
-  productSelectionGroup: FormGroup;
-  locationFormGroup: FormGroup;
   selectedPro = [];
   inreaseHeight() {
     this.toggle = !this.toggle;
@@ -39,11 +38,11 @@ export class ConfigurationwizardComponent implements OnInit {
       document.getElementById("lblName" + lbl).innerHTML = "Select Item";
     }
   }
-  getProductById(id){
+  getProductById(id) {
     return this.items.find(x => x.id === id);
   }
   constructor(private _vendorDetails: AdminCategoryService
-  ) {
+    , public dialog: MatDialog) {
     this.items = [
       {
         name: "Everfresh Flowers",
@@ -81,7 +80,7 @@ export class ConfigurationwizardComponent implements OnInit {
       {
         name: "Blue Clear",
         image: "https://www.bigbasket.com/media/uploads/p/s/241600_5-tata-salt-salt-iodized.jpg",
-        unit: "1 Kg",
+        unit: " ",
         oldPrice: "Rs 250",
         newPrice: "Rs 30",
         id: "5"
@@ -149,17 +148,13 @@ export class ConfigurationwizardComponent implements OnInit {
       });
     }
   }
-  onAutocompleteSelected(result: PlaceResult) {
-    console.log('onAutocompleteSelected: ', result);
-  }
-
   onLocationSelected(location: Location) {
-    console.log('onLocationSelected: ', location);
     this.latitude = location.latitude;
     this.longitude = location.longitude;
   }
-
-
+  closeWizard() {
+    this.dialog.closeAll();
+  }
   carouselOptions = {
     margin: 25,
     nav: true,
