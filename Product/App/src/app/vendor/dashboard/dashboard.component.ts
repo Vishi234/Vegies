@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     //if(+this.route.snapshot.paramMap.get('id')==1){
-      this.dialog.open(ConfigurationwizardComponent,{disableClose:true});
+     // this.dialog.open(ConfigurationwizardComponent,{disableClose:true});
     //}
   }
 }

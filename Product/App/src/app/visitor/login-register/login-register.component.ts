@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../../vendor/login/login.service'
 import {Router} from '@angular/router'
 import { RegisterService } from '../../vendor/register/register.service'
+import {registerModel} from '../../vendor/register/registerModel'
 
 @Component({
   selector: 'app-login-register',
@@ -10,8 +11,8 @@ import { RegisterService } from '../../vendor/register/register.service'
 })
 export class LoginRegisterComponent implements OnInit {
   loginUser={}
-  registerUser={}
-  constructor(private _login:LoginService,private router:Router,public vendorRegis:RegisterService) { }
+  registerUser = new registerModel(1,'','','','','',1,1,0);
+  constructor(private _login:LoginService,private router:Router,public vendorRegis:RegisterService,) { }
   visitorSignin(){
     console.log("login-register")
     this._login.vendorLogin(this.loginUser)
