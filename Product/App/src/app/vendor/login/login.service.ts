@@ -12,4 +12,10 @@ export class LoginService {
     console.log("test register",user)
     return this.http.post<any>(this._vendorLogin,user);
   }
+  loggedIn(){
+    return !!localStorage.getItem('token');
+  }
+  getToken(){
+    return localStorage.getItem('token');
+  }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminCategoryService } from './admin-category.service'
 import { categoryFields } from './categoryFields';
+import { HttpErrorResponse } from '@angular/common/http';
+import {Router} from '@angular/router'
 
 import { BrowserModule }  from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material';
@@ -14,7 +16,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private _adminCategory: AdminCategoryService ) { }
+  constructor(private _adminCategory: AdminCategoryService,private _router:Router) { }
 
 
   categoryData = new categoryFields(0, '', '', 1);
@@ -48,7 +50,13 @@ export class CategoryComponent implements OnInit {
         return ({ "_id": val._id, "catName": val.catName, "catAlias": val.catAlias })
       })
     }, (error) => {
-      console.log('error is ', error)
+      console.log('error is 00', error instanceof HttpErrorResponse,"00",error);
+      if(error instanceof HttpErrorResponse){
+        if(error.status===401){
+          console.log("22222222222222attttt");
+          this._router.navigate(['/'])
+        }
+      }
     });
 
     this._adminCategory.GetSubCategoryList().subscribe((response) => {
@@ -67,6 +75,12 @@ export class CategoryComponent implements OnInit {
         })
       })
     }, (error) => {
+      if(error instanceof HttpErrorResponse){
+        if(error.status===401){
+          console.log("11111111subbbbbbbbb");
+          this._router.navigate(['/'])
+        }
+      }
       console.log('error is ', error)
     });
 
@@ -226,9 +240,9 @@ export class CategoryComponent implements OnInit {
 
   columnDefSubCat = [
     { headerName: 'Edit', field: '', cellRenderer: this.myCellRenderer },
-    { headerName: 'CATEGORY_ID', field: 'catName', sortable: true, filter: true },
-    { headerName: 'SUBCATEGORY_NAME', field: 'subCatName' },
-    { headerName: 'SUBCATEGORY_DESC', field: 'subCatAlias' }
+    { headerName: 'Category Name', field: 'catName', sortable: true, filter: true },
+    { headerName: 'Sub Category Name', field: 'subCatName' },
+    { headerName: 'Sub Category Alias', field: 'subCatAlias' }
   ];
 
    columnDefProduct = [

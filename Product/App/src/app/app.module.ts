@@ -33,6 +33,9 @@ import { CategoryComponent } from './admin/category/category.component';
 import { AdminCategoryService } from './admin/category/admin-category.service'
 import { LoaderComponent } from './common/components/loader/loader.component'
 import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
+import { AuthGuard } from './auth.guard';
+import {TokenInterceptorService} from './token-interceptor.service'
+import { LoginRegisterComponent } from './visitor/login-register/login-register.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,8 @@ import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
     CategoryComponent,
     LoaderComponent,
     AgGridComponent,
-    MatPaginator
+    MatPaginator,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -93,9 +97,15 @@ import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
       multi: true
     },
     AgGridComponent,
-    LoaderComponent
+    LoaderComponent,
+    AuthGuard,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [RegisterComponent, LoginComponent, ConfigurationwizardComponent]
+  entryComponents: [RegisterComponent, LoginComponent, ConfigurationwizardComponent,LoginRegisterComponent]
 })
 export class AppModule { }

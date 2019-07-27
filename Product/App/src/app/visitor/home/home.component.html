@@ -1,47 +1,5 @@
 <div class="slider-login">
-  <mat-tab-group>
-    <mat-tab label="Login">
-      <div class="loginform">
-        <mat-form-field appearance="outline">
-          <mat-icon matPrefix>supervisor_account</mat-icon>
-          <mat-label>Username</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-icon matPrefix> vpn_key</mat-icon>
-          <mat-label>Password</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <button mat-button>Login</button>
-        <p class="frgtpass"><a href="javascript:void(0)">Forgot Password?</a></p>
-      </div>
-    </mat-tab>
-    <mat-tab label="Register">
-      <div class="loginform">
-        <mat-form-field appearance="outline">
-          <mat-icon matPrefix>account_balance</mat-icon>
-          <mat-label>Organisation Name</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-icon matPrefix>account_box</mat-icon>
-          <mat-label>Full Name</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-icon matPrefix>alternate_email</mat-icon>
-          <mat-label>Email Address</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-icon matPrefix>phone</mat-icon>
-          <mat-label>Mobile No.</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <button mat-button>Register</button>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+  <app-login-register></app-login-register>
 </div>
 <div class="slider">
   <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">

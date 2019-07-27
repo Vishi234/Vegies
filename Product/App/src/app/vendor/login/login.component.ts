@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
     this._login.vendorLogin(this.loginUser)
     .subscribe(
       res=>{
-        console.log("successsssss");
-        this.router.navigate([""]);
+        localStorage.setItem('token',res.token)
+        this.router.navigate(['/admin/category']);
       },
       err=>console.error(err)
     )

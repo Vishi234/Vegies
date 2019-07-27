@@ -9,18 +9,35 @@ const fs = require("fs");
 
 module.exports = (function () {
     'use strict';
-
+    // function verifyToken(req,res,next){
+    //          if(!req.header.authorization){
+    //              console.log("hi");
+    //              return res.status(401).send('Unauthorized Request');
+    //          }
+    //          let token=req.header.authorization.split(' ')[1];
+    //          if(token=='null'){
+    //             console.log("hi1");
+    //             return res.status(401).send('Unauthorized Request');
+    //          }
+    //          let payload=jwt.verify(token,'secretKey')
+    //          if(!payload){
+    //             console.log("hi1");
+    //             return res.status(401).send('Unauthorized Request');
+    //          }
+    //          req.userId=payload.subject
+    //          next();
+    //      }
     app.get("/category", function (req, res) {
         console.log('Invoked Category');
         model.Category.find().then(getCategory=>{
-            console.log("getCategoryyyyyyy",getCategory)
+            //console.log("getCategoryyyyyyy",getCategory)
             res.send(getCategory);
         })
     });
-    app.get("/subCategory", function (req, res) {
+    app.get("/subCategory",function (req, res) {
         console.log('Invoked SubCategory');
         model.subCategory.find().then(getsubCategory=>{
-            console.log("getCategoryyyyyyy",getsubCategory)
+            //console.log("getCategoryyyyyyy",getsubCategory)
             res.send(getsubCategory);
         })	
     });
