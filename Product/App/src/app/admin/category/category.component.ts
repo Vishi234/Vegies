@@ -28,7 +28,9 @@ export class CategoryComponent implements OnInit {
   categoryList: any;
   subCatList:any;
   rowDataProduct:any;
-  public files: any[];
+  files: any[];
+  actualPrice:any;
+
 
 
   selectedFile: File = null;
@@ -97,7 +99,7 @@ export class CategoryComponent implements OnInit {
   AddProduct() 
   {
 
-    console.log('productDetails-',this.productData);
+   // console.log('productDetails-',this.productData);
     if(this.oper)
     {
     this._adminCategory.AddProduct(this.productData)
@@ -137,11 +139,17 @@ export class CategoryComponent implements OnInit {
   onSelectFile(event) { // called each time file input changes
     debugger;
 
-    this.selectedFile = <File>event.target.files[0];
-    this.fd.append('file', this.selectedFile, this.selectedFile.name);
+   // this.selectedFile = <File>event.target.files[0];
+   // this.fd.append('file', this.selectedFile, this.selectedFile.name);
+    
+    this.files = event.target.files;
+    for (const file of this.files) 
+      {
+      this.fd.append('file', file, file.name);
+       }
 
-    // console.log('file upload')
-      if (event.target.files && event.target.files[0]) {
+      if (event.target.files && event.target.files[0]) 
+      {
         var reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]); // read file as data url     
         this.files = event.target.files;
@@ -152,8 +160,16 @@ export class CategoryComponent implements OnInit {
       }
   }
 
-  onUpload() {
-    this._adminCategory.AddProductImages(this.fd)
+  onChangeDiscount(e)
+  {
+    var dd=e.target.value;
+    var totalPrice=  this.productData["price"];  
+    this.productData["actualPrice"]=totalPrice-(totalPrice*dd)/100;
+  }
+
+  onUpload() 
+  {
+    this._adminCategory.AddProductImages(this.fd,this.productData["catName"])
     .subscribe((res) => {
       console.log('Response body---', res);
     },
@@ -163,13 +179,15 @@ export class CategoryComponent implements OnInit {
   }
 
   
-  myCellRenderer(params) {
+  myCellRenderer(params) 
+  {
     var eDiv = document.createElement('div');
     eDiv.innerHTML = "&nbsp; <span style='cursor:pointer;' title='Edit Record'><img class='editIcon' src='src/assets/icons/edit.png'   userId='' /></span>";
     var domElement = document.createElement("span");
 
     var eButton = eDiv.querySelectorAll('.editIcon')[0];
-    eButton.addEventListener('click', function () {
+    eButton.addEventListener('click', function () 
+    {
       console.log('button was clicked!!', params);
     });
     return eDiv;

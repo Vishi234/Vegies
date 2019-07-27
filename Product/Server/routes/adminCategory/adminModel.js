@@ -21,11 +21,13 @@ var categorySchema = new Schema({
             catName: {type: String, require: true},
             subCatName: {type: String, require: true},
             unitMeasure: {type: String, require: true},
+            actualPrice: {type: String, require: true}, 
             productName: {type: String,unique: true,  require: true},
             productAlias: {type: String, require: true},
             price: {type: String, require: true},
             discount: {type: String, require: true},
-            active: {type: Number, require: true}
+            active: {type: Number, require: true},
+            url:{type: String, require: true}
             })
             var product = mongoose.model('product', productSchema);
             

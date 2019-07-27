@@ -74,19 +74,31 @@ module.exports = (function () {
             cb(null, file.originalname)
         }
         })
-        const upload = multer({
-            storage: storage
-        })
+        // const upload = multer({
+        //     storage: storage
+        // })
+        var upload = multer({ storage : storage }).array('file',2);
+        
+       app.post('/product/images',function(req,res)
+       {
+           console.log('============>'+ JSON.stringify(req.body));
+        upload(req,res,function(err) 
+        {
+            if(err) {
+                return res.end("Error uploading file.");
+            }
+            res.json({'message': 'File uploaded'});
+        });
+    });
 
-  
-    app.post('/product/images',  upload.single('file'), (req, res) => 
-       {      
-        const filename = req.file.filename;
-        const path = req.file.path;
-        res.json({'message': 'File uploaded'});
-      });
+    // app.post('/product/images',  upload.single('file'), (req, res) => 
+    //    {      
+    //     const filename = req.file.filename;
+    //     const path = req.file.path;
+    //     res.json({'message': 'File uploaded'});
+    //   });
 
-     app.put("/product", function (req, res) {
+    app.put("/product", function (req, res) {
         console.log("product Data===>",req.body);
         let productData = req.body;
         let productDataSave = new model.product(productData)
