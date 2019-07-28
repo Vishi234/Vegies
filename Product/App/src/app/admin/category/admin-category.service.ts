@@ -31,9 +31,11 @@ export class AdminCategoryService
   //  console.log('helllooooooooooooooooo11111111111')
     return this.http.get(this._subCatUrl)
   }
-  AddProduct(user:any)
+  AddProduct(user:any,imageUrl:any)
   {
   // console.log('helllooooooooooooooooo11111111111',user)
+    debugger;
+    user.imageUrl=imageUrl;
     return this.http.post<any>(this._productUrl,user)
   }
   GetProductList()
