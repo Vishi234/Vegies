@@ -91,14 +91,11 @@ module.exports = (function () {
             cb(null, file.originalname)
         }
         })
-        // const upload = multer({
-        //     storage: storage
-        // })
-        var upload = multer({ storage : storage }).array('file',2);
+        var upload = multer({ storage : storage }).single('file');
         
        app.post('/product/images',function(req,res)
        {
-           console.log('============>'+ JSON.stringify(req.body));
+           console.log('============>'+ JSON.stringify(req.file.originalname));
         upload(req,res,function(err) 
         {
             if(err) {

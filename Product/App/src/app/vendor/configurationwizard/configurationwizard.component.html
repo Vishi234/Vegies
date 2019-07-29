@@ -72,12 +72,16 @@
           <div class="proselected" id="proselected" (click)="inreaseHeight();" [ngClass]="toggle ? 'proheight' : ''">
             <div class="proheader">
               <span class="pull-left">Product Selected</span>
-              <span class="pull-right">4 Selected</span>
+              <span class="pull-right">{{selectedPro.length}} Selected</span>
             </div>
             <div class="procontent">
-              <ul>
+              <!-- <ul>
                 <li><img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" /></li>
-              </ul>
+              </ul> -->
+              <div *ngFor="let student of selectedPro">
+                <img  style="height:50px;width:50px" [src]="student.image" />
+                <!-- <p>------------------{{student.image}} </p> -->
+             </div>
             </div>
           </div>
         </form>
