@@ -9,35 +9,18 @@ const fs = require("fs");
 
 module.exports = (function () {
     'use strict';
-    // function verifyToken(req,res,next){
-    //          if(!req.header.authorization){
-    //              console.log("hi");
-    //              return res.status(401).send('Unauthorized Request');
-    //          }
-    //          let token=req.header.authorization.split(' ')[1];
-    //          if(token=='null'){
-    //             console.log("hi1");
-    //             return res.status(401).send('Unauthorized Request');
-    //          }
-    //          let payload=jwt.verify(token,'secretKey')
-    //          if(!payload){
-    //             console.log("hi1");
-    //             return res.status(401).send('Unauthorized Request');
-    //          }
-    //          req.userId=payload.subject
-    //          next();
-    //      }
+
     app.get("/category", function (req, res) {
         console.log('Invoked Category');
         model.Category.find().then(getCategory=>{
-            //console.log("getCategoryyyyyyy",getCategory)
+            console.log("getCategoryyyyyyy",getCategory)
             res.send(getCategory);
         })
     });
-    app.get("/subCategory",function (req, res) {
+    app.get("/subCategory", function (req, res) {
         console.log('Invoked SubCategory');
         model.subCategory.find().then(getsubCategory=>{
-            //console.log("getCategoryyyyyyy",getsubCategory)
+            console.log("getCategoryyyyyyy",getsubCategory)
             res.send(getsubCategory);
         })	
     });
@@ -71,7 +54,10 @@ module.exports = (function () {
     app.post("/product", function (req, res) 
 	{
         console.log("product Data===>",req.body);
+     
         let productData = req.body;
+        console.log(productData.catName+"/"+productData.imageUrl)
+        productData.imageUrl=productData.catName+"/"+productData.imageUrl;
         let productDataSave = new model.product(productData)
         productDataSave.save().then((items => 
 		{
@@ -95,7 +81,6 @@ module.exports = (function () {
         
        app.post('/product/images',function(req,res)
        {
-           console.log('============>'+ JSON.stringify(req.file.originalname));
         upload(req,res,function(err) 
         {
             if(err) {
@@ -112,9 +97,12 @@ module.exports = (function () {
     //     res.json({'message': 'File uploaded'});
     //   });
 
-    app.put("/product", function (req, res) {
-        console.log("product Data===>",req.body);
+    app.put("/product", function (req, res)
+     {
+        console.log("product Data===111>",req.body);
         let productData = req.body;
+      //  console.log(productData.catName+"/"+productData.imageUrl)
+        productData.imageUrl=productData.catName+"/"+productData.imageUrl;
         let productDataSave = new model.product(productData)
         productDataSave.save().then((items => 
 		{

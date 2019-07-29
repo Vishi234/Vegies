@@ -18,7 +18,6 @@ export class CategoryComponent implements OnInit {
 
   constructor(private _adminCategory: AdminCategoryService,private _router:Router) { }
 
-
   categoryData = new categoryFields(0, '', '', 1);
   subCategoryData={};
   productData={};
@@ -32,6 +31,8 @@ export class CategoryComponent implements OnInit {
   rowDataProduct:any;
   files: any[];
   actualPrice:any;
+  productAlias:any;
+  imageUrl:any;
 
 
 
@@ -39,6 +40,7 @@ export class CategoryComponent implements OnInit {
   fd = new FormData();
   oper=true;
   ngOnInit() {
+
     this._adminCategory.GetCategoryList().subscribe((response) => {
       this.categoryList = response;
       Object.entries(response).forEach(
@@ -53,7 +55,7 @@ export class CategoryComponent implements OnInit {
       console.log('error is 00', error instanceof HttpErrorResponse,"00",error);
       if(error instanceof HttpErrorResponse){
         if(error.status===401){
-          console.log("22222222222222attttt");
+
           this._router.navigate(['/'])
         }
       }
@@ -87,6 +89,7 @@ export class CategoryComponent implements OnInit {
     this._adminCategory.GetProductList().subscribe((response) => 
     {
       this.rowDataProduct = response;
+      //this.productData=this.rowDataProduct
       }, (error) => {
       console.log('error is ', error)
       });
@@ -99,6 +102,7 @@ export class CategoryComponent implements OnInit {
       console.log('error is ', error)
     })
   }
+
 
   AddSubCategory() {
     console.log('subCategoryData-', this.subCategoryData);
@@ -113,10 +117,11 @@ export class CategoryComponent implements OnInit {
   AddProduct() 
   {
 
-   // console.log('productDetails-',this.productData);
-    if(this.oper)
+   if(this.oper)
     {
-    this._adminCategory.AddProduct(this.productData)
+
+  //  console.log('this produ',this.productData,this.imageUrl);
+    this._adminCategory.AddProduct(this.productData,this.imageUrl)
       .subscribe((res) => {
         console.log('Response body---', res);
       },
@@ -150,15 +155,15 @@ export class CategoryComponent implements OnInit {
 
 
   url: any;
-  onSelectFile(event) { // called each time file input changes
+  onSelectFile(event) 
+  { // called each time file input changes
     debugger;
-
-   // this.selectedFile = <File>event.target.files[0];
-   // this.fd.append('file', this.selectedFile, this.selectedFile.name);
-    
     this.files = event.target.files;
+  // this.productData.productUrl=this.files.name;
+    this.imageUrl="";
     for (const file of this.files) 
       {
+      this.imageUrl+=file.name;
       this.fd.append('file', file, file.name);
        }
 
@@ -192,7 +197,6 @@ export class CategoryComponent implements OnInit {
       });
   }
 
-  
   myCellRenderer(params) 
   {
     var eDiv = document.createElement('div');
@@ -206,14 +210,16 @@ export class CategoryComponent implements OnInit {
     });
     return eDiv;
   }
+  
 
-  productCellRenderer(params) {
+  productCellRenderer(params)
+  {
     var eDiv = document.createElement('div');
     eDiv.innerHTML = "&nbsp; <span style='cursor:pointer;' title='Edit Record'><img class='editIcon' src='src/assets/icons/edit.png'   userId='' /></span>";
     var domElement = document.createElement("span");
-
     var eButton = eDiv.querySelectorAll('.editIcon')[0];
-    eButton.addEventListener('click', function () 
+ 
+    eButton.addEventListener('click',  ()=>
     {
       console.log('button was clicked!!', params);
       debugger;
@@ -228,6 +234,7 @@ export class CategoryComponent implements OnInit {
         discount:params.data.discount,
         active:params.data.active
       }
+     // this.productData["productAlias"]=params.data.productAlias;
     });
     return eDiv;
   }
@@ -246,7 +253,7 @@ export class CategoryComponent implements OnInit {
   ];
 
    columnDefProduct = [
-    { headerName: 'Edit', field: '', cellRenderer: this.productCellRenderer },
+    { headerName: 'Edit', field: '', cellRenderer: this.productCellRenderer.bind(this) },
     { headerName: 'Category Name', field: 'catName', sortable: true, filter: true },
     { headerName: 'SubCategory Name', field: 'subCatName' },
     { headerName: 'Product Name', field: 'productName' },

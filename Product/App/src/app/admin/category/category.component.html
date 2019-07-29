@@ -1,6 +1,6 @@
 <div class="row pt-5">
     <div class="class md-6 mx-auto">
-      <div class="class rounded-0" style="height:auto;width: 550px; overflow:scroll;">          
+      <div class="class rounded-0" style="height:500px;width: 550px; overflow:scroll;">          
         <div class="class card-header" >
             <form class="form"  >
             <mat-form-field>
@@ -74,7 +74,7 @@
                     </mat-select>            
               </mat-form-field>
               <mat-form-field>
-                  <input matInput placeholder="Product Name" [(ngModel)]="productData.productName" name="productName">
+                <input matInput placeholder="Product Name" [(ngModel)]="productData.productName" name="productName">
                 </mat-form-field>
               <mat-form-field>
                 <input matInput placeholder="Product Alias" [(ngModel)]="productData.productAlias" name="productAlias">
@@ -88,11 +88,7 @@
               </mat-form-field>
                 <mat-form-field>
                   <input matInput placeholder="Actual Price" [(ngModel)]="productData.actualPrice" name="actualPrice">
-                </mat-form-field>
-
-              
-
-
+                </mat-form-field>     
               <mat-checkbox [(ngModel)]="productData.active" name="subCatActive">Active</mat-checkbox>
              
               <img [(ngModel)]="productData.url" [src]="url"  height="50" name ="url"> <br/>

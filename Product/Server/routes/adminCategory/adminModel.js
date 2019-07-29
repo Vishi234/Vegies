@@ -27,7 +27,7 @@ var categorySchema = new Schema({
             price: {type: String, require: true},
             discount: {type: String, require: true},
             active: {type: Number, require: true},
-            url:{type: String, require: true}
+            imageUrl:{type: String, require: true}
             })
             var product = mongoose.model('product', productSchema);
             
