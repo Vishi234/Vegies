@@ -67,7 +67,7 @@
           </div>
           <div class="wizard-footer">
               <button mat-button matStepperNext>Skip</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext (click)="myClickFunction($event)">Next</button>
             </div>
           <div class="proselected" id="proselected" (click)="inreaseHeight();" [ngClass]="toggle ? 'proheight' : ''">
             <div class="proheader">

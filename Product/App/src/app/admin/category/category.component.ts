@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminCategoryService } from './admin-category.service'
 import { categoryFields } from './categoryFields';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse,HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router'
 
 import { BrowserModule }  from '@angular/platform-browser';
@@ -16,7 +16,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private _adminCategory: AdminCategoryService,private _router:Router) { }
+  constructor(private _adminCategory: AdminCategoryService,private _router:Router,private http: HttpClient) { }
 
   categoryData = new categoryFields(0, '', '', 1);
   subCategoryData={};
@@ -33,6 +33,7 @@ export class CategoryComponent implements OnInit {
   actualPrice:any;
   productAlias:any;
   imageUrl:any;
+  filesToUpload: Array<File> = [];
 
 
 
@@ -120,7 +121,6 @@ export class CategoryComponent implements OnInit {
    if(this.oper)
     {
 
-  //  console.log('this produ',this.productData,this.imageUrl);
     this._adminCategory.AddProduct(this.productData,this.imageUrl)
       .subscribe((res) => {
         console.log('Response body---', res);
@@ -153,48 +153,11 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-
-  url: any;
-  onSelectFile(event) 
-  { // called each time file input changes
-    debugger;
-    this.files = event.target.files;
-  // this.productData.productUrl=this.files.name;
-    this.imageUrl="";
-    for (const file of this.files) 
-      {
-      this.imageUrl+=file.name;
-      this.fd.append('file', file, file.name);
-       }
-
-      if (event.target.files && event.target.files[0]) 
-      {
-        var reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0]); // read file as data url     
-        this.files = event.target.files;
-        reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url=event.target['result'];
-        this.onUpload();     
-         }
-      }
-  }
-
   onChangeDiscount(e)
   {
     var dd=e.target.value;
     var totalPrice=  this.productData["price"];  
     this.productData["actualPrice"]=totalPrice-(totalPrice*dd)/100;
-  }
-
-  onUpload() 
-  {
-    this._adminCategory.AddProductImages(this.fd,this.productData["catName"])
-    .subscribe((res) => {
-      console.log('Response body---', res);
-    },
-      (error) => {
-        console.log(error);
-      });
   }
 
   myCellRenderer(params) 

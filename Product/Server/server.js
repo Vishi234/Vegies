@@ -2,7 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var app = express(); 
 const jwt=require('jsonwebtoken');
-app.use(bodyParser.json()); 
+//app.use(bodyParser.json()); 
 var dbConfig=require("./config/dbConfig");
 var vendor=require('./routes/vendor/vendorServer')
 var adminCategory = require('./routes/adminCategory/adminCategory');

@@ -48,10 +48,9 @@ export class AdminCategoryService
   // console.log('helllooooooooooooooooo11111111111',user)
     return this.http.put<any>(this._productUrl,user)
   }
-  AddProductImages(formData:any,catName:any)
+  AddProductImages(formData:any)
   {
   // console.log('helllooooooooooooooooo11111111111',user)
-    formData.catName=catName;
     console.log("dataaaaaa",formData)
     return this.http.post<any>(this._productImg,formData)
   }
