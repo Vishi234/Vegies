@@ -1,5 +1,3 @@
-var sql = require("mssql");
-var config = require("../../config/dbConfig");
 var app = require('express').Router();
 var model = require('./adminModel');
 const fs = require("fs");

@@ -36,7 +36,8 @@ var loginSchema = new Schema({
         
         module.exports={
             login:login,
-            register:register
+            register:register,
+            configProductSchema:configProductSchema
         }
     
 
