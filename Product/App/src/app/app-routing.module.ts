@@ -20,8 +20,8 @@ const routes: Routes = [
     path: '',
     component: VendorContainerComponent,
     children: [
-      { path: '', redirectTo: 'vendor/dashboard', pathMatch: 'full' },
-      { path: 'vendor/dashboard/:id', component: DashboardComponent },
+      { path: '', redirectTo: 'vendor/dashboard', pathMatch: 'full',canActivate:[AuthGuard] },
+      { path: 'vendor/dashboard/:id', component: DashboardComponent,canActivate:[AuthGuard] },
     ]
   },
   { path :'admin/category',component:CategoryComponent,canActivate:[AuthGuard]}

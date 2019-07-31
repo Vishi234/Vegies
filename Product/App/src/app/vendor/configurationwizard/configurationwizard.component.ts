@@ -4,6 +4,8 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
 import PlaceResult = google.maps.places.PlaceResult;
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
+import {LoginService} from '../login/login.service'
+import {configurationwizard} from './configurationwizard.service'
 //'../../../../../Server/upload/ibill-1.png'
 @Component({
   selector: 'app-configurationwizard',
@@ -48,7 +50,7 @@ export class ConfigurationwizardComponent implements OnInit {
   getProductById(id){
     return this.items.find(x => x.id === id);
   }
-  constructor(private _vendorDetails: AdminCategoryService
+  constructor(private _vendorDetails: AdminCategoryService,private _login:LoginService,private _configurationwizard:configurationwizard
   ) {
     console.log("1111111111111111")
     this._vendorDetails.GetProductList().subscribe((response) => {
@@ -180,8 +182,15 @@ export class ConfigurationwizardComponent implements OnInit {
     this.latitude = location.latitude;
     this.longitude = location.longitude;
   }
-  myClickFunction(event:any){
-    console.log("hi clicked")
+  // <button mat-button matStepperNext (click)="addConfigureList($event)">Next</button>
+  addConfigureList(event:any){
+    var token=this._login.getToken()
+    this._configurationwizard.AddConfigProduc(this.selectedPro).subscribe((res)=>{
+      console.log("Response is",res);
+    }, (error) => {
+      console.log('error is ', error)
+    })
+    console.log("hi clicked",token,"value is",this.selectedPro)
   }
   // saveConfigProduct() {
   //   console.log("data",this.registerUser)

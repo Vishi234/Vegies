@@ -18,8 +18,9 @@ export class LoginRegisterComponent implements OnInit {
     this._login.vendorLogin(this.loginUser)
     .subscribe(
       res=>{
-        console.log("0000000000000000000000000",res.Attemp)
-        localStorage.setItem('token',res.token)
+        console.log("0000000000000000000000000",res.token)
+        localStorage.setItem('token',res.token+" "+this.loginUser['email'])
+        localStorage.setItem('user',this.loginUser['email'])
         this.router.navigate(['/vendor/dashboard',res.Attemp]);
       },
       err=>console.error(err)
