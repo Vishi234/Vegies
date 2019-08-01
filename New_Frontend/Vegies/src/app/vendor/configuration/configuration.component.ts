@@ -1,7 +1,9 @@
+///<reference types="@types/googlemaps" />
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-
-
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
+import PlaceResult = google.maps.places.PlaceResult;
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -11,6 +13,17 @@ export class ConfigurationComponent implements OnInit {
   toggle: boolean = false;
   items: Array<any> = [];
   selectedPro = [];
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  toppings = new FormControl();
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  public appearance = Appearance;
+  public zoom: number;
+  public latitude: number = 51.678418;
+  public longitude: number = 7.809007;
+  public selectedAddress: PlaceResult;
+  google: any;
   inreaseHeight() {
     this.toggle = !this.toggle;
 
@@ -28,7 +41,7 @@ export class ConfigurationComponent implements OnInit {
   getProductById(id) {
     return this.items.find(x => x.id === id);
   }
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder) {
     this.items = [
       {
         name: "Everfresh Flowers",
@@ -106,6 +119,16 @@ export class ConfigurationComponent implements OnInit {
     ]
   }
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.zoom = 10;
+    this.latitude = 52.520008;
+    this.longitude = 13.404954;
+    this.setCurrentPosition();
     // this._vendorDetails.GetSubCategoryList().subscribe((response) => {
     //   Object.entries(response).forEach(
     //     ([key, value]) => {
@@ -118,6 +141,19 @@ export class ConfigurationComponent implements OnInit {
     // }, (error) => {
     //   console.log('error is ', error)
     // });
+  }
+  private setCurrentPosition() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
+  }
+  onLocationSelected(location: Location) {
+    this.latitude = location.latitude;
+    this.longitude = location.longitude;
   }
   carouselOptions = {
     margin: 25,
