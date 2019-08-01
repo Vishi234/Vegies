@@ -8,6 +8,7 @@ var dbConfig=require("./config/dbConfig");
 var vendor=require('./routes/vendor/vendorServer')
 var adminCategory = require('./routes/adminCategory/adminCategory');
 var configProducr=require('./routes/configProduct/configProduct')
+const session=require('express-session')
 //CORS Middleware
 app.use(function (req, res, next) {
     //Enabling CORS 
@@ -24,6 +25,9 @@ console.log("portttttt",dbConfig.app.port);
  });
 
 app.use('/api/admin', adminCategory);
-app.use('/api/vendor', vendor);
 app.use('/api/configProduct', configProducr);
+
+
+app.use('/api/vendor', vendor);
+
 

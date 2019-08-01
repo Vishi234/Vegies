@@ -9,17 +9,17 @@
             <mdb-card-body class="px-lg-5 pt-0">
 
                 <!-- Form -->
-                <form class="text-center">
+                <form class="text-center" (ngSubmit)="visitorSignin()">
                     <div class="md-form">
-                        <input mdbInput mdbValidate name="email" [(ngModel)]="emailText" #email="ngModel" required
-                            pattern="[^ @]*@[^ @]*" type="email" autocomplete="off" id="emailAddress"
+                        <input mdbInput mdbValidate name="email" [(ngModel)]="loginUser.email" #email="ngModel" required
+                            pattern="[^ @]*@[^ @]*" type="email" autocomplete="off" id="email"
                             class="form-control">
                         <label for="email">E-mail</label>
                         <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">Input invalid</mdb-error>
                         <mdb-success *ngIf="email.valid && (email.dirty || email.touched)">Input valid</mdb-success>
                     </div>
                     <div class="md-form">
-                        <input mdbInput mdbValidate name="password" [(ngModel)]="passwordText" #password="ngModel" required
+                        <input mdbInput mdbValidate name="password" [(ngModel)]="loginUser.password" #password="ngModel" required
                             type="password" id="password" class="form-control">
                         <label for="password">Password</label>
                         <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">Input invalid</mdb-error>
