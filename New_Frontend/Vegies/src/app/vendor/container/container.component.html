@@ -43,7 +43,27 @@
                     <mat-expansion-panel>
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Item Master
+                                Dashboard
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Summary reports.
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="sidelist">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        My Dashboard
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Checklist Master
                             </mat-panel-title>
                             <mat-panel-description>
                                 Manage your checklist details.
@@ -53,28 +73,76 @@
                             <ul>
                                 <li>
                                     <a href="javascript:void(0)">
-                                        My Items
+                                        My Checklist
                                     </a>
                                 </li>
                                 <li>
-                                        <a href="javascript:void(0)">
-                                            
-                                        </a>
-                                    </li>
+                                    <a href="javascript:void(0)">
+                                        Checklist Configuration
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Self aware panel
+                                Reports
                             </mat-panel-title>
                             <mat-panel-description>
-                                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                                Manage reports.
                             </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <p>I'm visible because I am open</p>
+                        <div class="sidelist">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        Checklist Reports
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        Payment Reports
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Setting
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                manage all settings.
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="sidelist">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        Checklist Scheduler
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        Manage Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        Change Password
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        Raise Ticket
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </mat-expansion-panel>
+
                 </mat-accordion>
 
             </mat-sidenav>
