@@ -1,9 +1,10 @@
-var sql = require("mssql");
-var config = require("../../config/dbConfig");
 var app = require('express').Router();
 var model = require('./adminModel');
+const fs = require("fs");
+const multer = require('multer');
+const upload = multer({ dest: './uploads/' });
 
-
+//const router = express.Router();
 
 module.exports = (function () {
     'use strict';
@@ -52,7 +53,10 @@ module.exports = (function () {
     app.post("/product", function (req, res) 
 	{
         console.log("product Data===>",req.body);
+     
         let productData = req.body;
+        console.log(productData.catName+"/"+productData.imageUrl)
+        productData.imageUrl=productData.catName+"/"+productData.imageUrl;
         let productDataSave = new model.product(productData)
         productDataSave.save().then((items => 
 		{
@@ -63,9 +67,36 @@ module.exports = (function () {
             res.status(400).send("unable to save to database");
         })
     });
-    app.put("/product", function (req, res) {
-        console.log("product Data===>",req.body);
+    
+
+
+    var storage = multer.diskStorage({
+        destination: function (req, file, callback) {
+          callback(null, './uploads');
+        },
+        filename: function (req, file, callback) {
+          callback(null, file.originalname);
+        }
+      });
+      
+      var upload = multer({ storage : storage }).array('myFile',2);
+      
+    app.post('/product/images',  (req, res) => {
+        upload(req,res,function(err) 
+        {
+            if(err) {
+                return res.end("Error uploading file.");
+            }
+            res.json({'message': 'File uploaded'});
+        });      
+    });
+
+
+    app.put("/product", function (req, res)
+     {
+        console.log("product Data===111>",req.body);
         let productData = req.body;
+        productData.imageUrl=productData.catName+"/"+productData.imageUrl;
         let productDataSave = new model.product(productData)
         productDataSave.save().then((items => 
 		{

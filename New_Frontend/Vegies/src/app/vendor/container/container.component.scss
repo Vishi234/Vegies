@@ -1,0 +1,124 @@
+.mat-toolbar {
+  padding: 0px;
+  font: inherit;
+}
+.mat-toolbar.mat-primary {
+  background: #24355c;
+  color: #fff;
+  position: fixed;
+  z-index: 999;
+
+  height: 48px;
+}
+.app-ttl .app-name {
+  display: block;
+  float: left;
+  padding: 11px 0px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0.8;
+}
+.app-ttl a {
+  display: block;
+  padding: 14px 15px;
+  float: left;
+  color: #fff;
+  padding-left: 0px;
+  font-size: 20px;
+}
+.mat-sidenav {
+  width: 220px;
+}
+.mat-drawer {
+  background-color: #24355c;
+  color: #fff;
+  border-right: none !important;
+  position: fixed;
+  top: 48px;
+}
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"]) .mat-expansion-panel-header:hover {
+  background: transparent;
+}
+.nav-sidenav-container .mat-drawer-inner-container {
+  margin-top: 25px;
+}
+.mat-expansion-panel-header {
+  padding: 0 13px;
+  font-family: inherit;
+  border-bottom: 1px solid #2b3f6e;
+}
+.mat-content {
+  display: inline-block;
+}
+.mat-expansion-panel-header-title {
+  display: inline-block;
+  flex-grow: 1;
+  margin-right: 0px;
+  width: 100%;
+  color: #fff;
+  opacity: 0.8;
+  font-weight: 400;
+}
+.mat-expansion-panel-header-description {
+  display: block;
+  width: 100%;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 10px;
+}
+.app-top-menu {
+  float: right;
+  padding: 0px;
+}
+.app-top-menu .btn-group a {
+  padding: 0px;
+}
+.usermenu {
+  border-radius: 2.3rem;
+  background: transparent;
+  padding: 0px;
+  font-size: 36px;
+  opacity: 0.8;
+  float: left;
+}
+.userInfo {
+  float: left;
+  font-size: 14px;
+  padding: 9px;
+}
+.userInfo p {
+  margin: 0px;
+  line-height: 11px;
+  font-size: 12px;
+}
+.userDown {
+  float: right;
+  padding: 14px 3px;
+  font-size: 16px;
+}
+.dropdown-menu-left {
+  right: 0;
+  left: -20px;
+  top: 52px;
+  padding: 0px;
+}
+.dropdown-item {
+  padding: 0.5rem 1rem !important;
+  color: #666;
+}
+
+.mat-sidenav-content{
+  background: #f5f5f5;
+  height: 100vh;
+}
+@media only screen and (min-width: 1224px) {
+  .content-sec {
+    padding-top: 6%;
+}
+}
+@media only screen and (min-width: 1080px) {
+  .content-sec {
+    padding-top: 6%;
+}
+}

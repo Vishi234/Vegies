@@ -12,6 +12,7 @@ export class AdminCategoryService
   private _adminCategoryUrl='http://localhost:8080/api/admin/category';
   private _subCatUrl='http://localhost:8080/api/admin/subCategory';
   private _productUrl='http://localhost:8080/api/admin/product';
+  private _productImg='http://localhost:8080/api/admin/product/images';
 
   AddCategory(user:any)
   {
@@ -30,9 +31,11 @@ export class AdminCategoryService
   //  console.log('helllooooooooooooooooo11111111111')
     return this.http.get(this._subCatUrl)
   }
-  AddProduct(user:any)
+  AddProduct(user:any,imageUrl:any)
   {
   // console.log('helllooooooooooooooooo11111111111',user)
+    debugger;
+    user.imageUrl=imageUrl;
     return this.http.post<any>(this._productUrl,user)
   }
   GetProductList()
@@ -44,5 +47,11 @@ export class AdminCategoryService
   {
   // console.log('helllooooooooooooooooo11111111111',user)
     return this.http.put<any>(this._productUrl,user)
+  }
+  AddProductImages(formData:any)
+  {
+  // console.log('helllooooooooooooooooo11111111111',user)
+    console.log("dataaaaaa",formData)
+    return this.http.post<any>(this._productImg,formData)
   }
 }

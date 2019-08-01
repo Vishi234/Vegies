@@ -1,45 +1,84 @@
 <div class="loginbase">
     <mat-tab-group>
+
         <mat-tab label="Login">
-            <div class="loginform">
-                <mat-form-field appearance="outline">
-                    <mat-icon matPrefix>supervisor_account</mat-icon>
-                    <mat-label>Username</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-icon matPrefix> vpn_key</mat-icon>
-                    <mat-label>Password</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <button mat-button>Login</button>
-                <p class="frgtpass"><a href="javascript:void(0)">Forgot Password?</a></p>
-            </div>
+            <form class="vendregister" #_loginUser="ngForm" novalidate (ngSubmit)="visitorSignin()">
+                <div class="loginform">
+                    <mat-form-field appearance="outline">
+                        <mat-icon matPrefix>supervisor_account</mat-icon>
+                        <mat-label>Email <Address></Address>
+                        </mat-label>
+                        <input matInput [(ngModel)]="loginUser.email" name="email" #email="ngModel"
+                            [class.is-invalid]="email.invalid && email.touched"
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                    </mat-form-field>
+                    <div *ngIf="email.errors && (email.dirty || email.touched)">
+                        <small class="text-danger" *ngIf="email.errors.required"
+                            [class.d-none]="email.valid || email.untouched">Email is required</small>
+                        <small class="text-danger" *ngIf="email.errors.pattern">Please insert a valid email.</small>
+                    </div>
+                    <mat-form-field appearance="outline">
+                        <mat-icon matPrefix> vpn_key</mat-icon>
+                        <mat-label>Password</mat-label>
+                        <input matInput [(ngModel)]="loginUser.password" name="password" #password="ngModel"
+                            [class.is-invalid]="password.invalid && password.touched" required>
+                    </mat-form-field>
+                    <small class="text-danger" [class.d-none]="password.valid || password.untouched">
+                        Password is required
+                    </small>
+                    <button mat-button [disabled]="_loginUser.form.invalid">Login</button>
+                    <p class="frgtpass"><a href="javascript:void(0)">Forgot Password?</a></p>
+                </div>
+            </form>
         </mat-tab>
+
         <mat-tab label="Register">
-            <div class="loginform">
-                <mat-form-field appearance="outline">
-                    <mat-icon matPrefix>account_balance</mat-icon>
-                    <mat-label>Organisation Name</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-icon matPrefix>account_box</mat-icon>
-                    <mat-label>Full Name</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-icon matPrefix>alternate_email</mat-icon>
-                    <mat-label>Email Address</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-icon matPrefix>phone</mat-icon>
-                    <mat-label>Mobile No.</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <button mat-button>Register</button>
-            </div>
+            <form class="vendregister" #user="ngForm" novalidate (ngSubmit)="visitorSignup()">
+                <div class="loginform">
+                    <mat-form-field appearance="outline">
+                        <mat-icon matPrefix>account_balance</mat-icon>
+                        <mat-label>Organisation Name</mat-label>
+                        <input matInput [(ngModel)]="registerUser.orgName" #name="ngModel" name="orgName"
+                            [class.is-invalid]="name.invalid && name.touched" required>
+                    </mat-form-field>
+                    <small class="text-danger" [class.d-none]="name.valid || name.untouched">
+                        Organisation Name is required
+                    </small>
+                    <mat-form-field appearance="outline">
+                        <mat-icon matPrefix>account_box</mat-icon>
+                        <mat-label>Full Name</mat-label>
+                        <input matInput [(ngModel)]="registerUser.fullName" name="fullName" #fullName="ngModel"
+                            [class.is-invalid]="fullName.invalid && fullName.touched" required>
+                    </mat-form-field>
+                    <small class="text-danger" [class.d-none]="fullName.valid || fullName.untouched">
+                        Full Name is required
+                    </small>
+                    <mat-form-field appearance="outline">
+                        <mat-icon matPrefix>alternate_email</mat-icon>
+                        <mat-label>Email Address</mat-label>
+                        <input matInput [(ngModel)]="registerUser.email" name="email" #email="ngModel"
+                            [class.is-invalid]="email.invalid && email.touched"
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                    </mat-form-field>
+                    <div *ngIf="email.errors && (email.dirty || email.touched)">
+                        <small class="text-danger" *ngIf="email.errors.required"
+                            [class.d-none]="email.valid || email.untouched">Email is required</small>
+                        <small class="text-danger" *ngIf="email.errors.pattern">Please insert a valid email.</small>
+                    </div>
+                    <mat-form-field appearance="outline">
+                        <mat-icon matPrefix>phone</mat-icon>
+                        <mat-label>Mobile No.</mat-label>
+                        <input matInput matInput #mobile="ngModel" name="mobile" pattern="^\d{10}$" required
+                            [class.is-invalid]="mobile.invalid && mobile.touched" [(ngModel)]="registerUser.mobile">
+                    </mat-form-field>
+                    <div *ngIf="mobile.errors && (mobile.invalid || mobile.touched)">
+                        <small class="text-danger" *ngIf="mobile.errors.required"
+                            [class.d-none]="mobile.valid || mobile.untouched">Mobile number is required</small>
+                        <small class="text-danger" *ngIf="mobile.errors.pattern">Mobile number must be 10 digits</small>
+                    </div>
+                    <button mat-button [disabled]="user.form.invalid">Register</button>
+                </div>
+            </form>
         </mat-tab>
     </mat-tab-group>
 </div>

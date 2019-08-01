@@ -1,8 +1,8 @@
 <div class="row pt-5">
     <div class="class md-6 mx-auto">
-      <div class="class rounded-0">
-        <div class="class card-header">
-            <form class="form">
+      <div class="class rounded-0" style="height:500px;width: 550px; overflow:scroll;">          
+        <div class="class card-header" >
+            <form class="form"  >
             <mat-form-field>
               <mat-select placeholder="Select Product Type" required name="productCat"
                 [(ngModel)]="categoryData.productCat">
@@ -54,8 +54,8 @@
               <ag-grid-angular style="width: 800px; overflow:scroll; height: 300px;"class="ag-theme-balham"    [rowData]="rowDatSubCat" [columnDefs]="columnDefSubCat">
               </ag-grid-angular>
             </ng-container>
-            <!-- </div> -->
-            <ng-container *ngIf="categoryData.productCat ==3" style="height:400px;overflow:scroll; width:100%;">
+            <!-- </div>  style="height:400px;overflow:scroll; width:100%;"-->
+            <ng-container *ngIf="categoryData.productCat ==3" >
               <mat-form-field>
                   <mat-select placeholder="Select Category Name" (selectionChange)="categoryChange($event)" [(ngModel)]="productData.catName" required name="catName" >
                     <mat-option *ngFor='let catName of categoryList' value={{catName.catName}}>{{catName.catName}}</mat-option>                  
@@ -74,7 +74,7 @@
                     </mat-select>            
               </mat-form-field>
               <mat-form-field>
-                  <input matInput placeholder="Product Name" [(ngModel)]="productData.productName" name="productName">
+                <input matInput placeholder="Product Name" [(ngModel)]="productData.productName" name="productName">
                 </mat-form-field>
               <mat-form-field>
                 <input matInput placeholder="Product Alias" [(ngModel)]="productData.productAlias" name="productAlias">
@@ -84,22 +84,20 @@
                   <input matInput placeholder="Unit Price" [(ngModel)]="productData.price" name="price">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="Avaialable Discount" [(ngModel)]="productData.discount" name="discount">
+                    <input matInput placeholder="Avaialable Discount" [(ngModel)]="productData.discount" (blur)="onChangeDiscount($event)" name="discount">
               </mat-form-field>
-
-
+                <mat-form-field>
+                  <input matInput placeholder="Actual Price" [(ngModel)]="productData.actualPrice" name="actualPrice">
+                </mat-form-field>     
               <mat-checkbox [(ngModel)]="productData.active" name="subCatActive">Active</mat-checkbox>
              
-              <!-- <label for="singleFile">Upload file</label>
-              <input id="singleFile" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
-              <br>
-               
-              <mat-file-upload-queue #fileUploadQueue
-                  [fileAlias]="'file'"
-                  [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'">
-               
-                  <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
-              </mat-file-upload-queue> -->
+              <!-- <img [(ngModel)]="productData.url" [src]="url"  height="50" name ="url"> <br/>
+              <input type='file' (change)="onSelectFile($event)" multiple> -->
+              <form #form action="http://localhost:8080/api/admin/product/images" enctype="multipart/form-data" method="POST">
+                <input type="file" name="myFile" id="myFile" required multiple />
+                <input type="submit" (click)="form.submit()" value="Upload" />
+            </form>
+           
               <br>
               <br>
               <button mat-button (click)="AddProduct()" class="md-raised md-cornered" style="background-color: palegreen;margin-bottom:5px">Submit</button>

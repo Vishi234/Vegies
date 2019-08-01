@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminCategoryService } from './admin-category.service'
 import { categoryFields } from './categoryFields';
+import { HttpErrorResponse,HttpClient } from '@angular/common/http';
+import {Router} from '@angular/router'
 
 import { BrowserModule }  from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material';
@@ -14,8 +16,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private _adminCategory: AdminCategoryService) { }
-
+  constructor(private _adminCategory: AdminCategoryService,private _router:Router,private http: HttpClient) { }
 
   categoryData = new categoryFields(0, '', '', 1);
   subCategoryData={};
@@ -28,8 +29,19 @@ export class CategoryComponent implements OnInit {
   categoryList: any;
   subCatList:any;
   rowDataProduct:any;
+  files: any[];
+  actualPrice:any;
+  productAlias:any;
+  imageUrl:any;
+  filesToUpload: Array<File> = [];
+
+
+
+  selectedFile: File = null;
+  fd = new FormData();
   oper=true;
   ngOnInit() {
+
     this._adminCategory.GetCategoryList().subscribe((response) => {
       this.categoryList = response;
       Object.entries(response).forEach(
@@ -41,7 +53,13 @@ export class CategoryComponent implements OnInit {
         return ({ "_id": val._id, "catName": val.catName, "catAlias": val.catAlias })
       })
     }, (error) => {
-      console.log('error is ', error)
+      console.log('error is 00', error instanceof HttpErrorResponse,"00",error);
+      if(error instanceof HttpErrorResponse){
+        if(error.status===401){
+
+          this._router.navigate(['/'])
+        }
+      }
     });
 
     this._adminCategory.GetSubCategoryList().subscribe((response) => {
@@ -60,12 +78,19 @@ export class CategoryComponent implements OnInit {
         })
       })
     }, (error) => {
+      if(error instanceof HttpErrorResponse){
+        if(error.status===401){
+          console.log("11111111subbbbbbbbb");
+          this._router.navigate(['/'])
+        }
+      }
       console.log('error is ', error)
     });
 
     this._adminCategory.GetProductList().subscribe((response) => 
     {
       this.rowDataProduct = response;
+      //this.productData=this.rowDataProduct
       }, (error) => {
       console.log('error is ', error)
       });
@@ -78,6 +103,7 @@ export class CategoryComponent implements OnInit {
       console.log('error is ', error)
     })
   }
+
 
   AddSubCategory() {
     console.log('subCategoryData-', this.subCategoryData);
@@ -92,10 +118,10 @@ export class CategoryComponent implements OnInit {
   AddProduct() 
   {
 
-    console.log('productDetails-',this.productData);
-    if(this.oper)
+   if(this.oper)
     {
-    this._adminCategory.AddProduct(this.productData)
+
+    this._adminCategory.AddProduct(this.productData,this.imageUrl)
       .subscribe((res) => {
         console.log('Response body---', res);
       },
@@ -126,19 +152,16 @@ export class CategoryComponent implements OnInit {
       }
     });
   }
-  myCellRenderer(params) {
-    var eDiv = document.createElement('div');
-    eDiv.innerHTML = "&nbsp; <span style='cursor:pointer;' title='Edit Record'><img class='editIcon' src='src/assets/icons/edit.png'   userId='' /></span>";
-    var domElement = document.createElement("span");
 
-    var eButton = eDiv.querySelectorAll('.editIcon')[0];
-    eButton.addEventListener('click', function () {
-      console.log('button was clicked!!', params);
-    });
-    return eDiv;
+  onChangeDiscount(e)
+  {
+    var dd=e.target.value;
+    var totalPrice=  this.productData["price"];  
+    this.productData["actualPrice"]=totalPrice-(totalPrice*dd)/100;
   }
 
-  productCellRenderer(params) {
+  myCellRenderer(params) 
+  {
     var eDiv = document.createElement('div');
     eDiv.innerHTML = "&nbsp; <span style='cursor:pointer;' title='Edit Record'><img class='editIcon' src='src/assets/icons/edit.png'   userId='' /></span>";
     var domElement = document.createElement("span");
@@ -147,15 +170,34 @@ export class CategoryComponent implements OnInit {
     eButton.addEventListener('click', function () 
     {
       console.log('button was clicked!!', params);
-      debugger;this.oper=false;
-      this.productData.catName=params.data.catName;
-      this.productData.subCatName=params.data.subCatName;
-      this.productData.unitMeasure=params.data.unitMeasure;
-      this.productData.productName=params.data.productName;
-      this.productData.productAlias=params.data.productAlias;
-      this.productData.price=params.data.price;
-      this.productData.discount=params.data.discount;
-      this.productData.active=params.data.active;
+    });
+    return eDiv;
+  }
+  
+
+  productCellRenderer(params)
+  {
+    var eDiv = document.createElement('div');
+    eDiv.innerHTML = "&nbsp; <span style='cursor:pointer;' title='Edit Record'><img class='editIcon' src='src/assets/icons/edit.png'   userId='' /></span>";
+    var domElement = document.createElement("span");
+    var eButton = eDiv.querySelectorAll('.editIcon')[0];
+ 
+    eButton.addEventListener('click',  ()=>
+    {
+      console.log('button was clicked!!', params);
+      debugger;
+      this.oper=false;
+      this.productData=
+      {
+        catName : params.data.catName,
+        unitMeasure:params.data.unitMeasure,
+        productName:params.data.productName,
+        productAlias:params.data.productAlias,
+        price:params.data.price,
+        discount:params.data.discount,
+        active:params.data.active
+      }
+     // this.productData["productAlias"]=params.data.productAlias;
     });
     return eDiv;
   }
@@ -168,13 +210,13 @@ export class CategoryComponent implements OnInit {
 
   columnDefSubCat = [
     { headerName: 'Edit', field: '', cellRenderer: this.myCellRenderer },
-    { headerName: 'CATEGORY_ID', field: 'catName', sortable: true, filter: true },
-    { headerName: 'SUBCATEGORY_NAME', field: 'subCatName' },
-    { headerName: 'SUBCATEGORY_DESC', field: 'subCatAlias' }
+    { headerName: 'Category Name', field: 'catName', sortable: true, filter: true },
+    { headerName: 'Sub Category Name', field: 'subCatName' },
+    { headerName: 'Sub Category Alias', field: 'subCatAlias' }
   ];
 
    columnDefProduct = [
-    { headerName: 'Edit', field: '', cellRenderer: this.productCellRenderer },
+    { headerName: 'Edit', field: '', cellRenderer: this.productCellRenderer.bind(this) },
     { headerName: 'Category Name', field: 'catName', sortable: true, filter: true },
     { headerName: 'SubCategory Name', field: 'subCatName' },
     { headerName: 'Product Name', field: 'productName' },

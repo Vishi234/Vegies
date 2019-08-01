@@ -20,10 +20,24 @@ var loginSchema = new Schema({
         })
         var register = mongoose.model('register', registerSchema);
 
+        var configProductSchema = new Schema({
+            name: {type: String, require: true},
+            oldPrice: {type: Number, require: true, require: true},
+            newPrice: {type: Number, require: true, require: true},
+            unitMeasur: {type: String, unique: true, require: true},
+            discount: {type: Number, require: true, require: true},
+            // password: {type: String, require: true},
+            // mailVerify: {type: String},
+            // mobleVerify: {type: String},
+            // loginAttemp: {type: Number},
+            })
+            var register = mongoose.model('register', registerSchema);
+
         
         module.exports={
             login:login,
-            register:register
+            register:register,
+            configProductSchema:configProductSchema
         }
     
 
