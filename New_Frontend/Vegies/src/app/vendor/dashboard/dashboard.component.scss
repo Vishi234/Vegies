@@ -11,7 +11,7 @@
   padding: 10px;
   background: #fff;
   border-radius: 4px;
-  width: 220px;
+  width: 250px;
 }
 .values-top > ul > li > a > .ttl {
   display: block;
@@ -154,12 +154,12 @@
   width: 97%;
   height: auto;
 }
-@media only screen and (min-width: 1224px) {
+@media only screen and (max-width: 1224px) {
   .values-top > ul > li > a {
     width: 260px;
   }
 }
-@media only screen and (min-width: 1080px) {
+@media only screen and (max-width: 1080px) {
   .values-top > ul > li > a {
     width: 230px;
   }

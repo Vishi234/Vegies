@@ -36,6 +36,7 @@ import { AgGridComponent } from './common/components/ag-grid/ag-grid.component';
 import { AuthGuard } from './auth.guard';
 import {TokenInterceptorService} from './token-interceptor.service'
 import { LoginRegisterComponent } from './visitor/login-register/login-register.component';
+import { OutputGraphComponent } from './vendor/output-graph/output-graph.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { LoginRegisterComponent } from './visitor/login-register/login-register.
     LoaderComponent,
     AgGridComponent,
     MatPaginator,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    OutputGraphComponent
   ],
   imports: [
     BrowserModule,

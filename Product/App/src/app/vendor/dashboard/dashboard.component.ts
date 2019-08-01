@@ -1,5 +1,5 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
-import { MatDialog, MatTableDataSource, MatPaginator ,MatSort} from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import {ActivatedRoute} from '@angular/router'
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
@@ -19,7 +19,7 @@ export interface PeriodicElement {
   qty: number,
   unitMeasure: string,
   totalPrice: number,
-  discount:number
+  discount: number
 }
 const ELEMENT_DATA: PeriodicElement[]=[];
 // const ELEMENT_DATA: PeriodicElement[] = [
@@ -57,8 +57,8 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['select', 'productName', 'unitPrice', 'qty','discount', 'unitMeasure','totalPrice'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -102,4 +102,5 @@ export class DashboardComponent implements OnInit {
       this.dialog.open(ConfigurationwizardComponent,{disableClose:true});
     //}
   }
+
 }

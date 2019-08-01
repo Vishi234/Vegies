@@ -1,5 +1,6 @@
 ///<reference types="@types/googlemaps" />
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
 import PlaceResult = google.maps.places.PlaceResult;
@@ -16,16 +17,14 @@ import {configurationwizard} from './configurationwizard.service'
 export class ConfigurationwizardComponent implements OnInit {
   public appearance = Appearance;
   public zoom: number;
-  public latitude: number;
-  public longitude: number;
+  public latitude: number = 51.678418;
+  public longitude: number = 7.809007;
   public selectedAddress: PlaceResult;
   toggle: boolean = false;
-  toppings = new FormControl('', [Validators.required]);
+  toppings = new FormControl();
   public subCatList: Array<any> = [];
-  //toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   items: Array<any> = [];
-  productSelectionGroup: FormGroup;
-  locationFormGroup: FormGroup;
   selectedPro = [];
   inreaseHeight() {
     this.toggle = !this.toggle;
@@ -47,7 +46,7 @@ export class ConfigurationwizardComponent implements OnInit {
       })
     }
   }
-  getProductById(id){
+  getProductById(id) {
     return this.items.find(x => x.id === id);
   }
   constructor(private _vendorDetails: AdminCategoryService,private _login:LoginService,private _configurationwizard:configurationwizard
@@ -173,12 +172,7 @@ export class ConfigurationwizardComponent implements OnInit {
       });
     }
   }
-  onAutocompleteSelected(result: PlaceResult) {
-    console.log('onAutocompleteSelected: ', result);
-  }
-
   onLocationSelected(location: Location) {
-    console.log('onLocationSelected: ', location);
     this.latitude = location.latitude;
     this.longitude = location.longitude;
   }
