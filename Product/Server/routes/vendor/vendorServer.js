@@ -1,12 +1,24 @@
 var db = require("../../config/dbConfig");
-var sql = require("mssql");
 const nodemailer = require("nodemailer");
 var generator = require('generate-password');
 var model = require("./vendorModel");
 const jwt = require("jsonwebtoken");
+var express = require('express');
+const session=require('express-session')
+var app = express(); 
+app.use(session({
+    secret:'hgdg576esjhsd2236289hcskcb93e',
+    saveUninitialized:false,
+    resave:false
+}))
+var router = express.Router();
+
+
+
 var mailOptions, host;
 
-module.exports = (function () {
+
+//module.exports = (function () {
     'use strict';
     var rand, host, link;
     var password = generator.generate({
@@ -14,15 +26,16 @@ module.exports = (function () {
         numbers: true,
         //symbols: true
     });
-    var app = require('express').Router();
 
-    app.post("/registration", function (req, res) {
+   // var app = require('express').Router();
+
+    router.post("/registration", function (req, res) {
         let registerData = req.body;
         console.log("cateeeeeeeeeee", registerData);
         registerData.password = password;
         let registerationSave = new model.register(registerData)
         registerationSave.save().then((userDetails => {
-            // console.log("dataaaaaaaaaa", userDetails);
+            console.log("dataaaaaaaaaa", userDetails);
             let payload = { subject: userDetails._id }
             let token = jwt.sign(payload, 'secretKey')
             res.json({ token });
@@ -36,8 +49,9 @@ module.exports = (function () {
         })
     });
 
-    app.post("/login", function (req, res) {
+    router.post("/login", function (req, res) {
         let userData = req.body;
+        console.log("hiiiiiiiiiiii",userData)
         model.register.findOne({ email: userData.email }, (error, user) => {
             if (error) {
                 console.log(error);
@@ -55,7 +69,9 @@ module.exports = (function () {
                         model.register.updateOne({loginAttemp: user.loginAttemp},{ $set :{loginAttemp: user.loginAttemp+1}},function(attempCount){
                            //console.log("--------------------",user.loginAttemp)
                             res.status(200).send({"token": token ,"Attemp":user.loginAttemp+1});
-                            //res.status(200).send({token});
+                            console.log("username is",user.email)
+                            req.session.email=user.email
+                            req.session.save()
                         })
                         console.log("hiiiiiiiiii")
 
@@ -65,7 +81,7 @@ module.exports = (function () {
             }
         })
     })
-    app.get('/verify', function (req, res) {
+    router.get('/verify', function (req, res) {
         if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
             console.log("Domain is matched. Information is from Authentic email");
             if (req.query.id == rand) {
@@ -107,5 +123,9 @@ module.exports = (function () {
         let info = await transporter.sendMail(mailOptions);
         callback(info);
     }
-    return app;
-})();
+
+    router.get('/data',(req,res)=>{
+        res.send('user is =>'+req.session.email)
+    })
+    module.exports = router;
+//})();

@@ -25,6 +25,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DashboardComponent } from './vendor/dashboard/dashboard.component';
 import{VendorContainerComponent} from './vendor/container/container.component';
 import { ConfigurationComponent } from './vendor/configuration/configuration.component'
+import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import {TokenInterceptorService} from './token-interceptor.service'
 
 @NgModule({
   declarations: [
@@ -63,9 +66,15 @@ import { ConfigurationComponent } from './vendor/configuration/configuration.com
     GridModule,
     CheckBoxModule,
     Ng2CarouselamosModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    HttpClientModule
   ],
-  providers: [PageService, SortService, FilterService, GroupService],
+  providers: [PageService, SortService, FilterService, GroupService,AuthGuard,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }],
   bootstrap: [AppComponent],
   entryComponents:[ForgotPasswordComponent,ConfigurationComponent]
 })
