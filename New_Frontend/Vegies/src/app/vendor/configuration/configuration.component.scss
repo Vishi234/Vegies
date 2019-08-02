@@ -206,6 +206,28 @@ label {
 .carousel-control-next {
   width: 3% !important;
 }
+.btn-group {
+  padding: 10px;
+}
+.btn-group .btn {
+  padding: 9px 20px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+agm-map {
+  height: 300px;
+}
+.ship-pro > ul > li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.ship-pro > ul > li > a {
+  display: block;
+  height: 80px;
+  width: 80px;
+  border: 4px solid #eee;
+  border-radius: 4px;
+}
 @media (max-width: 768px) {
   .modalbase {
     width: auto;

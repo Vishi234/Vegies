@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
   MatFormFieldModule, MatInputModule, MatListModule,MatExpansionModule, MatDialogModule,
-  MatSelectModule, MatIconModule, MatToolbarModule,MatSidenavModule, MatOptionModule,MatButtonToggleModule
+  MatSelectModule, MatIconModule, MatToolbarModule,MatSidenavModule, MatOptionModule,MatButtonToggleModule,MatStepperModule
 } from '@angular/material';
+import { AgmCoreModule } from '@agm/core';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { GridModule} from '@syncfusion/ej2-angular-grids';
@@ -67,6 +69,12 @@ import {TokenInterceptorService} from './token-interceptor.service'
     CheckBoxModule,
     Ng2CarouselamosModule,
     MatButtonToggleModule,
+    MatStepperModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBb1-CCxWk4r7byFIduqkNOc9QPPxSdcyA',
+      libraries: ["places"]
+    }),
+    MatGoogleMapsAutocompleteModule
     HttpClientModule
   ],
   providers: [PageService, SortService, FilterService, GroupService,AuthGuard,
