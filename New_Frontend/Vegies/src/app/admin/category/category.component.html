@@ -1,0 +1,118 @@
+<div class="row pt-5">
+    <div class="class md-6 mx-auto">
+      <div class="class rounded-0" style="height:500px;width: 550px; overflow:scroll;">          
+        <div class="class card-header" >
+            <form class="form"  >
+            <mat-form-field>
+              <mat-select placeholder="Select Product Type" required name="productCat"
+                [(ngModel)]="categoryData.productCat">
+                <mat-option value="1">Main Category</mat-option>
+                <mat-option value="2">Sub Category</mat-option>
+                <mat-option value="3">Product</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="categoryData.productCat ==1">
+              <!-- <div *ngIf="categoryData.productCat ==1; then thenBlock else elseBlock"> -->
+              <mat-form-field>
+                <input matInput placeholder="Category Name" [(ngModel)]="categoryData.catName" name="catName" required>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Category Alias" [(ngModel)]="categoryData.catAlias" name="catAlias">
+              </mat-form-field>
+              <mat-checkbox [(ngModel)]="categoryData.Active" name="catActive">Active</mat-checkbox>
+              <br>
+              <br>
+              <button mat-button (click)="AddCategory()" class="md-raised md-cornered" style="background-color: palegreen;margin-bottom:5px">Submit</button>
+
+              <ag-grid-angular style="width: 625px; overflow:scroll; height: 300px;"class="ag-theme-balham"   [rowData]="catData" [columnDefs]="columnDefs">
+              </ag-grid-angular>
+            </ng-container>
+  
+            <ng-container *ngIf="categoryData.productCat ==2">
+        <!-- <div>
+          <p *ngFor='let catName of categoryList'>Hiiiiiiii{{catName._id}}</p> 
+        </div> -->
+
+              <mat-form-field>
+                  <mat-select placeholder="Select Category Name" required name="mainProduct" [(ngModel)]="subCategoryData.mainProduct">
+                    <mat-option *ngFor='let catName of categoryList' value={{catName._id}}>{{catName.catName}}</mat-option>                  
+                  </mat-select> 
+                </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Sub Category Name" [(ngModel)]="subCategoryData.subCatName" name="subCatName"
+                  required>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Sub Category Alias" [(ngModel)]="subCategoryData.subCatAlias" name="subCatAlias">
+              </mat-form-field>
+              <mat-checkbox [(ngModel)]="subCategoryData.Active" name="subCatActive">Active</mat-checkbox>
+              <br>
+              <br>
+              <button mat-button (click)="AddSubCategory()" class="md-raised md-cornered" style="background-color: palegreen;margin-bottom:5px">Submit</button>
+
+              
+              <ag-grid-angular style="width: 800px; overflow:scroll; height: 300px;"class="ag-theme-balham"    [rowData]="rowDatSubCat" [columnDefs]="columnDefSubCat">
+              </ag-grid-angular>
+            </ng-container>
+            <!-- </div>  style="height:400px;overflow:scroll; width:100%;"-->
+            <ng-container *ngIf="categoryData.productCat ==3" >
+              <mat-form-field>
+                  <mat-select placeholder="Select Category Name" (selectionChange)="categoryChange($event)" [(ngModel)]="productData.catName" required name="catName" >
+                    <mat-option *ngFor='let catName of categoryList' value={{catName.catName}}>{{catName.catName}}</mat-option>                  
+                  </mat-select> 
+                </mat-form-field>
+              <mat-form-field>
+                  <mat-select placeholder="Select Sub Category Name" (change)="subCategoryChange($event)" [(ngModel)]="productData.subCatName" required name="subCatName" >
+                      <mat-option *ngFor='let subCate of rowDatSubCat' value={{subCate.subCatName}}>{{subCate.subCatName}}</mat-option>                  
+                    </mat-select>            
+              </mat-form-field>
+              <mat-form-field>
+                  <mat-select placeholder="Select Unit Of Measure"   [(ngModel)]="productData.unitMeasure" required name="unitMeasure" >
+                      <mat-option  value="KG">KG</mat-option>  
+                      <mat-option  value="Liter">Liter</mat-option>     
+                      <mat-option  value="Other">Other</mat-option>               
+                    </mat-select>            
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Product Name" [(ngModel)]="productData.productName" name="productName">
+                </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Product Alias" [(ngModel)]="productData.productAlias" name="productAlias">
+              </mat-form-field>
+
+              <mat-form-field>
+                  <input matInput placeholder="Unit Price" [(ngModel)]="productData.price" name="price">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Avaialable Discount" [(ngModel)]="productData.discount" (blur)="onChangeDiscount($event)" name="discount">
+              </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Actual Price" [(ngModel)]="productData.actualPrice" name="actualPrice">
+                </mat-form-field>     
+              <mat-checkbox [(ngModel)]="productData.active" name="subCatActive">Active</mat-checkbox>
+             
+              <!-- <img [(ngModel)]="productData.url" [src]="url"  height="50" name ="url"> <br/>
+              <input type='file' (change)="onSelectFile($event)" multiple> -->
+              <form #form action="http://localhost:8080/api/admin/product/images" enctype="multipart/form-data" method="POST">
+                <input type="file" name="myFile" id="myFile" required multiple />
+                <input type="submit" (click)="form.submit()" value="Upload" />
+            </form>
+           
+              <br>
+              <br>
+              <button mat-button (click)="AddProduct()" class="md-raised md-cornered" style="background-color: palegreen;margin-bottom:5px">Submit</button>
+
+              
+              <ag-grid-angular style="width: 100%; overflow:scroll; height: 300px;"class="ag-theme-balham"    [rowData]="rowDataProduct" [columnDefs]="columnDefProduct">
+              </ag-grid-angular>
+            </ng-container>
+          </form>
+        
+
+       
+          <!-- <mat-raised-button></mat-raised-button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+

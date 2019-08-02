@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
-  MatFormFieldModule, MatInputModule, MatListModule,MatExpansionModule, MatDialogModule,
+  MatFormFieldModule, MatInputModule, MatListModule,MatExpansionModule, MatDialogModule,MatCheckboxModule,
   MatSelectModule, MatIconModule, MatToolbarModule,MatSidenavModule, MatOptionModule,MatButtonToggleModule,MatStepperModule
 } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
@@ -30,6 +30,9 @@ import { ConfigurationComponent } from './vendor/configuration/configuration.com
 import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import {TokenInterceptorService} from './token-interceptor.service'
+import { CategoryComponent } from './admin/category/category.component';
+import { AdminCategoryService } from './admin/category/admin-category.service'
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import {TokenInterceptorService} from './token-interceptor.service'
     ForgotPasswordComponent,
     DashboardComponent,
     VendorContainerComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -74,8 +78,10 @@ import {TokenInterceptorService} from './token-interceptor.service'
       apiKey: 'AIzaSyBb1-CCxWk4r7byFIduqkNOc9QPPxSdcyA',
       libraries: ["places"]
     }),
-    MatGoogleMapsAutocompleteModule
-    HttpClientModule
+    MatGoogleMapsAutocompleteModule,
+    HttpClientModule,
+    MatCheckboxModule,
+    AgGridModule.withComponents([]),
   ],
   providers: [PageService, SortService, FilterService, GroupService,AuthGuard,
     {

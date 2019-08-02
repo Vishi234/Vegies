@@ -4,6 +4,9 @@ import { MatDialog } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
 import PlaceResult = google.maps.places.PlaceResult;
+import { AdminCategoryService } from '../../admin/category/admin-category.service'
+import {LoginService} from '../../login/login.service'
+import {configurationwizard} from './configurationwizard.service'
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -36,87 +39,105 @@ export class ConfigurationComponent implements OnInit {
     }
     else {
       document.getElementById("lblName" + lbl).innerHTML = "Select Item";
+      this.selectedPro=this.selectedPro.filter((pro:any)=>{
+        if(pro.id!==lbl){
+          return pro
+        }
+      })
     }
   }
   getProductById(id) {
     return this.items.find(x => x.id === id);
   }
-  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder) {
-    this.items = [
-      {
-        name: "Everfresh Flowers",
-        image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg",
-        unit: "1 Kg",
-        oldPrice: "Rs 250",
-        newPrice: "Rs 30",
-        id: "1"
+  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder,private _vendorDetails: AdminCategoryService,private _login:LoginService,private _configurationwizard:configurationwizard) {
+    this._vendorDetails.GetProductList().subscribe((response) => {
+      Object.entries(response).forEach(
+        ([key, value]) => {
+          this.items.push({"name":value.productName,"oldPrice":value.price,"newPrice":value.actualPrice,"id":value._id,
+          image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg"})
+          console.log("productttttttttt",value)
+        }
+      );
+    }, (error) => {
+      console.log('error is ', error)
+    });
 
-      },
-      {
-        name: "Festive Deer",
-        image: "https://www.bigbasket.com/media/uploads/p/s/10000159_25-fresho-potato.jpg",
-        unit: "1 Kg",
-        oldPrice: "Rs 250",
-        newPrice: "Rs 30",
-        id: "2"
-      },
-      {
-        name: "Morning Greens",
-        image: "https://www.bigbasket.com/media/uploads/p/s/10000200_17-fresho-tomato-hybrid.jpg",
-        unit: "1 Kg",
-        oldPrice: "Rs 250",
-        newPrice: "Rs 30",
-        id: "3"
-      },
-      {
-        name: "Bunch of Love",
-        image: "https://www.bigbasket.com/media/uploads/p/s/10000068_22-fresho-capsicum-green.jpg",
-        unit: "1 Kg",
-        oldPrice: "Rs 250",
-        newPrice: "Rs 30",
-        id: "4"
-      },
-      {
-        name: "Blue Clear",
-        image: "https://www.bigbasket.com/media/uploads/p/s/241600_5-tata-salt-salt-iodized.jpg",
-        unit: "1 Kg",
-        oldPrice: "Rs 250",
-        newPrice: "Rs 30",
-        id: "5"
-      },
-      {
-        name: "Evening Clouds",
-        image: "https://www.bigbasket.com/media/uploads/p/s/283426_2-india-gate-basmati-rice-feast-rozzana.jpg",
-        unit: "1 Kg",
-        oldPrice: "Rs 250",
-        newPrice: "Rs 30",
-        id: "6"
-      },
-      {
-        name: "Fontains in Shadows",
-        image: "https://www.bigbasket.com/media/uploads/p/s/10000188_11-fresho-palak.jpg",
-        unit: "1 Kg",
-        oldPrice: "Rs 250",
-        newPrice: "Rs 30",
-        id: "7"
-      },
-      {
-        name: "Kites in the Sky",
-        image: "https://www.bigbasket.com/media/uploads/p/s/40026269_2-milkfood-rich-desi-ghee.jpg",
-        unit: "1 Kg",
-        oldPrice: "Rs 250",
-        newPrice: "Rs 30",
-        id: "8"
-      },
-      {
-        name: "Sun Streak",
-        image: "https://www.bigbasket.com/media/uploads/p/s/10000668_12-fresho-cucumber-english.jpg",
-        unit: "1 Kg",
-        oldPrice: "Rs 250",
-        newPrice: "Rs 30",
-        id: "9"
-      }
-    ]
+    
+    // this.items = [
+    //   {
+    //     name: "Everfresh Flowers",
+    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg",
+    //     unit: "1 Kg",
+    //     oldPrice: "Rs 250",
+    //     newPrice: "Rs 30",
+    //     id: "1"
+
+    //   },
+    //   {
+    //     name: "Festive Deer",
+    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000159_25-fresho-potato.jpg",
+    //     unit: "1 Kg",
+    //     oldPrice: "Rs 250",
+    //     newPrice: "Rs 30",
+    //     id: "2"
+    //   },
+    //   {
+    //     name: "Morning Greens",
+    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000200_17-fresho-tomato-hybrid.jpg",
+    //     unit: "1 Kg",
+    //     oldPrice: "Rs 250",
+    //     newPrice: "Rs 30",
+    //     id: "3"
+    //   },
+    //   {
+    //     name: "Bunch of Love",
+    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000068_22-fresho-capsicum-green.jpg",
+    //     unit: "1 Kg",
+    //     oldPrice: "Rs 250",
+    //     newPrice: "Rs 30",
+    //     id: "4"
+    //   },
+    //   {
+    //     name: "Blue Clear",
+    //     image: "https://www.bigbasket.com/media/uploads/p/s/241600_5-tata-salt-salt-iodized.jpg",
+    //     unit: "1 Kg",
+    //     oldPrice: "Rs 250",
+    //     newPrice: "Rs 30",
+    //     id: "5"
+    //   },
+    //   {
+    //     name: "Evening Clouds",
+    //     image: "https://www.bigbasket.com/media/uploads/p/s/283426_2-india-gate-basmati-rice-feast-rozzana.jpg",
+    //     unit: "1 Kg",
+    //     oldPrice: "Rs 250",
+    //     newPrice: "Rs 30",
+    //     id: "6"
+    //   },
+    //   {
+    //     name: "Fontains in Shadows",
+    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000188_11-fresho-palak.jpg",
+    //     unit: "1 Kg",
+    //     oldPrice: "Rs 250",
+    //     newPrice: "Rs 30",
+    //     id: "7"
+    //   },
+    //   {
+    //     name: "Kites in the Sky",
+    //     image: "https://www.bigbasket.com/media/uploads/p/s/40026269_2-milkfood-rich-desi-ghee.jpg",
+    //     unit: "1 Kg",
+    //     oldPrice: "Rs 250",
+    //     newPrice: "Rs 30",
+    //     id: "8"
+    //   },
+    //   {
+    //     name: "Sun Streak",
+    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000668_12-fresho-cucumber-english.jpg",
+    //     unit: "1 Kg",
+    //     oldPrice: "Rs 250",
+    //     newPrice: "Rs 30",
+    //     id: "9"
+    //   }
+    // ]
   }
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
