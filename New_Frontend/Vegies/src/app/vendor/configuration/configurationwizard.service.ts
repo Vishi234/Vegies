@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class configurationwizard {
     constructor(private http: HttpClient) { }
-    private _configProductURL = 'http://localhost:8080/api/admin/category';
+    private _configProductURL = 'http://localhost:8080/api/configProduct/saveList';
 
     AddConfigProduc(configProductList: any) {
         console.log("configureProduct",configProductList)

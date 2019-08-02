@@ -68,8 +68,8 @@ var mailOptions, host;
                         model.register.updateOne({loginAttemp: user.loginAttemp},{ $set :{loginAttemp: user.loginAttemp+1}},function(attempCount){
                            //console.log("--------------------",user.loginAttemp)
                             res.status(200).send({"token": token ,"Attemp":user.loginAttemp+1});
-                            console.log("username is",user.email)
-                            req.session.userName=user.email
+                            req.session.email=req.param('email');
+                            console.log("sessssss",req.session.email)
                             req.session.save()
                         })
                         console.log("hiiiiiiiiii")
@@ -122,7 +122,8 @@ var mailOptions, host;
     }
 
     router.get('/data',(req,res)=>{
-        res.send('user is =>'+req.session.userName)
+        console.log("hhhhhhhhhhhhhhh",req.session.email)
+        res.send('user is =>'+req.session.email)
     })
     module.exports = router;
 //})();

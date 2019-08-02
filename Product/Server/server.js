@@ -2,13 +2,19 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var app = express(); 
 const jwt=require('jsonwebtoken');
+const session=require('express-session')
+app.use(session({
+    secret:'hgdg576esjhsd2236289hcskcb93e',
+    saveUninitialized:true,
+    resave:false,
+cookie:{secure:false}
+}))
 app.use(bodyParser.json()); 
-app.use(express.static(__dirname + 'public'));
 var dbConfig=require("./config/dbConfig");
 var vendor=require('./routes/vendor/vendorServer')
 var adminCategory = require('./routes/adminCategory/adminCategory');
-var configProducr=require('./routes/configProduct/configProduct')
-const session=require('express-session')
+var configProduct=require('./routes/configProduct/configProduct')
+
 //CORS Middleware
 app.use(function (req, res, next) {
     //Enabling CORS 
@@ -25,13 +31,9 @@ console.log("portttttt",dbConfig.app.port);
  });
 
 app.use('/api/admin', adminCategory);
-app.use('/api/configProduct', configProducr);
+app.use('/api/configProduct', configProduct);
 
-app.use(session({
-    secret:'hgdg576esjhsd2236289hcskcb93e',
-    saveUninitialized:true,
-    resave:true
-}))
-app.use('/api/vendor', vendor);
+
+app.use('/api/vendor', vendor,);
 
 

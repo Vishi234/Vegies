@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
 import PlaceResult = google.maps.places.PlaceResult;
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
-import {LoginService} from '../../login/login.service'
-import {configurationwizard} from './configurationwizard.service'
+import { LoginService } from '../../login/login.service'
+import { configurationwizard } from './configurationwizard.service'
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -20,13 +20,16 @@ export class ConfigurationComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  //toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   public appearance = Appearance;
   public zoom: number;
   public latitude: number = 51.678418;
   public longitude: number = 7.809007;
   public selectedAddress: PlaceResult;
   google: any;
+  public subCatList: Array<any> = [];
+  configList = {};
+  userConfigList: any;
   inreaseHeight() {
     this.toggle = !this.toggle;
 
@@ -39,8 +42,8 @@ export class ConfigurationComponent implements OnInit {
     }
     else {
       document.getElementById("lblName" + lbl).innerHTML = "Select Item";
-      this.selectedPro=this.selectedPro.filter((pro:any)=>{
-        if(pro.id!==lbl){
+      this.selectedPro = this.selectedPro.filter((pro: any) => {
+        if (pro.id !== lbl) {
           return pro
         }
       })
@@ -49,20 +52,31 @@ export class ConfigurationComponent implements OnInit {
   getProductById(id) {
     return this.items.find(x => x.id === id);
   }
-  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder,private _vendorDetails: AdminCategoryService,private _login:LoginService,private _configurationwizard:configurationwizard) {
+
+  getAddress(address: string) {
+    this.userConfigList = this.selectedPro.map(function (el) {
+      var o = Object.assign({}, el);
+      o.address = address,
+        o.userName = "JSS"
+      return o;
+    })
+  }
+  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard) {
     this._vendorDetails.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
-          this.items.push({"name":value.productName,"oldPrice":value.price,"newPrice":value.actualPrice,"id":value._id,
-          image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg"})
-          console.log("productttttttttt",value)
+          this.items.push({
+            "name": value.productName, "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+            image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg","discount":value.discount,"unitMeasure":value.unitMeasure,"Qnty":1
+          })
+          console.log("productttttttttt", value)
         }
       );
     }, (error) => {
       console.log('error is ', error)
     });
 
-    
+
     // this.items = [
     //   {
     //     name: "Everfresh Flowers",
@@ -139,6 +153,16 @@ export class ConfigurationComponent implements OnInit {
     //   }
     // ]
   }
+  addConfigureList() {
+    console.log("final submit ", this.userConfigList)
+    this._configurationwizard.AddConfigProduc(this.userConfigList).subscribe((res) => {
+      console.log("Response is", res);
+    }, (error) => {
+      console.log('error is ', error)
+    })
+    console.log("value is------------", this.userConfigList)
+  }
+
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
@@ -150,18 +174,19 @@ export class ConfigurationComponent implements OnInit {
     this.latitude = 52.520008;
     this.longitude = 13.404954;
     this.setCurrentPosition();
-    // this._vendorDetails.GetSubCategoryList().subscribe((response) => {
-    //   Object.entries(response).forEach(
-    //     ([key, value]) => {
-    //       this.subCatList.push(value)
-    //     }
-    //   );
-    //   this.subCatList.map((val: any) => {
-    //     return ({ "_id": val._id, "subCatName": val.subCatName })
-    //   })
-    // }, (error) => {
-    //   console.log('error is ', error)
-    // });
+
+    this._vendorDetails.GetSubCategoryList().subscribe((response) => {
+      Object.entries(response).forEach(
+        ([key, value]) => {
+          this.subCatList.push(value)
+        }
+      );
+      this.subCatList.map((val: any) => {
+        return ({ "_id": val._id, "subCatName": val.subCatName })
+      })
+    }, (error) => {
+      console.log('error is ', error)
+    });
   }
   private setCurrentPosition() {
     if ('geolocation' in navigator) {
