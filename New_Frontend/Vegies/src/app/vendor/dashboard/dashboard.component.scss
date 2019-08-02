@@ -159,9 +159,9 @@
     width: 290px;
   }
 }
-@media only screen and (max-width: 1080px) {
+@media only screen and (min-width: 1080px) {
   .values-top > ul > li > a {
-    width: 230px;
+    width: 250px;
   }
 }
 @media (max-width: 768px) {

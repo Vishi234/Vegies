@@ -10,7 +10,8 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { GridModule} from '@syncfusion/ej2-angular-grids';
 import { PageService, SortService, FilterService, GroupService } from '@syncfusion/ej2-angular-grids';
-import { CheckBoxModule } from '@syncfusion/ej2-angular-buttons';
+import { CheckBoxModule } from '@syncfusion/ej2-angular-buttons'
+import { DropDownListModule,AutoCompleteModule } from '@syncfusion/ej2-angular-dropdowns';
 
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,7 +30,9 @@ import{VendorContainerComponent} from './vendor/container/container.component';
 import { ConfigurationComponent } from './vendor/configuration/configuration.component'
 import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
-import {TokenInterceptorService} from './token-interceptor.service'
+import {TokenInterceptorService} from './token-interceptor.service';
+import { ProductListComponent } from './vendor/product-list/product-list.component';
+import { MyChecklistComponent } from './vendor/my-checklist/my-checklist.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import {TokenInterceptorService} from './token-interceptor.service'
     ForgotPasswordComponent,
     DashboardComponent,
     VendorContainerComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    ProductListComponent,
+    MyChecklistComponent
   ],
   imports: [
     BrowserModule,
@@ -74,8 +79,10 @@ import {TokenInterceptorService} from './token-interceptor.service'
       apiKey: 'AIzaSyBb1-CCxWk4r7byFIduqkNOc9QPPxSdcyA',
       libraries: ["places"]
     }),
-    MatGoogleMapsAutocompleteModule
-    HttpClientModule
+    MatGoogleMapsAutocompleteModule,
+    HttpClientModule,
+    DropDownListModule,
+    AutoCompleteModule
   ],
   providers: [PageService, SortService, FilterService, GroupService,AuthGuard,
     {

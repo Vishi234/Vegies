@@ -1,23 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material'
-import { ConfigurationComponent } from '../configuration/configuration.component'
+
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-my-checklist',
+  templateUrl: './my-checklist.component.html',
+  styleUrls: ['./my-checklist.component.scss']
 })
-export class DashboardComponent implements OnInit {
-  public start: Date = new Date("10-Jul-2017");
-  public end: Date = new Date("11-Aug-2017");
+export class MyChecklistComponent implements OnInit {
   public data: Object[];
   public filterSettings: Object;
   public pageSettings: object;
-  constructor(public dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit() {
-    this.dialog.open(ConfigurationComponent, { disableClose: true });
     this.filterSettings = { type: 'Menu' };
-    this.pageSettings = { pageSizes: true, pageSize: 5 };
+    this.pageSettings = { pageSizes: true, pageSize: 10 };
     this.data = [
       { OrderID: 10248, CustomerID: 'VINET', Freight: 32.38, ShipCountry: 'France' },
       { OrderID: 10249, CustomerID: 'TOMSP', Freight: 11.61, ShipCountry: ' Germany' },

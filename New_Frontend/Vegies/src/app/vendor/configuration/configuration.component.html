@@ -83,7 +83,7 @@
                 <form [formGroup]="secondFormGroup">
                     <ng-template matStepLabel>Choose you location</ng-template>
                     <mat-form-field>
-                        <input matInput placeholder="Address" matGoogleMapsAutocomplete
+                        <input matInput placeholder="Address" matGoogleMapsAutocomplete [country]="in" 
                             (onLocationSelected)="onLocationSelected($event)" formControlName="secondCtrl" required>
                     </mat-form-field>
                     <agm-map [zoom]="14" [latitude]="latitude" [longitude]="longitude">
