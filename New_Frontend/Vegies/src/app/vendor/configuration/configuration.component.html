@@ -24,7 +24,7 @@
                                     {{toppings.value?.length === 2 ? 'other' : 'others'}})
                                 </span>
                             </mat-select-trigger>
-                            <mat-option *ngFor="let subCatName of subCatList" [value]="subCatName._id">{{subCatName.subCatName}}</mat-option>
+                            <mat-option *ngFor="let subCatName of subCatList" (onSelectionChange)="change()" [value]="subCatName._id">{{subCatName.subCatName}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <div id="container" class="owl-carousel">

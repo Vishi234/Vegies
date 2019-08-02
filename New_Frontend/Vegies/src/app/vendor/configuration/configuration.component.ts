@@ -12,7 +12,8 @@ import { configurationwizard } from './configurationwizard.service'
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss']
 })
-export class ConfigurationComponent implements OnInit {
+export class ConfigurationComponent implements OnInit 
+{
   toggle: boolean = false;
   items: Array<any> = [];
   selectedPro = [];
@@ -67,7 +68,7 @@ export class ConfigurationComponent implements OnInit {
         ([key, value]) => {
           this.items.push({
             "name": value.productName, "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
-            image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg","discount":value.discount,"unitMeasure":value.unitMeasure,"Qnty":1
+            image: "http://localhost:8080/"+value.imageUrl,"discount":value.discount,"unitMeasure":value.unitMeasure,"Qnty":1
           })
           console.log("productttttttttt", value)
         }
@@ -201,6 +202,21 @@ export class ConfigurationComponent implements OnInit {
     this.latitude = location.latitude;
     this.longitude = location.longitude;
   }
+
+  change(event)
+  {
+    var getSelectProduct = this.items.filter(function (item) 
+    {
+      if (item.subCat == event.source.value) {
+        return true;
+      }
+    });
+    (this.items).push(getSelectProduct);
+    // if(event.isUserInput) {
+    //   console.log(event.source.value, event.source.selected);
+    // }
+  }
+
   carouselOptions = {
     margin: 25,
     nav: true,
