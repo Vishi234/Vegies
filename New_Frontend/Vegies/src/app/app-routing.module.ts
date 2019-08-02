@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { VendorContainerComponent } from './vendor/container/container.component';
 import { DashboardComponent } from './vendor/dashboard/dashboard.component'
+import {CategoryComponent} from './admin/category/category.component'
 import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {
@@ -20,12 +21,14 @@ const routes: Routes = [
     path: '',
     component: VendorContainerComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full',canActivate:[AuthGuard] },
-      { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard] },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
     ]
   },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path :'admin/category',component:CategoryComponent,canActivate:[AuthGuard]}
+   
 ];
 
 @NgModule({

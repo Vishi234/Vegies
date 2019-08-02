@@ -7,12 +7,16 @@ import PlaceResult = google.maps.places.PlaceResult;
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
 import {LoginService} from '../../login/login.service'
 import {configurationwizard} from './configurationwizard.service'
+
+
+
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss']
 })
-export class ConfigurationComponent implements OnInit {
+export class ConfigurationComponent implements OnInit 
+{
   toggle: boolean = false;
   items: Array<any> = [];
   selectedPro = [];
@@ -20,7 +24,7 @@ export class ConfigurationComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  toppingList=[] ;
   public appearance = Appearance;
   public zoom: number;
   public latitude: number = 51.678418;
@@ -49,13 +53,13 @@ export class ConfigurationComponent implements OnInit {
   getProductById(id) {
     return this.items.find(x => x.id === id);
   }
-  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder,private _vendorDetails: AdminCategoryService,private _login:LoginService,private _configurationwizard:configurationwizard) {
+  constructor(private _adminCategory: AdminCategoryService, public dialog: MatDialog, private _formBuilder: FormBuilder,private _vendorDetails: AdminCategoryService,private _login:LoginService,private _configurationwizard:configurationwizard) {
     this._vendorDetails.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
-          this.items.push({"name":value.productName,"oldPrice":value.price,"newPrice":value.actualPrice,"id":value._id,
-          image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg"})
-          console.log("productttttttttt",value)
+          this.items.push({"name":value.productName,"oldPrice":value.price,"newPrice":value.actualPrice,"id":value._id,"subCat":value.subCatName,
+          image: "http://localhost:8080/"+value.imageUrl})
+        //  console.log("productttttttttt",value)
         }
       );
     }, (error) => {
@@ -63,81 +67,7 @@ export class ConfigurationComponent implements OnInit {
     });
 
     
-    // this.items = [
-    //   {
-    //     name: "Everfresh Flowers",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "1"
-
-    //   },
-    //   {
-    //     name: "Festive Deer",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000159_25-fresho-potato.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "2"
-    //   },
-    //   {
-    //     name: "Morning Greens",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000200_17-fresho-tomato-hybrid.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "3"
-    //   },
-    //   {
-    //     name: "Bunch of Love",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000068_22-fresho-capsicum-green.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "4"
-    //   },
-    //   {
-    //     name: "Blue Clear",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/241600_5-tata-salt-salt-iodized.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "5"
-    //   },
-    //   {
-    //     name: "Evening Clouds",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/283426_2-india-gate-basmati-rice-feast-rozzana.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "6"
-    //   },
-    //   {
-    //     name: "Fontains in Shadows",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000188_11-fresho-palak.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "7"
-    //   },
-    //   {
-    //     name: "Kites in the Sky",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/40026269_2-milkfood-rich-desi-ghee.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "8"
-    //   },
-    //   {
-    //     name: "Sun Streak",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000668_12-fresho-cucumber-english.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "9"
-    //   }
-    // ]
+    
   }
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -150,18 +80,17 @@ export class ConfigurationComponent implements OnInit {
     this.latitude = 52.520008;
     this.longitude = 13.404954;
     this.setCurrentPosition();
-    // this._vendorDetails.GetSubCategoryList().subscribe((response) => {
-    //   Object.entries(response).forEach(
-    //     ([key, value]) => {
-    //       this.subCatList.push(value)
-    //     }
-    //   );
-    //   this.subCatList.map((val: any) => {
-    //     return ({ "_id": val._id, "subCatName": val.subCatName })
-    //   })
-    // }, (error) => {
-    //   console.log('error is ', error)
-    // });
+
+    this._adminCategory.GetSubCategoryList().subscribe((response) => {
+
+      Object.entries(response).forEach(
+        ([key, value]) => {
+          this.toppingList.push(value.subCatName);
+        }
+      )
+    }, (error) => {
+      console.log('error is ', error)
+    });
   }
   private setCurrentPosition() {
     if ('geolocation' in navigator) {
@@ -176,6 +105,21 @@ export class ConfigurationComponent implements OnInit {
     this.latitude = location.latitude;
     this.longitude = location.longitude;
   }
+
+  change(event)
+  {
+    var getSelectProduct = this.items.filter(function (item) 
+    {
+      if (item.subCat == event.source.value) {
+        return true;
+      }
+    });
+    (this.items).push(getSelectProduct);
+    // if(event.isUserInput) {
+    //   console.log(event.source.value, event.source.selected);
+    // }
+  }
+
   carouselOptions = {
     margin: 25,
     nav: true,

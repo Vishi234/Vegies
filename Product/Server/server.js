@@ -4,6 +4,9 @@ var app = express();
 const jwt=require('jsonwebtoken');
 app.use(bodyParser.json()); 
 app.use(express.static(__dirname + 'public'));
+
+app.use(express.static('uploads'));
+
 var dbConfig=require("./config/dbConfig");
 var vendor=require('./routes/vendor/vendorServer')
 var adminCategory = require('./routes/adminCategory/adminCategory');
