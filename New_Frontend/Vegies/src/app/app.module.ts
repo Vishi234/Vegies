@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
-  MatFormFieldModule, MatInputModule, MatListModule,MatExpansionModule, MatDialogModule,
+  MatFormFieldModule, MatInputModule, MatListModule,MatExpansionModule, MatDialogModule,MatCheckboxModule,
   MatSelectModule, MatIconModule, MatToolbarModule,MatSidenavModule, MatOptionModule,MatButtonToggleModule,MatStepperModule
 } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
@@ -33,6 +33,9 @@ import { AuthGuard } from './auth.guard';
 import {TokenInterceptorService} from './token-interceptor.service';
 import { ProductListComponent } from './vendor/product-list/product-list.component';
 import { MyChecklistComponent } from './vendor/my-checklist/my-checklist.component'
+import { CategoryComponent } from './admin/category/category.component';
+import { AdminCategoryService } from './admin/category/admin-category.service'
+// import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { MyChecklistComponent } from './vendor/my-checklist/my-checklist.compone
     VendorContainerComponent,
     ConfigurationComponent,
     ProductListComponent,
-    MyChecklistComponent
+    MyChecklistComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +86,9 @@ import { MyChecklistComponent } from './vendor/my-checklist/my-checklist.compone
     MatGoogleMapsAutocompleteModule,
     HttpClientModule,
     DropDownListModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    MatCheckboxModule,
+    // AgGridModule.withComponents([]),
   ],
   providers: [PageService, SortService, FilterService, GroupService,AuthGuard,
     {

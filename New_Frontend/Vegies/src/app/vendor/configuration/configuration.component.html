@@ -13,9 +13,9 @@
         <mat-horizontal-stepper [linear]="true" #stepper>
             <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup">
-                    <ng-template matStepLabel>Choose you items</ng-template>
+                    <ng-template matStepLabel>Add product in List</ng-template>
                     <mat-form-field>
-                        <mat-select placeholder="Toppings" required formControlName="firstCtrl" [formControl]="toppings"
+                        <mat-select placeholder="Select Category" required formControlName="firstCtrl" [formControl]="toppings"
                             multiple>
                             <mat-select-trigger>
                                 {{toppings.value ? toppings.value[0] : ''}}
@@ -24,7 +24,7 @@
                                     {{toppings.value?.length === 2 ? 'other' : 'others'}})
                                 </span>
                             </mat-select-trigger>
-                            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                            <mat-option *ngFor="let subCatName of subCatList" (onSelectionChange)="change()" [value]="subCatName._id">{{subCatName.subCatName}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <div id="container" class="owl-carousel">
@@ -69,7 +69,7 @@
                     [ngClass]="toggle ? 'proheight' : ''">
                     <div class="proheader">
                         <span class="pull-left">Product Selected</span>
-                        <span class="pull-right">4 Selected</span>
+                        <span class="pull-right">{{selectedPro.length}} Selected</span>
                     </div>
                     <div class="procontent">
                         <ul>
@@ -83,7 +83,7 @@
                 <form [formGroup]="secondFormGroup">
                     <ng-template matStepLabel>Choose you location</ng-template>
                     <mat-form-field>
-                        <input matInput placeholder="Address" matGoogleMapsAutocomplete [country]="in" 
+                        <input matInput placeholder="Address" matGoogleMapsAutocomplete #address
                             (onLocationSelected)="onLocationSelected($event)" formControlName="secondCtrl" required>
                     </mat-form-field>
                     <agm-map [zoom]="14" [latitude]="latitude" [longitude]="longitude">
@@ -91,12 +91,12 @@
                     </agm-map>
                     <div class="btn-group">
                         <button mat-button matStepperPrevious class="btn btn-danger">Back</button>
-                        <button mat-button matStepperNext class="btn btn-primary">Next</button>
+                        <button mat-button matStepperNext class="btn btn-primary" (click)="getAddress(address.value)">Next</button>
                     </div>
                 </form>
             </mat-step>
             <mat-step [stepControl]="thirdFormGroup">
-                <form [formGroup]="thirdFormGroup">
+        <!-- //<form [formGroup]="thirdFormGroup"> -->
                     <ng-template matStepLabel>Choose you location</ng-template>
                     <div class="ship-add">
                         <span>My product list are mention below</span>
@@ -139,9 +139,9 @@
                     </div>
                     <div class="btn-group">
                         <button mat-button matStepperPrevious class="btn btn-danger">Back</button>
-                        <button mat-button matStepperNext class="btn btn-primary">Next</button>
+                        <button mat-button matStepperNext class="btn btn-primary" (click)="addConfigureList()">Next</button>
                     </div>
-                </form>
+                <!-- </form> -->
             </mat-step>
         </mat-horizontal-stepper>
 

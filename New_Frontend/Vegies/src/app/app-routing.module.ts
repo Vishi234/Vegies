@@ -8,6 +8,7 @@ import { VendorContainerComponent } from './vendor/container/container.component
 import { DashboardComponent } from './vendor/dashboard/dashboard.component'
 import { ProductListComponent } from './vendor/product-list/product-list.component'
 import { MyChecklistComponent } from './vendor/my-checklist/my-checklist.component'
+import {CategoryComponent} from './admin/category/category.component'
 import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {
@@ -41,7 +42,9 @@ const routes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path :'admin/category',component:CategoryComponent,canActivate:[AuthGuard]}
+   
 ];
 
 @NgModule({
