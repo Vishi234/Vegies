@@ -193,6 +193,9 @@ ul li {
 .e-control {
   font-family: inherit;
 }
+.e-grid .e-frozencontent > .e-table {
+  border-right-color:transparent
+}
 @media (min-width: 992px) {
   .navbar-nav > li > a {
     line-height: 24px !important;

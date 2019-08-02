@@ -67,9 +67,9 @@
                         </span>
                     </div>
                     <div class="checklist-grid">
-                        <ng-template <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true'
-                            [allowFiltering]='true' [filterSettings]='filterSettings' [pageSettings]='pageSettings'
-                            [allowGrouping]='false'>
+                        <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+                            [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'
+                            [frozenColumns]='2' [frozenRows]='3'>
                             <e-columns>
                                 <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='60'>
                                 </e-column>
@@ -81,14 +81,15 @@
                                             (click)="onClickEdit(clientData)">
                                     </ng-template> 
                                 </e-column> -->
-                                <e-column field='productName' headerText='Product Name' width='120'></e-column>
-                                <e-column field='qty' headerText='Quantaty' width='120'></e-column>
-                                <e-column field='unitMeasure' textAlign='Unit Measure' width='120'></e-column>
-                                <e-column field='totalPrice' headerText='Actual Price' width='140'></e-column>
-                                <e-column field='discount' headerText='Discount' width='140'></e-column>
-                                <e-column field='unitPrice' headerText='Discounted Value' width='140'></e-column>
+                                <e-column field='productName' headerText='Product Name' width='200'></e-column>
+                                <e-column field='qty' headerText='Quantity' width='180'></e-column>
+                                <e-column field='unitMeasure' headerText='Unit Measure' textAlign='center' width='180'>
+                                </e-column>
+                                <e-column field='totalPrice' headerText='Actual Price' width='180'></e-column>
+                                <e-column field='discount' headerText='Discount' width='180'></e-column>
+                                <e-column field='unitPrice' headerText='Discounted Value' width='180'></e-column>
                             </e-columns>
-                            </ejs-grid>
+                        </ejs-grid>
                     </div>
                 </div>
 
