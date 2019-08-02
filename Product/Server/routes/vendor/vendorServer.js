@@ -4,13 +4,12 @@ var generator = require('generate-password');
 var model = require("./vendorModel");
 const jwt = require("jsonwebtoken");
 var express = require('express');
-const session=require('express-session')
 var app = express(); 
-app.use(session({
-    secret:'hgdg576esjhsd2236289hcskcb93e',
-    saveUninitialized:false,
-    resave:false
-}))
+// app.use(session({
+//     secret:'hgdg576esjhsd2236289hcskcb93e',
+//     saveUninitialized:false,
+//     resave:false
+// }))
 var router = express.Router();
 
 
@@ -70,12 +69,10 @@ var mailOptions, host;
                            //console.log("--------------------",user.loginAttemp)
                             res.status(200).send({"token": token ,"Attemp":user.loginAttemp+1});
                             console.log("username is",user.email)
-                            req.session.email=user.email
+                            req.session.userName=user.email
                             req.session.save()
                         })
                         console.log("hiiiiiiiiii")
-
-
                     }
                 }
             }
@@ -125,7 +122,7 @@ var mailOptions, host;
     }
 
     router.get('/data',(req,res)=>{
-        res.send('user is =>'+req.session.email)
+        res.send('user is =>'+req.session.userName)
     })
     module.exports = router;
 //})();

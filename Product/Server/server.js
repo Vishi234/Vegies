@@ -27,7 +27,11 @@ console.log("portttttt",dbConfig.app.port);
 app.use('/api/admin', adminCategory);
 app.use('/api/configProduct', configProducr);
 
-
+app.use(session({
+    secret:'hgdg576esjhsd2236289hcskcb93e',
+    saveUninitialized:true,
+    resave:true
+}))
 app.use('/api/vendor', vendor);
 
 
