@@ -16,7 +16,6 @@ module.exports = (function () {
         })
     });
     app.get("/subCategory", function (req, res) {
-        console.log('Invoked SubCategory');
         model.subCategory.find().then(getsubCategory=>{
            // console.log("getCategoryyyyyyy",getsubCategory)
             res.send(getsubCategory);
@@ -45,7 +44,6 @@ module.exports = (function () {
     app.post("/product", function (req, res) 
 	{ 
         let productData = req.body;
-        console.log(productData.catName+"/"+productData.imageUrl)
         productData.imageUrl=productData.catName+"/"+productData.imageUrl;
         let productDataSave = new model.product(productData)
         productDataSave.save().then((items => 

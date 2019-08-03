@@ -1,0 +1,139 @@
+{ 
+    "_id" : ObjectId("5d457813e69e144060a98fb2"), 
+    "catName" : "Vegetable", 
+    "subCatName" : "Exotic Vegetables", 
+    "unitMeasure" : "KG", 
+    "productName" : "Asparagus", 
+    "productAlias" : "Satawar", 
+    "price" : "400", 
+    "discount" : "2", 
+    "actualPrice" : "392", 
+    "imageUrl" : "Asparagus.jpg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457d90e69e144060a98fb8"), 
+    "catName" : "Vegetable", 
+    "subCatName" : "Exotic Vegetables", 
+    "unitMeasure" : "KG", 
+    "productName" : "Cabbage Red", 
+    "productAlias" : "Lal Patta Gobhi", 
+    "price" : "35", 
+    "discount" : "2", 
+    "actualPrice" : "34.3", 
+    "active" : NumberInt(1), 
+    "imageUrl" : "red-cabbage.jpg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457ddbe69e144060a98fb9"), 
+    "catName" : "Vegetable", 
+    "subCatName" : "Exotic Vegetables", 
+    "unitMeasure" : "KG", 
+    "productName" : "Chinese Cabbage", 
+    "productAlias" : "Chinese Patta Gobhi", 
+    "price" : "25", 
+    "discount" : "2", 
+    "actualPrice" : "24.5", 
+    "active" : NumberInt(1), 
+    "imageUrl" : "chineseCabbase.jpg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457e4ce69e144060a98fba"), 
+    "catName" : "Vegetable", 
+    "subCatName" : "Exotic Vegetables", 
+    "unitMeasure" : "KG", 
+    "productName" : "Broccoli", 
+    "productAlias" : "Broccoli", 
+    "price" : "110", 
+    "discount" : "2", 
+    "actualPrice" : "107.8", 
+    "active" : NumberInt(1), 
+    "imageUrl" : "Broccoli.jpg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457e8fe69e144060a98fbb"), 
+    "catName" : "Vegetable", 
+    "subCatName" : "Fresh Vegetables", 
+    "unitMeasure" : "KG", 
+    "productName" : "Onion", 
+    "productAlias" : "Pyaj", 
+    "price" : "20", 
+    "discount" : "1", 
+    "actualPrice" : "19.8", 
+    "active" : NumberInt(1), 
+    "imageUrl" : "Pyaj.jpg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457f3fe69e144060a98fbc"), 
+    "catName" : "Vegetable", 
+    "subCatName" : "Fresh Vegetables", 
+    "unitMeasure" : "KG", 
+    "productName" : "Green Beans", 
+    "productAlias" : "Sem", 
+    "price" : "40", 
+    "discount" : "1", 
+    "actualPrice" : "39.6", 
+    "active" : NumberInt(1), 
+    "imageUrl" : "Green-Beans.jpg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457f7ae69e144060a98fbd"), 
+    "catName" : "Vegetable", 
+    "subCatName" : "Fresh Vegetables", 
+    "unitMeasure" : "KG", 
+    "productName" : "Bottle Gourd", 
+    "productAlias" : "Lonki", 
+    "price" : "20", 
+    "discount" : "2", 
+    "actualPrice" : "19.6", 
+    "active" : NumberInt(1), 
+    "imageUrl" : "Bottle-gourd.jpg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457fade69e144060a98fbe"), 
+    "catName" : "Vegetable", 
+    "subCatName" : "Fresh Vegetables", 
+    "unitMeasure" : "KG", 
+    "productName" : "Brinjal", 
+    "productAlias" : "Bengan", 
+    "price" : "30", 
+    "discount" : "2", 
+    "actualPrice" : "29.4", 
+    "active" : NumberInt(1), 
+    "imageUrl" : "Brinjal.jpg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d45801ce69e144060a98fbf"), 
+    "catName" : "Fruits", 
+    "subCatName" : "Fresh Fruits", 
+    "unitMeasure" : "KG", 
+    "productName" : "Apple", 
+    "productAlias" : "Seb", 
+    "price" : "100", 
+    "discount" : "2", 
+    "actualPrice" : "98", 
+    "active" : NumberInt(1), 
+    "imageUrl" : "Apple.jpg", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d4580b6e69e144060a98fc0"), 
+    "catName" : "Fruits", 
+    "subCatName" : "Exotic Fruits", 
+    "unitMeasure" : "KG", 
+    "productName" : "Avocado", 
+    "productAlias" : "Avocado", 
+    "price" : "100", 
+    "discount" : "2", 
+    "actualPrice" : "98", 
+    "active" : NumberInt(1), 
+    "imageUrl" : "Avocado.jpg", 
+    "__v" : NumberInt(0)
+}

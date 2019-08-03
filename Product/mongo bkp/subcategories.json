@@ -1,42 +1,64 @@
-[
 { 
-    "_id" : ObjectId("5d2b5fdca6ee0468f87c4b15"), 
-    "Active" : NumberInt(1), 
-    "subCatName" : "scdsvd", 
-    "subCatAlias" : "csdcsd", 
-    "__v" : NumberInt(0)
-},
-{ 
-    "_id" : ObjectId("5d2b6e23a6ee0468f87c4b16"), 
-    "Active" : NumberInt(1), 
-    "__v" : NumberInt(0)
-},
-{ 
-    "_id" : ObjectId("5d2b6e84a6ee0468f87c4b18"), 
-    "subCatName" : "hh", 
-    "subCatAlias" : "bbab", 
-    "__v" : NumberInt(0)
-},
-{ 
-    "_id" : ObjectId("5d2b6ee7a6ee0468f87c4b19"), 
-    "subCatName" : "veg", 
-    "subCatAlias" : "bbab", 
-    "Active" : NumberInt(1), 
-    "__v" : NumberInt(0)
-},
-{ 
-    "_id" : ObjectId("5d2b718f902c6e2e68f833cc"), 
-    "subCatName" : "scccccccccccc", 
-    "subCatAlias" : "bbab", 
-    "Active" : NumberInt(1), 
-    "__v" : NumberInt(0)
-},
-{ 
-    "_id" : ObjectId("5d2b76640528c5560896210e"), 
-    "mainProduct" : "5d2b58609237e49344ccc778", 
-    "subCatName" : "scdsvd1", 
-    "subCatAlias" : "bbab", 
+    "_id" : ObjectId("5d457452e69e144060a98faf"), 
+    "mainProduct" : "5d4571f5e69e144060a98fa9", 
+    "subCatName" : "Exotic Vegetables", 
+    "subCatAlias" : "Videshi Sabjiya", 
     "Active" : NumberInt(1), 
     "__v" : NumberInt(0)
 }
-]
+{ 
+    "_id" : ObjectId("5d4574d5e69e144060a98fb0"), 
+    "mainProduct" : "5d4571f5e69e144060a98fa9", 
+    "subCatName" : "Fresh Vegetables", 
+    "subCatAlias" : "Taazi Sabjiya", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d4575dce69e144060a98fb1"), 
+    "mainProduct" : "5d4571f5e69e144060a98fa9", 
+    "subCatName" : "Herbs", 
+    "subCatAlias" : "Jadibutiya", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457be8e69e144060a98fb3"), 
+    "mainProduct" : "5d45721be69e144060a98faa", 
+    "subCatName" : "Exotic Fruits", 
+    "subCatAlias" : "Videshi Phal", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457c18e69e144060a98fb4"), 
+    "mainProduct" : "5d45721be69e144060a98faa", 
+    "subCatName" : "Fresh Fruits", 
+    "subCatAlias" : "Taje Fal", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457c8de69e144060a98fb5"), 
+    "mainProduct" : "5d45727be69e144060a98fac", 
+    "subCatName" : "Meat", 
+    "subCatAlias" : "Mansh", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457ccce69e144060a98fb6"), 
+    "mainProduct" : "5d45727be69e144060a98fac", 
+    "subCatName" : "Sea Food", 
+    "subCatAlias" : "Samudri Utpad", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457d06e69e144060a98fb7"), 
+    "mainProduct" : "5d45727be69e144060a98fac", 
+    "subCatName" : "Egg", 
+    "subCatAlias" : "Ande", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}

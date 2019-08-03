@@ -33,11 +33,34 @@ module.exports = (function () {
      });
 
      app.get("/getList", function (req, res) {
-        model.configList.find().then(configList=>{
-            console.log("getCategoryyyyyyy",configList)
-            res.send(configList);
+        model.configList.find().then(res1=>{
+            res.send(res1);
         })
     });
+
+
+    app.delete('/removeList/:id',function (req, res) {
+        console.log("remove items-----------",req.params.id)
+        model.configList.findByIdAndRemove(req.params.id)
+        .then(note => {
+            if(!note) {
+                return res.status(404).send({
+                    message: "Note not found with id " + req.params.id
+                });
+            }
+            res.send({message: "Note deleted successfully!"});
+        }).catch(err => {
+            if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+                return res.status(404).send({
+                    message: "Note not found with id " + req.params.id
+                });                
+            }
+            return res.status(500).send({
+                message: "Could not delete note with id " + req.params.id
+            });
+        });
+    });
+
      return app;
 
 })();

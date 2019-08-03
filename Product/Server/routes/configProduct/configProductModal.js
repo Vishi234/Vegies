@@ -12,7 +12,7 @@ var configProduct = new Schema({
             Qnty:{type: String}
             })
             
-var configList = mongoose.model('configList', configProduct,'configList');
+var configList = mongoose.model('configList', configProduct,'configListStore');
 
 module.exports={
     configList:configList

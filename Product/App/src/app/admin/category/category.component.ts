@@ -43,6 +43,7 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
 
     this._adminCategory.GetCategoryList().subscribe((response) => {
+      debugger;
       this.categoryList = response;
       Object.entries(response).forEach(
         ([key, value]) => {
@@ -62,7 +63,8 @@ export class CategoryComponent implements OnInit {
       }
     });
 
-    this._adminCategory.GetSubCategoryList().subscribe((response) => {
+    this._adminCategory.GetSubCategoryList().subscribe((response) => 
+    {
       Object.entries(response).forEach(
         ([key, value]) => {
           this.subCatData.push(value)
