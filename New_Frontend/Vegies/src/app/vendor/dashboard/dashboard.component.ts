@@ -13,7 +13,7 @@ import {configList} from './configList.service'
 export class DashboardComponent implements OnInit {
   public start: Date = new Date("10-Jul-2017");
   public end: Date = new Date("11-Aug-2017");
-  public data: Object[];
+  public data:any;
   public filterSettings: Object;
   public pageSettings: object;
   constructor(public dialog: MatDialog,private route: ActivatedRoute,private _vendorDetails: AdminCategoryService, public _configList:configList) { }
@@ -45,15 +45,17 @@ export class DashboardComponent implements OnInit {
 
     this._configList.getProductList().subscribe((response) => 
     {
-      Object.entries(response).forEach(
-        ([key, value]) => {
-          this.data=[{"productName":value.name,"unitPrice":value.newPrice,"totalPrice":value.oldPrice,"productId":0,"discount":value.discount,"unitMeasure":value.unitMeasure,qty:value.Qnty}]
-          console.log("productttttttttt",this.data)
-        }
-      );
+      this.data=response;
+      // Object.entries(response).forEach(
+      //   ([key, value]) => {
+      //     this.data=[{"productName":value.name,"unitPrice":value.newPrice,"totalPrice":value.oldPrice,"productId":0,"discount":value.discount,"unitMeasure":value.unitMeasure,qty:value.Qnty}]
+          
+      //   }
+      // );
       }, (error) => {
       console.log('error is ', error)
       });
+      console.log("productttttttttt",this.data)
   }
 
   

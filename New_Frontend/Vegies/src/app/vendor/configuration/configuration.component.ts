@@ -211,7 +211,8 @@ export class ConfigurationComponent implements OnInit
         return true;
       }
     });
-    (this.items).push(getSelectProduct);
+    //(this.items).push(getSelectProduct);
+    this.items=getSelectProduct
     // if(event.isUserInput) {
     //   console.log(event.source.value, event.source.selected);
     // }

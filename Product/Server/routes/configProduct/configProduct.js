@@ -23,7 +23,7 @@ module.exports = (function () {
     app.post("/saveList", function (req, res) {
        let configData = req.body;
         console.log("configList-----------",configData);
-        model.configList.collection.insert(configData, function (err, docs) {
+        model.configList.collection.insertMany(configData, function (err, docs) {
             if (err){ 
                 return console.error(err);
             } else {

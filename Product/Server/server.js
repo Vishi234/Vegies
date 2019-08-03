@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var app = express(); 
 const jwt=require('jsonwebtoken');
 const session=require('express-session')
+app.use(express.static('uploads'));
 app.use(session({
     secret:'hgdg576esjhsd2236289hcskcb93e',
     saveUninitialized:true,
