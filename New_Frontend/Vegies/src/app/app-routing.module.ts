@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { VendorContainerComponent } from './vendor/container/container.component';
 import { DashboardComponent } from './vendor/dashboard/dashboard.component'
+import { ProductListComponent } from './vendor/product-list/product-list.component'
+import { MyChecklistComponent } from './vendor/my-checklist/my-checklist.component'
 import {CategoryComponent} from './admin/category/category.component'
 import { AuthGuard } from './auth.guard';
 const routes: Routes = [
@@ -21,8 +23,22 @@ const routes: Routes = [
     path: '',
     component: VendorContainerComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent },
+      {
+        path: '', redirectTo: 'dashboard', pathMatch: 'full'
+        //,canActivate:[AuthGuard] 
+      },
+      {
+        path: 'dashboard', component: DashboardComponent
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'products', component: ProductListComponent
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path:'mychecklist', component: MyChecklistComponent
+        //,canActivate:[AuthGuard]
+      }
     ]
   },
   { path: 'login', component: LoginComponent },

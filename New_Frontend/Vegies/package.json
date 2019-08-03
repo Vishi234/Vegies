@@ -27,6 +27,7 @@
     "@syncfusion/ej2": "^17.2.39",
     "@syncfusion/ej2-angular-buttons": "^17.2.35",
     "@syncfusion/ej2-angular-calendars": "^17.2.36",
+    "@syncfusion/ej2-angular-dropdowns": "^17.2.39",
     "@syncfusion/ej2-angular-grids": "^17.2.39",
     "@types/googlemaps": "^3.37.0",
     "ag-grid": "^18.1.2",

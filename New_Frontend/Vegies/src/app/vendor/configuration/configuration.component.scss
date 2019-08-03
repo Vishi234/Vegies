@@ -235,8 +235,31 @@ agm-map {
   .proselected {
     width: 91%;
     right: auto;
+    bottom: 13px;
   }
   .modal-body {
     height: 350px;
+  }
+
+  .controls {
+    top: 30% !important;
+  }
+  .item-img img {
+    height: 80px;
+    width: 80px;
+    min-width: 0px;
+  }
+  .btn-group {
+    padding: 0px;
+  }
+  .btn-group .btn {
+    padding: 5px 10px;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+  .agm-map {
+    height: 200px;
+    margin-bottom: 25px;
   }
 }

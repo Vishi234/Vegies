@@ -190,6 +190,12 @@ ul li {
   font-family: inherit;
   font-size: 12px;
 }
+.e-control {
+  font-family: inherit;
+}
+.e-grid .e-frozencontent > .e-table {
+  border-right-color:transparent
+}
 @media (min-width: 992px) {
   .navbar-nav > li > a {
     line-height: 24px !important;
@@ -214,5 +220,25 @@ ul li {
     box-shadow: none;
     padding: 0;
     background: transparent;
+  }
+  .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }
+  .mat-horizontal-content-container {
+    padding: 0px !important;
+  }
+  .mat-step-header {
+    padding: 0px;
+    height: auto;
+  }
+  .item-content .mat-button-toggle-label-content {
+    line-height: 30px !important;
+  }
+  .item-content hr {
+    margin: 0px;
+  }
+  .controls img {
+    height: 30px;
+    width: 30px;
   }
 }

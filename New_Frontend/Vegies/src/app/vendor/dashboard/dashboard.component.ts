@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   constructor(public dialog: MatDialog,private route: ActivatedRoute,private _vendorDetails: AdminCategoryService, public _configList:configList) { }
 
   ngOnInit() {
-    this.dialog.open(ConfigurationComponent, { disableClose: false });
+    this.dialog.open(ConfigurationComponent, { disableClose: true });
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: true, pageSize: 5 };
     // this.data = [
