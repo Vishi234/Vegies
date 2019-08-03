@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { SetSchedulerComponent } from '../set-scheduler/set-scheduler.component'
 @Component({
-  selector: 'app-my-checklist',
-  templateUrl: './my-checklist.component.html',
-  styleUrls: ['./my-checklist.component.scss']
+  selector: 'app-set-scheduler',
+  templateUrl: './set-scheduler.component.html',
+  styleUrls: ['./set-scheduler.component.scss']
 })
-export class MyChecklistComponent implements OnInit {
-  public data: Object[];
+export class SetSchedulerComponent implements OnInit {
+
+  constructor(public dialog: MatDialog) { }
+  public data: object[];
   public filterSettings: Object;
   public pageSettings: object;
-  constructor(public dialog: MatDialog) { }
-
+  public startDate: Date = new Date("dd-MMM-yyyy");
+  public endDate: Date = new Date("dd-MMM-yyyy");
   ngOnInit() {
     this.filterSettings = { type: 'Menu' };
-    this.pageSettings = { pageSizes: true, pageSize: 10 };
+    this.pageSettings = { pageSizes: false, pageSize: 5 };
     this.data = [
       { OrderID: 10248, CustomerID: 'VINET', Freight: 32.38, ShipCountry: 'France' },
       { OrderID: 10249, CustomerID: 'TOMSP', Freight: 11.61, ShipCountry: ' Germany' },
@@ -36,7 +37,7 @@ export class MyChecklistComponent implements OnInit {
       { OrderID: 10265, CustomerID: 'CHOPS', Freight: 53.37, ShipCountry: 'Belgium' },
     ];
   }
-  openScheduler() {
-    this.dialog.open(SetSchedulerComponent, { disableClose: true })
+  closeModal() {
+    this.dialog.closeAll();
   }
 }

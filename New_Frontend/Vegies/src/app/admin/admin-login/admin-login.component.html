@@ -1,0 +1,41 @@
+<div class="login-base">
+        <div class="loginform">
+            <mdb-card>
+                <mdb-card-header class="white-text text-center py-4">
+                    <h1 class="text-center">Vegies Admin</h1>
+                    <p>Enter valid credentials below</p>
+                </mdb-card-header>
+                <mdb-card-body class="px-lg-5 pt-0">
+    
+                    <!-- Form -->
+                    <form class="text-center">
+                        <div class="md-form">
+                            <input mdbInput mdbValidate name="loginId" [(ngModel)]="loginIdText" #loginId="ngModel" required
+                                 type="text" autocomplete="off" id="loginId"
+                                class="form-control">
+                            <label for="email">Login Id</label>
+                            <mdb-error *ngIf="loginId.invalid && (loginId.dirty || loginId.touched)">Input invalid</mdb-error>
+                            <mdb-success *ngIf="loginId.valid && (loginId.dirty || loginId.touched)">Input valid</mdb-success>
+                        </div>
+                        <div class="md-form">
+                            <input mdbInput mdbValidate name="password" [(ngModel)]="passwordText" #password="ngModel" required
+                                type="password" id="password" class="form-control">
+                            <label for="password">Password</label>
+                            <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">Input invalid</mdb-error>
+                            <mdb-success *ngIf="password.valid && (password.dirty || password.touched)">Input valid</mdb-success>
+                        </div>
+                        <div class="d-flex justify-content-around">
+                            <div>
+                                <mdb-checkbox>Remember me</mdb-checkbox>
+                            </div>
+                            <div>
+                                <a href="javascript:void(0)" (click)="showModal()">Forgot password?</a>
+                            </div>
+                        </div>
+                        <button mdbBtn type="button" color="danger" class="my-4 waves-effect z-depth-0" rounded="true"
+                            block="true" mdbWavesEffect type="submit">Sign in</button>
+                    </form>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>

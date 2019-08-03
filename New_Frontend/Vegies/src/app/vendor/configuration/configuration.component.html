@@ -15,7 +15,7 @@
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Add product in List</ng-template>
                     <mat-form-field>
-                        <mat-select placeholder="Select Category" required formControlName="firstCtrl" [formControl]="toppings"
+                        <mat-select placeholder="Select Category" formControlName="firstCtrl" [formControl]="toppings"
                             multiple>
                             <mat-select-trigger>
                                 {{toppings.value ? toppings.value[0] : ''}}

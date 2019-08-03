@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatDialog} from '@angular/material';
 import {Router} from '@angular/router'
 import {LoginService} from './login.service'
 

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { SetSchedulerComponent } from '../set-scheduler/set-scheduler.component'
+import { NewCategoryComponent } from '../new-category/new-category.component'
 @Component({
-  selector: 'app-my-checklist',
-  templateUrl: './my-checklist.component.html',
-  styleUrls: ['./my-checklist.component.scss']
+  selector: 'app-admin-category',
+  templateUrl: './admin-category.component.html',
+  styleUrls: ['./admin-category.component.scss']
 })
-export class MyChecklistComponent implements OnInit {
+export class AdminCategoryComponent implements OnInit {
   public data: Object[];
   public filterSettings: Object;
   public pageSettings: object;
@@ -36,7 +36,7 @@ export class MyChecklistComponent implements OnInit {
       { OrderID: 10265, CustomerID: 'CHOPS', Freight: 53.37, ShipCountry: 'Belgium' },
     ];
   }
-  openScheduler() {
-    this.dialog.open(SetSchedulerComponent, { disableClose: true })
+  addNewCategory() {
+    this.dialog.open(NewCategoryComponent, { disableClose: true })
   }
 }

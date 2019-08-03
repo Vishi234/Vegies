@@ -10,6 +10,10 @@ import { ProductListComponent } from './vendor/product-list/product-list.compone
 import { MyChecklistComponent } from './vendor/my-checklist/my-checklist.component'
 import {CategoryComponent} from './admin/category/category.component'
 import { AuthGuard } from './auth.guard';
+import { AdminContainerComponent } from './admin/admin-container/admin-container.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 const routes: Routes = [
   {
     path: '',
@@ -41,6 +45,25 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: '',
+    component: AdminContainerComponent,
+    children: [
+      {
+        path: '', redirectTo: 'admin/dashboard', pathMatch: 'full'
+        //,canActivate:[AuthGuard] 
+      },
+      {
+        path: 'admin/dashboard', component: AdminDashboardComponent
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/category', component: AdminCategoryComponent
+        //,canActivate:[AuthGuard]
+      }
+    ]
+  },
+  { path: 'admin/login', component: AdminLoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path :'admin/category',component:CategoryComponent,canActivate:[AuthGuard]}

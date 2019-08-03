@@ -52,41 +52,18 @@
                         <span>Checklist Items</span>
                         <span>
                             <div class="btn-group" mdbDropdown>
-                                <mdb-badge color="red" mdbDropdownToggle classInside="dropdown-toggle"
-                                    class="waves-effect" mdbWavesEffect>Action
-                                </mdb-badge>
-                                <div class="dropdown-menu dropdown-menu-left">
-                                    <a class="dropdown-item" href="#">Add New Item</a>
-                                    <a class="dropdown-item" href="#">Send Requirement</a>
-                                    <a class="dropdown-item" href="#">Remove Item</a>
-                                    <a class="dropdown-item" href="#">Help</a>
-                                    <div class="divider dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Raise Ticket</a>
-                                </div>
+                                <a href="/mychecklist" >My Checklist</a>
                             </div>
                         </span>
                     </div>
                     <div class="checklist-grid">
                         <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
                             [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'
-                            [frozenColumns]='2' [frozenRows]='3'>
+                            >
                             <e-columns>
-                                <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='60'>
-                                </e-column>
-                                <!-- <e-column field='OrderID' headerText='Order ID' textAlign='Right' width='120'>
-                                   #template let-clientData>
-                                        <img src="assets/images/delete-icon.svg" class="edit-delete-img" id="img1"
-                                            (click)="onClickDelete(clientData)">
-                                        <img src="assets/images/pencil-icon.svg" class="edit-delete-img" id="img1"
-                                            (click)="onClickEdit(clientData)">
-                                    </ng-template> 
-                                </e-column> -->
-                                <e-column field='name' headerText='Product Name' width='120'></e-column>
-                                <e-column field='Qnty' headerText='Quantaty' width='120'></e-column>
-                                <e-column field='unitMeasure' textAlign='Unit Measure' width='120'></e-column>
-                                <e-column field='oldPrice' headerText='Actual Price' width='140'></e-column>
-                                <e-column field='discount' headerText='Discount' width='140'></e-column>
-                                <e-column field='newPrice' headerText='Discounted Value' width='140'></e-column>
+                                <e-column field='name' headerText='Product Name' width='200'></e-column>
+                                <e-column field='oldPrice' headerText='MRP(Rs)' width='140'></e-column>
+                                <e-column field='discount' headerText='Discount(%)' width='140'></e-column>
                             </e-columns>
                         </ejs-grid>
                     </div>

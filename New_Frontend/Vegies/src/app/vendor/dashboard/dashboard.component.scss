@@ -154,6 +154,13 @@
   width: 97%;
   height: auto;
 }
+.btn-group a {
+  display: block;
+  font-weight: 700;
+  text-decoration: underline;
+  padding: 15px;
+  font-size: 14px;
+}
 @media only screen and (min-width: 1224px) {
   .values-top > ul > li > a {
     width: 290px;

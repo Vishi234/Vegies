@@ -1,0 +1,53 @@
+<link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+<div class="modalbase">
+    <div class="modal-header">
+        <span class="title pull-left">
+            Schedule Your Requirement
+        </span>
+        <span class="pull-right close">
+            <a href="javbascript:void(0)" (click)="closeModal();">
+                <i class="fas fa-times"></i>
+            </a>
+        </span>
+    </div>
+    <div class="modal-body">
+        <div class="schedule-date">
+            <h4>
+                Schedule Date
+            </h4>
+            <div class="input-group">
+                <ejs-datepicker [value]='startDate' format='dd-MMM-yyyy' placeholder='From date'></ejs-datepicker>
+                <ejs-datepicker [value]='endDate' format='dd-MMM-yyyy' placeholder='To date'></ejs-datepicker>
+            </div>
+        </div>
+        <div class="shiploc">
+            <h4>
+                Shipping Location
+            </h4>
+            <p>A-155 D Chander Vihar Vikas Vihar Nilothi Extn New Delhi <a href="javascript:void(0)">Change Address<i
+                        class="fas fa-pencil-alt"></i></a></p>
+        </div>
+        <div class="btn-group">
+            <button mat-button class="btn btn-primary">Set Schedule</button>
+            <button mat-button class="btn btn-danger">Go Back</button>
+        </div>
+        <div class="schgrid">
+            <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+                [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+                <e-columns>
+                    <e-column field='OrderID' headerText='Product Name' textAlign='left' width=250></e-column>
+                    <e-column field='CustomerID' headerText='Quantity' textAlign='right' width=100></e-column>
+                    <e-column field='ShipCountry' headerText='Amount' textAlign='right' width=100></e-column>
+                    <e-column field='Freight' headerText='Action' textAlign="center" width=80>
+                        <ng-template #template let-data>
+                            <a href="javascript:void(0)" class="item-remove">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </ng-template>
+                    </e-column>
+                </e-columns>
+            </ejs-grid>
+        </div>
+
+    </div>
+</div>

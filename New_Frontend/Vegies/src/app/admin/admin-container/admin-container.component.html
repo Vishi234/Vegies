@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="app-ttl mr-auto">
                     <a href="javascript:void(0)" (click)="snav.toggle()"><i class="fas fa-bars"></i></a>
-                    <h1 class="app-name">VEGIES</h1>
+                    <h1 class="app-name">VEGIES ADMIN</h1>
                 </div>
                 <div class="app-top-menu ml-auto">
                     <div class="btn-group" mdbDropdown>
@@ -14,8 +14,8 @@
                                 <i class="fas fa-user-circle"></i>
                             </span>
                             <span class="userInfo">
-                                Vishal Singh
-                                <p>Manager</p>
+                                Sunil Khankriyal
+                                <p>CEO</p>
                             </span>
                             <span class="userDown">
                                 <i class="fas fa-caret-down"></i>
@@ -27,7 +27,8 @@
                             <a class="dropdown-item" href="#"><i class="fas fa-key"></i> Change Password</a>
                             <a class="dropdown-item" href="#"><i class="fas fa-sliders-h"></i> Setting</a>
                             <a class="dropdown-item" href="#"><i class="fas fa-envelope"></i> Message</a>
-                            <a class="dropdown-item" *ngIf='_login.loggedIn()' (click)="_login.logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            <a class="dropdown-item"><i
+                                    class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </div>
                 </div>
@@ -37,8 +38,8 @@
             <mat-sidenav [opened]="mobileQuery.matches ? 'false' : 'true'" #snav
                 [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="48">
                 <!-- <div class="nav-ttl">
-                            Main Navigation
-                        </div> -->
+                                Main Navigation
+                            </div> -->
                 <mat-accordion>
                     <mat-expansion-panel>
                         <mat-expansion-panel-header>
@@ -52,7 +53,7 @@
                         <div class="sidelist">
                             <ul>
                                 <li>
-                                    <a href="/dashboard">
+                                    <a href="/admin/dashboard">
                                         My Dashboard
                                     </a>
                                 </li>
@@ -63,22 +64,22 @@
                     <mat-expansion-panel>
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Checklist Master
+                                Category Master
                             </mat-panel-title>
                             <mat-panel-description>
-                                Manage your checklist details.
+                                Manage your category details.
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <div class="sidelist">
                             <ul>
                                 <li>
-                                    <a href="/mychecklist">
-                                        My Checklist
+                                    <a href="/admin/category">
+                                        Category
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/products">
-                                        Checklist Configuration
+                                    <a href="/admin/subcategory">
+                                        Sub Category
                                     </a>
                                 </li>
                             </ul>
@@ -87,22 +88,17 @@
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Reports
+                                Products
                             </mat-panel-title>
                             <mat-panel-description>
-                                Manage reports.
+                                Manage products.
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <div class="sidelist">
                             <ul>
                                 <li>
                                     <a href="javascript:void(0)">
-                                        Checklist Reports
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        Payment Reports
+                                        Manage Products
                                     </a>
                                 </li>
                             </ul>

@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.dialog.open(ConfigurationComponent, { disableClose: true });
     this.filterSettings = { type: 'Menu' };
-    this.pageSettings = { pageSizes: true, pageSize: 5 };
+    this.pageSettings = { pageSizes: false, pageSize: 5 };
     // this.data = [
     //   { OrderID: 10248, CustomerID: 'VINET', Freight: 32.38, ShipCountry: 'France' },
     //   { OrderID: 10249, CustomerID: 'TOMSP', Freight: 11.61, ShipCountry: ' Germany' },

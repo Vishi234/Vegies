@@ -7,10 +7,10 @@ import {
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
-import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { DateRangePickerModule,DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 import { PageService, SortService, FilterService, GroupService, FreezeService, SelectionService } from '@syncfusion/ej2-angular-grids';
-import { CheckBoxModule } from '@syncfusion/ej2-angular-buttons'
+import { CheckBoxModule,SwitchModule } from '@syncfusion/ej2-angular-buttons'
 import { DropDownListModule, AutoCompleteModule } from '@syncfusion/ej2-angular-dropdowns';
 
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
@@ -36,6 +36,12 @@ import { MyChecklistComponent } from './vendor/my-checklist/my-checklist.compone
 import { CategoryComponent } from './admin/category/category.component';
 import { AdminCategoryService } from './admin/category/admin-category.service'
 import { AgGridModule } from 'ag-grid-angular';
+import { SetSchedulerComponent } from './vendor/set-scheduler/set-scheduler.component';
+import { AdminContainerComponent } from './admin/admin-container/admin-container.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
+import { NewCategoryComponent } from './admin/new-category/new-category.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +57,13 @@ import { AgGridModule } from 'ag-grid-angular';
     ConfigurationComponent,
     ProductListComponent,
     MyChecklistComponent,
-    CategoryComponent
+    CategoryComponent,
+    SetSchedulerComponent,
+    AdminContainerComponent,
+    AdminDashboardComponent,
+    AdminLoginComponent,
+    AdminCategoryComponent,
+    NewCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +101,8 @@ import { AgGridModule } from 'ag-grid-angular';
     AutoCompleteModule,
     MatCheckboxModule,
     AgGridModule.withComponents([]),
+    DatePickerModule,
+    SwitchModule
   ],
   providers: [PageService, SortService, FilterService, GroupService, AuthGuard, FreezeService, SelectionService,
     {
@@ -97,6 +111,6 @@ import { AgGridModule } from 'ag-grid-angular';
       multi: true
     }],
   bootstrap: [AppComponent],
-  entryComponents: [ForgotPasswordComponent, ConfigurationComponent]
+  entryComponents: [ForgotPasswordComponent, ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent]
 })
 export class AppModule { }
