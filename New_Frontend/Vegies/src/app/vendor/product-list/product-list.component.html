@@ -23,18 +23,18 @@
                 <div class="pro-filter">
                     <ul>
                         <li>
-                            <ejs-dropdownlist id='catList' #catList [dataSource]='catData' [value]='value'
-                                [fields]='catfields'>
+                            <ejs-dropdownlist id='catList' #catList [dataSource]='catData' [value]='value' 
+                                [fields]='catfields' (change)='onCategoryChange($event)' >
                             </ejs-dropdownlist>
                         </li>
                         <li>
-                            <ejs-dropdownlist id='existingPro' #existingPro [dataSource]='catData' [value]='value'
-                                [fields]='catfields'>
+                            <ejs-dropdownlist id='existingPro' #existingPro [dataSource]='subCatData' [value]='value'
+                                [fields]='subCatFields' (change)='onSubCatChange($event)'  >
                             </ejs-dropdownlist>
                         </li>
                         <li>
-                            <ejs-dropdownlist id='existingPro' #existingPro [dataSource]='catData' [value]='value'
-                                [fields]='catfields'>
+                            <ejs-dropdownlist id='existingPro' #existingPro [dataSource]='productData' [value]='value'
+                                [fields]='productFields' (change)='onProductChange($event)'>
                             </ejs-dropdownlist>
                         </li>
                         <li>
@@ -45,168 +45,33 @@
                     </ul>
                 </div>
                 <div class="content-ttl">
-                    <div class="items">
+
+                 
+                    <div class="items" *ngFor="let productDetails of allProduct" >
                         <div class="item-top">
                             <span class="pull-left">
                                 <ejs-checkbox #checkbox [(ngModel)]="checked"></ejs-checkbox>
                             </span>
                             <span class="pull-right disLabel">
-                                40% Off
+                                    {{productDetails.discount}} % Off
                             </span>
                         </div>
                         <div class="item-img">
-                            <img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
+                          <img src= "http://localhost:8080/{{productDetails.imageUrl}}" />
                         </div>
                         <div class="item-content">
-                            <h2>Onion</h2>
-                            <span class="unit">1 Kg</span>
+                            <h2>{{productDetails.productName}}</h2>
+                            <span class="unit">1 {{productDetails.unitMeasure}}</span>
                             <span class="price">
-                                MRP:<u>Rs 31.25</u> <b>Rs 25</b>
+                                MRP:<u>Rs {{productDetails.price}}</u> <b>Rs {{productDetails.actualPrice}}</b>
                             </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="items">
-                        <div class="item-top">
-                            <span class="pull-left">
-                                <ejs-checkbox #checkbox [(ngModel)]="checked"></ejs-checkbox>
-                            </span>
-                            <span class="pull-right disLabel">
-                                40% Off
-                            </span>
-                        </div>
-                        <div class="item-img">
-                            <img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                        </div>
-                        <div class="item-content">
-                            <h2>Onion</h2>
-                            <span class="unit">1 Kg</span>
-                            <span class="price">
-                                MRP:<u>Rs 31.25</u> <b>Rs 25</b>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="item-top">
-                            <span class="pull-left">
-                                <ejs-checkbox #checkbox [(ngModel)]="checked"></ejs-checkbox>
-                            </span>
-                            <span class="pull-right disLabel">
-                                40% Off
-                            </span>
-                        </div>
-                        <div class="item-img">
-                            <img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                        </div>
-                        <div class="item-content">
-                            <h2>Onion</h2>
-                            <span class="unit">1 Kg</span>
-                            <span class="price">
-                                MRP:<u>Rs 31.25</u> <b>Rs 25</b>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="item-top">
-                            <span class="pull-left">
-                                <ejs-checkbox #checkbox [(ngModel)]="checked"></ejs-checkbox>
-                            </span>
-                            <span class="pull-right disLabel">
-                                40% Off
-                            </span>
-                        </div>
-                        <div class="item-img">
-                            <img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                        </div>
-                        <div class="item-content">
-                            <h2>Onion</h2>
-                            <span class="unit">1 Kg</span>
-                            <span class="price">
-                                MRP:<u>Rs 31.25</u> <b>Rs 25</b>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="item-top">
-                            <span class="pull-left">
-                                <ejs-checkbox #checkbox [(ngModel)]="checked"></ejs-checkbox>
-                            </span>
-                            <span class="pull-right disLabel">
-                                40% Off
-                            </span>
-                        </div>
-                        <div class="item-img">
-                            <img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                        </div>
-                        <div class="item-content">
-                            <h2>Onion</h2>
-                            <span class="unit">1 Kg</span>
-                            <span class="price">
-                                MRP:<u>Rs 31.25</u> <b>Rs 25</b>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="item-top">
-                            <span class="pull-left">
-                                <ejs-checkbox #checkbox [(ngModel)]="checked"></ejs-checkbox>
-                            </span>
-                            <span class="pull-right disLabel">
-                                40% Off
-                            </span>
-                        </div>
-                        <div class="item-img">
-                            <img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                        </div>
-                        <div class="item-content">
-                            <h2>Onion</h2>
-                            <span class="unit">1 Kg</span>
-                            <span class="price">
-                                MRP:<u>Rs 31.25</u> <b>Rs 25</b>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="item-top">
-                            <span class="pull-left">
-                                <ejs-checkbox #checkbox [(ngModel)]="checked"></ejs-checkbox>
-                            </span>
-                            <span class="pull-right disLabel">
-                                40% Off
-                            </span>
-                        </div>
-                        <div class="item-img">
-                            <img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                        </div>
-                        <div class="item-content">
-                            <h2>Onion</h2>
-                            <span class="unit">1 Kg</span>
-                            <span class="price">
-                                MRP:<u>Rs 31.25</u> <b>Rs 25</b>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="items">
-                        <div class="item-top">
-                            <span class="pull-left">
-                                <ejs-checkbox #checkbox [(ngModel)]="checked"></ejs-checkbox>
-                            </span>
-                            <span class="pull-right disLabel">
-                                40% Off
-                            </span>
-                        </div>
-                        <div class="item-img">
-                            <img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                        </div>
-                        <div class="item-content">
-                            <h2>Onion</h2>
-                            <span class="unit">1 Kg</span>
-                            <span class="price">
-                                MRP:<u>Rs 31.25</u> <b>Rs 25</b>
-                            </span>
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    
