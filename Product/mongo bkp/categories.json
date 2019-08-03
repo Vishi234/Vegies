@@ -1,26 +1,48 @@
-[
 { 
-    "_id" : ObjectId("5d2b58609237e49344ccc778"), 
+    "_id" : ObjectId("5d4571f5e69e144060a98fa9"), 
     "productCat" : "1", 
-    "catName" : "ewfe", 
-    "catAlias" : "veg", 
-    "Active" : NumberInt(1), 
-    "__v" : NumberInt(0)
-},
-{ 
-    "_id" : ObjectId("5d2b58e99237e49344ccc779"), 
-    "productCat" : "1", 
-    "catName" : "jata", 
-    "catAlias" : "js", 
-    "Active" : NumberInt(1), 
-    "__v" : NumberInt(0)
-},
-{ 
-    "_id" : ObjectId("5d2b77722107a45218b9a421"), 
-    "productCat" : "1", 
-    "catName" : "Test", 
-    "catAlias" : "OK", 
+    "catName" : "Vegetable", 
+    "catAlias" : "Sabjiyan", 
     "Active" : NumberInt(1), 
     "__v" : NumberInt(0)
 }
-]
+{ 
+    "_id" : ObjectId("5d45721be69e144060a98faa"), 
+    "productCat" : "1", 
+    "catName" : "Fruits", 
+    "catAlias" : "Fal", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d457239e69e144060a98fab"), 
+    "productCat" : "1", 
+    "catName" : "Dairy Product", 
+    "catAlias" : "Dudh Utpad", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d45727be69e144060a98fac"), 
+    "productCat" : "1", 
+    "catName" : "Non-vegetarian Products", 
+    "catAlias" : "Mansahari Utpad", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d4572b8e69e144060a98fad"), 
+    "productCat" : "1", 
+    "catName" : "Grocery", 
+    "catAlias" : "Kirana Utpad", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5d45732ee69e144060a98fae"), 
+    "productCat" : "1", 
+    "catName" : "Others", 
+    "catAlias" : "Anya Utpad", 
+    "Active" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
