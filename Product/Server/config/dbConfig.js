@@ -7,6 +7,7 @@
 // })
 // module.exports = connection;
 const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
 const config = {
     app: {
       port: 8080

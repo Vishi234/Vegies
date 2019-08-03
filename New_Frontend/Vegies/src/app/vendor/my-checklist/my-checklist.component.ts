@@ -1,39 +1,64 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { configList } from '../dashboard/configList.service'
+import { GridComponent } from '@syncfusion/ej2-angular-grids'
 @Component({
   selector: 'app-my-checklist',
   templateUrl: './my-checklist.component.html',
   styleUrls: ['./my-checklist.component.scss']
 })
 export class MyChecklistComponent implements OnInit {
-  public data: Object[];
+  public data: any;
   public filterSettings: Object;
   public pageSettings: object;
-  constructor() { }
+  public unitMeasure: any;
+  public calcOldPrice: any;
+  @ViewChild('old', { static: true }) public grid: GridComponent;
+  constructor(private _configList: configList) { }
 
   ngOnInit() {
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: true, pageSize: 10 };
-    this.data = [
-      { OrderID: 10248, CustomerID: 'VINET', Freight: 32.38, ShipCountry: 'France' },
-      { OrderID: 10249, CustomerID: 'TOMSP', Freight: 11.61, ShipCountry: ' Germany' },
-      { OrderID: 10250, CustomerID: 'HANAR', Freight: 65.83, ShipCountry: 'Brazil' },
-      { OrderID: 10251, CustomerID: 'VICTE', Freight: 41.34, ShipCountry: 'France' },
-      { OrderID: 10252, CustomerID: 'SUPRD', Freight: 51.3, ShipCountry: 'Belgium' },
-      { OrderID: 10253, CustomerID: 'HANAR', Freight: 58.17, ShipCountry: 'Brazil' },
-      { OrderID: 10254, CustomerID: 'CHOPS', Freight: 22.98, ShipCountry: 'Switzerland' },
-      { OrderID: 10255, CustomerID: 'RICSU', Freight: 148.33, ShipCountry: 'Switzerland' },
-      { OrderID: 10256, CustomerID: 'SUPRD', Freight: 13.97, ShipCountry: 'Brazil' },
-      { OrderID: 10257, CustomerID: 'WELLI', Freight: 14.23, ShipCountry: 'Venezuela' },
-      { OrderID: 10258, CustomerID: 'VICTE', Freight: 18.33, ShipCountry: 'France' },
-      { OrderID: 10259, CustomerID: 'WELLI', Freight: 28.13, ShipCountry: 'Brazil' },
-      { OrderID: 10260, CustomerID: 'CHOPS', Freight: 48.34, ShipCountry: 'Switzerland' },
-      { OrderID: 10261, CustomerID: 'SUPRD', Freight: 32.73, ShipCountry: ' Germany' },
-      { OrderID: 10262, CustomerID: 'TOMSP', Freight: 12.31, ShipCountry: 'Switzerland' },
-      { OrderID: 10263, CustomerID: 'VICTE', Freight: 23.77, ShipCountry: 'Brazil' },
-      { OrderID: 10264, CustomerID: 'SUPRD', Freight: 43.47, ShipCountry: 'Venezuela' },
-      { OrderID: 10265, CustomerID: 'CHOPS', Freight: 53.37, ShipCountry: 'Belgium' },
-    ];
+    this._configList.getProductList().subscribe((response) => {
+      this.data = response;
+    }, (error) => {
+      console.log('error is ', error)
+    });
   }
 
+  onChange(event: any) {
+    debugger;
+    var parentId = event.target.parentElement.parentElement;
+    console.log("valueeeee", this.data[parentId.rowIndex]["oldPrice"])
+
+    parentId.children[4].innerText = event.target.value * this.data[parentId.rowIndex]["oldPrice"];
+
+    parentId.children[6].innerText = parentId.children[4].innerText - (parentId.children[4].innerText * parentId.children[5].innerText) / 100;
+
+    console.log("Unit Measure", this.unitMeasure)
+  };
+
+  removeProduct(event: any) {
+    var del;
+    if (confirm("Are You Sure To Delete this Informations ?")) {
+      var idx = this.grid.getSelectedRowIndexes();
+      del = idx.map((e) => {
+        return this.data[e]['_id']
+      })
+      this._configList.delete(del).subscribe((response) => {
+        console.log("Save Successfully")
+      }, (error) => {
+        console.log('error is ', error)
+      });
+    }
+  }
+  sendRequirement() {
+    debugger;
+    const selectedRow = this.grid.getSelectedRowIndexes();
+    var table = document.getElementsByTagName("table");
+    selectedRow.forEach((e) => {
+      this.data[e]["oldPrice"] = table[1].children[1].children[e].children[4].textContent;
+    })
+
+  }
 }
+

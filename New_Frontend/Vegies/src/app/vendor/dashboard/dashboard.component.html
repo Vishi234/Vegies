@@ -117,7 +117,25 @@
                     </div>
                     <div class="items">
                         <ul>
-                            <li>
+                            <li *ngFor="let subCatName of subCatList">
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        {{subCatName.subCatName}}
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fas fa-user-astronaut"></i></span>
+                                    <span>
+                                        Fruits & Vegetables
+                                        <p>content goes here</p>
+                                    </span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
                                 <a href="javascript:void(0)">
                                     <span><i class="fas fa-user-astronaut"></i></span>
                                     <span>
@@ -179,25 +197,7 @@
                                         <p>content goes here</p>
                                     </span>
                                 </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span><i class="fas fa-user-astronaut"></i></span>
-                                    <span>
-                                        Fruits & Vegetables
-                                        <p>content goes here</p>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <span><i class="fas fa-user-astronaut"></i></span>
-                                    <span>
-                                        Fruits & Vegetables
-                                        <p>content goes here</p>
-                                    </span>
-                                </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
