@@ -140,13 +140,15 @@ label {
 }
 .owl-carousel .items {
   max-width: 200px;
-  margin-right: 33px;
-  border: solid 1px #fff;
-  transition: all 0.4s ease-in-out;
+    margin-right: 33px;
+    padding: 10px;
+    border: solid 1px #dee2e6;
+    border-radius: 4px;
+    transition: all 0.4s ease-in-out;
 }
 .owl-carousel .items:hover {
   box-shadow: 0px 7px 21px 0 rgba(23, 84, 116, 0.18);
-  border: solid 1px #f3f3f3;
+  border: solid 1px #dee2e6;
 }
 .owl-carousel .prev-slide {
   background: url(../../../assets/nav-icon.png) no-repeat scroll 0 0;
@@ -176,6 +178,13 @@ label {
 .item-img {
   text-align: center;
   background: #fff;
+  height: 150px;
+  width: 150px;
+}
+.item-img img
+{
+  height: 100%;
+  width: 100%;
 }
 .item-content {
   padding: 5px;
@@ -250,7 +259,7 @@ agm-map {
     min-width: 0px;
   }
   .btn-group {
-    padding: 0px;
+    padding:10px 0px;
   }
   .btn-group .btn {
     padding: 5px 10px;
@@ -262,4 +271,13 @@ agm-map {
     height: 200px;
     margin-bottom: 25px;
   }
+  .item-img {
+    height: 100px;
+    width: 100px;
+}
+.owl-carousel .items
+{
+  padding: 0px;
+  border: none;
+}
 }
