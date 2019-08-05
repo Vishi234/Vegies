@@ -37,12 +37,21 @@ ul li {
 .navbar {
   min-height: 30px;
   background-color: #24355c !important;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(5, 5, 5, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
+    0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+  position: fixed;
+  z-index: 999;
+  top: 0px;
 }
 
 .navbar-brand {
   padding: 0 15px;
-  height: 45px;
-  line-height: 45px !important;
+  height: 38px;
+  line-height: 38px !important;
+  text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 22px;
+    opacity: 0.8;
 }
 
 .navbar-toggle {
@@ -50,7 +59,10 @@ ul li {
   padding: 9px 10px !important;
 }
 .navbar-nav > li:last-child > a {
-  background: #dc3545;
+  background: #0d1e45;
+}
+.slider {
+  margin-top: 3%;
 }
 .slider .carousel-inner {
   max-height: 500px !important;
@@ -194,11 +206,14 @@ ul li {
   font-family: inherit;
 }
 .e-grid .e-frozencontent > .e-table {
-  border-right-color:transparent
+  border-right-color: transparent;
+}
+.navbar-nav > li > a {
+  opacity: 0.8;
 }
 @media (min-width: 992px) {
   .navbar-nav > li > a {
-    line-height: 24px !important;
+    line-height: 16px !important;
     padding: 18px !important;
   }
 }
