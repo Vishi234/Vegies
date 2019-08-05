@@ -24,7 +24,8 @@
                                     {{toppings.value?.length === 2 ? 'other' : 'others'}})
                                 </span>
                             </mat-select-trigger>
-                            <mat-option *ngFor="let subCatName of subCatList" (onSelectionChange)="change($event)" [value]="subCatName._id">{{subCatName.subCatName}}</mat-option>
+                            <mat-option *ngFor="let subCatName of subCatList" (onSelectionChange)="change($event)"
+                                [value]="subCatName._id">{{subCatName.subCatName}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <div id="container" class="owl-carousel">
@@ -44,6 +45,7 @@
                                 </div>
                                 <div class="item-content">
                                     <h2>{{item.name}}</h2>
+                                    <p>({{item.productAlias}})</p>
                                     <span class="unit">{{item.unit}}</span>
                                     <div class="price"><span class="op">{{item.oldPrice}}</span> {{item.newPrice}}</div>
                                     <hr />
@@ -73,7 +75,7 @@
                     </div>
                     <div class="procontent">
                         <ul>
-                            <li><img src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
+                            <li *ngFor="let student of selectedPro"><img [src]="student.image" />
                             </li>
                         </ul>
                     </div>
@@ -91,59 +93,29 @@
                     </agm-map>
                     <div class="btn-group">
                         <button mat-button matStepperPrevious class="btn btn-danger">Back</button>
-                        <button mat-button matStepperNext class="btn btn-primary" (click)="getAddress(address.value)">Next</button>
+                        <button mat-button matStepperNext class="btn btn-primary"
+                            (click)="getAddress(address.value)">Next</button>
                     </div>
                 </form>
             </mat-step>
             <mat-step [stepControl]="thirdFormGroup">
-        <!-- //<form [formGroup]="thirdFormGroup"> -->
-                    <ng-template matStepLabel>Choose you location</ng-template>
-                    <div class="ship-add">
-                        <span>My product list are mention below</span>
-                        <div class="ship-pro">
-                            <ul>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img
-                                            src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img
-                                            src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img
-                                            src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img
-                                            src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img
-                                            src="https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg" />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <span>Shipping location are : <p>A-155D Chnader Vihar Nilothi Extn</p></span>
-                        
+                <!-- //<form [formGroup]="thirdFormGroup"> -->
+                <ng-template matStepLabel>Choose you location</ng-template>
+                <div class="ship-add">
+                    <span>My product list are mention below</span>
+                    <div class="ship-pro">
+                        <ul>
+                            <li *ngFor="let student of selectedPro"><img [src]="student.image" />
+                        </ul>
                     </div>
-                    <div class="btn-group">
-                        <button mat-button matStepperPrevious class="btn btn-danger">Back</button>
-                        <button mat-button matStepperNext class="btn btn-primary" (click)="addConfigureList()">Next</button>
-                    </div>
+                    <span>Shipping location are : <p> {{selectedAddress}}</p></span>
+                </div>
+                <div class="btn-group">
+                    <button mat-button matStepperPrevious class="btn btn-danger">Back</button>
+                    <button mat-button matStepperNext class="btn btn-primary" (click)="addConfigureList()">Next</button>
+                </div>
                 <!-- </form> -->
             </mat-step>
         </mat-horizontal-stepper>
-
     </div>
 </div>

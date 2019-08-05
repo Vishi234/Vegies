@@ -12,6 +12,9 @@ export class VendorContainerComponent implements OnDestroy {
   panelOpenState = false;
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
+  currentUser: any;
+  currentUserSubscription: any;
+
   fillerContent = Array.from({ length: 50 }, () =>
     `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -25,8 +28,10 @@ export class VendorContainerComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.currentUserSubscription = this._login.currentUser.subscribe(user => {
+      this.currentUser = user;
+  });
   }
-
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }

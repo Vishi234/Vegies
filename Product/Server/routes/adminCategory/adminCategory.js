@@ -85,7 +85,7 @@ module.exports = (function () {
         let productDataSave = new model.product(productData)
         productDataSave.save().then((items => 
 		{
-            res.status(400).send("Product updated successfully");
+            res.status(200).send("Product updated successfully");
         })).catch(err => {
             console.log("errwwww", err)
             res.status(400).send("unable to save to database");

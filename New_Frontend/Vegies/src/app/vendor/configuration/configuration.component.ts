@@ -12,8 +12,7 @@ import { configurationwizard } from './configurationwizard.service'
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss']
 })
-export class ConfigurationComponent implements OnInit 
-{
+export class ConfigurationComponent implements OnInit {
   toggle: boolean = false;
   items: Array<any> = [];
   selectedPro = [];
@@ -26,11 +25,31 @@ export class ConfigurationComponent implements OnInit
   public zoom: number;
   public latitude: number = 51.678418;
   public longitude: number = 7.809007;
-  public selectedAddress: PlaceResult;
+  public selectedAddress: any;
+  public currentLogged: any
   google: any;
   public subCatList: Array<any> = [];
   configList = {};
   userConfigList: any;
+
+  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard) {
+    this._vendorDetails.GetProductList().subscribe((response) => {
+      Object.entries(response).forEach(
+        ([key, value]) => {
+          this.items.push({
+            "name": value.productName, "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+            image: "http://localhost:8080/" + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1,"productAlias":value.productAlias
+          })
+        }
+      );
+    }, (error) => {
+      console.log('error is ', error)
+    });
+
+    this.currentLogged = this._login.currentUserValue();
+    console.log("this.currentLogged", this.currentLogged.userName)
+  }
+
   inreaseHeight() {
     this.toggle = !this.toggle;
 
@@ -39,7 +58,6 @@ export class ConfigurationComponent implements OnInit
     if (value.length > 0) {
       document.getElementById("lblName" + lbl).innerHTML = "Selected";
       this.selectedPro.push(this.getProductById(lbl));
-      console.log(this.selectedPro);
     }
     else {
       document.getElementById("lblName" + lbl).innerHTML = "Select Item";
@@ -55,114 +73,22 @@ export class ConfigurationComponent implements OnInit
   }
 
   getAddress(address: string) {
+    this.selectedAddress = address;
     this.userConfigList = this.selectedPro.map(function (el) {
       var o = Object.assign({}, el);
       o.address = address,
-        o.userName = "JSS"
+        o.userName = this.currentLogged.userName
       return o;
     })
   }
-  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard) {
-    this._vendorDetails.GetProductList().subscribe((response) => {
-      Object.entries(response).forEach(
-        ([key, value]) => {
-          this.items.push({
-            "name": value.productName, "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
-            image: "http://localhost:8080/"+value.imageUrl,"discount":value.discount,"unitMeasure":value.unitMeasure,"Qnty":1
-          })
-          console.log("productttttttttt", value)
-        }
-      );
-    }, (error) => {
-      console.log('error is ', error)
-    });
 
-
-    // this.items = [
-    //   {
-    //     name: "Everfresh Flowers",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000148_24-fresho-onion.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "1"
-
-    //   },
-    //   {
-    //     name: "Festive Deer",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000159_25-fresho-potato.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "2"
-    //   },
-    //   {
-    //     name: "Morning Greens",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000200_17-fresho-tomato-hybrid.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "3"
-    //   },
-    //   {
-    //     name: "Bunch of Love",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000068_22-fresho-capsicum-green.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "4"
-    //   },
-    //   {
-    //     name: "Blue Clear",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/241600_5-tata-salt-salt-iodized.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "5"
-    //   },
-    //   {
-    //     name: "Evening Clouds",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/283426_2-india-gate-basmati-rice-feast-rozzana.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "6"
-    //   },
-    //   {
-    //     name: "Fontains in Shadows",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000188_11-fresho-palak.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "7"
-    //   },
-    //   {
-    //     name: "Kites in the Sky",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/40026269_2-milkfood-rich-desi-ghee.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "8"
-    //   },
-    //   {
-    //     name: "Sun Streak",
-    //     image: "https://www.bigbasket.com/media/uploads/p/s/10000668_12-fresho-cucumber-english.jpg",
-    //     unit: "1 Kg",
-    //     oldPrice: "Rs 250",
-    //     newPrice: "Rs 30",
-    //     id: "9"
-    //   }
-    // ]
-  }
   addConfigureList() {
-    console.log("final submit ", this.userConfigList)
     this._configurationwizard.AddConfigProduc(this.userConfigList).subscribe((res) => {
-      console.log("Response is", res);
     }, (error) => {
       console.log('error is ', error)
     })
-    console.log("value is------------", this.userConfigList)
   }
+
 
   ngOnInit() {
     // this.firstFormGroup = this._formBuilder.group({
@@ -203,19 +129,13 @@ export class ConfigurationComponent implements OnInit
     this.longitude = location.longitude;
   }
 
-  change(event)
-  {
-    var getSelectProduct = this.items.filter(function (item) 
-    {
+  change(event) {
+    var getSelectProduct = this.items.filter(function (item) {
       if (item.subCat == event.source.value) {
         return true;
       }
     });
-    //(this.items).push(getSelectProduct);
-    this.items=getSelectProduct
-    // if(event.isUserInput) {
-    //   console.log(event.source.value, event.source.selected);
-    // }
+    this.items = getSelectProduct
   }
 
   carouselOptions = {

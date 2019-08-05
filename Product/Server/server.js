@@ -2,14 +2,15 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var app = express(); 
 const jwt=require('jsonwebtoken');
-const session=require('express-session')
+
 app.use(express.static('uploads'));
-app.use(session({
-    secret:'hgdg576esjhsd2236289hcskcb93e',
-    saveUninitialized:true,
-    resave:false,
-cookie:{secure:false}
-}))
+// app.use(session({
+//     secret:'hgdg576esjhsd2236289hcskcb93e',
+//     saveUninitialized:true,
+//     resave:false,
+// cookie:{secure:false}
+// }))
+
 app.use(bodyParser.json()); 
 var dbConfig=require("./config/dbConfig");
 var vendor=require('./routes/vendor/vendorServer')
@@ -34,7 +35,9 @@ console.log("portttttt",dbConfig.app.port);
 app.use('/api/admin', adminCategory);
 app.use('/api/configProduct', configProduct);
 
-
+//const session=require('express-session')
+//app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: true}));
+//app.use(session({secret: 'keyboard cat', resave: true, saveUninitialized: true,cookie: { path: '/', httpOnly: true, maxAge: 30 * 30000 },rolling: true}));
 app.use('/api/vendor', vendor,);
 
 

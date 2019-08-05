@@ -5,6 +5,7 @@ var model = require("./vendorModel");
 const jwt = require("jsonwebtoken");
 var express = require('express');
 var app = express(); 
+
 // app.use(session({
 //     secret:'hgdg576esjhsd2236289hcskcb93e',
 //     saveUninitialized:false,
@@ -50,7 +51,6 @@ var mailOptions, host;
 
     router.post("/login", function (req, res) {
         let userData = req.body;
-        console.log("hiiiiiiiiiiii",userData)
         model.register.findOne({ email: userData.email }, (error, user) => {
             if (error) {
                 console.log(error);
@@ -61,16 +61,12 @@ var mailOptions, host;
                     if (user.password != userData.password) {
                         res.status(401).send("Invalid Password")
                     } else {
-                        //var x=model.register.findOne({ email: userData.email });
                         console.log("kkkkkkkkkk-------------------------",user.loginAttemp)
                         let payload = { subject: user._id }
                         let token = jwt.sign(payload, 'secretKey')
                         model.register.updateOne({loginAttemp: user.loginAttemp},{ $set :{loginAttemp: user.loginAttemp+1}},function(attempCount){
-                           //console.log("--------------------",user.loginAttemp)
-                            res.status(200).send({"token": token ,"Attemp":user.loginAttemp+1});
-                            req.session.email=req.param('email');
-                            console.log("sessssss",req.session.email)
-                            req.session.save()
+                           console.log("sessssss11",user.fullName)
+                            res.status(200).send({"token": token,"userName":user.fullName,"orgName":user.orgName });
                         })
                         console.log("hiiiiiiiiii")
                     }
@@ -122,8 +118,8 @@ var mailOptions, host;
     }
 
     router.get('/data',(req,res)=>{
-        console.log("hhhhhhhhhhhhhhh",req.session.email)
-        res.send('user is =>'+req.session.email)
+        console.log("hhhhhhhhhhhhhhh",req.session)
+        //res.send('user is =>'+req.session.email)
     })
     module.exports = router;
 //})();
