@@ -14,10 +14,8 @@ export class RegisterComponent implements OnInit {
   vendorSignup() {
     console.log("data",this.registerUser)
     this.vendorRegis.vendorRegistration(this.registerUser).subscribe(response => {
-      console.log("registerrrr",response)
       localStorage.setItem('token',response.token)
       this.router.navigate(["/login"]);
-      console.log("responsewwwwww")
     }, (error) => {
       console.log('error is ', error)
     })
