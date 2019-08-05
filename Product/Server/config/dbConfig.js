@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 const config = {
     app: {
-      port: 8080
+      port: 8081
     },
     db: {
       host: 'localhost',
