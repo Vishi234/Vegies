@@ -1,0 +1,28 @@
+[
+{ 
+    "_id" : ObjectId("5d431945e8628f571cd11fcb"), 
+    "userType" : "1", 
+    "orgName" : "Tombolo India", 
+    "fullName" : "JS singh", 
+    "email" : "js@gmail.com", 
+    "mobile" : "8076903869", 
+    "password" : "c", 
+    "mailVerify" : "1", 
+    "mobleVerify" : "1", 
+    "loginAttemp" : NumberInt(90), 
+    "__v" : NumberInt(0)
+},
+{ 
+    "_id" : ObjectId("5d448f1eea12a04cd4b6c3d4"), 
+    "userType" : "1", 
+    "orgName" : "tt", 
+    "fullName" : "hh", 
+    "email" : "j@gma.com", 
+    "mobile" : "1", 
+    "password" : "VShq5fJWoW", 
+    "mailVerify" : "1", 
+    "mobleVerify" : "1", 
+    "loginAttemp" : NumberInt(0), 
+    "__v" : NumberInt(0)
+}
+]

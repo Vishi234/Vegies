@@ -1,0 +1,54 @@
+[
+{ 
+    "_id" : ObjectId("5d458a0a74015d5e08e98667"), 
+    "name" : "Broccoli", 
+    "oldPrice" : "110", 
+    "newPrice" : "107.8", 
+    "id" : "5d457e4ce69e144060a98fba", 
+    "image" : "http://localhost:8080/Broccoli.jpg", 
+    "discount" : "2", 
+    "unitMeasure" : "KG", 
+    "Qnty" : NumberInt(1), 
+    "address" : "Infiniti Mall, New Link Road, Phase D, Oshiwara, Andheri West, Mumbai, Maharashtra, India", 
+    "userName" : "JSS"
+},
+{ 
+    "_id" : ObjectId("5d46ac3642b36c2536f3a7e4"), 
+    "name" : "Asparagus", 
+    "oldPrice" : "400", 
+    "newPrice" : "392", 
+    "id" : "5d457813e69e144060a98fb2", 
+    "image" : "http://localhost:8080/Asparagus.jpg", 
+    "discount" : "2", 
+    "unitMeasure" : "KG", 
+    "Qnty" : NumberInt(1), 
+    "address" : "Infiniti Mall, New Link Road, Phase D, Oshiwara, Andheri West, Mumbai, Maharashtra, India", 
+    "userName" : "JSS"
+},
+{ 
+    "_id" : ObjectId("5d46ac3642b36c2536f3a7e5"), 
+    "name" : "Cabbage Red", 
+    "oldPrice" : "35", 
+    "newPrice" : "34.3", 
+    "id" : "5d457d90e69e144060a98fb8", 
+    "image" : "http://localhost:8080/red-cabbage.jpg", 
+    "discount" : "2", 
+    "unitMeasure" : "KG", 
+    "Qnty" : NumberInt(1), 
+    "address" : "Infiniti Mall, New Link Road, Phase D, Oshiwara, Andheri West, Mumbai, Maharashtra, India", 
+    "userName" : "JSS"
+},
+{ 
+    "_id" : ObjectId("5d46ac3642b36c2536f3a7e6"), 
+    "name" : "Chinese Cabbage", 
+    "oldPrice" : "25", 
+    "newPrice" : "24.5", 
+    "id" : "5d457ddbe69e144060a98fb9", 
+    "image" : "http://localhost:8080/chineseCabbase.jpg", 
+    "discount" : "2", 
+    "unitMeasure" : "KG", 
+    "Qnty" : NumberInt(1), 
+    "address" : "Infiniti Mall, New Link Road, Phase D, Oshiwara, Andheri West, Mumbai, Maharashtra, India", 
+    "userName" : "JSS"
+}
+]

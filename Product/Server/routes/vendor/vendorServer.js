@@ -61,14 +61,11 @@ var mailOptions, host;
                     if (user.password != userData.password) {
                         res.status(401).send("Invalid Password")
                     } else {
-                        console.log("kkkkkkkkkk-------------------------",user.loginAttemp)
                         let payload = { subject: user._id }
                         let token = jwt.sign(payload, 'secretKey')
                         model.register.updateOne({loginAttemp: user.loginAttemp},{ $set :{loginAttemp: user.loginAttemp+1}},function(attempCount){
-                           console.log("sessssss11",user.fullName)
                             res.status(200).send({"token": token,"userName":user.fullName,"orgName":user.orgName });
                         })
-                        console.log("hiiiiiiiiii")
                     }
                 }
             }
