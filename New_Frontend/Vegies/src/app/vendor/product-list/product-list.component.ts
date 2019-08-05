@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit
   public catList: Array<any> = [];
   public subCatList: Array<any> = [];
   public productList: Array<any> = [];
-  constructor(private _categoryList: AdminCategoryService){}
+  constructor(private _categoryList: AdminCategoryService,private _global:AppGlobals){}
   
   ngOnInit() 
   {
