@@ -7,6 +7,8 @@ import PlaceResult = google.maps.places.PlaceResult;
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
 import { LoginService } from '../../login/login.service'
 import { configurationwizard } from './configurationwizard.service'
+import { AppGlobals } from '../../app.global';
+
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -32,13 +34,13 @@ export class ConfigurationComponent implements OnInit {
   configList = {};
   userConfigList: any;
 
-  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard) {
+  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard,private _global: AppGlobals) {
     this._vendorDetails.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
           this.items.push({
             "name": value.productName, "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
-            image: "http://localhost:8080/" + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1,"productAlias":value.productAlias
+            image: _global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1,"productAlias":value.productAlias
           })
         }
       );

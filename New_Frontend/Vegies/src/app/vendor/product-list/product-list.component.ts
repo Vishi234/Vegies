@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DropDownListComponent, AutoCompleteComponent } from '@syncfusion/ej2-angular-dropdowns';
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
+import { AppGlobals } from '../../app.global';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +16,6 @@ export class ProductListComponent implements OnInit
   public productList: Array<any> = [];
   constructor(private _categoryList: AdminCategoryService){}
   
-
   ngOnInit() 
   {
    // debugger;
