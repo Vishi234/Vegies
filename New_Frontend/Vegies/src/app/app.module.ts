@@ -42,6 +42,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { NewCategoryComponent } from './admin/new-category/new-category.component';
+import { AppGlobals } from './app.global';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { NewCategoryComponent } from './admin/new-category/new-category.componen
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }],
+    },
+    AppGlobals],
   bootstrap: [AppComponent],
   entryComponents: [ForgotPasswordComponent, ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent]
 })

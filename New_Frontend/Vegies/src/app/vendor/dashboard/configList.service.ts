@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { AppGlobals } from '../../app.global';
 
 @Injectable({
     providedIn: 'root'
 })
 export class configList {
-    constructor(private http: HttpClient) { }
-    private _configProductURL = 'http://localhost:8080/api/configProduct/getList';
-    private _removeProductURL = 'http://localhost:8080/api/configProduct/removeList/';
-    private _addProductURL = 'http://localhost:8080/api/configProduct/addList/';
+    constructor(private http: HttpClient,private _global: AppGlobals) { }
+    private _configProductURL = this._global.baseAppUrl + 'configProduct/getList';
+    private _removeProductURL = this._global.baseAppUrl + 'configProduct/removeList/';
+    private _addProductURL = this._global.baseAppUrl + 'configProduct/addList/';
 
     getProductList() {
         return this.http.get(this._configProductURL)
