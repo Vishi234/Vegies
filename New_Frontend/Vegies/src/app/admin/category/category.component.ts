@@ -6,6 +6,7 @@ import {Router} from '@angular/router'
 
 import { BrowserModule }  from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material';
+import { AppGlobals } from '../../app.global';
 
 
 @Component({
@@ -15,8 +16,8 @@ import { MatButtonModule } from '@angular/material';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private _adminCategory: AdminCategoryService,private _router:Router,private http: HttpClient) { }
-
+  constructor(private _adminCategory: AdminCategoryService,private _router:Router,private http: HttpClient, private _global: AppGlobals) { }
+  baseUrl=this._global.baseAppUrl;
   categoryData = new categoryFields(0, '', '', 1);
   subCategoryData={};
   productData={};
