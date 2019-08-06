@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-
+@import "slider.scss";
 html,
 body {
   height: 100%;
@@ -36,34 +36,38 @@ ul li {
 }
 .navbar {
   min-height: 30px;
-  background-color: #24355c !important;
-  box-shadow: 0 0.46875rem 2.1875rem rgba(5, 5, 5, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
-    0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
-  position: fixed;
+  background-color: #fff !important;
+  box-shadow: none;
+  //position: fixed;
   z-index: 999;
-  top: 0px;
+  //top: 0px;
 }
-
+.navbar.navbar-dark .navbar-toggler {
+  background: #fb4137;
+  padding: 5px;
+}
 .navbar-brand {
-  padding: 0 15px;
+  padding: 0px 7px;
   height: 38px;
   line-height: 38px !important;
   text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 22px;
-    opacity: 0.8;
+  letter-spacing: 1px;
+  font-size: 22px;
+  color: #24272a !important;
+  font-weight: 700;
+  font-size: 24px;
 }
-
+.navbar-brand span {
+  color: #fb4137;
+  font-size: 40px;
+}
 .navbar-toggle {
   margin-top: 16px;
   padding: 9px 10px !important;
 }
-.navbar-nav > li:last-child > a {
-  background: #0d1e45;
-}
 //06122e
 .slider {
-  margin-top: 3%;
+  margin-top: 1%;
 }
 .slider .carousel-inner {
   max-height: 500px !important;
@@ -210,7 +214,8 @@ ul li {
   border-right-color: transparent;
 }
 .navbar-nav > li > a {
-  opacity: 0.8;
+  color: #24272a !important;
+  font-weight: 700;
 }
 @media (min-width: 992px) {
   .navbar-nav > li > a {
@@ -222,6 +227,15 @@ ul li {
   .navbar-nav > li > a {
     line-height: 24px !important;
     padding: 10px 15px !important;
+  }
+  .top-menu {
+    text-align: center!important;
+  }
+  .top-menu ul > li:nth-child(1) {
+    width: 100%;
+  }
+  .top-menu ul > li:nth-child(1) a i {
+    float: none!important;
   }
   .content-sec {
     padding-top: 20%;

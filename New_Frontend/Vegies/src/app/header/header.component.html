@@ -1,6 +1,33 @@
 <!--Navbar-->
-<mdb-navbar SideClass="container-fluid navbar navbar-expand-lg navbar-dark" [containerInside]="false">
-    <mdb-navbar-brand><a class="navbar-brand" href="#">Vegies</a></mdb-navbar-brand>
+<div class="top-menu">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="javascript:void(0)">
+                    <i class="fas fa-phone"></i>
+                    <span>Call Sales: +91 9650402952</span>
+                </a>
+            </li>
+            <li>
+                <a href="/login">
+                    Login
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    Help Center
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    Blog
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<mdb-navbar SideClass="container-fluid navbar navbar-expand-lg navbar-dark" [containerInside]="true">
+    <mdb-navbar-brand><a class="navbar-brand" href="#"><span>V</span>egies</a></mdb-navbar-brand>
     <links>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
@@ -13,10 +40,10 @@
                 <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-light" href="login/" mdbWavesEffect>Login/Register</a>
+                <a class="nav-link waves-light" mdbWavesEffect>Case Study</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>Request A Demo</a>
+                <a class="nav-link waves-light" mdbWavesEffect>The Company</a>
             </li>
         </ul>
     </links>
