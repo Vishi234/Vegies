@@ -24,7 +24,7 @@
             <h4>
                 Shipping Location
             </h4>
-            <p>A-155 D Chander Vihar Vikas Vihar Nilothi Extn New Delhi <a href="javascript:void(0)">Change Address<i
+            <p>{{uniqueAddress}} <a href="javascript:void(0)">Change Address<i
                         class="fas fa-pencil-alt"></i></a></p>
         </div>
         <div class="btn-group">
@@ -35,10 +35,12 @@
             <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
                 [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
                 <e-columns>
-                    <e-column field='OrderID' headerText='Product Name' textAlign='left' width=250></e-column>
-                    <e-column field='CustomerID' headerText='Quantity' textAlign='right' width=100></e-column>
-                    <e-column field='ShipCountry' headerText='Amount' textAlign='right' width=100></e-column>
-                    <e-column field='Freight' headerText='Action' textAlign="center" width=80>
+                    <e-column field='name' headerText='Product Name' textAlign='left' width=240></e-column>
+                    <e-column field='oldPrice' headerText='MRP' textAlign='right' width=80></e-column>
+                    <e-column field='discount' headerText='Discount' textAlign='right' width=120></e-column>
+                    <e-column field='Qnty' headerText='Quantity' textAlign='right' width=100></e-column>
+                    <e-column field='newPrice' headerText='Actual Price' textAlign='right' width=100></e-column>
+                    <e-column field='Delete' headerText='Action' textAlign="center" width=80>
                         <ng-template #template let-data>
                             <a href="javascript:void(0)" class="item-remove">
                                 <i class="fas fa-trash"></i>

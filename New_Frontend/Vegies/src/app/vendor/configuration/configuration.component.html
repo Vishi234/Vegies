@@ -15,7 +15,7 @@
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Add product in List</ng-template>
                     <mat-form-field>
-                        <mat-select placeholder="Select Category" formControlName="firstCtrl" [formControl]="toppings"
+                        <mat-select placeholder="Select Category" #select formControlName="firstCtrl" [formControl]="toppings"
                             multiple>
                             <mat-select-trigger>
                                 {{toppings.value ? toppings.value[0] : ''}}
@@ -24,8 +24,8 @@
                                     {{toppings.value?.length === 2 ? 'other' : 'others'}})
                                 </span>
                             </mat-select-trigger>
-                            <mat-option *ngFor="let subCatName of subCatList" (onSelectionChange)="change($event)"
-                                [value]="subCatName._id">{{subCatName.subCatName}}</mat-option>
+                            <mat-option *ngFor="let subCatName of subCatList"  (onSelectionChange)="change($event)"
+                                [value]="subCatName.subCatName">{{subCatName.subCatName}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <div id="container" class="owl-carousel">
@@ -45,7 +45,6 @@
                                 </div>
                                 <div class="item-content">
                                     <h2>{{item.name}}</h2>
-                                    <p>({{item.productAlias}})</p>
                                     <span class="unit">{{item.unit}}</span>
                                     <div class="price"><span class="op">{{item.oldPrice}}</span> {{item.newPrice}}</div>
                                     <hr />

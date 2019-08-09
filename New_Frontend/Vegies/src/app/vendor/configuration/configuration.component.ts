@@ -1,5 +1,5 @@
 ///<reference types="@types/googlemaps" />
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
@@ -29,21 +29,24 @@ export class ConfigurationComponent implements OnInit {
   public longitude: number = 7.809007;
   public selectedAddress: any;
   public currentLogged: any
+  public filterItems:any
   google: any;
   public subCatList: Array<any> = [];
   configList = {};
   userConfigList: any;
-
+  @ViewChild('select', {static: true}) select;
   constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard,private _global: AppGlobals) {
+    
     this._vendorDetails.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
           this.items.push({
-            "name": value.productName, "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
-            image: _global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1,"productAlias":value.productAlias
+            "name": value.productName +'('+ value.productAlias+')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+            image: _global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1,"productAlias":value.productAlias,"subCat":value.subCatName
           })
         }
       );
+      this.filterItems=this.items
     }, (error) => {
       console.log('error is ', error)
     });
@@ -76,10 +79,11 @@ export class ConfigurationComponent implements OnInit {
 
   getAddress(address: string) {
     this.selectedAddress = address;
+    console.log("gggggggggggggg",this.selectedPro)
     this.userConfigList = this.selectedPro.map(function (el) {
       var o = Object.assign({}, el);
       o.address = address,
-        o.userName = this.currentLogged.userName
+        o.userName = "JSS"
       return o;
     })
   }
@@ -132,12 +136,18 @@ export class ConfigurationComponent implements OnInit {
   }
 
   change(event) {
-    var getSelectProduct = this.items.filter(function (item) {
-      if (item.subCat == event.source.value) {
-        return true;
+    //console.log("event.source.value")
+    //console.log("hhhhh1hhhhhhhhh11",this.items.length)
+    var getSelectProduct = this.filterItems.filter( (item)=> {
+      if (item.subCat == event.source.value ) {
+        console.log("itemssssssssss",item)
+        //this.items.push(item)
+        return item;
       }
     });
-    this.items = getSelectProduct
+    console.log("daaaaaaaa",getSelectProduct.length)
+    this.items=getSelectProduct;
+    console.log("hhhhhhhhhhhhhh",this.items)
   }
 
   carouselOptions = {

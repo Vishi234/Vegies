@@ -83,6 +83,12 @@ module.exports = (function () {
         });
     });
 
+    app.get("/getOrderList", function (req, res) {
+        model.orderedCheckList.find().then(res1 => {
+            res.send(res1);
+        })
+    });
+
     return app;
 
 })();

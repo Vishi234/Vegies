@@ -48,7 +48,10 @@ export class ProductListComponent implements OnInit
       Object.entries(response).forEach(
         ([key, value]) => {
           console.log('this.productList',this.productList);
-          this.productList.push(value)
+          this.productList.push({
+            "name": value.productName +'('+ value.productAlias+')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+            image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1,"productAlias":value.productAlias,"subCat":value.subCatName
+          })
         }
       );
      }, (error) => {
