@@ -23,17 +23,17 @@
                 <div class="pro-filter">
                     <ul>
                         <li>
-                            <ejs-dropdownlist id='catList' #catList [dataSource]='catData' [value]='value' 
+                            <ejs-dropdownlist id='catList' #catList [dataSource]='catData' [value]='value' placeholder = 'Select Category'
                                 [fields]='catfields' (change)='onCategoryChange($event)' >
                             </ejs-dropdownlist>
                         </li>
                         <li>
-                            <ejs-dropdownlist id='existingPro' #existingPro [dataSource]='subCatData' [value]='value'
+                            <ejs-dropdownlist id='existingPro1' #existingPro1 [dataSource]='subCatData' [value]='value' placeholder = 'Select Sub Category'
                                 [fields]='subCatFields' (change)='onSubCatChange($event)'  >
                             </ejs-dropdownlist>
                         </li>
                         <li>
-                            <ejs-dropdownlist id='existingPro' #existingPro [dataSource]='productData' [value]='value'
+                            <ejs-dropdownlist id='existingPro' #existingPro [dataSource]='productData' [value]='value' placeholder = 'Select Product'
                                 [fields]='productFields' (change)='onProductChange($event)'>
                             </ejs-dropdownlist>
                         </li>
@@ -50,7 +50,7 @@
                     <div class="items" *ngFor="let productDetails of allProduct" >
                         <div class="item-top">
                             <span class="pull-left">
-                                <ejs-checkbox #checkbox [(ngModel)]="checked"></ejs-checkbox>
+                                <ejs-checkbox #checkbox [(ngModel)]="productDetails._id"></ejs-checkbox>
                             </span>
                             <span class="pull-right disLabel">
                                     {{productDetails.discount}} % Off

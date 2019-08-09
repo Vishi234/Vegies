@@ -34,6 +34,7 @@ export class ConfigurationComponent implements OnInit {
   public subCatList: Array<any> = [];
   configList = {};
   userConfigList: any;
+  filterSubCategory:Array<any> = [];
   @ViewChild('select', {static: true}) select;
   constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard,private _global: AppGlobals) {
     
@@ -136,18 +137,17 @@ export class ConfigurationComponent implements OnInit {
   }
 
   change(event) {
-    //console.log("event.source.value")
-    //console.log("hhhhh1hhhhhhhhh11",this.items.length)
+    console.log("hhhhh1hhhhhhhhh11",this.select)
     var getSelectProduct = this.filterItems.filter( (item)=> {
       if (item.subCat == event.source.value ) {
-        console.log("itemssssssssss",item)
-        //this.items.push(item)
+        this.filterSubCategory.push(item)
         return item;
       }
     });
-    console.log("daaaaaaaa",getSelectProduct.length)
-    this.items=getSelectProduct;
-    console.log("hhhhhhhhhhhhhh",this.items)
+    // console.log("daaaaaaaata",this.filterSubCategory)
+    // console.log("daaaaaaaata11",[...new Set(this.filterSubCategory)])
+    this.items=[...new Set(this.filterSubCategory)];
+    //console.log("hhhhhhhhhhhhhh",this.items)
   }
 
   carouselOptions = {

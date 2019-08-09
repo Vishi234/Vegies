@@ -21,8 +21,7 @@ export class ProductListComponent implements OnInit
    // debugger;
     this._categoryList.GetCategoryList().subscribe((response) => 
     {
-     // debugger;
-      this.catList.push({_id: '0', catName: 'Select Category'})
+     // debugger
       Object.entries(response).forEach(
         ([key, value]) =>
          {
@@ -65,7 +64,6 @@ export class ProductListComponent implements OnInit
   @ViewChild('proList', { static: true })
   public proObj: AutoCompleteComponent;
   // define the JSON of data
-
   public catData: Object[] = this.catList;
   public subCatData: Object[] = this.subCatList;
   public productData: Object[] = this.productList;
@@ -74,23 +72,22 @@ export class ProductListComponent implements OnInit
   // maps the appropriate column to fields property
   public catfields: Object = { text: 'catName', value: '_id' };
   public subCatFields: Object = { text: 'subCatName', value: '_id' };
-  public productFields: Object = { text: 'productName', value: '_id' };
+  public productFields: Object = { text: 'name', value: '_id' };
   public value: string = '0';
 //  public text: string = 'Select Category';
 
 onCategoryChange(event)
 {
-
   var getSelectedSubCat = this.subCatData.filter(function (item) 
   {
    // if (item._id == event.itemData._id) {  return true; }
   });
   this.subCatData=getSelectedSubCat;
  
-  this.allProduct=this.allProduct.filter(function (item) 
-  {
-   // if (item._id == event.itemData._id) {  return true; }
-  });
+  // this.allProduct=this.allProduct.filter(function (item) 
+  // {
+  //  // if (item._id == event.itemData._id) {  return true; }
+  // });
 
 }
 onSubCatChange(event)

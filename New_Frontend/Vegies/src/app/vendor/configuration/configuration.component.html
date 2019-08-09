@@ -15,7 +15,7 @@
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Add product in List</ng-template>
                     <mat-form-field>
-                        <mat-select placeholder="Select Category" #select formControlName="firstCtrl" [formControl]="toppings"
+                        <mat-select placeholder="Select Category" #select formControlName="firstCtrl"   [formControl]="toppings"
                             multiple>
                             <mat-select-trigger>
                                 {{toppings.value ? toppings.value[0] : ''}}
@@ -24,7 +24,7 @@
                                     {{toppings.value?.length === 2 ? 'other' : 'others'}})
                                 </span>
                             </mat-select-trigger>
-                            <mat-option *ngFor="let subCatName of subCatList"  (onSelectionChange)="change($event)"
+                            <mat-option  *ngFor="let subCatName of subCatList" (onSelectionChange)="change($event)" 
                                 [value]="subCatName.subCatName">{{subCatName.subCatName}}</mat-option>
                         </mat-select>
                     </mat-form-field>
