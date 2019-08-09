@@ -1,20 +1,6 @@
-[
 { 
-    "_id" : ObjectId("5d458a0a74015d5e08e98667"), 
-    "name" : "Broccoli", 
-    "oldPrice" : "110", 
-    "newPrice" : "107.8", 
-    "id" : "5d457e4ce69e144060a98fba", 
-    "image" : "http://localhost:8080/Broccoli.jpg", 
-    "discount" : "2", 
-    "unitMeasure" : "KG", 
-    "Qnty" : NumberInt(1), 
-    "address" : "Infiniti Mall, New Link Road, Phase D, Oshiwara, Andheri West, Mumbai, Maharashtra, India", 
-    "userName" : "JSS"
-},
-{ 
-    "_id" : ObjectId("5d46ac3642b36c2536f3a7e4"), 
-    "name" : "Asparagus", 
+    "_id" : ObjectId("5d4b0e5c5575fe94a8eb6a14"), 
+    "name" : "Asparagus(Satawar)", 
     "oldPrice" : "400", 
     "newPrice" : "392", 
     "id" : "5d457813e69e144060a98fb2", 
@@ -22,12 +8,14 @@
     "discount" : "2", 
     "unitMeasure" : "KG", 
     "Qnty" : NumberInt(1), 
-    "address" : "Infiniti Mall, New Link Road, Phase D, Oshiwara, Andheri West, Mumbai, Maharashtra, India", 
+    "productAlias" : "Satawar", 
+    "subCat" : "Exotic Vegetables", 
+    "address" : "Infosys Gate 1, 1st Main Road, Electronics City Phase 1, Electronic City, Bengaluru, Karnataka, India", 
     "userName" : "JSS"
-},
+}
 { 
-    "_id" : ObjectId("5d46ac3642b36c2536f3a7e5"), 
-    "name" : "Cabbage Red", 
+    "_id" : ObjectId("5d4b0e5c5575fe94a8eb6a15"), 
+    "name" : "Cabbage Red(Lal Patta Gobhi)", 
     "oldPrice" : "35", 
     "newPrice" : "34.3", 
     "id" : "5d457d90e69e144060a98fb8", 
@@ -35,12 +23,14 @@
     "discount" : "2", 
     "unitMeasure" : "KG", 
     "Qnty" : NumberInt(1), 
-    "address" : "Infiniti Mall, New Link Road, Phase D, Oshiwara, Andheri West, Mumbai, Maharashtra, India", 
+    "productAlias" : "Lal Patta Gobhi", 
+    "subCat" : "Exotic Vegetables", 
+    "address" : "Infosys Gate 1, 1st Main Road, Electronics City Phase 1, Electronic City, Bengaluru, Karnataka, India", 
     "userName" : "JSS"
-},
+}
 { 
-    "_id" : ObjectId("5d46ac3642b36c2536f3a7e6"), 
-    "name" : "Chinese Cabbage", 
+    "_id" : ObjectId("5d4b0fa75575fe94a8eb6a18"), 
+    "name" : "Chinese Cabbage(Chinese Patta Gobhi)", 
     "oldPrice" : "25", 
     "newPrice" : "24.5", 
     "id" : "5d457ddbe69e144060a98fb9", 
@@ -48,7 +38,38 @@
     "discount" : "2", 
     "unitMeasure" : "KG", 
     "Qnty" : NumberInt(1), 
-    "address" : "Infiniti Mall, New Link Road, Phase D, Oshiwara, Andheri West, Mumbai, Maharashtra, India", 
+    "productAlias" : "Chinese Patta Gobhi", 
+    "subCat" : "Exotic Vegetables", 
+    "address" : "Inverness, UK", 
     "userName" : "JSS"
 }
-]
+{ 
+    "_id" : ObjectId("5d4b0fa75575fe94a8eb6a19"), 
+    "name" : "Broccoli(Broccoli)", 
+    "oldPrice" : "110", 
+    "newPrice" : "107.8", 
+    "id" : "5d457e4ce69e144060a98fba", 
+    "image" : "http://localhost:8080/Broccoli.jpg", 
+    "discount" : "2", 
+    "unitMeasure" : "KG", 
+    "Qnty" : NumberInt(1), 
+    "productAlias" : "Broccoli", 
+    "subCat" : "Exotic Vegetables", 
+    "address" : "Inverness, UK", 
+    "userName" : "JSS"
+}
+{ 
+    "_id" : ObjectId("5d4b0fa75575fe94a8eb6a1a"), 
+    "name" : "Onion(Pyaj)", 
+    "oldPrice" : "20", 
+    "newPrice" : "19.8", 
+    "id" : "5d457e8fe69e144060a98fbb", 
+    "image" : "http://localhost:8080/Pyaj.jpg", 
+    "discount" : "1", 
+    "unitMeasure" : "KG", 
+    "Qnty" : NumberInt(1), 
+    "productAlias" : "Pyaj", 
+    "subCat" : "Fresh Vegetables", 
+    "address" : "Inverness, UK", 
+    "userName" : "JSS"
+}
