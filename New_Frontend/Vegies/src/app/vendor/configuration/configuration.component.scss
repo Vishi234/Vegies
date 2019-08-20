@@ -110,23 +110,23 @@
 .ng2-carouselamos {
   display: -webkit-box !important;
 }
-.item-content .mat-button-toggle-group {
+.item-button .mat-button-toggle-group {
   width: 100%;
   margin-top: 10px;
   font-family: inherit;
 }
-.item-content .mat-button-toggle {
+.item-button .mat-button-toggle {
   width: 100%;
   color: #fff;
   font-family: inherit;
   font-size: 13px;
   background: #283442;
 }
-.item-content .mat-button-toggle-button {
+.item-button .mat-button-toggle-button {
   width: 100%;
   font-family: inherit;
 }
-.item-content .mat-button-toggle-checked {
+.item-button .mat-button-toggle-checked {
   background-color: #4caf50 !important;
 }
 label {
@@ -140,11 +140,11 @@ label {
 }
 .owl-carousel .items {
   max-width: 200px;
-    margin-right: 33px;
-    padding: 10px;
-    border: solid 1px #dee2e6;
-    border-radius: 4px;
-    transition: all 0.4s ease-in-out;
+  margin-right: 33px;
+  padding: 10px;
+  border: solid 1px #dee2e6;
+  border-radius: 4px;
+  transition: all 0.4s ease-in-out;
 }
 .owl-carousel .items:hover {
   box-shadow: 0px 7px 21px 0 rgba(23, 84, 116, 0.18);
@@ -181,19 +181,19 @@ label {
   height: 150px;
   width: 150px;
 }
-.item-img img
-{
+.item-img img {
   height: 100%;
   width: 100%;
 }
 .item-content {
   padding: 5px;
+  height: 60px;
 }
 .item-content h2 {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #000;
+  height: 35px;
 }
 .item-content .unit {
   font-weight: 600;
@@ -202,14 +202,17 @@ label {
   display: block;
 }
 .item-content .price {
-  font-size: 12px;
+  font-size: 13px;
   color: #000;
   font-weight: 600;
 }
 .price .op {
-  font-size: 10px;
-  text-decoration: line-through;
+  font-size: 11px;
+  margin-right: 2px;
   color: #666;
+}
+.price .op u {
+  text-decoration: line-through;
 }
 .carousel-control-prev,
 .carousel-control-next {
@@ -226,16 +229,49 @@ label {
 agm-map {
   height: 300px;
 }
+.hdr
+{
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+  background: #eee;
+  padding: 10px;
+  border-radius: 4px;
+}
+.adr
+{
+  display: block;
+  float: left;
+  width: 100%;
+  text-align: right;
+}
+.adr p
+{
+  float: right;
+  margin-left: 8px;
+}
+.ship-pro
+{
+  margin-bottom: 10px;
+}
 .ship-pro > ul > li {
   display: inline-block;
   margin-right: 10px;
 }
 .ship-pro > ul > li > a {
   display: block;
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
   border: 4px solid #eee;
   border-radius: 4px;
+  padding: 10px;
+  transition: all 0.4s ease-in-out;
+}
+.ship-pro > ul > li > a:hover {
+  transform: scale(1.1);
+}
+.ship-pro > ul > li > a img {
+  width: 100%;
 }
 @media (max-width: 768px) {
   .modalbase {
@@ -259,7 +295,7 @@ agm-map {
     min-width: 0px;
   }
   .btn-group {
-    padding:10px 0px;
+    padding: 10px 0px;
   }
   .btn-group .btn {
     padding: 5px 10px;
@@ -274,10 +310,9 @@ agm-map {
   .item-img {
     height: 100px;
     width: 100px;
-}
-.owl-carousel .items
-{
-  padding: 0px;
-  border: none;
-}
+  }
+  .owl-carousel .items {
+    padding: 0px;
+    border: none;
+  }
 }

@@ -46,9 +46,11 @@
                                 <div class="item-content">
                                     <h2>{{item.name}}</h2>
                                     <span class="unit">{{item.unit}}</span>
-                                    <div class="price"><span class="op">{{item.oldPrice}}</span> {{item.newPrice}}</div>
-                                    <hr />
-
+                                    <div class="price">
+                                        <span class="op">MRP:<u>{{item.oldPrice}}</u></span>
+                                         <b>Rs.{{item.newPrice}}</b></div>
+                                </div>
+                                <div class="item-button">
                                     <mat-button-toggle-group multiple="true" appearance="legacy"
                                         (change)="onValChange(item.id,$event.value)" name="fontStyle"
                                         aria-label="Font Style">
@@ -101,13 +103,13 @@
                 <!-- //<form [formGroup]="thirdFormGroup"> -->
                 <ng-template matStepLabel>Choose you location</ng-template>
                 <div class="ship-add">
-                    <span>My product list are mention below</span>
+                    <span class="hdr">My product list are mention below</span>
                     <div class="ship-pro">
                         <ul>
-                            <li *ngFor="let student of selectedPro"><img [src]="student.image" />
+                            <li *ngFor="let student of selectedPro"><a href="javascript:void(0)"><img [src]="student.image" /></a>
                         </ul>
                     </div>
-                    <span>Shipping location are : <p> {{selectedAddress}}</p></span>
+                    <span class="adr">Ship my product to <p>{{selectedAddress}}</p></span>
                 </div>
                 <div class="btn-group">
                     <button mat-button matStepperPrevious class="btn btn-danger">Back</button>
