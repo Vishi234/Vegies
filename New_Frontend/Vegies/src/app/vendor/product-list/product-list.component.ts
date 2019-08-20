@@ -113,21 +113,22 @@ onProductChange(event)
 
 }
   // define the JSON of data
-  public proNameData: Object[] = [
-    { key: 'Game1', value: 'American Football' },
-    { key: 'Game2', value: 'Badminton' },
-    { key: 'Game3', value: 'Basketball' },
-    { key: 'Game4', value: 'Cricket' },
-    { key: 'Game5', value: 'Football' },
-    { key: 'Game6', value: 'Golf' },
-    { key: 'Game7', value: 'Hockey' },
-    { key: 'Game8', value: 'Rugby' },
-    { key: 'Game9', value: 'Snooker' },
-    { key: 'Game10', value: 'Tennis' }
-  ];
+  public proNameData: Object[] =this.productList;
+  //  [
+  //   { key: 'Game1', value: 'American Football' },
+  //   { key: 'Game2', value: 'Badminton' },
+  //   { key: 'Game3', value: 'Basketball' },
+  //   { key: 'Game4', value: 'Cricket' },
+  //   { key: 'Game5', value: 'Football' },
+  //   { key: 'Game6', value: 'Golf' },
+  //   { key: 'Game7', value: 'Hockey' },
+  //   { key: 'Game8', value: 'Rugby' },
+  //   { key: 'Game9', value: 'Snooker' },
+  //   { key: 'Game10', value: 'Tennis' }
+  // ];
   // maps the appropriate column to fields property
-  public profields: Object = { value: 'value' };
-  public proWaterMark: string = 'Start typing...';
+  public profields: Object = { value: 'name' };
+  public proWaterMark: string = 'Start typing to find product...';
   public onProChange(args: any): void {
     let valueEle: HTMLInputElement = document.getElementsByClassName('e-input')[0] as HTMLInputElement;
     // make empty the input value when typed characters is 'null' in input element

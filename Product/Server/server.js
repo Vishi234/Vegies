@@ -4,40 +4,48 @@ var app = express();
 const jwt=require('jsonwebtoken');
 
 app.use(express.static('uploads'));
-// app.use(session({
-//     secret:'hgdg576esjhsd2236289hcskcb93e',
-//     saveUninitialized:true,
-//     resave:false,
-// cookie:{secure:false}
-// }))
-
+var passport=require('passport')
+var session=require('express-session');
 app.use(bodyParser.json()); 
+var cors=require('cors');
+
+//CORS Middleware
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 var dbConfig=require("./config/dbConfig");
 var vendor=require('./routes/vendor/vendorServer')
 var adminCategory = require('./routes/adminCategory/adminCategory');
 var configProduct=require('./routes/configProduct/configProduct')
-
-//CORS Middleware
-app.use(function (req, res, next) {
-    //Enabling CORS 
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType,Content-Type, Accept, Authorization");
-    next();
-});
-console.log("portttttt",dbConfig.app.port);
-//Setting up server
- var server = app.listen(process.env.PORT || dbConfig.app.port, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
- });
-
+// app.use(cors({
+//     origin:['http://localhost:4200'],
+//     credentials:true
+// }))
 app.use('/api/admin', adminCategory);
 app.use('/api/configProduct', configProduct);
+
+app.use(session({
+    name:'hello',
+    resave:false,
+    saveUninitialized:false,
+    secret:'secret',
+    cookie:{
+        maxAge:36000000,
+        httpOnly:false,
+        secure:false
+    }
+}))
+require('./config/paaport-config')
+app.use(passport.initialize());
+app.use(passport.session());
 
 //const session=require('express-session')
 //app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: true}));
 //app.use(session({secret: 'keyboard cat', resave: true, saveUninitialized: true,cookie: { path: '/', httpOnly: true, maxAge: 30 * 30000 },rolling: true}));
-app.use('/api/vendor', vendor,);
+app.use('/api/vendor', vendor);
+
+//Setting up server
+var server = app.listen(process.env.PORT || dbConfig.app.port, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+ });
 
 

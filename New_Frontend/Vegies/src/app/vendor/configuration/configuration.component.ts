@@ -8,6 +8,7 @@ import { AdminCategoryService } from '../../admin/category/admin-category.servic
 import { LoginService } from '../../login/login.service'
 import { configurationwizard } from './configurationwizard.service'
 import { AppGlobals } from '../../app.global';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-configuration',
@@ -36,8 +37,14 @@ export class ConfigurationComponent implements OnInit {
   userConfigList: any;
   filterSubCategory:Array<any> = [];
   @ViewChild('select', {static: true}) select;
-  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard,private _global: AppGlobals) {
+  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router:Router,private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard,private _global: AppGlobals) {
     
+    this._login.user()
+    .subscribe(
+      data=>this.currentLogged=data
+      //error=>this.router.navigate(['/login'])
+    )
+
     this._vendorDetails.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
@@ -52,8 +59,8 @@ export class ConfigurationComponent implements OnInit {
       console.log('error is ', error)
     });
 
-    this.currentLogged = this._login.currentUserValue();
-    console.log("this.currentLogged", this.currentLogged.userName)
+    // this.currentLogged = this._login.extractData(res:any);
+    // console.log("this.currentLogged", this.currentLogged.userName)
   }
 
   inreaseHeight() {
@@ -84,7 +91,7 @@ export class ConfigurationComponent implements OnInit {
     this.userConfigList = this.selectedPro.map(function (el) {
       var o = Object.assign({}, el);
       o.address = address,
-        o.userName = "JSS"
+        o.userName = this.currentLogged.fullName
       return o;
     })
   }
