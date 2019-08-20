@@ -54,8 +54,13 @@
   height: 100%;
 }
 .item-content h2 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
+  height: 35px;
+}
+.item-content {
+  padding: 5px;
+  height: 60px;
 }
 .unit {
   float: left;
