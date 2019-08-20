@@ -217,6 +217,10 @@ ul li {
   color: #fff !important;
   font-weight: 700;
 }
+.mat-stepper-horizontal, .mat-stepper-vertical
+{
+  font-family: inherit;
+}
 @media (min-width: 992px) {
   .navbar-nav > li > a {
     line-height: 16px !important;
@@ -266,6 +270,10 @@ ul li {
   }
   .item-content hr {
     margin: 0px;
+  }
+  .controls
+  {
+    top: 30%;
   }
   .controls img {
     height: 30px;
