@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler ,HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,33 +10,68 @@ import { AppGlobals } from '../app.global';
 })
 export class LoginService {
   private currentUserSubject: BehaviorSubject<any>;
+  public userDetails:any;
   public currentUser: Observable<any>;
   constructor(private http: HttpClient, private router: Router, private _global: AppGlobals) {
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('token')));
-    this.currentUser = this.currentUserSubject.asObservable();
+    //  this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('token')));
+    //  this.currentUser = this.currentUserSubject.asObservable();
   }
-  private _vendorLogin = this._global.baseAppUrl + 'vendor/login';
-  vendorLogin(user: any) {
-    return this.http.post<any>(this._vendorLogin, user).pipe(map(userName => {
-      if (userName && userName.token) {
-        localStorage.setItem('token', JSON.stringify(userName));
-        this.currentUserSubject.next(userName);
-      }
-      return userName;
-    }));
+  private _vendorLogin = this._global.baseAppUrl + 'vendor/auth';
+  private _vendorLogout = this._global.baseAppUrl + 'vendor/logout';
+  private _vendorName= this._global.baseAppUrl + 'vendor/user'
+
+  public extractData(res: Response) {
+    this.userDetails = res;
+    console.log("bodybody",this.userDetails);
+    return this.userDetails || { };
   }
+ 
+  vendorLogin(body: any) {
+    console.log("urllllllllllllll",this._vendorLogin);
+    return this.http.post<any>(this._vendorLogin, body,{
+      observe:'body',
+      withCredentials:true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
+  // vendorLogin(user: any) {
+  //   return this.http.post<any>(this._vendorLogin, user).pipe(map(userName => {
+  //     if (userName && userName.token) {
+  //       localStorage.setItem('token', JSON.stringify(userName));
+  //       this.currentUserSubject.next(userName);
+  //     }
+  //     return userName;
+  //   }));
+  // }
   currentUserValue() {
-    return this.currentUserSubject.value;
+    console.log("userDetails",this.userDetails)
+    return this.userDetails;
   }
 
   loggedIn() {
     return !!localStorage.getItem('token');
   }
   logoutUser() {
-    localStorage.removeItem('token');
-    this.router.navigate(["/"]);
+    return this.http.get<any>(this._vendorLogout,{
+      observe:'body',
+      withCredentials:true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
   }
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  user(){
+    return this.http.get(this._vendorName,{
+      observe:'body',
+      withCredentials:true,
+      headers:new HttpHeaders().append('Content-Type','application/json')
+    }).pipe(
+      map(this.extractData));
   }
 }

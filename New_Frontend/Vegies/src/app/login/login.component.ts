@@ -10,7 +10,8 @@ import {LoginService} from './login.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(public dialog: MatDialog,private router:Router,private _login: LoginService) { }
+  constructor(public dialog: MatDialog,private router:Router,private _login: LoginService) {
+   }
   loginUser={}
 
   visitorSignin(){
@@ -18,12 +19,13 @@ export class LoginComponent implements OnInit {
     this._login.vendorLogin(this.loginUser)
     .subscribe(
       res=>{
-        //localStorage.setItem('token',res.token)
+        console.log("fffffffffffffffff",res);
         this.router.navigate(['/dashboard']);
       },
-      err=>console.error(err)
+      err=>console.error("eeeeeeeeee",err)
     )
   }
+
 
 
   showModal() {

@@ -1,6 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import {LoginService} from '../../login/login.service'
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-container',
@@ -13,7 +14,6 @@ export class VendorContainerComponent implements OnDestroy {
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
   currentUser: any;
-  currentUserSubscription: any;
 
   fillerContent = Array.from({ length: 50 }, () =>
     `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -23,16 +23,31 @@ export class VendorContainerComponent implements OnDestroy {
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
   private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private _login:LoginService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private _login:LoginService,private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this.currentUserSubscription = this._login.currentUser.subscribe(user => {
-      this.currentUser = user;
-  });
+  this._login.user()
+    .subscribe(
+      data=>this.currentUser = data,
+      error=>this.router.navigate(['/login'])
+    )
+  }
+  addName(data){
+    this.currentUser = data.username;
+    console.log("data username",this.currentUser)
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+
+  logout(){
+    this._login.logoutUser()
+    .subscribe(
+      data=>{console.log(data);this.router.navigate(['/login'])},
+      error=>console.error(error)
+    )
+  }
+
+
 }

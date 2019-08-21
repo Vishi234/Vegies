@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt=require('bcrypt');
 var Schema = mongoose.Schema
 , ObjectId = Schema.ObjectId;
 var loginSchema = new Schema({
@@ -17,7 +18,14 @@ var loginSchema = new Schema({
         mailVerify: {type: String},
         mobleVerify: {type: String},
         loginAttemp: {type: Number},
+        creationDate:{type: Date}
         })
+        registerSchema.statics.hashPassword=function hashPassword(password){
+            return bcrypt.hashSync(password,10)
+        }
+        registerSchema.methods.isValid=function(hashedpassword){
+            return bcrypt.compareSync(hashedpassword,this.password)
+        }
         var register = mongoose.model('register', registerSchema);
 
         var configProductSchema = new Schema({
