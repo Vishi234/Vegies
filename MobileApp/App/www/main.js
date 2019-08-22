@@ -1006,8 +1006,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppGlobals = /** @class */ (function () {
     function AppGlobals() {
-        this.baseAppUrl = "http://localhost:8080/api/";
-        this.baseImgUrl = "http://localhost:8080/";
+        this.baseAppUrl = "http://192.168.43.153:8080/api/";
+        this.baseImgUrl = "http://192.168.43.153:8080/";
         // readonly baseAPIUrl: string = 'https://api.github.com/';
     }
     AppGlobals = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
