@@ -247,9 +247,45 @@ input:-webkit-autofill {
   }
 }
 @media (max-width: 768px) {
+  .cdk-global-overlay-wrapper {
+    align-items: baseline !important;
+    top: 5%;
+  }
+  .chart-values {
+    padding-bottom: 15px;
+  }
+  .cdk-overlay-pane {
+    max-width: 90vw !important;
+    left: 50px;
+    transform: none !important;
+    min-width: 0px !important;
+  }
+  .mat-select-panel:not([class*="mat-elevation-z"]) {
+    font-size: 11px !important;
+  }
+  .mat-pseudo-checkbox {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .mat-pseudo-checkbox-checked::after {
+    top: 1.4px !important;
+    left: 1px !important;
+    width: 7px !important;
+    height: 1px !important;
+  }
+  .mat-select-panel {
+    max-height: 155px !important;
+  }
+  .mat-form-field {
+    font-size: 11px;
+  }
+
+  .item-button .mat-button-toggle-label-content {
+    line-height: 30px;
+  }
   .owl-carousel .owl-item {
-    width: 145px !important;
-    margin-right: 15px;
+    width: 120px !important;
+    margin-right: 35px;
   }
   .navbar {
     min-height: 45px;

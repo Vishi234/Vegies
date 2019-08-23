@@ -8,6 +8,7 @@
         </span>
     </div>
     <div class="panel-filter">
+        <input class="e-input" name='input' type="text" placeholder="Start typing here......." />
         <!-- <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
             [endDate]='end'>
         </ejs-daterangepicker> -->
@@ -17,7 +18,7 @@
     <div class="row clearfix">
         <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12">
             <div class="row">
-                <div class="filterhdr">
+                <!-- <div class="filterhdr">
                     <h3>Filter</h3>
                 </div>
                 <div class="pro-filter">
@@ -43,21 +44,21 @@
                             </ejs-autocomplete>
                         </li>
                     </ul>
-                </div>
-                <div class="content-ttl">
+                </div> -->
+                <div class="content-ttl pro-base">
 
-                 
-                    <div class="items" *ngFor="let productDetails of allProduct" >
+
+                    <div class="items" *ngFor="let productDetails of allProduct">
                         <div class="item-top">
                             <span class="pull-left">
                                 <ejs-checkbox #checkbox [(ngModel)]="productDetails._id"></ejs-checkbox>
                             </span>
                             <span class="pull-right disLabel">
-                                    {{productDetails.discount}} % Off
+                                {{productDetails.discount}} % Off
                             </span>
                         </div>
                         <div class="item-img">
-                          <img src= "{{productDetails.image}}" />
+                            <img src="{{productDetails.image}}" />
                         </div>
                         <div class="item-content">
                             <h2>{{productDetails.name}}</h2>
@@ -65,13 +66,22 @@
                             <span class="price">
                                 MRP:<u>Rs {{productDetails.oldPrice}}</u> <b>Rs {{productDetails.newPrice}}</b>
                             </span>
-                            </div>
-                        </div>
-
-
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
-    
+    </div>
+</div>
+<div class="fixed-action">
+    <div class="pull-left">
+        <span>
+            <a class="btn btn-primary" href="javascript:void(0)">Add to Basket</a>
+        </span>
+    </div>
+    <div class="pull-right selected">
+        <span>0 Product Selected</span>
+    </div>
+</div>

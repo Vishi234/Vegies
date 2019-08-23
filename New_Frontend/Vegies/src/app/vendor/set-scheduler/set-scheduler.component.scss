@@ -81,3 +81,26 @@
 .btn-group .btn:last-child {
   margin-right: 0px;
 }
+@media (max-width: 767px) {
+  .modalbase {
+    width: 324px;
+  }
+  .schedule-date .e-datepicker {
+    width: 100%;
+    margin-right: 0px !important;
+  }
+  .shiploc {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .shiploc a {
+    display: block;
+  }
+  .schgrid {
+    display: contents;
+  }
+  .btn-group {
+    margin-top: 20px;
+  }
+}
