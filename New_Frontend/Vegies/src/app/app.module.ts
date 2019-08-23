@@ -44,6 +44,7 @@ import { AdminCategoryComponent } from './admin/admin-category/admin-category.co
 import { NewCategoryComponent } from './admin/new-category/new-category.component';
 import { AppGlobals } from './app.global';
 import { OwlModule } from 'ngx-owl-carousel';
+import { ChangePasswordComponent } from './vendor/change-password/change-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { OwlModule } from 'ngx-owl-carousel';
     AdminDashboardComponent,
     AdminLoginComponent,
     AdminCategoryComponent,
-    NewCategoryComponent
+    NewCategoryComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -114,6 +116,6 @@ import { OwlModule } from 'ngx-owl-carousel';
     },
     AppGlobals],
   bootstrap: [AppComponent],
-  entryComponents: [ForgotPasswordComponent, ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent]
+  entryComponents: [ForgotPasswordComponent,ChangePasswordComponent, ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent]
 })
 export class AppModule { }

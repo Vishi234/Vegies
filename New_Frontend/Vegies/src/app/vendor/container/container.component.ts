@@ -1,7 +1,9 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import {LoginService} from '../../login/login.service'
-import {Router} from '@angular/router'
+import { LoginService } from '../../login/login.service'
+import { Router } from '@angular/router'
+import { MatDialog } from '@angular/material';
+import { ChangePasswordComponent } from '../change-password/change-password.component'
 
 @Component({
   selector: 'app-container',
@@ -23,30 +25,34 @@ export class VendorContainerComponent implements OnDestroy {
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
   private _mobileQueryListener: () => void;
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private _login:LoginService,private router:Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher, private _login: LoginService, private router: Router, public dialog: MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-  this._login.user()
-    .subscribe(
-      data=>this.currentUser = data,
-      error=>this.router.navigate(['/login'])
-    )
+    this._login.user()
+      .subscribe(
+        data => this.currentUser = data,
+        error => this.router.navigate(['/login'])
+      )
   }
-  addName(data){
+  openChangeModal() {
+    this.dialog.open(ChangePasswordComponent, { disableClose: true });
+  }
+  addName(data) {
     this.currentUser = data.username;
-    console.log("data username",this.currentUser)
+    console.log("data username", this.currentUser)
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  logout(){
+  logout() {
     this._login.logoutUser()
-    .subscribe(
-      data=>{console.log(data);this.router.navigate(['/login'])},
-      error=>console.error(error)
-    )
+      .subscribe(
+        data => { console.log(data); this.router.navigate(['/login']) },
+        error => console.error(error)
+      )
   }
 
 
