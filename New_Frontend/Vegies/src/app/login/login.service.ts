@@ -27,12 +27,11 @@ export class LoginService {
   }
  
   vendorLogin(body: any) {
-    console.log("urllllllllllllll",this._vendorLogin);
     return this.http.post<any>(this._vendorLogin, body,{
       observe:'body',
       withCredentials:true,
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       })
     })
   }

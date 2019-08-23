@@ -106,7 +106,14 @@
   height: 50% !important;
   transition: all 0.4s ease-in-out;
 }
-
+.owl-carousel
+{
+  display: block;
+}
+.owl-stage-outer
+{
+  overflow: visible;
+}
 .ng2-carouselamos {
   display: -webkit-box !important;
 }
@@ -139,17 +146,12 @@ label {
   background: #fff;
 }
 .owl-carousel .items {
-  max-width: 200px;
-  margin-right: 33px;
   padding: 10px;
   border: solid 1px #dee2e6;
   border-radius: 4px;
   transition: all 0.4s ease-in-out;
 }
-.owl-carousel .items:hover {
-  box-shadow: 0px 7px 21px 0 rgba(23, 84, 116, 0.18);
-  border: solid 1px #dee2e6;
-}
+
 .owl-carousel .prev-slide {
   background: url(../../../assets/nav-icon.png) no-repeat scroll 0 0;
   left: -33px;
@@ -229,8 +231,7 @@ label {
 agm-map {
   height: 300px;
 }
-.hdr
-{
+.hdr {
   font-weight: 600;
   margin-bottom: 10px;
   display: block;
@@ -238,20 +239,17 @@ agm-map {
   padding: 10px;
   border-radius: 4px;
 }
-.adr
-{
+.adr {
   display: block;
   float: left;
   width: 100%;
   text-align: right;
 }
-.adr p
-{
+.adr p {
   float: right;
   margin-left: 8px;
 }
-.ship-pro
-{
+.ship-pro {
   margin-bottom: 10px;
 }
 .ship-pro > ul > li {
@@ -274,6 +272,21 @@ agm-map {
   width: 100%;
 }
 @media (max-width: 768px) {
+
+  .item-content {
+    height: 40px;
+  }
+  .item-button {
+    margin-top: 15px;
+  }
+  .item-button .mat-button-toggle-label-content {
+    line-height: 33px;
+  }
+  .item-content h2 {
+    height: 37px;
+    overflow: hidden;
+    margin-bottom: 0px;
+  }
   .modalbase {
     width: auto;
   }
@@ -286,9 +299,7 @@ agm-map {
     height: 350px;
   }
 
-  .controls {
-    top: 30% !important;
-  }
+  
   .item-img img {
     height: 80px;
     width: 80px;
@@ -303,13 +314,14 @@ agm-map {
   .mat-form-field {
     width: 100%;
   }
-  .agm-map {
-    height: 200px;
-    margin-bottom: 25px;
+  agm-map {
+    height: 225px;
   }
   .item-img {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
+    display: block;
+    margin: 0 auto;
   }
   .owl-carousel .items {
     padding: 0px;

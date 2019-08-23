@@ -13,7 +13,7 @@ const config = {
     port: 8080
   },
   db: {
-    host: '192.168.43.153',
+    host: '192.168.0.102',
     port: 27017,
     name: 'vegies'
   }
