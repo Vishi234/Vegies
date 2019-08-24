@@ -43,9 +43,9 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { NewCategoryComponent } from './admin/new-category/new-category.component';
 import { AppGlobals } from './app.global';
-import {ToastrModule} from 'ngx-toastr'
-
-
+import {ToastrModule} from 'ngx-toastr';
+import { OwlModule } from 'ngx-owl-carousel';
+import { ChangePasswordComponent } from './vendor/change-password/change-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +66,8 @@ import {ToastrModule} from 'ngx-toastr'
     AdminDashboardComponent,
     AdminLoginComponent,
     AdminCategoryComponent,
-    NewCategoryComponent
+    NewCategoryComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -111,6 +112,7 @@ import {ToastrModule} from 'ngx-toastr'
       positionClass:'toast-top-right',
       preventDuplicates:true
     })
+    OwlModule
   ],
   providers: [PageService, SortService, FilterService, GroupService, AuthGuard, FreezeService, SelectionService,
     {
@@ -120,6 +122,6 @@ import {ToastrModule} from 'ngx-toastr'
     },
     AppGlobals],
   bootstrap: [AppComponent],
-  entryComponents: [ForgotPasswordComponent, ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent]
+  entryComponents: [ForgotPasswordComponent,ChangePasswordComponent, ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent]
 })
 export class AppModule { }

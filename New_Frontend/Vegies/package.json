@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -40,6 +40,7 @@
     "ng-uikit": "^0.1.6",
     "ng2-carouselamos": "^3.2.0",
     "ngx-toastr": "^10.1.0",
+    "ngx-owl-carousel": "^2.0.7",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 var cors=require('cors');
 
 //CORS Middleware
-app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+app.use(cors({credentials: true, origin: 'http://192.168.43.153:4200'}));
 var dbConfig=require("./config/dbConfig");
 var vendor=require('./routes/vendor/vendorServer')
 var adminCategory = require('./routes/adminCategory/adminCategory');

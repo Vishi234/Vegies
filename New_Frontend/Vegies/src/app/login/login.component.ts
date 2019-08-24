@@ -4,6 +4,7 @@ import { MatDialog} from '@angular/material';
 import {Router} from '@angular/router'
 import {LoginService} from './login.service'
 import{ToastrService} from 'ngx-toastr'
+import {ChangePasswordComponent} from '../vendor/change-password/change-password.component'
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.dialog.open(ForgotPasswordComponent, { disableClose: true });
   }
   ngOnInit() {
-
+    
   }
 
 }
