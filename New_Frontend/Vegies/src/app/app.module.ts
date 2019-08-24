@@ -43,6 +43,7 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { NewCategoryComponent } from './admin/new-category/new-category.component';
 import { AppGlobals } from './app.global';
+import {ToastrModule} from 'ngx-toastr';
 import { OwlModule } from 'ngx-owl-carousel';
 import { ChangePasswordComponent } from './vendor/change-password/change-password.component';
 @NgModule({
@@ -106,6 +107,11 @@ import { ChangePasswordComponent } from './vendor/change-password/change-passwor
     AgGridModule.withComponents([]),
     DatePickerModule,
     SwitchModule,
+    ToastrModule.forRoot({
+      timeOut:1000,
+      positionClass:'toast-top-right',
+      preventDuplicates:true
+    }),
     OwlModule
   ],
   providers: [PageService, SortService, FilterService, GroupService, AuthGuard, FreezeService, SelectionService,

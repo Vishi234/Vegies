@@ -4,6 +4,7 @@ import { ConfigurationComponent } from '../configuration/configuration.component
 import { ActivatedRoute } from '@angular/router'
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
 import { configList } from './configList.service'
+import { LoginService } from '../../login/login.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -17,19 +18,31 @@ export class DashboardComponent implements OnInit {
   public filterSettings: Object;
   public pageSettings: object;
   public subCatList: Array<any> = [];
-  constructor(public dialog: MatDialog, private route: ActivatedRoute, private _vendorDetails: AdminCategoryService, public _configList: configList) { }
+  public currentLogged: any;
+  public userDetails: any;
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, private _vendorDetails: AdminCategoryService, public _configList: configList, public _login: LoginService) {
+    this._login.user().subscribe(result => {
+      this.userDetails = result;
+    }
+    )
+  }
 
   ngOnInit() {
-    this.dialog.open(ConfigurationComponent, { disableClose: true });
+    setTimeout(() => {
+      this._configList.getProductList(this.userDetails).subscribe((response) => {
+        this.data = response;
+        console.log("consgigureList isss",this.data.length)
+        if (this.data.length<=0) {
+          console.log("dataaa us", this.data)
+          this.dialog.open(ConfigurationComponent, { disableClose: true });
+        }
+      }, (error) => {
+        console.log('error is ', error)
+      });
+    }, 1000);
+
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: false, pageSize: 5 };
-
-    this._configList.getProductList().subscribe((response) => {
-      this.data = response;
-      console.log("data issssssssss", response)
-    }, (error) => {
-      console.log('error is ', error)
-    });
 
     this._vendorDetails.GetSubCategoryList().subscribe((response) => {
       Object.entries(response).forEach(
@@ -45,7 +58,4 @@ export class DashboardComponent implements OnInit {
       console.log('error is ', error)
     });
   }
-
-
-
 }

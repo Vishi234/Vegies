@@ -9,6 +9,7 @@ import { LoginService } from '../../login/login.service'
 import { configurationwizard } from './configurationwizard.service'
 import { AppGlobals } from '../../app.global';
 import {Router} from '@angular/router'
+import{ToastrService} from 'ngx-toastr'
 
 @Component({
   selector: 'app-configuration',
@@ -37,14 +38,13 @@ export class ConfigurationComponent implements OnInit {
   userConfigList: any;
   filterSubCategory:Array<any> = [];
   @ViewChild('select', {static: true}) select;
-  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router:Router,private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard,private _global: AppGlobals) {
+  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router:Router,private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard,private _global: AppGlobals,private _toastr:ToastrService) {
     
     this._login.user()
     .subscribe(
       data=>this.currentLogged=data
       //error=>this.router.navigate(['/login'])
     )
-
     this._vendorDetails.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
@@ -88,16 +88,22 @@ export class ConfigurationComponent implements OnInit {
   getAddress(address: string) {
     this.selectedAddress = address;
     console.log("gggggggggggggg",this.selectedPro)
-    this.userConfigList = this.selectedPro.map(function (el) {
+    console.log("this.currentLogged",this.currentLogged)
+    this.userConfigList = this.selectedPro.map((el)=>{
       var o = Object.assign({}, el);
       o.address = address,
-        o.userName = this.currentLogged.fullName
+      o.userName = this.currentLogged._id
       return o;
     })
   }
 
   addConfigureList() {
+    console.log("data is",this.userConfigList)
     this._configurationwizard.AddConfigProduc(this.userConfigList).subscribe((res) => {
+      console.log("condddddddd",res)
+    this._toastr.success(res.status)
+    this.closeModal()
+    window.location.reload();
     }, (error) => {
       console.log('error is ', error)
     })

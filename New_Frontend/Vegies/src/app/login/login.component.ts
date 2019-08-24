@@ -3,6 +3,7 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 import { MatDialog} from '@angular/material';
 import {Router} from '@angular/router'
 import {LoginService} from './login.service'
+import{ToastrService} from 'ngx-toastr'
 import {ChangePasswordComponent} from '../vendor/change-password/change-password.component'
 
 @Component({
@@ -11,7 +12,7 @@ import {ChangePasswordComponent} from '../vendor/change-password/change-password
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(public dialog: MatDialog,private router:Router,private _login: LoginService) {
+  constructor(public dialog: MatDialog,private router:Router,private _login: LoginService,private _toastr:ToastrService) {
    }
   loginUser={}
 
@@ -20,10 +21,14 @@ export class LoginComponent implements OnInit {
     this._login.vendorLogin(this.loginUser)
     .subscribe(
       res=>{
+        if(res.msg)
+        this._toastr.success(res.msg)
+        else
+        this._toastr.error(res.message)
         console.log("fffffffffffffffff",res);
         this.router.navigate(['/dashboard']);
       },
-      err=>console.error("eeeeeeeeee",err)
+      err=>this._toastr.error(err)
     )
   }
 
