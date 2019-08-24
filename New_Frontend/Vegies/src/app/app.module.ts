@@ -43,6 +43,8 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { NewCategoryComponent } from './admin/new-category/new-category.component';
 import { AppGlobals } from './app.global';
+import {ToastrModule} from 'ngx-toastr'
+
 
 @NgModule({
   declarations: [
@@ -103,7 +105,12 @@ import { AppGlobals } from './app.global';
     MatCheckboxModule,
     AgGridModule.withComponents([]),
     DatePickerModule,
-    SwitchModule
+    SwitchModule,
+    ToastrModule.forRoot({
+      timeOut:1000,
+      positionClass:'toast-top-right',
+      preventDuplicates:true
+    })
   ],
   providers: [PageService, SortService, FilterService, GroupService, AuthGuard, FreezeService, SelectionService,
     {

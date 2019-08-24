@@ -67,9 +67,10 @@ async function addToDB(req, res) {
     });
     try {
         doc = await userData.save();
-        return res.status(201).json(doc)
+        return res.status(201).json({"data":doc,"status":"Register Successfull"})
     } catch (err) {
-        return res.status(501).json(err)
+        console.log(err,"errrrrrrrrrrrrrr")
+        return res.status(201).json(err)
     }
 }
 
@@ -79,8 +80,7 @@ router.post("/auth", function (req, res,next) {
         if (!user) {console.log("value is ",info);  return res.status(201).json(info); }
         req.logIn(user, function(err) {
           if (err) { return res.status(201).json(err); }
-          console.log("sssssssssss");
-          return res.status(200).json({msg:'Successfull'});
+          return res.status(200).json({msg:'Successfully Login'});
         });
       })(req, res, next);
     // let userData = req.body;
@@ -153,10 +153,10 @@ router.get('/logout',isValidUser, function(req, res,next) {
 })
 
 router.get('/user',isValidUser,function(req,res,next){
-    console.log("user details",req.user);
+    //console.log("user details",req.user);
     return res.status(200).json(req.user);
   });
   
-  
+
 module.exports = router;
 //})();

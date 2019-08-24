@@ -19,6 +19,7 @@ var orderedCheckList = new Schema({
     image: { type: String, require: true },
     address: { type: String },
     userName: { type: String },
+    
     discount: { type: String, require: true },
     unitMeasure: { type: String, require: true },
     Qnty: { type: String }

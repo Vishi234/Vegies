@@ -33,10 +33,6 @@ export class VendorContainerComponent implements OnDestroy {
       error=>this.router.navigate(['/login'])
     )
   }
-  addName(data){
-    this.currentUser = data.username;
-    console.log("data username",this.currentUser)
-  }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
