@@ -218,16 +218,14 @@ label {
 .carousel-control-next {
   width: 3% !important;
 }
-.btn-group {
-  padding: 10px;
-}
+
 .btn-group .btn {
   padding: 9px 20px;
-  font-size: 14px;
+  font-size: 12px;
   margin-right: 10px;
 }
 agm-map {
-  height: 300px;
+  height: 280px;
 }
 .hdr {
   font-weight: 600;
@@ -251,8 +249,10 @@ agm-map {
   margin-bottom: 10px;
 }
 .ship-pro > ul > li {
-  display: inline-block;
+  display: block;
   margin-right: 10px;
+  float: left;
+  margin-bottom: 10px;
 }
 .ship-pro > ul > li > a {
   display: block;
@@ -269,7 +269,26 @@ agm-map {
 .ship-pro > ul > li > a img {
   width: 100%;
 }
-@media (max-width: 768px) {
+.modal-footer {
+  position: fixed;
+  padding: 0px;
+  margin-top: 30px;
+  border-top: none;
+  bottom: 7%;
+}
+@media(max-width:545px)
+{
+  .modal-footer {
+    bottom: 15%;
+    width: 90%;
+    left: 17px;
+    border-top: 1px solid #ccc;
+    padding: 0px;
+  }
+  .ship-pro > ul > li > a {
+    height: 60px;
+    width: 60px;
+  }
   .item-content {
     height: 40px;
   }
@@ -289,7 +308,7 @@ agm-map {
     width: auto;
   }
   .proselected {
-    width: 91%;
+    width: 60%;
     right: auto;
     bottom: 7px;
   }
@@ -306,7 +325,6 @@ agm-map {
   }
   .btn-group {
     padding: 10px 0px;
-    margin-top: 50px;
   }
   .btn-group .btn {
     padding: 5px 10px;
@@ -327,4 +345,81 @@ agm-map {
     padding: 0px;
     border: none;
   }
+}
+@media (min-width: 545px) and(max-width:767px) {
+  .modal-footer {
+    bottom: 28%;
+    width: 90%;
+    left: 17px;
+    border-top: 1px solid #ccc;
+    padding: 0px;
+  }
+  .ship-pro > ul > li > a {
+    height: 60px;
+    width: 60px;
+  }
+  .item-content {
+    height: 40px;
+  }
+  .item-button {
+    margin-top: 35px;
+  }
+  .item-button .mat-button-toggle {
+    font-size: 11px;
+  }
+
+  .item-content h2 {
+    height: 37px;
+    overflow: hidden;
+    margin-bottom: 0px;
+  }
+  .modalbase {
+    width: auto;
+  }
+  .proselected {
+    width: 60%;
+    right: auto;
+    bottom: 7px;
+  }
+  .proheader {
+    font-size: 11px;
+  }
+  .modal-body {
+    height: 390px;
+  }
+  .item-img img {
+    height: 80px;
+    width: 80px;
+    min-width: 0px;
+  }
+  .btn-group {
+    padding: 10px 0px;
+  }
+  .btn-group .btn {
+    padding: 5px 10px;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+  agm-map {
+    height: 225px;
+  }
+  .item-img {
+    height: 80px;
+    width: 80px;
+    display: block;
+    margin: 0 auto;
+  }
+  .owl-carousel .items {
+    padding: 0px;
+    border: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  
+}
+@media (min-width: 1200px) {
 }

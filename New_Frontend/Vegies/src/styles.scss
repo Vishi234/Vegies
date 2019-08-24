@@ -240,13 +240,17 @@ input:-webkit-autofill {
   width: 175px !important;
   margin-right: 15px;
 }
-@media (min-width: 992px) {
-  .navbar-nav > li > a {
-    line-height: 16px !important;
-    padding: 18px !important;
+@media (max-width: 544px) {
+  .mat-horizontal-stepper-header-container {
+    display: none !important;
   }
-}
-@media (max-width: 768px) {
+  .mat-horizontal-content-container {
+    padding: 0px !important;
+  }
+  .mat-step-header {
+    padding: 0px;
+    height: auto;
+  }
   .chart-values {
     padding-bottom: 15px;
   }
@@ -330,16 +334,7 @@ input:-webkit-autofill {
     padding: 0;
     background: transparent;
   }
-  .mat-horizontal-stepper-header-container {
-    display: none !important;
-  }
-  .mat-horizontal-content-container {
-    padding: 0px !important;
-  }
-  .mat-step-header {
-    padding: 0px;
-    height: auto;
-  }
+
   .item-content .mat-button-toggle-label-content {
     line-height: 30px !important;
   }
@@ -352,5 +347,176 @@ input:-webkit-autofill {
   .controls img {
     height: 30px;
     width: 30px;
+  }
+}
+@media (min-width: 545px) and (max-width: 767px) {
+  .visible-xs-* {
+    display: block;
+  }
+  .visible-sm-* {
+    display: none;
+  }
+  .visible-md-* {
+    display: none;
+  }
+  .visible-lg-* {
+    display: none;
+  }
+  .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }
+  .mat-horizontal-content-container {
+    padding: 0px !important;
+  }
+  .mat-step-header {
+    padding: 0px;
+    height: auto;
+  }
+  .chart-values {
+    padding-bottom: 15px;
+  }
+  .cdk-overlay-pane {
+    max-width: 90vw !important;
+    left: 50px;
+    transform: none !important;
+    min-width: 0px !important;
+  }
+  .mat-select-panel:not([class*="mat-elevation-z"]) {
+    font-size: 11px !important;
+  }
+  .mat-pseudo-checkbox {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .mat-pseudo-checkbox-checked::after {
+    top: 1.4px !important;
+    left: 1px !important;
+    width: 7px !important;
+    height: 1px !important;
+  }
+  .mat-select-panel {
+    max-height: 155px !important;
+  }
+  .mat-form-field {
+    font-size: 11px;
+  }
+
+  .item-button .mat-button-toggle-label-content {
+    line-height: 30px;
+  }
+  .owl-carousel .owl-item {
+    width: 120px !important;
+    margin-right: 35px;
+  }
+  .navbar {
+    min-height: 45px;
+    padding: 0px;
+  }
+  .navbar-brand {
+    padding: 0px 15px;
+    height: 45px;
+    line-height: 48px;
+  }
+  .navbar.navbar-dark .navbar-toggler {
+    padding: 0px 15px;
+  }
+  .navbar-nav > li > a {
+    padding: 10px 15px !important;
+    font-weight: normal;
+    background: #202f52;
+    opacity: 0.8;
+  }
+  .slider .container {
+    width: 100%;
+    padding: 0px;
+  }
+  .top-menu {
+    text-align: center !important;
+    border-bottom: none;
+    // display: none;
+  }
+  .top-menu ul > li {
+    margin-right: 0px !important;
+  }
+  // .top-menu ul > li:nth-child(1) a i {
+  //   float: none !important;
+  // }
+  .content-sec {
+    padding-top: 10%;
+  }
+  .panel-filter {
+    float: none;
+    width: 100%;
+    margin-top: 19px;
+    display: inline-block;
+  }
+  .content-ttl {
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+  }
+
+  .item-content .mat-button-toggle-label-content {
+    line-height: 30px !important;
+  }
+  .item-content hr {
+    margin: 0px;
+  }
+  .controls {
+    top: 30% !important;
+  }
+  .controls img {
+    height: 30px;
+    width: 30px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .visible-xs-* {
+    display: none;
+  }
+  .visible-sm-* {
+    display: block;
+  }
+  .visible-md-* {
+    display: none;
+  }
+  .visible-lg-* {
+    display: none;
+  }
+
+  .navbar-nav > li > a {
+    line-height: 16px !important;
+    padding: 18px !important;
+  }
+}
+@media (min-width: 992px) and(max-width:1199px) {
+  .visible-xs-* {
+    display: none;
+  }
+  .visible-sm-* {
+    display: none;
+  }
+  .visible-md-* {
+    display: block;
+  }
+  .visible-lg-* {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .visible-xs-* {
+    display: none;
+  }
+  .visible-sm-* {
+    display: none;
+  }
+  .visible-md-* {
+    display: none;
+  }
+  .visible-lg-* {
+    display: block;
+  }
+  .content-sec {
+    padding-top: 8%;
   }
 }
