@@ -6,13 +6,13 @@ module.exports = (function () {
 
     app.post("/saveList", function (req, res) {
         let configData = req.body;
-        console.log("configList-----------", configData);
+        //console.log("configList-----------", configData);
         model.configList.collection.insertMany(configData, function (err, docs) {
             if (err) {
                 return console.error(err);
             } else {
                 res.status(201).json({status:"Successfully configure your list."})
-                console.log("Multiple documents inserted to Collection");
+                //console.log("Multiple documents inserted to Collection");
             }
         });
     });
@@ -20,9 +20,9 @@ module.exports = (function () {
     app.get("/getList", function (req, res) {
         let userDetails = req.query;
         //console.log("getListttttttttt2",req)
-        console.log("getListttttttttt1",userDetails.userId)
+        //console.log("getListttttttttt1",userDetails.userId)
         model.configList.find({ userName: userDetails.userId }).then(res1 => {
-            console.log("outputttttttttttt",res1)
+            //console.log("outputttttttttttt",res1)
             res.send(res1);
         })
     });

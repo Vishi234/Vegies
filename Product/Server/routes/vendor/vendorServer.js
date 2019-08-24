@@ -80,7 +80,14 @@ router.post("/auth", function (req, res,next) {
         if (!user) {console.log("value is ",info);  return res.status(201).json(info); }
         req.logIn(user, function(err) {
           if (err) { return res.status(201).json(err); }
-          return res.status(200).json({msg:'Successfully Login'});
+          console.log("daaaaaaaaaaa",user)
+          model.register.updateOne({ loginAttemp: user.loginAttemp }, { $set: { loginAttemp: user.loginAttemp + 1 } }, (attempCount)=> {
+              console.log("dataaaa",attempCount," --------",user.loginAttemp)
+                                res.status(200).json({ msg:'Successfully Login' ,"loginAttemp":user.loginAttemp});
+            })
+
+
+         // return res.status(200).json({msg:'Successfully Login'});
         });
       })(req, res, next);
     // let userData = req.body;
@@ -155,6 +162,25 @@ router.get('/logout',isValidUser, function(req, res,next) {
 router.get('/user',isValidUser,function(req,res,next){
     //console.log("user details",req.user);
     return res.status(200).json(req.user);
+  });
+
+  router.post('/changePwd',function(req,res,next){ 
+      var userDetails=req.body;   
+      if(req.body.newPassword===req.body.confirmPassword){
+        console.log("changePwdchangePwd",req.body)
+
+        model.register.updateOne({ email: userDetails.email }, { $set: { password:  model.register.hashPassword(userDetails.newPassword) } }, (attempCount)=> {
+            res.status(200).json({ status:'Password Changed successfully'});
+          })
+
+
+      }else{
+        console.log("changePwdchangePwd11",req.body)
+        return res.status(200).json({'err':"New Password and Confirm Password are not Matched"});
+      }
+    //console.log("user details",req.user);
+    //return res.status(200).json(req.user);
+
   });
   
 

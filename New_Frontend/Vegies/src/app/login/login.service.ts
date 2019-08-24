@@ -19,6 +19,7 @@ export class LoginService {
   private _vendorLogin = this._global.baseAppUrl + 'vendor/auth';
   private _vendorLogout = this._global.baseAppUrl + 'vendor/logout';
   private _vendorName= this._global.baseAppUrl + 'vendor/user'
+  private _changePwd= this._global.baseAppUrl + 'vendor/changePwd'
 
   public extractData(res: Response) {
     this.userDetails = res;
@@ -47,6 +48,11 @@ export class LoginService {
   currentUserValue() {
     console.log("userDetails",this.userDetails)
     return this.userDetails;
+  }
+
+  changePassword(changePwd:any){
+    console.log("changePwdchangePwd",changePwd)
+    return this.http.post<any>(this._changePwd, changePwd);
   }
 
   loggedIn() {

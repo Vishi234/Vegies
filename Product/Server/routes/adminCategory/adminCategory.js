@@ -87,7 +87,7 @@ module.exports = (function () {
 		{
             res.status(200).send("Product updated successfully");
         })).catch(err => {
-            console.log("errwwww", err)
+            //console.log("errwwww", err)
             res.status(400).send("unable to save to database");
         })
     });
