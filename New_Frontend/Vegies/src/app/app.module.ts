@@ -111,7 +111,7 @@ import { ChangePasswordComponent } from './vendor/change-password/change-passwor
       timeOut:1000,
       positionClass:'toast-top-right',
       preventDuplicates:true
-    })
+    }),
     OwlModule
   ],
   providers: [PageService, SortService, FilterService, GroupService, AuthGuard, FreezeService, SelectionService,
