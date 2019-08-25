@@ -1,0 +1,25 @@
+<link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+<div class="modalbase">
+    <div class="modal-header">
+        <span class="title pull-left">
+            Set Address
+        </span>
+        <span class="pull-right close">
+            <a href="javbascript:void(0)" (click)="closeModal();">
+                <i class="fas fa-times"></i>
+            </a>
+        </span>
+    </div>
+    <div class="modal-body">
+            <input matInput placeholder="Address" class="e-input" matGoogleMapsAutocomplete #address
+            (onLocationSelected)="onLocationSelected($event)">
+        <agm-map [zoom]="14" [latitude]="latitude" [longitude]="longitude">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+        </agm-map>
+    </div>
+    <div class="modal-footer">
+        <div class="btn-group">
+            <button mat-button class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</div>

@@ -212,8 +212,14 @@ input:-webkit-autofill {
   font-family: inherit;
   font-size: 12px;
 }
+.e-input-group {
+  font-family: inherit !important;
+}
+.modal-body .e-input-group {
+  width: auto !important;
+}
 .e-control {
-  font-family: inherit;
+  font-family: inherit !important;
 }
 .e-grid .e-frozencontent > .e-table {
   border-right-color: transparent;
@@ -347,6 +353,52 @@ input:-webkit-autofill {
   .controls img {
     height: 30px;
     width: 30px;
+  }
+  .sm-checklist .owl-carousel .owl-item {
+    width: 350px !important;
+    margin-right: -32px !important;
+  }
+  .sm-checklist .owl-nav.disabled {
+    display: block !important;
+    position: fixed;
+    z-index: 99999999999999999;
+    top: 31%;
+    width: 100%;
+    left: 0;
+    cursor: auto !important;
+    pointer-events: all !important;
+  }
+  .sm-checklist .owl-prev {
+    background: #fff !important;
+    border: 1px solid #dee2e6 !important;
+    padding: 8px !important;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    height: 25px;
+    width: 25px;
+    border-radius: 50px !important;
+    float: left;
+  }
+  .sm-checklist .owl-next {
+    background: #fff !important;
+    border: 1px solid #dee2e6 !important;
+    padding: 8px !important;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    height: 25px;
+    width: 25px;
+    border-radius: 50px !important;
+    float: right;
+  }
+  .sm-checklist .owl-next span {
+    display: block;
+    padding: 0px;
+    margin-top: -5px;
+    font-size: 20px;
+  }
+  .sm-checklist .owl-prev span {
+    display: block;
+    padding: 0px;
+    margin-top: -5px;
+    font-size: 20px;
   }
 }
 @media (min-width: 545px) and (max-width: 767px) {

@@ -14,8 +14,15 @@
             <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Add product in List</ng-template>
-                    <mat-form-field>
-                        <mat-select placeholder="Select Category" #select formControlName="firstCtrl"
+                    <ejs-dropdownlist id='ddlelement' #select [dataSource]='subCatList' formControlName="firstCtrl"
+                             [fields]='fields'(change)="change($event)" placeholder="Select a category" required></ejs-dropdownlist>
+                    <!-- <mat-form-field> -->
+                            <!-- <ejs-dropdownlist id='ddlelement' [dataSource]='data' required placeholder = 'Select a category'>
+
+                            </ejs-dropdownlist> -->
+                            
+
+                        <!-- <mat-select placeholder="Select Category" #select formControlName="firstCtrl"
                             [formControl]="toppings" multiple>
                             <mat-select-trigger>
                                 {{toppings.value ? toppings.value[0] : ''}}
@@ -26,8 +33,8 @@
                             </mat-select-trigger>
                             <mat-option *ngFor="let subCatName of subCatList" (onSelectionChange)="change($event)"
                                 [value]="subCatName.subCatName">{{subCatName.subCatName}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                        </mat-select> -->
+                    <!-- </mat-form-field> -->
                     <div id="container" class="owl-carousel">
                         <owl-carousel [options]="{items: 2, dots: false, navigation: true}" [items]="items"
                             [carouselClasses]="['owl-theme', 'row', 'sliding']">

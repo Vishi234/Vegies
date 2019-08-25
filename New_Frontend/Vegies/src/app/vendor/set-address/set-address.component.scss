@@ -1,0 +1,27 @@
+.modalbase {
+  padding: 0px;
+  width: 500px;
+}
+.modal-body {
+  height: 260px;
+  color: #666;
+}
+.modal-header {
+  background: #283442;
+  border-radius: 0px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px;
+}
+.modal-header .title {
+  font-size: 16px;
+}
+.modal-header .title i {
+  float: left;
+  margin-right: 7px;
+}
+.modal-header .close a {
+  color: #fff;
+}
+agm-map {
+  height: 200px;
+}

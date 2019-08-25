@@ -45,7 +45,7 @@
                     <div class="md-form">
                             <input mdbInput mdbValidate name="mobileNo" [(ngModel)]="registerUser.mobile"
                             #mobileNo="ngModel" required autocomplete="off" type="text" autocomplete="off"
-                            id="mobileNo" class="form-control">
+                            id="mobileNo" class="form-control" maxlength="10">
                         <label for="mobileNo">Mobile No.</label>
                         <mdb-error *ngIf="mobileNo.invalid && (mobileNo.dirty || mobileNo.touched)">Input invalid
                         </mdb-error>
@@ -53,7 +53,7 @@
                         </mdb-success>
                     </div>
                     <button mdbBtn type="button" color="danger" class="my-4 waves-effect z-depth-0" rounded="true"
-                        block="true" mdbWavesEffect type="submit">Sign in</button>
+                        block="true" mdbWavesEffect type="submit">Register</button>
                     <p>Already have an account?
                         <a routerLink='/login'>Login</a>
                     </p>

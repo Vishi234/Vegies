@@ -276,8 +276,10 @@ agm-map {
   border-top: none;
   bottom: 7%;
 }
-@media(max-width:545px)
-{
+ejs-dropdownlist > span {
+  width: auto;
+}
+@media (max-width: 545px) {
   .modal-footer {
     bottom: 15%;
     width: 90%;
@@ -416,10 +418,8 @@ agm-map {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  
 }
 @media (min-width: 1200px) {
 }
