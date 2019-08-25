@@ -1,0 +1,42 @@
+.modalbase {
+  padding: 0px;
+  width: 600px;
+}
+.modal-body {
+  height: 500px;
+  color: #666;
+}
+.modal-header {
+  background: #283442;
+  border-radius: 0px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px;
+}
+.modal-header .title {
+  font-size: 16px;
+}
+.modal-header .title i {
+  float: left;
+  margin-right: 7px;
+}
+.modal-header .close a {
+  color: #fff;
+}
+.shiploc {
+  width: 100%;
+  display: inline-block;
+}
+.shiploc h4 {
+  font-weight: 600;
+  font-size: 18px;
+}
+.shiploc p {
+  font-size: 12px;
+}
+.shiploc a {
+  font-weight: 600;
+  text-decoration: underline;
+}
+.shiploc a i {
+  margin-left: 2px;
+}

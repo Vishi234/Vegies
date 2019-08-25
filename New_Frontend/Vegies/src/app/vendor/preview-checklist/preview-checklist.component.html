@@ -1,45 +1,32 @@
 <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
 <div class="modalbase">
     <div class="modal-header">
-        <span><h4>
-                Review final checklist
-             </h4></span>
-             <span class="pull-right close">
-                 <a href="javbascript:void(0)" (click)="closeModal();">
-                     <i class="fas fa-times"></i>
-                 </a>
-             </span>
-         </div>
-         <div class="modal-body">
-             
-           <!--    <div class="shiploc">
-                 <h4>
-                    Review final checklist
-                 </h4>
-                <p>{{uniqueAddress}} <a href="javascript:void(0)">Change Address<i
-                             class="fas fa-pencil-alt"></i></a></p>
-             </div>
-            -->
-             <div class="schgrid">
-                 <ejs-grid [dataSource]='myCheckList' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
-                     [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
-                     <e-columns>
-                         <e-column field='name' headerText='Product Name' textAlign='left' width=150></e-column>
-                         <e-column field='oldPrice' headerText='MRP' textAlign='right' width=80></e-column>
-                         <e-column field='discount' headerText='Discount' textAlign='right' width=100></e-column>
-                         <e-column field='Qnty' headerText='Quantity' textAlign='right' width=80></e-column>
-                         <e-column field='newPrice' headerText='Actual Price' textAlign='right' width=80></e-column>
-                         <e-column field='Delete' headerText='Action' textAlign="center" width=80>
-                             <ng-template #template let-data>
-                                 <a href="javascript:void(0)" class="item-remove">
-                                     <i class="fas fa-trash"></i>
-                                 </a>
-                             </ng-template>
-                         </e-column>
-                     </e-columns>
-                 </ejs-grid>
-             </div>
-     
-         </div>
-         
-     </div>
+        <span class="title pull-left">
+            Review Checklist
+        </span>
+        <span class="pull-right close">
+            <a href="javbascript:void(0)" (click)="closeModal();">
+                <i class="fas fa-times"></i>
+            </a>
+        </span>
+    </div>
+    <div class="modal-body">
+        <div class="schgrid">
+            <ejs-grid [dataSource]='myCheckList'>
+                <e-columns>
+                    <e-column field='name' headerText='Product Name' textAlign='left' width=150></e-column>
+                    <e-column field='Qnty' headerText='Quantity' textAlign='right' width=80></e-column>
+                    <e-column field='newPrice' headerText='Actual Price' textAlign='right' width=80></e-column>
+                </e-columns>
+            </ejs-grid>
+        </div>
+        <hr />
+        <div class="shiploc">
+            <h4>
+                Shipping Location
+            </h4>
+            <p>{{uniqueAddress}} <a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
+                        class="fas fa-pencil-alt"></i></a></p>
+        </div>
+    </div>
+</div>

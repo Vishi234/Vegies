@@ -170,7 +170,7 @@ input:-webkit-autofill {
 .panel-name span:nth-child(1) {
   box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
     0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
-  background: #dc3545;
+  background: #ff7043;
   padding: 8px;
   float: left;
   font-size: 16px;
@@ -245,6 +245,68 @@ input:-webkit-autofill {
 .owl-carousel .owl-item {
   width: 175px !important;
   margin-right: 15px;
+}
+.e-grid .e-headercell {
+  background-color: #283442 !important;
+  border-color: #283442 !important;
+  height: 30px !important;
+}
+.e-grid .e-headercelldiv {
+  font-size: 12px !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+.e-checkbox-wrapper .e-frame,
+.e-css.e-checkbox-wrapper .e-frame {
+  border-color: #ff7043 !important;
+  border: 1px solid !important;
+  height: 15px !important;
+  width: 15px !important;
+  line-height: 13px !important;
+}
+.e-checkbox-wrapper .e-frame.e-check,
+.e-css.e-checkbox-wrapper .e-frame.e-check {
+  background-color: #ff7043 !important;
+}
+.e-grid .e-rowcell {
+  padding: 0px 21px !important;
+  font-size: 12px !important;
+  font-weight:normal!important
+}
+.e-grid .e-rowcell:not(.e-editedbatchcell) {
+  color: #666 !important;
+  opacity: 1 !important;
+}
+.e-grid td.e-active {
+  background: #eee !important;
+  font-weight:normal!important
+}
+.e-pager {
+  font-size: 12px !important;
+  color: #666 !important;
+  opacity: 1 !important;
+}
+.e-pager .e-pagercontainer {
+  margin: 0px 0px 1px 10px !important;
+}
+.e-pager .e-currentitem,
+.e-pager .e-currentitem:hover {
+  background: #ff7043 !important;
+  padding: 7px !important;
+  opacity: 1 !important;
+}
+.e-grid .e-icons {
+  color: #ff7043 !important;
+}
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before {
+  background: #ff7043 !important;
+}
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after {
+  background: #ff7043 !important;
+}
+.e-input:focus:not(.e-success):not(.e-warning):not(.e-error)
+{
+  border-color: #ff7043 !important;
 }
 @media (max-width: 544px) {
   .mat-horizontal-stepper-header-container {
