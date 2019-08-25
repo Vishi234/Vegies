@@ -3,8 +3,9 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { configList } from '../dashboard/configList.service'
 import { GridComponent } from '@syncfusion/ej2-angular-grids'
 import { SetSchedulerComponent } from '../set-scheduler/set-scheduler.component'
+import { PreviewChecklistComponent } from '../preview-checklist/preview-checklist.component'
 import { LoginService } from '../../login/login.service'
-import{ToastrService} from 'ngx-toastr'
+import { ToastrService } from 'ngx-toastr'
 import { ThrowStmt } from '@angular/compiler';
 import {setScheduler} from '../set-scheduler/set-scheduler.service'
 
@@ -71,7 +72,7 @@ export class MyChecklistComponent implements OnInit {
       del = idx.map((e) => {
         return this.data[e]['_id']
       })
-      this._configList.delete(del).subscribe((res:any) => {
+      this._configList.delete(del).subscribe((res: any) => {
         this._toastr.success(res.status)
         this.getProductList();
       }, (error) => {
@@ -87,7 +88,16 @@ export class MyChecklistComponent implements OnInit {
       this.data[e]["newPrice"] = table[1].children[1].children[e].children[6].textContent;
       this.data[e]["Qnty"] = this.quantity;
       return this.data[e];
-    })
+    });
+
+    this.dialog.open(PreviewChecklistComponent,
+      {
+        disableClose: true,
+        data: {
+          "ChecklistData": this.myCheckList
+        }
+      })
+
     this.addConfigureList();
   }
 

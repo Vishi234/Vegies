@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
+
+ 
 import { DropDownListComponent, AutoCompleteComponent } from '@syncfusion/ej2-angular-dropdowns';
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
 import { AppGlobals } from '../../app.global';
@@ -24,8 +27,9 @@ export class ProductListComponent implements OnInit {
   public allProduct: Object[];
   public selectedPro : Array<any> = [];
   userConfigList: any;
+  public selectedCat: any;
   
-  constructor(private _categoryList: AdminCategoryService, private _global: AppGlobals, public _login: LoginService, public _configList: configList, private _configurationwizard: configurationwizard, private _toastr: ToastrService, private router: Router) {
+  constructor(private _categoryList: AdminCategoryService, private _global: AppGlobals, public _login: LoginService, public _configList: configList, private _configurationwizard: configurationwizard, private _toastr: ToastrService, private router: Router,private route: ActivatedRoute) {
     this._login.user().subscribe(result => {
       this.userDetails = result;
     })
@@ -48,6 +52,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.selectedCat = this.route.snapshot.paramMap.get('id');
     setTimeout(() => {
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.configData = response;
@@ -87,20 +92,45 @@ export class ProductListComponent implements OnInit {
       console.log('error is ', error)
     });
 
-    this._categoryList.GetProductList().subscribe((response) => {
-      console.log("fffffffffgg", this.configData)
+    this._categoryList.GetProductList().subscribe((response) => 
+    {
       Object.entries(response).forEach(
         ([key, value]) => {
-          this.productList.push({
-            "name": value.productName + '(' + value.productAlias + ')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
-            image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1, "productAlias": value.productAlias, "subCat": value.subCatName
-          })
+          console.log('this.productList',this.productList);
+          this.productList.push(
+            {
+            "name": value.productName +'('+ value.productAlias+')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+            image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1,"productAlias":value.productAlias,"subCat":value.subCatName
+        
+          });
+        
         }
       );
-    }, (error) => {
+      if(this.selectedCat!="1")
+      {
+      this.productList=this.productList.filter((item)=>
+      {
+      //  debugger
+        if (item.subCat ==this.selectedCat) {  return item; }
+      });
+    }
+    console.log("lllllllll",this.productList)
+     }, (error) => {
       console.log('error is ', error)
     });
 
+
+  
+  // this.productList=this.productList.filter(function(item)
+  // {
+  //   if (item._id ==this.selectedCat) {  return true; }
+  // })
+  
+  
+  debugger;
+  
+  
+  
   }
 
   onValChange(lbl,id) {

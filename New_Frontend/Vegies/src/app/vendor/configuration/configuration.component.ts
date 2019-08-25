@@ -37,13 +37,14 @@ export class ConfigurationComponent implements OnInit {
   configList = {};
   userConfigList: any;
   filterSubCategory: Array<any> = [];
+  public fields: Object = { text: 'subCatName', value: '_id' };
   @ViewChild('select', { static: true }) select;
   constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router: Router, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard, private _global: AppGlobals, private _toastr: ToastrService) {
 
     this._login.user()
       .subscribe(
         data => this.currentLogged = data
-        //error=>this.router.navigate(['/login'])
+       
       )
     this._vendorDetails.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
@@ -58,9 +59,6 @@ export class ConfigurationComponent implements OnInit {
     }, (error) => {
       console.log('error is ', error)
     });
-
-    // this.currentLogged = this._login.extractData(res:any);
-    // console.log("this.currentLogged", this.currentLogged.userName)
   }
 
   inreaseHeight() {
@@ -88,9 +86,7 @@ export class ConfigurationComponent implements OnInit {
 
   getAddress(address: string) {
     this.selectedAddress = address;
-    console.log("gggggggggggggg", this.selectedPro)
-    console.log("this.currentLogged", this.currentLogged)
-    this.userConfigList = this.selectedPro.map((el) => {
+    this.userConfigList = this.selectedPro.map((el)=>{
       var o = Object.assign({}, el);
       o.address = address,
         o.userName = this.currentLogged._id
@@ -99,12 +95,10 @@ export class ConfigurationComponent implements OnInit {
   }
 
   addConfigureList() {
-    console.log("data is", this.userConfigList)
     this._configurationwizard.AddConfigProduc(this.userConfigList).subscribe((res) => {
-      console.log("condddddddd", res)
-      this._toastr.success(res.status)
-      this.closeModal()
-      window.location.reload();
+    this._toastr.success(res.status)
+    this.closeModal()
+    window.location.reload();
     }, (error) => {
       console.log('error is ', error)
     })
@@ -122,7 +116,6 @@ export class ConfigurationComponent implements OnInit {
     this.latitude = 52.520008;
     this.longitude = 13.404954;
     this.setCurrentPosition();
-
     this._vendorDetails.GetSubCategoryList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
@@ -151,17 +144,16 @@ export class ConfigurationComponent implements OnInit {
   }
 
   change(event) {
-    console.log("hhhhh1hhhhhhhhh11", this.select)
-    var getSelectProduct = this.filterItems.filter((item) => {
-      if (item.subCat == event.source.value) {
+    var getSelectProduct = this.filterItems.filter( (item)=> {
+      if (item.subCat == event.value ) {
         this.filterSubCategory.push(item)
         return item;
       }
     });
-    // console.log("daaaaaaaata",this.filterSubCategory)
-    // console.log("daaaaaaaata11",[...new Set(this.filterSubCategory)])
-    this.items = [...new Set(this.filterSubCategory)];
-    //console.log("hhhhhhhhhhhhhh",this.items)
+    if(this.filterSubCategory.length>0)
+    {
+      this.items=[...new Set(this.filterSubCategory)];
+    }
   }
 
   carouselOptions = {

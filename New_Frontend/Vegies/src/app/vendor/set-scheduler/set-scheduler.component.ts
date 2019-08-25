@@ -5,6 +5,8 @@ import { LoginService } from '../../login/login.service'
 import { setScheduler } from './set-scheduler.service'
 import { GridComponent } from '@syncfusion/ej2-angular-grids'
 import { Inject } from '@angular/core'
+import { configList } from '../dashboard/configList.service'
+import { SetAddressComponent } from '../set-address/set-address.component'
 @Component({
   selector: 'app-set-scheduler',
   templateUrl: './set-scheduler.component.html',
@@ -58,7 +60,9 @@ export class SetSchedulerComponent implements OnInit {
     table[3].children[1].children[selectedRow].remove();
   }
 
-
+  changeAddress() {
+    this.dialog.open(SetAddressComponent, { disableClose: true })
+  }
   closeModal() {
     this.dialog.closeAll();
   }
