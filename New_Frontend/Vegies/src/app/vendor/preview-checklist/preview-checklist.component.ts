@@ -12,7 +12,7 @@ export class PreviewChecklistComponent implements OnInit {
 
   public myCheckList: any;
 
-  constructor( public dialog: MatDialog, @Inject(MAT_DIALOG_DATA,) public data: any) { }
+  constructor( public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() 
   {

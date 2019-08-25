@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
+
+ 
 import { DropDownListComponent, AutoCompleteComponent } from '@syncfusion/ej2-angular-dropdowns';
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
 import { AppGlobals } from '../../app.global';
@@ -14,12 +17,19 @@ export class ProductListComponent implements OnInit
   public catList: Array<any> = [];
   public subCatList: Array<any> = [];
   public productList: Array<any> = [];
-  constructor(private _categoryList: AdminCategoryService,private _global:AppGlobals){}
+  public selectedCat: any;
+  constructor(private _categoryList: AdminCategoryService,private _global:AppGlobals,private route: ActivatedRoute){}
   
   ngOnInit() 
   {
-   // debugger;
-    this._categoryList.GetCategoryList().subscribe((response) => 
+    debugger;
+    this.selectedCat = this.route.snapshot.paramMap.get('id');
+    console.log(' this.selectedCat', this.selectedCat);
+ 
+
+
+  
+  this._categoryList.GetCategoryList().subscribe((response) => 
     {
      // debugger
       Object.entries(response).forEach(
@@ -43,20 +53,45 @@ export class ProductListComponent implements OnInit
       console.log('error is ', error)
     });
 
-    this._categoryList.GetProductList().subscribe((response) => {
+    this._categoryList.GetProductList().subscribe((response) => 
+    {
       Object.entries(response).forEach(
         ([key, value]) => {
           console.log('this.productList',this.productList);
-          this.productList.push({
+          this.productList.push(
+            {
             "name": value.productName +'('+ value.productAlias+')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
             image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1,"productAlias":value.productAlias,"subCat":value.subCatName
-          })
+        
+          });
+        
         }
       );
+      if(this.selectedCat!="1")
+      {
+      this.productList=this.productList.filter((item)=>
+      {
+      //  debugger
+        if (item.subCat ==this.selectedCat) {  return item; }
+      });
+    }
+    console.log("lllllllll",this.productList)
      }, (error) => {
       console.log('error is ', error)
     });
 
+
+  
+  // this.productList=this.productList.filter(function(item)
+  // {
+  //   if (item._id ==this.selectedCat) {  return true; }
+  // })
+  
+  
+  debugger;
+  
+  
+  
   }
     @ViewChild('catList', { static: true })
   public catObj: DropDownListComponent;
@@ -98,10 +133,7 @@ onSubCatChange(event)
   });
   this.productData=getSelectedProduct;
 
-  this.allProduct=this.allProduct.filter(function (item) 
-  {
-   // if (item._id == event.itemData._id) {  return true; }
-  });
+  
 }
 onProductChange(event)
 {
