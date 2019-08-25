@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { configurationwizard } from '../configuration/configurationwizard.service'
 import { LoginService } from '../../login/login.service'
 import { configList } from '../dashboard/configList.service'
+import { SetAddressComponent } from '../set-address/set-address.component'
 @Component({
   selector: 'app-set-scheduler',
   templateUrl: './set-scheduler.component.html',
@@ -48,7 +49,9 @@ export class SetSchedulerComponent implements OnInit {
     });
   }
 
-
+  changeAddress() {
+    this.dialog.open(SetAddressComponent, { disableClose: true })
+  }
   closeModal() {
     this.dialog.closeAll();
   }

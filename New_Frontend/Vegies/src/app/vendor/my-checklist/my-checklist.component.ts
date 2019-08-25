@@ -5,7 +5,7 @@ import { GridComponent } from '@syncfusion/ej2-angular-grids'
 import { SetSchedulerComponent } from '../set-scheduler/set-scheduler.component'
 import { PreviewChecklistComponent } from '../preview-checklist/preview-checklist.component'
 import { LoginService } from '../../login/login.service'
-import{ToastrService} from 'ngx-toastr'
+import { ToastrService } from 'ngx-toastr'
 import { ThrowStmt } from '@angular/compiler';
 
 @Component({
@@ -23,7 +23,7 @@ export class MyChecklistComponent implements OnInit {
   public myCheckList: any
   public userDetails: any;
   @ViewChild('old', { static: true }) public grid: GridComponent;
-  constructor(public dialog: MatDialog, private _configList: configList, private _login: LoginService,private _toastr:ToastrService) {
+  constructor(public dialog: MatDialog, private _configList: configList, private _login: LoginService, private _toastr: ToastrService) {
     this._login.user().subscribe(result => {
       this.userDetails = result;
       error => console.log("Error is", error);
@@ -65,7 +65,7 @@ export class MyChecklistComponent implements OnInit {
       del = idx.map((e) => {
         return this.data[e]['_id']
       })
-      this._configList.delete(del).subscribe((res:any) => {
+      this._configList.delete(del).subscribe((res: any) => {
         this._toastr.success(res.status)
         this.getProductList();
       }, (error) => {
@@ -73,10 +73,7 @@ export class MyChecklistComponent implements OnInit {
       });
     }
   }
-  sendRequirement()
-   {
-
-
+  sendRequirement() {
     var selectedRow = this.grid.getSelectedRowIndexes();
     var table = document.getElementsByTagName("table");
     this.myCheckList = selectedRow.map((e) => {
@@ -86,9 +83,13 @@ export class MyChecklistComponent implements OnInit {
       return this.data[e];
     });
 
-    this.dialog.open(PreviewChecklistComponent, { disableClose: true, data: {
-      "ChecklistData": this.myCheckList
-    } })
+    this.dialog.open(PreviewChecklistComponent,
+      {
+        disableClose: true,
+        data: {
+          "ChecklistData": this.myCheckList
+        }
+      })
 
     this.addConfigureList();
   }

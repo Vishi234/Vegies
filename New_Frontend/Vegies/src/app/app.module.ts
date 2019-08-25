@@ -46,6 +46,7 @@ import { AppGlobals } from './app.global';
 import {ToastrModule} from 'ngx-toastr';
 import { OwlModule } from 'ngx-owl-carousel';
 import { ChangePasswordComponent } from './vendor/change-password/change-password.component';
+import { SetAddressComponent } from './vendor/set-address/set-address.component';
 import { PreviewChecklistComponent } from './vendor/preview-checklist/preview-checklist.component';
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { PreviewChecklistComponent } from './vendor/preview-checklist/preview-ch
     AdminCategoryComponent,
     NewCategoryComponent,
     ChangePasswordComponent,
+    SetAddressComponent,
     PreviewChecklistComponent
   ],
   imports: [
@@ -124,6 +126,7 @@ import { PreviewChecklistComponent } from './vendor/preview-checklist/preview-ch
     },
     AppGlobals],
   bootstrap: [AppComponent],
-  entryComponents: [ForgotPasswordComponent,PreviewChecklistComponent,ChangePasswordComponent, ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent]
+  entryComponents: [ForgotPasswordComponent,ChangePasswordComponent, 
+    ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent,SetAddressComponent,PreviewChecklistComponent]
 })
 export class AppModule { }

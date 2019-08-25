@@ -1,9 +1,9 @@
 .modalbase {
   padding: 0px;
-  width: 600px;
+  width: 500px;
 }
 .modal-body {
-  height: 500px;
+  height: 260px;
   color: #666;
 }
 .modal-header {
@@ -22,21 +22,6 @@
 .modal-header .close a {
   color: #fff;
 }
-.shiploc {
-  width: 100%;
-  display: inline-block;
-}
-.shiploc h4 {
-  font-weight: 600;
-  font-size: 18px;
-}
-.shiploc p {
-  font-size: 12px;
-}
-.shiploc a {
-  font-weight: 600;
-  text-decoration: underline;
-}
-.shiploc a i {
-  margin-left: 2px;
+agm-map {
+  height: 200px;
 }

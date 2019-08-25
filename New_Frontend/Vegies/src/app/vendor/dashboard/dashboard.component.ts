@@ -20,19 +20,19 @@ export class DashboardComponent implements OnInit {
   public subCatList: Array<any> = [];
   public currentLogged: any;
   public userDetails: any;
+  items: Array<any> = [];
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private _vendorDetails: AdminCategoryService, public _configList: configList, public _login: LoginService) {
     this._login.user().subscribe(result => {
       this.userDetails = result;
     }
     )
   }
-
   ngOnInit() {
     setTimeout(() => {
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.data = response;
-        console.log("consgigureList isss",this.data.length)
-        if (this.data.length<=0) {
+        console.log("consgigureList isss", this.data.length)
+        if (this.data.length <= 0) {
           console.log("dataaa us", this.data)
           this.dialog.open(ConfigurationComponent, { disableClose: true });
         }
@@ -57,5 +57,31 @@ export class DashboardComponent implements OnInit {
     }, (error) => {
       console.log('error is ', error)
     });
+    this.items.push(
+      {
+        "name": "dasdasd"
+      },
+      {
+        "name": "dasdasd"
+      },
+      {
+        "name": "dasdasd"
+      },
+      {
+        "name": "dasdasd"
+      },
+      {
+        "name": "dasdasd"
+      },
+      {
+        "name": "dasdasd"
+      },
+      {
+        "name": "dasdasd"
+      },
+      {
+        "name": "dasdasd"
+      }
+    )
   }
 }
