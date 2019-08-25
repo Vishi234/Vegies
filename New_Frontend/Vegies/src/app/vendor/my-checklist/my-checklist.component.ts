@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { configList } from '../dashboard/configList.service'
 import { GridComponent } from '@syncfusion/ej2-angular-grids'
 import { SetSchedulerComponent } from '../set-scheduler/set-scheduler.component'
+import { PreviewChecklistComponent } from '../preview-checklist/preview-checklist.component'
 import { LoginService } from '../../login/login.service'
 import{ToastrService} from 'ngx-toastr'
 import { ThrowStmt } from '@angular/compiler';
@@ -72,7 +73,10 @@ export class MyChecklistComponent implements OnInit {
       });
     }
   }
-  sendRequirement() {
+  sendRequirement()
+   {
+
+
     var selectedRow = this.grid.getSelectedRowIndexes();
     var table = document.getElementsByTagName("table");
     this.myCheckList = selectedRow.map((e) => {
@@ -80,7 +84,12 @@ export class MyChecklistComponent implements OnInit {
       this.data[e]["newPrice"] = table[1].children[1].children[e].children[6].textContent;
       this.data[e]["Qnty"] = this.quantity;
       return this.data[e];
-    })
+    });
+
+    this.dialog.open(PreviewChecklistComponent, { disableClose: true, data: {
+      "ChecklistData": this.myCheckList
+    } })
+
     this.addConfigureList();
   }
 

@@ -10,7 +10,7 @@
     <div class="panel-filter">
         <div class="btn-group">
             <button mat-button class="btn btn-info">Add Item</button>
-            <button mat-button class="btn btn-primary" (click)="sendRequirement()">Send Requirement</button>
+            <button mat-button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="sendRequirement()">Send Requirement</button>
             <button mat-button class="btn btn-deep-orange" (click)="openScheduler();">Set Scheduler</button>
             <button mat-button class="btn btn-danger" (click)="removeProduct($event)">Remove Items</button>
         </div>
@@ -19,6 +19,10 @@
         </ejs-daterangepicker> -->
     </div>
 </div>
+
+
+
+
 <div class="checklistgrid">
     <ejs-grid [dataSource]='data' id="checklistGrid" #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
         [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
@@ -42,3 +46,7 @@
         </e-columns>
     </ejs-grid>
 </div>
+
+
+<!-- <div id="myModal" class="modal modalbase"> -->
+
