@@ -8,7 +8,10 @@
         </span>
     </div>
     <div class="panel-filter">
-        <input class="e-input" name='input' type="text" placeholder="Start typing here......." />
+        <!-- <input class="e-input" name='input' type="text" placeholder="Start typing here......." /> -->
+        <ejs-autocomplete id='productName' #proList [dataSource]='proNameData' [fields]='profields'
+                                [placeholder]='proWaterMark' (change)='onProChange($event)'>
+                            </ejs-autocomplete>
         <!-- <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
             [endDate]='end'>
         </ejs-daterangepicker> -->
@@ -51,7 +54,7 @@
                     <div class="items" *ngFor="let productDetails of allProduct">
                         <div class="item-top">
                             <span class="pull-left">
-                                <ejs-checkbox #checkbox [(ngModel)]="productDetails._id"></ejs-checkbox>
+                                <ejs-checkbox id="check" [(ngModel)]="productDetails.id1" (change)="onValChange($event,productDetails.id)"></ejs-checkbox>
                             </span>
                             <span class="pull-right disLabel">
                                 {{productDetails.discount}} % Off
@@ -78,10 +81,10 @@
 <div class="fixed-action">
     <div class="pull-left">
         <span>
-            <a class="btn btn-primary" href="javascript:void(0)">Add to Basket</a>
+            <a class="btn btn-primary" (click)="addConfigureList()" href="javascript:void(0)">Add to Basket</a>
         </span>
     </div>
     <div class="pull-right selected">
-        <span>0 Product Selected</span>
+        <span>{{selectedPro.length}} Product Selected</span>
     </div>
 </div>

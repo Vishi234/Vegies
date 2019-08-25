@@ -80,7 +80,6 @@ router.post("/auth", function (req, res,next) {
         if (!user) {console.log("value is ",info);  return res.status(201).json(info); }
         req.logIn(user, function(err) {
           if (err) { return res.status(201).json(err); }
-          console.log("daaaaaaaaaaa",user)
           model.register.updateOne({ loginAttemp: user.loginAttemp }, { $set: { loginAttemp: user.loginAttemp + 1 } }, (attempCount)=> {
               console.log("dataaaa",attempCount," --------",user.loginAttemp)
                                 res.status(200).json({ msg:'Successfully Login' ,"loginAttemp":user.loginAttemp});

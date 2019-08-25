@@ -6,7 +6,7 @@ module.exports = (function () {
 
     app.post("/saveList", function (req, res) {
         let configData = req.body;
-        //console.log("configList-----------", configData);
+        console.log("configList-----------", configData);
         model.configList.collection.insertMany(configData, function (err, docs) {
             if (err) {
                 return console.error(err);
@@ -49,8 +49,27 @@ module.exports = (function () {
         });
     });
 
+    app.post("/setScheduler", function (req, res) {
+        let configData = req.body;
+        console.log("setSchedulersetScheduler",configData)
+        model.setScheduler.collection.insertMany(configData, function (err, docs) {
+            if (err) {
+                return console.error(err);
+            } else {
+                res.status(201).json({"status":"Products are schedule successfully"});
+            }
+        });
+    });
+
     app.get("/getOrderList", function (req, res) {
         model.orderedCheckList.find().then(res1 => {
+            res.send(res1);
+        })
+    });
+
+    app.get("/getScheduleList", function (req, res) {
+        let userDetails = req.query;
+        model.setScheduler.find({ userName: userDetails.userId }).then(res1 => {
             res.send(res1);
         })
     });

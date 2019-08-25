@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { configurationwizard } from '../configuration/configurationwizard.service'
 import { LoginService } from '../../login/login.service'
-import { configList } from '../dashboard/configList.service'
+import { setScheduler } from './set-scheduler.service'
+import { GridComponent } from '@syncfusion/ej2-angular-grids'
+import { Inject } from '@angular/core'
 @Component({
   selector: 'app-set-scheduler',
   templateUrl: './set-scheduler.component.html',
@@ -17,35 +19,43 @@ export class SetSchedulerComponent implements OnInit {
   public uniqueAddress: any;
   public userDetails: any;
   public orderedPro: any;
-
-  constructor(public dialog: MatDialog, private _addProductList: configurationwizard, private _login: LoginService, private _configList: configList) {
+  @ViewChild('grid', { static: true }) public grid: GridComponent;
+  constructor(public dialog: MatDialog, private _addProductList: configurationwizard, private _login: LoginService, private _setScheduler: setScheduler, @Inject(MAT_DIALOG_DATA) public scheduleData: any) {
     this._login.user().subscribe(result => {
       this.userDetails = result;
       error => console.log("Error is", error);
-    }
-    )
+    })
   }
   ngOnInit() {
+    console.log(this.scheduleData.scheduleData, "00000000000---------")
+    this.data = this.scheduleData.scheduleData;
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: false, pageSize: 5 };
 
-    setTimeout(() => {
-      console.log("fffff", this.userDetails)
-      this._configList.getProductList(this.userDetails).subscribe((response) => {
-        this.data = response;
-      }, (error) => {
-        console.log('error is ', error)
-      });
-    }, 1000)
+    // setTimeout(() => {
+    //   console.log("fffff", this.userDetails)
+    //   this._setScheduler.getScheduleList(this.userDetails).subscribe((response) => {
+    //     console.log("]]]]]]]]]]]]]]]]",response)
+    //     this.data = response;
+    //   }, (error) => {
+    //     console.log('error is ', error)
+    //   });
+    // }, 1000)
 
-    this._addProductList.GetAddedProductList().subscribe((response) => {
-      this.orderedPro = response;
-      this.uniqueAddress = [...new Set(this.orderedPro.map((i: any) => {
-        return i.address
-      }))]
-    }, (error) => {
-      console.log('error is ', error)
-    });
+    // this._addProductList.GetAddedProductList().subscribe((response) => {
+    //   this.orderedPro = response;
+    //   this.uniqueAddress = [...new Set(this.orderedPro.map((i: any) => {
+    //     return i.address
+    //   }))]
+    // }, (error) => {
+    //   console.log('error is ', error)
+    // });
+  }
+
+  removeScheduler(x,y) {
+    var selectedRow = this.grid.getSelectedRowIndexes()[0];
+    var table = document.getElementsByTagName("table");
+    table[3].children[1].children[selectedRow].remove();
   }
 
 

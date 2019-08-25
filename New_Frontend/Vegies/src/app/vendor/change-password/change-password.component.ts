@@ -22,7 +22,6 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   changePassword(){
-    console.log("daaaaaaaaa",this.userDetails);
     Object.assign(this.changePwd,this.userDetails)
     console.log("changePwd",this.changePwd)
     this._login.changePassword(this.changePwd).subscribe((res)=>{
@@ -30,7 +29,6 @@ export class ChangePasswordComponent implements OnInit {
         this._toastr.error(res.error)
       }else{
         this.closeModal();
-        console.log("changeeeeeee",res)
         this._toastr.success(res.status)
         this.router.navigate(['/dashboard']);
       }
