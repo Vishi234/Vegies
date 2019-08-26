@@ -33,12 +33,12 @@
         </div>
         <div class="schgrid">
             <ejs-grid [dataSource]='data' #grid [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
-                [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+                [filterSettings]='filterSettings' [editSettings]='editSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
                 <e-columns>
-                    <e-column field='name' headerText='Product Name' textAlign='left' width=240></e-column>
-                    <e-column field='oldPrice' headerText='MRP' textAlign='right' width=80></e-column>
-                    <e-column field='discount' headerText='Discount' textAlign='right' width=120></e-column>
-                    <e-column field='Qnty' headerText='Quantity' textAlign='right' width=100></e-column>
+                    <e-column field='name' headerText='Product Name' textAlign='left' width=200></e-column>
+                    <e-column field='oldPrice' headerText='MRP' textAlign='right' width=100></e-column>
+                    <e-column field='discount' headerText='Discount(%)' textAlign='right' width=140></e-column>
+                    <e-column field='Qnty' headerText='Quantity' textAlign='right' width=120></e-column>
                     <e-column field='newPrice' headerText='Actual Price' textAlign='right' width=100></e-column>
                     <e-column field='Delete' headerText='Action' textAlign="center" width=80>
                         <ng-template #template let-data>

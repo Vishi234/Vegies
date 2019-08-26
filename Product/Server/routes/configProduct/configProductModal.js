@@ -36,12 +36,20 @@ var setScheduler = new Schema({
     Qnty: { type: String }
 })
 
+var setAddress = new Schema({
+    address: { type: String, require: true },
+    date: { type: Date, require: true },
+    userId:{type: String, require: true}
+})
+
 var configList = mongoose.model('configList', configProduct, 'configListStore');
 var orderedCheckList = mongoose.model('orderedCheckList', configProduct, 'orderedCheckList');
 var setScheduler = mongoose.model('setScheduler', configProduct, 'setScheduler');
+var setAddress = mongoose.model('setAddress', configProduct, 'setAddress');
 
 module.exports = {
     configList: configList,
     orderedCheckList: orderedCheckList,
-    setScheduler:setScheduler
+    setScheduler:setScheduler,
+    setAddress:setAddress
 }
