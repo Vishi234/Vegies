@@ -48,6 +48,10 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { ChangePasswordComponent } from './vendor/change-password/change-password.component';
 import { SetAddressComponent } from './vendor/set-address/set-address.component';
 import { PreviewChecklistComponent } from './vendor/preview-checklist/preview-checklist.component';
+import { AdminSubcategoryComponent } from './admin/admin-subcategory/admin-subcategory.component';
+import { NewSubcategoryComponent } from './admin/new-subcategory/new-subcategory.component';
+import { AdminProductComponent } from './admin/admin-product/admin-product.component';
+import { NewProductComponent } from './admin/new-product/new-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +75,11 @@ import { PreviewChecklistComponent } from './vendor/preview-checklist/preview-ch
     NewCategoryComponent,
     ChangePasswordComponent,
     SetAddressComponent,
-    PreviewChecklistComponent
+    PreviewChecklistComponent,
+    AdminSubcategoryComponent,
+    NewSubcategoryComponent,
+    AdminProductComponent,
+    NewProductComponent
   ],
   imports: [
     BrowserModule,
@@ -127,6 +135,7 @@ import { PreviewChecklistComponent } from './vendor/preview-checklist/preview-ch
     AppGlobals],
   bootstrap: [AppComponent],
   entryComponents: [ForgotPasswordComponent,ChangePasswordComponent, 
-    ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent,SetAddressComponent,PreviewChecklistComponent]
+    ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent,SetAddressComponent,PreviewChecklistComponent,NewSubcategoryComponent,
+  NewProductComponent]
 })
 export class AppModule { }

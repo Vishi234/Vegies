@@ -14,6 +14,8 @@ import { AdminContainerComponent } from './admin/admin-container/admin-container
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
+import { AdminSubcategoryComponent } from './admin/admin-subcategory/admin-subcategory.component';
+import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 const routes: Routes = [
   {
     path: '',
@@ -59,6 +61,14 @@ const routes: Routes = [
       },
       {
         path: 'admin/category', component: AdminCategoryComponent
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/subcategory', component: AdminSubcategoryComponent
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/product', component: AdminProductComponent
         //,canActivate:[AuthGuard]
       }
     ]
