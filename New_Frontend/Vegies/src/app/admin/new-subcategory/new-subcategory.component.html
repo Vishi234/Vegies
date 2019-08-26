@@ -1,0 +1,38 @@
+<link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+<div class="modalbase">
+    <div class="modal-header">
+        <span class="title pull-left">
+            Add Category
+        </span>
+        <span class="pull-right close">
+            <a href="javbascript:void(0)" (click)="closeModal();">
+                <i class="fas fa-times"></i>
+            </a>
+        </span>
+    </div>
+    <div class="modal-body">
+        <div class="form_cat">
+            <ul>
+                <li>
+                    <ejs-dropdownlist id='ddlelement' #select [dataSource]='subCatList'
+                        [fields]='fields' placeholder="Select a category" required>
+                    </ejs-dropdownlist>
+                </li>
+                <li>
+                    <input class="e-input" type="text" placeholder="Subcategory Name" />
+                </li>
+                <li>
+                    <input class="e-input" type="text" placeholder="Alias" />
+                </li>
+                <li>
+                    <ejs-switch #switch [(ngModel)]="checked"></ejs-switch>
+                    <label>Active</label>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button mat-button class="btn btn-primary">Save Category</button>
+            <button mat-button class="btn btn-danger">Reset</button>
+        </div>
+    </div>
+</div>

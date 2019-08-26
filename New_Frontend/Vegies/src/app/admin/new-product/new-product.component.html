@@ -1,0 +1,64 @@
+<link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+<div class="modalbase">
+    <div class="modal-header">
+        <span class="title pull-left">
+            Add Product
+        </span>
+        <span class="pull-right close">
+            <a href="javbascript:void(0)" (click)="closeModal();">
+                <i class="fas fa-times"></i>
+            </a>
+        </span>
+    </div>
+    <div class="modal-body">
+        <div class="form_cat">
+            <ul>
+                <li>
+                    <ejs-dropdownlist id='ddlelement' #select [dataSource]='subCatList' [fields]='fields'
+                        placeholder="Select category" required>
+                    </ejs-dropdownlist>
+                </li>
+                <li>
+                    <ejs-dropdownlist id='ddlelement2' #select [dataSource]='subCatList' [fields]='fields'
+                        placeholder="Select Sub category" required>
+                    </ejs-dropdownlist>
+                </li>
+                <li>
+                    <ejs-dropdownlist id='ddlelement3' #select [dataSource]='subCatList' [fields]='fields'
+                        placeholder="Select Unit Measure" required>
+                    </ejs-dropdownlist>
+                </li>
+                <li>
+                    <input class="e-input" type="text" placeholder="Product Name" />
+                </li>
+                <li>
+                    <input class="e-input" type="text" placeholder="Alias" />
+                </li>
+                <li>
+                    <input class="e-input" type="text" placeholder="Price" />
+                </li>
+                <li>
+                    <input class="e-input" type="text" placeholder="Discount" />
+                </li>
+                <li>
+                    <input class="e-input" type="text" placeholder="Actual Price" />
+                </li>
+                <li>
+                    <ejs-switch #switch [(ngModel)]="checked"></ejs-switch>
+                    <label>Active</label>
+                </li>
+                <li>
+                    <form #form action="http://localhost:8080/api/admin/product/images" enctype="multipart/form-data"
+                        method="POST">
+                        <input type="file" name="myFile" id="myFile" required multiple />
+                        <input type="submit" (click)="form.submit()" class="btn btn-primary" value="Upload" />
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button mat-button class="btn btn-primary">Add Product</button>
+            <button mat-button class="btn btn-danger">Reset</button>
+        </div>
+    </div>
+</div>
