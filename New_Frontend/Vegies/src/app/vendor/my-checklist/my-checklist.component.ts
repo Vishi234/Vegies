@@ -98,17 +98,10 @@ export class MyChecklistComponent implements OnInit {
         }
       })
 
-    this.addConfigureList();
+   // this.addConfigureList();
   }
 
-  addConfigureList() {
-    console.log("hiiiiiiiiiiiii");
-    this._configList.addProductList(this.myCheckList).subscribe((res) => {
-      this._toastr.success(res.status)
-    }, (error) => {
-      console.log('error is ', error)
-    })
-  }
+  
 
   getScheduleList() {
     var selectedRow = this.grid.getSelectedRowIndexes();
@@ -120,12 +113,7 @@ export class MyChecklistComponent implements OnInit {
       return this.data[e];
     })
     
-    // console.log("hiiiiiiiiiiiii",this.myCheckList);
-    // this._setScheduler.addScheduler(this.myCheckList).subscribe((res) => {
-    //   this._toastr.success(res.status)
-    // }, (error) => {
-    //   console.log('error is ', error)
-    // })
+    
   }
 
 }

@@ -14,9 +14,11 @@
         <div class="schgrid">
             <ejs-grid [dataSource]='myCheckList'>
                 <e-columns>
-                    <e-column field='name' headerText='Product Name' textAlign='left' width=150></e-column>
-                    <e-column field='Qnty' headerText='Quantity' textAlign='right' width=80></e-column>
-                    <e-column field='newPrice' headerText='Actual Price' textAlign='right' width=80></e-column>
+                    <e-column field='name' headerText='Product Name' textAlign='left' width=120></e-column>
+                    <e-column field='Qnty' headerText='Quantity' textAlign='right' width=100></e-column>
+                    <e-column field='oldPrice' headerText='MRP' textAlign='right' width=70></e-column>
+                    <e-column field='discount' headerText='Discount (%)' textAlign='right' width=110></e-column>
+                    <e-column field='newPrice' headerText='Actual Price' textAlign='right' width=100></e-column>
                 </e-columns>
             </ejs-grid>
         </div>
@@ -25,14 +27,19 @@
             <h4>
                 Shipping Location
             </h4>
-            <ejs-grid [dataSource]='uniqueAddress' #address>
+            <!-- <ejs-grid [dataSource]='uniqueAddress' #address>
                     <e-columns>
+                        
                         <e-column field='address' headerText='Address' textAlign='left' width=150></e-column>
                     </e-columns>
-                </ejs-grid>
-            <p> ==========>{{message}}<a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
+                </ejs-grid> -->
+                <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress' formControlName="firstCtrl"
+                [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required></ejs-dropdownlist>
+            
+        <p><a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
                         class="fas fa-pencil-alt"></i></a></p>
         </div>
     </div>
+    <button mat-button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="purchaseOrder()">Purchase Order</button>
 </div>
-<app-set-address (childEvent)="message=$event"></app-set-address>
+<!-- <app-set-address (childEvent)="message=$event"></app-set-address> -->
