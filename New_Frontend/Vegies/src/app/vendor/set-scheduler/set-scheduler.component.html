@@ -16,19 +16,22 @@
                 Schedule Date
             </h4>
             <div class="input-group">
-                <ejs-datepicker [value]='startDate' format='dd-MMM-yyyy' placeholder='From date'></ejs-datepicker>
-                <ejs-datepicker [value]='endDate' format='dd-MMM-yyyy' placeholder='To date'></ejs-datepicker>
+                <ejs-datepicker [value]='startDate' format='dd-MMM-yyyy' (change)='onChangeFrom($event)' placeholder='From date' required></ejs-datepicker>
+                <ejs-datepicker [value]='endDate' format='dd-MMM-yyyy' (change)='onChangeTo($event)' placeholder='To date' required></ejs-datepicker>
             </div>
         </div>
         <div class="shiploc">
             <h4>
                 Shipping Location
             </h4>
-            <p>{{uniqueAddress}} <a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
+            <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress' formControlName="firstCtrl"
+                [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required></ejs-dropdownlist>
+
+            <p> <a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
                         class="fas fa-pencil-alt"></i></a></p>
         </div>
         <div class="btn-group">
-            <button mat-button class="btn btn-primary">Set Schedule</button>
+            <button mat-button class="btn btn-primary" (click)="addScheduler()">Set Schedule</button>
             <button mat-button class="btn btn-danger">Go Back</button>
         </div>
         <div class="schgrid">
