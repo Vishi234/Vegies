@@ -9,19 +9,19 @@
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 const config = {
-  app: {
-    port: 8080
-  },
-  db: {
-    host: 'localhost',
-    port: 27017,
-    name: 'vegies'
-  }
-};
-
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useCreateIndex', true);
-const { db: { host, port, name } } = config;
-const connectionString = `mongodb://${host}:${port}/${name}`;
-mongoose.connect(connectionString);
-module.exports = config;
+    app: {
+      port: 8081
+    },
+    db: {
+      host: 'localhost',
+      port: 27017,
+      name: 'vegies'
+    }
+   };
+ 
+   mongoose.set('useNewUrlParser', true);
+   mongoose.set('useCreateIndex', true);
+   const { db: { host, port, name } } = config;
+   const connectionString = `mongodb://${host}:${port}/${name}`;
+   mongoose.connect(connectionString);
+   module.exports = config;

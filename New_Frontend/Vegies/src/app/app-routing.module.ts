@@ -16,6 +16,7 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { AdminSubcategoryComponent } from './admin/admin-subcategory/admin-subcategory.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
+import{MyOrdersComponent} from './vendor/my-orders/my-orders.component'
 const routes: Routes = [
   {
     path: '',
@@ -43,6 +44,10 @@ const routes: Routes = [
       },
       {
         path:'mychecklist', component: MyChecklistComponent
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path:'orders', component: MyOrdersComponent
         //,canActivate:[AuthGuard]
       }
     ]

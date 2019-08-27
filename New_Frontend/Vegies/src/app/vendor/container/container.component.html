@@ -84,6 +84,25 @@
                             </ul>
                         </div>
                     </mat-expansion-panel>
+                    <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Orders
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    Manage your order details.
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div class="sidelist">
+                                <ul>
+                                    <li>
+                                        <a routerLink='/orders'>
+                                            My Orders
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
