@@ -42,7 +42,11 @@ export class PreviewChecklistComponent implements OnInit {
     this.dialog.closeAll();
   }
   changeAddress() {
-    this.dialog.open(SetAddressComponent, { disableClose: true })
+    let dialogRef  = this.dialog.open(SetAddressComponent, { disableClose: true })
+    dialogRef.afterClosed()
+      .subscribe(() => {
+        this.ngOnInit();
+      })
   }
 }
 
