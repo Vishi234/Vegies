@@ -24,10 +24,12 @@
 
                         <div class="dropdown-menu dropdown-primary dropdown-menu-left">
                             <a class="dropdown-item" href="#"><i class="fas fa-address-book"></i> My Account</a>
-                            <a class="dropdown-item" href="#" (click)="openChangeModal();"><i class="fas fa-key"></i> Change Password</a>
+                            <a class="dropdown-item" href="#" (click)="openChangeModal();"><i class="fas fa-key"></i>
+                                Change Password</a>
                             <a class="dropdown-item" href="#"><i class="fas fa-sliders-h"></i> Setting</a>
                             <a class="dropdown-item" href="#"><i class="fas fa-envelope"></i> Message</a>
-                            <a class="dropdown-item" *ngIf='_login.loggedIn()' (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            <a class="dropdown-item" *ngIf='_login.loggedIn()' (click)="logout()"><i
+                                    class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </div>
                 </div>
@@ -85,24 +87,24 @@
                         </div>
                     </mat-expansion-panel>
                     <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    Orders
-                                </mat-panel-title>
-                                <mat-panel-description>
-                                    Manage your order details.
-                                </mat-panel-description>
-                            </mat-expansion-panel-header>
-                            <div class="sidelist">
-                                <ul>
-                                    <li>
-                                        <a routerLink='/orders'>
-                                            My Orders
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Orders
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Manage your order details.
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="sidelist">
+                            <ul>
+                                <li>
+                                    <a routerLink='/orders'>
+                                        My Orders
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
@@ -167,9 +169,11 @@
             </mat-sidenav>
 
             <mat-sidenav-content>
-                <div class="container-fluid">
-                    <div class="content-sec">
-                        <router-outlet></router-outlet>
+                <div class="mat-content-sec">
+                    <div class="container-fluid">
+                        <div class="content-sec">
+                            <router-outlet></router-outlet>
+                        </div>
                     </div>
                 </div>
             </mat-sidenav-content>

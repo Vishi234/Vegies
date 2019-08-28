@@ -3,7 +3,7 @@
   width: 600px;
 }
 .modal-body {
-  height: 500px;
+  height: 400px;
   color: #666;
 }
 .modal-header {
@@ -28,9 +28,10 @@
 }
 .shiploc h4 {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
-.shiploc p {
+.shiploc h4 a {
   font-size: 12px;
 }
 .shiploc a {
@@ -39,4 +40,11 @@
 }
 .shiploc a i {
   margin-left: 2px;
+}
+.schgrid {
+  min-height: 200px;
+}
+.e-input-group
+{
+  width: 100%!important;
 }

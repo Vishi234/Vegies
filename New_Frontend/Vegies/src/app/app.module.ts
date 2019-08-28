@@ -53,6 +53,7 @@ import { NewSubcategoryComponent } from './admin/new-subcategory/new-subcategory
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 import { NewProductComponent } from './admin/new-product/new-product.component';
 import { MyOrdersComponent } from './vendor/my-orders/my-orders.component';
+import { OrderItemsComponent } from './vendor/order-items/order-items.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +82,8 @@ import { MyOrdersComponent } from './vendor/my-orders/my-orders.component';
     NewSubcategoryComponent,
     AdminProductComponent,
     NewProductComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    OrderItemsComponent
   ],
   imports: [
     BrowserModule,
