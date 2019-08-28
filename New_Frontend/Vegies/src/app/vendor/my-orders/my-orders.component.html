@@ -13,7 +13,8 @@
         </ejs-daterangepicker>
     </div>
 </div>
-<div class="order-base pt-4">
+<!-- <div *ngFor='let data of orders'> -->
+<div class="order-base pt-4" *ngFor='let order of vendoeOrders'>
     <div class="order-card">
         <span class="order-id pull-left">ORD102030102331023
             <br>
@@ -49,3 +50,4 @@
         </div>
     </div>
 </div>
+<!-- </div> -->
