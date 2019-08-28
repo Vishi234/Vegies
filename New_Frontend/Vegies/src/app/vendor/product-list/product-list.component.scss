@@ -116,3 +116,23 @@
     left: 0;
   }
 }
+@media(min-width:1200px)
+{
+  .fixed-action
+  {
+    width: 85%;
+    left: 14.3%;
+  }
+  .items
+  {
+    width: 204px;
+  }
+  .items:nth-child(5n)
+  {
+    margin-right: 7px;
+  }
+  .items:nth-child(6n)
+  {
+    margin-right: 0px;
+  }
+}

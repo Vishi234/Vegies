@@ -74,6 +74,25 @@ module.exports = (function () {
         })
     });
 
+    app.post("/addAddress", function (req, res) {
+        console.log("uuuuuuuuuoooooooooo")
+        let configData = req.body;
+        console.log("setaddresssetaddress",configData)
+        model.setAddress.collection.insertMany(configData, function (err, docs) {
+            if (err) {
+                return console.error(err);
+            } else {
+                res.status(201).json({"status":"Address added successfully"});
+            }
+        });
+    });
+
+    app.get("/getAddress", function (req, res) {
+        let userDetails = req.query;
+        model.setAddress.find({ userId: userDetails.userId }).then(res1 => {
+            res.send(res1);
+        })
+    });
     return app;
 
 })();

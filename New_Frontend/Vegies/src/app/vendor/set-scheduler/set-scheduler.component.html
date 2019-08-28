@@ -16,29 +16,32 @@
                 Schedule Date
             </h4>
             <div class="input-group">
-                <ejs-datepicker [value]='startDate' format='dd-MMM-yyyy' placeholder='From date'></ejs-datepicker>
-                <ejs-datepicker [value]='endDate' format='dd-MMM-yyyy' placeholder='To date'></ejs-datepicker>
+                <ejs-datepicker [value]='startDate' format='dd-MMM-yyyy' (change)='onChangeFrom($event)' placeholder='From date' required></ejs-datepicker>
+                <ejs-datepicker [value]='endDate' format='dd-MMM-yyyy' (change)='onChangeTo($event)' placeholder='To date' required></ejs-datepicker>
             </div>
         </div>
         <div class="shiploc">
             <h4>
                 Shipping Location
             </h4>
-            <p>{{uniqueAddress}} <a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
+            <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress' formControlName="firstCtrl"
+                [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required></ejs-dropdownlist>
+
+            <p> <a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
                         class="fas fa-pencil-alt"></i></a></p>
         </div>
         <div class="btn-group">
-            <button mat-button class="btn btn-primary">Set Schedule</button>
+            <button mat-button class="btn btn-primary" (click)="addScheduler()">Set Schedule</button>
             <button mat-button class="btn btn-danger">Go Back</button>
         </div>
         <div class="schgrid">
             <ejs-grid [dataSource]='data' #grid [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
-                [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+                [filterSettings]='filterSettings' [editSettings]='editSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
                 <e-columns>
-                    <e-column field='name' headerText='Product Name' textAlign='left' width=240></e-column>
-                    <e-column field='oldPrice' headerText='MRP' textAlign='right' width=80></e-column>
-                    <e-column field='discount' headerText='Discount' textAlign='right' width=120></e-column>
-                    <e-column field='Qnty' headerText='Quantity' textAlign='right' width=100></e-column>
+                    <e-column field='name' headerText='Product Name' textAlign='left' width=200></e-column>
+                    <e-column field='oldPrice' headerText='MRP' textAlign='right' width=100></e-column>
+                    <e-column field='discount' headerText='Discount(%)' textAlign='right' width=140></e-column>
+                    <e-column field='Qnty' headerText='Quantity' textAlign='right' width=120></e-column>
                     <e-column field='newPrice' headerText='Actual Price' textAlign='right' width=100></e-column>
                     <e-column field='Delete' headerText='Action' textAlign="center" width=80>
                         <ng-template #template let-data>

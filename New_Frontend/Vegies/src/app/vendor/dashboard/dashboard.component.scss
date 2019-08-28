@@ -271,7 +271,6 @@
   .owl-carousel {
     display: block;
   }
-
 }
 @media (min-width: 545px) and(max-width:767px) {
   .values-top > ul > li {
@@ -293,14 +292,17 @@
 @media (min-width: 768px) and (max-width: 991px) {
 }
 @media (min-width: 992px) and (max-width: 1199px) {
+  
 }
 @media (min-width: 1200px) {
+  .values-top > ul > li > a {
+    width: 290px;
+  }
+ 
 }
-// @media only screen and (min-width: 1224px) {
-//   .values-top > ul > li > a {
-//     width: 290px;
-//   }
-// }
+@media only screen and (min-width: 1224px) {
+ 
+}
 // @media only screen and (min-width: 1080px) {
 //   .values-top > ul > li > a {
 //     width: 250px;
