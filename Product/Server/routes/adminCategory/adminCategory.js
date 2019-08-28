@@ -23,6 +23,8 @@ module.exports = (function () {
     });
 
     app.post("/category", function (req, res) {
+
+       
         let categoryData = req.body;
         let categorySave = new model.Category(categoryData)
         categorySave.save().then((items => {

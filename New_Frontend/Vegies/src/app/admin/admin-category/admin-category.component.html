@@ -20,10 +20,10 @@
         [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
         <e-columns>
             <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='60'></e-column>
-            <e-column field='OrderID' headerText='Order ID' textAlign='Right' width='120'></e-column>
-            <e-column field='CustomerID' headerText='Customer ID' width='120'></e-column>
-            <e-column field='Freight' textAlign='Right' format='c2' width='120'></e-column>
-            <e-column field='ShipCountry' headerText='Ship Country' width='140'></e-column>
+            <e-column field='_id' headerText='Category Id' textAlign='left' width='80'></e-column>
+            <e-column field='catName' headerText='Category Name' textAlign='left' width='100'></e-column>
+            <e-column field='catAlias' textAlign='left' headerText='Category Alias' format='c2' width='100'></e-column>
+            <e-column field='Active'  headerText='Active' textAlign='left' width='50'></e-column>
         </e-columns>
     </ejs-grid>
 </div>

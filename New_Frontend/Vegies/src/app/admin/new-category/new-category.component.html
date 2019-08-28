@@ -17,19 +17,19 @@
                     <input class="e-input" type="text" placeholder="Category Id" />
                 </li>
                 <li>
-                    <input class="e-input" type="text" placeholder="Category Name" />
+                    <input class="e-input" type="text" placeholder="Category Name" [(ngModel)]="categoryData.catName" />
                 </li>
                 <li>
-                    <input class="e-input" type="text" placeholder="Alias" />
+                    <input class="e-input" type="text" placeholder="Alias" [(ngModel)]="categoryData.catAlias" />
                 </li>
                 <li>
-                    <ejs-switch #switch [(ngModel)]="checked"></ejs-switch>
+                    <ejs-switch #switch [(ngModel)]="checked" [(ngModel)]="categoryData.Active"></ejs-switch>
                     <label>Active</label>
                 </li>
             </ul>
         </div>
         <div class="btn-group">
-            <button mat-button class="btn btn-primary">Save Category</button>
+            <button mat-button class="btn btn-primary" (click)="AddCategory()">Save Category</button>
             <button mat-button class="btn btn-danger">Reset</button>
         </div>
     </div>
