@@ -13,8 +13,7 @@
     <div class="modal-body">
         <div class="schedule-date">
             <h4>
-                Schedule Date <p> <a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
-                            class="fas fa-pencil-alt"></i></a></p>
+                Schedule Date 
             </h4>
             <div class="input-group">
                 <ejs-datepicker [value]='startDate' format='dd-MMM-yyyy' (change)='onChangeFrom($event)'
@@ -25,7 +24,8 @@
         </div>
         <div class="shiploc">
             <h4>
-                Shipping Location
+                Shipping Location <a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
+                    class="fas fa-pencil-alt"></i></a>
             </h4>
             <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress' formControlName="firstCtrl"
                 [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required>
@@ -33,7 +33,7 @@
 
 
         </div>
-        <div class="btn-group">
+        <div class="btn-group mt-3">
             <button mat-button class="btn btn-primary" (click)="addScheduler()">Set Schedule</button>
             <button mat-button class="btn btn-danger">Go Back</button>
         </div>
