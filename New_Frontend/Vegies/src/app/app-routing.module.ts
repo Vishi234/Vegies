@@ -52,7 +52,7 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
-        path:'orders/items', component: OrderItemsComponent
+        path:'orders/items/:id', component: OrderItemsComponent
         //,canActivate:[AuthGuard]
       }
     ]

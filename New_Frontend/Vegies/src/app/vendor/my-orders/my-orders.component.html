@@ -14,34 +14,34 @@
     </div>
 </div>
 <!-- <div *ngFor='let data of orders'> -->
-<div class="order-base pt-4" *ngFor='let order of vendoeOrders'>
+<div class="order-base pt-4" *ngFor='let order of vendorOrders'>
     <div class="order-card">
         <span class="order-id pull-left">ORD102030102331023
             <br>
             <span class="dt">Order on 28-Aug-2019</span>
         </span>
         <span class="badge badge-danger pull-right">Pending</span>
-        <div class="order-details">
+        <div class="order-details">                                                                     
             <div class="discount">
-                <label class="pull-left">Total Items</label><span class="pull-right">4 (<a href="javascript:void(0)">View items</a>)</span>
+                <label class="pull-left">Total Items</label><span class="pull-right">{{order.count}} (<a [routerLink]="['/orders/items',order.bookingDate]">View items</a>)</span>
             </div>
             <div class="discount">
-                <label class="pull-left">Discount</label><span class="pull-right">20%</span>
+                <label class="pull-left">Total MRP </label><span class="pull-right">{{order.oldPrice}}</span>
             </div>
             <div class="gst">
-                <label class="pull-left">Shipping Charges</label><span class="pull-right">18%</span>
+                <label class="pull-left">Discount</label><span class="pull-right">{{order.discount}}%</span>
             </div>
             <div class="amount">
-                <label class="pull-left">Selling Price</label><span class="pull-right">2000</span>
+                <label class="pull-left">Shipping Charge</label><span class="pull-right">0</span>
             </div>
             <span class="border"></span>
             <div class="total">
-                <label class="pull-left">Total</label><span class="pull-right">4000</span>
+                <label class="pull-left">Total</label><span class="pull-right">{{order.newPrice}}</span>
             </div>
         </div>
         <div class="ship-add">
             <label>Shipping Address</label>
-            <span>A-155 D chander vihar first floor nilothi extn new delhi nangloi , 110041</span>
+            <span>{{order.address}}</span>
         </div>
         <div class="view-btn">
             <a href="javascript:void(0)">
