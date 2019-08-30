@@ -14,24 +14,26 @@
         <div class="form_cat">
             <ul>
                 <li>
-                    <ejs-dropdownlist id='ddlelement' #select [dataSource]='subCatList'
-                        [fields]='fields' placeholder="Select a category" required>
+               
+
+                    <ejs-dropdownlist id='ddlelement' #select [dataSource]='categoryList'
+                        [fields]='fields' placeholder="Select a category" required  [(ngModel)]="subCatData.catId" >
                     </ejs-dropdownlist>
                 </li>
                 <li>
-                    <input class="e-input" type="text" placeholder="Subcategory Name" />
+                    <input class="e-input" type="text" placeholder="Subcategory Name"   [(ngModel)]="subCatData.subCateName" />
                 </li>
                 <li>
-                    <input class="e-input" type="text" placeholder="Alias" />
+                    <input class="e-input" type="text" placeholder="Alias" [(ngModel)]="subCatData.subCatAlias"  />
                 </li>
                 <li>
-                    <ejs-switch #switch [(ngModel)]="checked"></ejs-switch>
+                    <ejs-switch #switch [(ngModel)]="checked"  [(ngModel)]="subCatData.Active" ></ejs-switch>
                     <label>Active</label>
                 </li>
             </ul>
         </div>
         <div class="btn-group">
-            <button mat-button class="btn btn-primary">Save Category</button>
+            <button mat-button (click)="AddSubCategory()" class="btn btn-primary">Save Category</button>
             <button mat-button class="btn btn-danger">Reset</button>
         </div>
     </div>

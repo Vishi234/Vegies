@@ -8,7 +8,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
 import { DateRangePickerModule,DatePickerModule } from '@syncfusion/ej2-angular-calendars';
-import { GridModule } from '@syncfusion/ej2-angular-grids';
+import { GridModule,EditService,ToolbarService } from '@syncfusion/ej2-angular-grids';
 import { PageService, SortService, FilterService, GroupService, FreezeService, SelectionService } from '@syncfusion/ej2-angular-grids';
 import { CheckBoxModule,SwitchModule } from '@syncfusion/ej2-angular-buttons'
 import { DropDownListModule, AutoCompleteModule } from '@syncfusion/ej2-angular-dropdowns';
@@ -128,7 +128,7 @@ import { MyOrdersComponent } from './vendor/my-orders/my-orders.component';
     }),
     OwlModule
   ],
-  providers: [PageService, SortService, FilterService, GroupService, AuthGuard, FreezeService, SelectionService,
+  providers: [PageService,EditService,ToolbarService, SortService, FilterService, GroupService, AuthGuard, FreezeService, SelectionService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

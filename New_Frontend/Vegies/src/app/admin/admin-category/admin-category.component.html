@@ -16,7 +16,7 @@
     </div>
 </div>
 <div class="checklistgrid">
-    <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+    <ejs-grid [dataSource]='data' [toolbar]='toolbarOptions' [editSettings]='editOptions'  [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
         [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
         <e-columns>
             <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='60'></e-column>

@@ -10,12 +10,14 @@ module.exports = (function () {
     'use strict';
 
     app.get("/category", function (req, res) {
+        console.log("getCategoryyyyyyy-----------")
         model.Category.find().then(getCategory=>{
             //console.log("getCategoryyyyyyy",getCategory)
             res.send(getCategory);
         })
     });
     app.get("/subCategory", function (req, res) {
+
         model.subCategory.find().then(getsubCategory=>{
            // console.log("getCategoryyyyyyy",getsubCategory)
             res.send(getsubCategory);
@@ -35,7 +37,10 @@ module.exports = (function () {
     });
 
     app.post("/subCategory", function (req, res) {
+       
+        
         let subCategoryData = req.body;
+        console.log("getCategoryyyyyyy",subCategoryData)
         let subCategorySave = new model.subCategory(subCategoryData)
         subCategorySave.save().then((items => {
             res.status(200).send("Sub Category added successfully");

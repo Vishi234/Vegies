@@ -21,6 +21,7 @@ export class AdminCategoryService {
     return this.http.get(this._adminCategoryUrl)
   }
   AddSubCategory(user: any) {
+    debugger;
     return this.http.post<any>(this._subCatUrl, user);
   }
   GetSubCategoryList() {
