@@ -32,9 +32,7 @@
         <e-columns>
             <e-column field='name' headerText='Product Name' width='250'></e-column>
             <e-column field='Qnty' headerText='Quantity' width='130'>
-                <!-- <ng-template #template let-clientData>
-                    <input type="text" [value]="clientData.Qnty" class="e-input" (change)="onChange($event)"/>
-                </ng-template> -->
+            
             </e-column>
             <e-column field='unitMeasure' headerText="Unit Measure" textAlign='center' width='160'></e-column>
             <e-column field='oldPrice'  headerText='MRP(Rs)' width='150' >
@@ -46,13 +44,4 @@
             <e-column field='newPrice'  headerText='Actual Price(Rs)' width='180'></e-column>
         </e-columns>
     </ejs-grid>
-    <!-- <ejs-grid [dataSource]='data' [allowPaging]="true" [allowSorting]="true"
-    [allowFiltering]="true" [allowGrouping]="false" [pageSettings]='pageSettings'>
-     <e-columns>
-         <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=90></e-column>
-         <e-column field='CustomerID' headerText='Customer ID' width=120></e-column>
-         <e-column field='Freight' headerText='Freight' textAlign='Right' format='C2' width=90></e-column>
-         <e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width=120></e-column>
-     </e-columns>
-     </ejs-grid> -->
 </div>

@@ -14,8 +14,8 @@ import { LoginService } from '../../login/login.service'
 export class SetAddressComponent implements OnInit {
   public appearance = Appearance;
   public zoom: number;
-  public latitude: number = 20.5937;
-  public longitude: number = 78.9629;
+  public latitude;
+  public longitude;
   public vendorAddress: {};
   public userDetails: any;
   constructor(private dialogRef: MatDialogRef<SetAddressComponent>, private _setAddress: setAddress, private _toastr: ToastrService, private _login: LoginService) {
@@ -80,7 +80,8 @@ export class SetAddressComponent implements OnInit {
     let that = this;
     geocoder.geocode({ 'location': latlng }, function (results) {
       if (results[0]) {
-        that.zoom = 15;
+        that.zoom = 11;
+        console.log(results[0].formatted_address);
         document.getElementById("address").innerHTML=results[0].formatted_address
       } else {
         console.log('No results found');

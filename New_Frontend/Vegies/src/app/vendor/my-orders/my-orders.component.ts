@@ -46,9 +46,9 @@ export class MyOrdersComponent implements OnInit {
               mrpPrice=mrpPrice+Number(myArray[i].oldPrice);
               actPrice=actPrice+Number(myArray[i].newPrice);
               perAvg=perAvg+Number(myArray[i].discount);
-              myArray[i].oldPrice=mrpPrice;
-              myArray[i].newPrice=actPrice;                                     
-              myArray[i].discount=perAvg
+              myArray[i].oldPrice=Number(mrpPrice).toFixed(2);
+              myArray[i].newPrice=Number(actPrice).toFixed(2);                                     
+              myArray[i].discount=Number(perAvg).toFixed(2)
               obj.push(myArray[i]);
             }
           }
@@ -57,7 +57,7 @@ export class MyOrdersComponent implements OnInit {
         this.vendorOrders = unique.map((x) => {
           var test= search(x, this.data);
           var cnt= test[test.length-1]["discount"]/test.length
-          test[test.length-1]["discount"]=cnt
+          test[test.length-1]["discount"]=Number(cnt).toFixed(2)
           test[test.length-1]["count"]=test.length
           return test[test.length-1];
         });
