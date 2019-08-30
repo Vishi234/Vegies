@@ -10,9 +10,9 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
 import { DateRangePickerModule,DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { GridModule,EditService,ToolbarService } from '@syncfusion/ej2-angular-grids';
 import { PageService, SortService, FilterService, GroupService, FreezeService, SelectionService } from '@syncfusion/ej2-angular-grids';
-import { CheckBoxModule,SwitchModule } from '@syncfusion/ej2-angular-buttons'
+import { CheckBoxModule,SwitchModule,RadioButtonModule  } from '@syncfusion/ej2-angular-buttons'
 import { DropDownListModule, AutoCompleteModule } from '@syncfusion/ej2-angular-dropdowns';
-
+import {DatePipe} from '@angular/common';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule, IconsModule, CheckboxModule } from 'angular-bootstrap-md';
@@ -54,6 +54,7 @@ import { AdminProductComponent } from './admin/admin-product/admin-product.compo
 import { NewProductComponent } from './admin/new-product/new-product.component';
 import { MyOrdersComponent } from './vendor/my-orders/my-orders.component';
 import { OrderItemsComponent } from './vendor/order-items/order-items.component';
+import { OrderReportComponent } from './vendor/reports/order-report/order-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +84,8 @@ import { OrderItemsComponent } from './vendor/order-items/order-items.component'
     AdminProductComponent,
     NewProductComponent,
     MyOrdersComponent,
-    OrderItemsComponent
+    OrderItemsComponent,
+    OrderReportComponent
   ],
   imports: [
     BrowserModule,
@@ -123,6 +125,7 @@ import { OrderItemsComponent } from './vendor/order-items/order-items.component'
     AgGridModule.withComponents([]),
     DatePickerModule,
     SwitchModule,
+    RadioButtonModule,
     ToastrModule.forRoot({
       timeOut:1000,
       positionClass:'toast-top-right',
@@ -136,7 +139,7 @@ import { OrderItemsComponent } from './vendor/order-items/order-items.component'
       useClass: TokenInterceptorService,
       multi: true
     },
-    AppGlobals],
+    AppGlobals,DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [ForgotPasswordComponent,ChangePasswordComponent, 
     ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent,SetAddressComponent,PreviewChecklistComponent,NewSubcategoryComponent,

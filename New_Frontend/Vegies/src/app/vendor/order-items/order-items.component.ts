@@ -14,6 +14,8 @@ export class OrderItemsComponent implements OnInit {
     public userDetails: any;
     public data: any;
     public orderSummary: any;
+    public filterSettings: Object;
+    public pageSettings: object;
     constructor(private route: ActivatedRoute, private _configList: configList, private _toastr: ToastrService, private _login: LoginService) {
         this._login.user().subscribe(result => {
             this.userDetails = result;
@@ -22,6 +24,8 @@ export class OrderItemsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.filterSettings = { type: 'Menu' };
+        this.pageSettings = { pageSizes: true, pageSize: 10 };
         this.orderDate = this.route.snapshot.paramMap.get('id');
         setTimeout((a) => {
             this._configList.getOrderList(this.userDetails).subscribe((response) => {

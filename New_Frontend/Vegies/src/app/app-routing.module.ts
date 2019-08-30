@@ -18,6 +18,7 @@ import { AdminSubcategoryComponent } from './admin/admin-subcategory/admin-subca
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 import{MyOrdersComponent} from './vendor/my-orders/my-orders.component'
 import{OrderItemsComponent} from './vendor/order-items/order-items.component'
+import{OrderReportComponent} from './vendor/reports/order-report/order-report.component'
 const routes: Routes = [
   {
     path: '',
@@ -53,6 +54,10 @@ const routes: Routes = [
       },
       {
         path:'orders/items/:id', component: OrderItemsComponent
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path:'reports/order-report', component: OrderReportComponent
         //,canActivate:[AuthGuard]
       }
     ]

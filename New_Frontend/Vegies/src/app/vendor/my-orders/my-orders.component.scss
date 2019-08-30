@@ -11,11 +11,16 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   margin-right: 15px;
   margin-bottom: 15px;
-  height: 300px;
+  height: 297px;
   overflow: hidden;
 }
 .order-card:nth-child(4n) {
   margin-right: 0px;
+}
+.order-card .status {
+  padding: 6px;
+  font-size: 12px;
+  font-weight: 700;
 }
 .order-id {
   display: block;
@@ -38,8 +43,7 @@
   font-size: 12px;
   font-weight: 600;
 }
-.discount a
-{
+.discount a {
   text-decoration: underline;
 }
 .gst {

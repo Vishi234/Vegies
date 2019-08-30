@@ -16,11 +16,11 @@
 <!-- <div *ngFor='let data of orders'> -->
 <div class="order-base pt-4">
     <div class="order-card" *ngFor='let order of vendorOrders'>
-        <span class="order-id pull-left">{{order._id}}
+        <span class="order-id pull-left">ORD1231234323<!--{{order._id}}-->
             <br>
-            <span class="dt">Order on {{order.bookingDate}}</span>
+            <span class="dt">Order on {{order.bookingDate | date:'dd-MMM-yyyy'}}</span>
         </span>
-        <span class="badge badge-danger pull-right">Pending</span>
+        <span class="text-danger status pull-right">Pending</span>
         <div class="order-details">                                                                     
             <div class="discount">
                 <label class="pull-left">Total Items</label><span class="pull-right">{{order.count}} (<a [routerLink]="['/orders/items',order.bookingDate]">View items</a>)</span>

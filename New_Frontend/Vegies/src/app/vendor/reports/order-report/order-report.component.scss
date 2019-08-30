@@ -1,0 +1,22 @@
+.radio-group > .e-radio-wrapper:nth-child(1) {
+  margin-right: 10px;
+}
+.e-radio + label .e-label {
+  font-family: inherit;
+  color: #666;
+  padding-left: 22px;
+  font-size: 12px;
+}
+.e-radio + label::before {
+  height: 15px;
+  width: 15px;
+}
+.e-radio + label::after {
+  height: 5px;
+  left: 5px;
+  top: 5px;
+  width: 5px;
+}
+.graph {
+  box-shadow: 0 3px 4px #ddd;
+}
