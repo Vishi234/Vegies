@@ -11,7 +11,7 @@
         </span>
     </div>
     <div class="modal-body">
-            <input matInput placeholder="Address" class="e-input" matGoogleMapsAutocomplete #address
+            <input matInput placeholder="Address" class="e-input" country="in" type="address" id="address" matGoogleMapsAutocomplete #address
             (onLocationSelected)="onLocationSelected($event)">
         <agm-map [zoom]="14" [latitude]="latitude" [longitude]="longitude">
             <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>

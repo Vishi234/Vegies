@@ -35,6 +35,10 @@
   font-weight: 600;
   font-size: 18px;
 }
+.shiploc h4 a
+{
+  font-size: 12px;
+}
 .shiploc p {
   font-size: 12px;
 }
@@ -48,6 +52,10 @@
 .schedule-date {
   display: inline-block;
   float: left;
+}
+.shiploc .e-input-group
+{
+  width: 100%!important;
 }
 .schedule-date h4 {
   font-weight: 600;

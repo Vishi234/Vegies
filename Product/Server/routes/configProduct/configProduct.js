@@ -49,6 +49,16 @@ module.exports = (function () {
         });
     });
 
+    app.get("/getOrder", function (req, res) {
+        let userDetails = req.query;
+        //console.log("getListttttttttt2",req)
+        //console.log("getListttttttttt1",userDetails.userId)
+        model.orderedCheckList.find({ userName: userDetails.userId }).then(res1 => {
+            //console.log("outputttttttttttt",res1)
+            res.send(res1);
+        })
+    });
+
     app.post("/setScheduler", function (req, res) {
         let configData = req.body;
         console.log("setSchedulersetScheduler",configData)

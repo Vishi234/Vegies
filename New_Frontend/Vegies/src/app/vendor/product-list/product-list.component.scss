@@ -88,7 +88,7 @@
   display: inline-block;
   width: 83%;
   position: fixed;
-  z-index: 999999;
+  z-index: 99999999999999;
   /* top: 0; */
   bottom: 0;
   background: rgba(40, 52, 66,0.8);
@@ -116,23 +116,7 @@
     left: 0;
   }
 }
-@media(min-width:1200px)
-{
-  .fixed-action
-  {
-    width: 85%;
-    left: 14.3%;
-  }
-  .items
-  {
-    width: 204px;
-  }
-  .items:nth-child(5n)
-  {
-    margin-right: 7px;
-  }
-  .items:nth-child(6n)
-  {
-    margin-right: 0px;
-  }
-}
+// @media(min-width:1200px)
+// {
+  
+// }

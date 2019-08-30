@@ -25,21 +25,16 @@
         <hr />
         <div class="shiploc">
             <h4>
-                Shipping Location
+                Shipping Location [<a href="javascript:void(0)" (click)="changeAddress();">Add Address</a>]
             </h4>
-            <!-- <ejs-grid [dataSource]='uniqueAddress' #address>
-                    <e-columns>
-                        
-                        <e-column field='address' headerText='Address' textAlign='left' width=150></e-column>
-                    </e-columns>
-                </ejs-grid> -->
-                <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress' formControlName="firstCtrl"
-                [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required></ejs-dropdownlist>
-            
-        <p><a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
-                        class="fas fa-pencil-alt"></i></a></p>
+            <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress' formControlName="firstCtrl"
+                [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required>
+            </ejs-dropdownlist>
         </div>
+
     </div>
-    <button mat-button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="purchaseOrder()">Purchase Order</button>
+    <div class="modal-footer">
+        <button mat-button class="btn btn-primary pull-right" (click)="purchaseOrder()">Place Order</button>
+    </div>
 </div>
 <!-- <app-set-address (childEvent)="message=$event"></app-set-address> -->

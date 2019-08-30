@@ -1,39 +1,40 @@
 <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
 <div class="content-ttl">
     <div class="panel-name">
-        <span><i class="fas fa-clipboard-list"></i></span>
+        <span><i class="fas fa-tachometer-alt"></i></span>
         <span>
-            My Checklist
+            Order Items
             <p>Content section goes here</p>
         </span>
     </div>
     <div class="panel-filter">
-        <div class="btn-group">
-            <button mat-button class="btn btn-info">Add Item</button>
-            <button mat-button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="sendRequirement()">Send Requirement</button>
-            <button mat-button class="btn btn-deep-orange" (click)="openScheduler();">Set Scheduler</button>
-            <button mat-button class="btn btn-danger" (click)="removeProduct($event)">Remove Items</button>
-        </div>
         <!-- <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
             [endDate]='end'>
         </ejs-daterangepicker> -->
     </div>
 </div>
-
-
-
-
-<div class="checklistgrid pt-4">
-    <ejs-grid [dataSource]='data' id="checklistGrid" #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+<div class="item-grid pt-4">
+    <div class="grid-head">
+        <ul>
+            <li>
+                Order Number : <span>ORD102030102331023</span>
+            </li>
+            <li>
+                Order Date : <span>{{orderDate}}</span>
+            </li>
+            <li>
+                Status : <span class="badge badge-danger">Pending</span>
+            </li>
+        </ul>
+    </div>
+    <ejs-grid [dataSource]='orderSummary' id="checklistGrid" #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
         [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
         <e-columns>
-            <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='60'>
-            </e-column>
             <e-column field='name' headerText='Product Name' width='250'></e-column>
             <e-column field='Qnty' headerText='Quantity' width='130'>
-                <ng-template #template let-clientData>
+                <!-- <ng-template #template let-clientData>
                     <input type="text" [value]="clientData.Qnty" class="e-input" (change)="onChange($event)"/>
-                </ng-template>
+                </ng-template> -->
             </e-column>
             <e-column field='unitMeasure' headerText="Unit Measure" textAlign='center' width='160'></e-column>
             <e-column field='oldPrice'  headerText='MRP(Rs)' width='150' >
@@ -45,8 +46,13 @@
             <e-column field='newPrice'  headerText='Actual Price(Rs)' width='180'></e-column>
         </e-columns>
     </ejs-grid>
+    <!-- <ejs-grid [dataSource]='data' [allowPaging]="true" [allowSorting]="true"
+    [allowFiltering]="true" [allowGrouping]="false" [pageSettings]='pageSettings'>
+     <e-columns>
+         <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=90></e-column>
+         <e-column field='CustomerID' headerText='Customer ID' width=120></e-column>
+         <e-column field='Freight' headerText='Freight' textAlign='Right' format='C2' width=90></e-column>
+         <e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width=120></e-column>
+     </e-columns>
+     </ejs-grid> -->
 </div>
-
-
-<!-- <div id="myModal" class="modal modalbase"> -->
-
