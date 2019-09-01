@@ -26,6 +26,9 @@ export class OrderReportComponent implements OnInit {
   public userDetails: any;
   public reportData: any = [];
   public monthlyReportData: any = [];
+  public filterSettings: Object;
+  public pageSettings: object;
+  public custom: any = true;
   public options: any = {
     chart: {
       type: 'column'
@@ -74,6 +77,8 @@ export class OrderReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.filterSettings = { type: 'Menu' };
+    this.pageSettings = { pageSizes: true, pageSize: 10 };
     setTimeout((x) => {
       this._setAddress.getAddressList(this.userDetails).subscribe((response) => {
         this.vendorAddress = response;
@@ -131,14 +136,24 @@ export class OrderReportComponent implements OnInit {
             this.monthlyReportData.push(da);
           }
         })
-        this.options.series.push({name:"Order", data: this.monthlyReportData })
-        Highcharts.chart('container', this.options);
+        this.options.series.push({ name: "Order", data: this.monthlyReportData })
+        if (!this.custom) {
+          Highcharts.chart('container', this.options);
+        }
+
       }, (error) => {
         console.log('error is ', error)
       });
     }, 1000);
   }
+  mode(event) {
+    if (event.custom == true) {
+      setTimeout(function () {
+        Highcharts.chart('container', event.options);
+      }, 1000);
 
+    }
+  }
   getDate(event) {
     var date = event.value;
     var startDate = date.toString().split(",")[0];
@@ -149,14 +164,13 @@ export class OrderReportComponent implements OnInit {
         this.monthlyReportData.push(fil)
       }
     })
-    debugger;
-    this.options.series=[];
+    this.options.series = [];
     if (this.monthlyReportData.length > 0) {
-      this.options.series.push({name:"Order",data:this.monthlyReportData})
+      this.options.series.push({ name: "Order", data: this.monthlyReportData })
       Highcharts.chart('container', this.options);
     }
     else {
-      this.options.series.push({name:"Order",data:[]})
+      this.options.series.push({ name: "Order", data: [] })
       Highcharts.chart('container', this.options);
     }
   }
