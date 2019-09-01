@@ -83,7 +83,6 @@ export class OrderReportComponent implements OnInit {
     setTimeout((x) => {
       this._setAddress.getAddressList(this.userDetails).subscribe((response) => {
         this.vendorAddress = response;
-        console.log("objjjjj3344", this.vendorAddress)
       }, (error) => {
         console.log('error is ', error)
       });
@@ -174,19 +173,24 @@ export class OrderReportComponent implements OnInit {
       }
     })
 
-    this.data.filter((tabularData)=>{
-      if(new Date(tabularData.bookingDate) >= new Date(startDate) && new Date(tabularData.bookingDate) <= new Date(endDate)){
-        this.tabularData.push(tabularData)
+    this.data.filter((key)=>{
+      console.log(new Date(key.bookingDate) >= new Date(startDate),"hi",new Date(key.bookingDate) <= new Date(endDate));
+      if(new Date(key.bookingDate) >= new Date(startDate) && new Date(key.bookingDate) <= new Date(endDate)){
+        this.tabularData.push(key);
       }
     })
     this.options.series = [];
     if (this.monthlyReportData.length > 0) {
       this.options.series.push({ name: "Order", data: this.monthlyReportData })
-      Highcharts.chart('container', this.options);
+      if (!this.custom) {
+        Highcharts.chart('container', this.options);
+      }
     }
     else {
       this.options.series.push({ name: "Order", data: [] })
-      Highcharts.chart('container', this.options);
+      if (!this.custom) {
+        Highcharts.chart('container', this.options);
+      }
     }
   }
 
