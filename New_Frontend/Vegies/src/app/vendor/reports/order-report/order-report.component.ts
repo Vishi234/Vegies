@@ -3,7 +3,7 @@ import * as Highcharts from 'highcharts';
 import { dataBound } from '@syncfusion/ej2-grids';
 import { configList } from '../../dashboard/configList.service'
 import { LoginService } from '../../../login/login.service'
-import {setAddress} from '../../set-address/set-address.service'
+import { setAddress } from '../../set-address/set-address.service'
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -53,63 +53,26 @@ export class OrderReportComponent implements OnInit {
         borderWidth: 0,
         dataLabels: {
           enabled: true,
-          format: '{point.y:.1f}%'
+          format: '{point.y:.1f}'
         }
       }
     },
 
     tooltip: {
-      headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-      pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+      headerFormat: '<span style="font-size:11px">{series.name | date : "dd-MMM-yyyy"}</span><br>',
+      pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
     },
 
     series: [
       {
         name: "Browsers",
         colorByPoint: true,
-        data:this.reportData
-        // data: [
-        //   {
-        //     name: "Chrome",
-        //     y: 62.74,
-        //     drilldown: "Chrome"
-        //   },
-        //   {
-        //     name: "Firefox",
-        //     y: 10.57,
-        //     drilldown: "Firefox"
-        //   },
-        //   {
-        //     name: "Internet Explorer",
-        //     y: 7.23,
-        //     drilldown: "Internet Explorer"
-        //   },
-        //   {
-        //     name: "Safari",
-        //     y: 5.58,
-        //     drilldown: "Safari"
-        //   },
-        //   {
-        //     name: "Edge",
-        //     y: 4.02,
-        //     drilldown: "Edge"
-        //   },
-        //   {
-        //     name: "Opera",
-        //     y: 1.92,
-        //     drilldown: "Opera"
-        //   },
-        //   {
-        //     name: "Other",
-        //     y: 7.62,
-        //     drilldown: null
-        //   }
-        // ]
+        data: this.reportData
       }
     ],
-    
+
   }
-  constructor(private _configList: configList, private _login: LoginService,private _setAddress:setAddress) {
+  constructor(private _configList: configList, private _login: LoginService, private _setAddress: setAddress) {
     this._login.user().subscribe(result => {
       this.userDetails = result;
       error => console.log("Error is", error);
@@ -117,16 +80,14 @@ export class OrderReportComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout((x)=>{
-      this._setAddress.getAddressList(this.userDetails).subscribe((response) => {      
+    setTimeout((x) => {
+      this._setAddress.getAddressList(this.userDetails).subscribe((response) => {
         this.vendorAddress = response;
-        console.log("objjjjj3344",this.vendorAddress)
+        console.log("objjjjj3344", this.vendorAddress)
       }, (error) => {
         console.log('error is ', error)
       });
-    },1000)
-   
-
+    }, 1000)
     setTimeout(() => {
       this._configList.getOrderList(this.userDetails).subscribe((response) => {
         this.data = response;
@@ -139,44 +100,40 @@ export class OrderReportComponent implements OnInit {
           obj = [];
           for (var i = 0; i < myArray.length; i++) {
             if (myArray[i].bookingDate === nameKey) {
-              mrpPrice=mrpPrice+Number(myArray[i].oldPrice);
-              actPrice=actPrice+Number(myArray[i].newPrice);
-              perAvg=perAvg+Number(myArray[i].discount);
-              myArray[i].oldPrice=Number(mrpPrice).toFixed(2);
-              myArray[i].newPrice=Number(actPrice).toFixed(2);                                     
-              myArray[i].discount=Number(perAvg).toFixed(2)
+              mrpPrice = mrpPrice + Number(myArray[i].oldPrice);
+              actPrice = actPrice + Number(myArray[i].newPrice);
+              perAvg = perAvg + Number(myArray[i].discount);
+              myArray[i].oldPrice = Number(mrpPrice).toFixed(2);
+              myArray[i].newPrice = Number(actPrice).toFixed(2);
+              myArray[i].discount = Number(perAvg).toFixed(2)
               obj.push(myArray[i]);
             }
           }
           return obj;
         }
         this.vendorOrders = unique.map((x) => {
-          var test= search(x, this.data);
-          var cnt= test[test.length-1]["discount"]/test.length
-          test[test.length-1]["discount"]=Number(cnt).toFixed(2)
-          test[test.length-1]["count"]=test.length
-          return test[test.length-1];
+          var test = search(x, this.data);
+          var cnt = test[test.length - 1]["discount"] / test.length
+          test[test.length - 1]["discount"] = Number(cnt).toFixed(2)
+          test[test.length - 1]["count"] = test.length
+          return test[test.length - 1];
         });
-
-       
         var z
-      this.vendorOrders.map((add)=>{
-         this.vendorAddress.map((ord)=>{
-            if(ord._id==add.address){
-              add.address=ord.address
-              //z= ord;//[...new Set(this.data.map(ord))];
+        this.vendorOrders.map((add) => {
+          this.vendorAddress.map((ord) => {
+            if (ord._id == add.address) {
+              add.address = ord.address
             }
           })
         })
-        this.vendorOrders.map((x:any)=>{
-          this.reportData.push({date:x.bookingDate,price:x.newPrice})
+        this.vendorOrders.map((x: any) => {
+          var date = new Date(x.bookingDate);
+          var newDate = ((date != null || date != undefined) ? date.toString().split(" ")[2] + "-" + date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3] : date);
+          console.log(newDate);
+          this.reportData.push({ name: newDate, y: Number(x.newPrice) })
         })
-        console.log("objjjjj11",this.reportData)
-        this.options.series.push({
-          data:this.reportData
-        })
+        console.log("dasdasdsa", this.reportData)
         Highcharts.chart('container', this.options);
-        console.log("tttttt")
       }, (error) => {
         console.log('error is ', error)
       });
