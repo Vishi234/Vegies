@@ -29,6 +29,7 @@ export class OrderReportComponent implements OnInit {
   public filterSettings: Object;
   public pageSettings: object;
   public custom: any = true;
+  public tabularData: any = [];
   public options: any = {
     chart: {
       type: 'column'
@@ -90,6 +91,16 @@ export class OrderReportComponent implements OnInit {
     setTimeout(() => {
       this._configList.getOrderList(this.userDetails).subscribe((response) => {
         this.data = response;
+
+        var currentDate = new Date().toString().split(" ")[1] + "-" + new Date().toString().split(" ")[3]
+        this.data.filter((da) => {
+          var date = new Date(da.bookingDate);
+          var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
+          if (monYear == currentDate) {
+            this.tabularData.push(da);
+          }
+        })
+
         var obj = [];
         const unique = [...new Set(this.data.map(item => item.bookingDate))];
         function search(nameKey, myArray) {
@@ -117,7 +128,6 @@ export class OrderReportComponent implements OnInit {
           test[test.length - 1]["count"] = test.length
           return test[test.length - 1];
         });
-        var z
         this.vendorOrders.map((add) => {
           this.vendorAddress.map((ord) => {
             if (ord._id == add.address) {
@@ -128,7 +138,6 @@ export class OrderReportComponent implements OnInit {
         this.vendorOrders.map((x: any) => {
           this.reportData.push({ name: x.bookingDate, y: Number(x.newPrice) })
         })
-        var currentDate = new Date().toString().split(" ")[1] + "-" + new Date().toString().split(" ")[3]
         this.reportData.filter((da) => {
           var date = new Date(da.name);
           var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
@@ -162,6 +171,12 @@ export class OrderReportComponent implements OnInit {
     this.reportData.filter((fil) => {
       if (new Date(fil.name) >= new Date(startDate) && new Date(fil.name) <= new Date(endDate)) {
         this.monthlyReportData.push(fil)
+      }
+    })
+
+    this.data.filter((tabularData)=>{
+      if(new Date(tabularData.bookingDate) >= new Date(startDate) && new Date(tabularData.bookingDate) <= new Date(endDate)){
+        this.tabularData.push(tabularData)
       }
     })
     this.options.series = [];
