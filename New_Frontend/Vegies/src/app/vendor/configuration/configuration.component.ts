@@ -46,19 +46,6 @@ export class ConfigurationComponent implements OnInit {
         data => this.currentLogged = data
        
       )
-    this._vendorDetails.GetProductList().subscribe((response) => {
-      Object.entries(response).forEach(
-        ([key, value]) => {
-          this.items.push({
-            "name": value.productName + '(' + value.productAlias + ')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
-            image: _global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1, "productAlias": value.productAlias, "subCat": value.subCatName
-          })
-        }
-      );
-      this.filterItems = this.items
-    }, (error) => {
-      console.log('error is ', error)
-    });
   }
 
   inreaseHeight() {
@@ -89,7 +76,7 @@ export class ConfigurationComponent implements OnInit {
     this.userConfigList = this.selectedPro.map((el)=>{
       var o = Object.assign({}, el);
       o.address = address,
-        o.userName = this.currentLogged._id
+      o.userName = this.currentLogged._id
       return o;
     })
   }
@@ -106,6 +93,21 @@ export class ConfigurationComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this._vendorDetails.GetProductList().subscribe((response) => {
+      Object.entries(response).forEach(
+        ([key, value]) => {
+          this.items.push({
+            "name": value.productName + '(' + value.productAlias + ')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+            image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1, "productAlias": value.productAlias, "subCat": value.subCatName
+          })
+        }
+      );
+      this.filterItems = this.items
+    }, (error) => {
+      console.log('error is ', error)
+    });
+
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -144,16 +146,32 @@ export class ConfigurationComponent implements OnInit {
   }
 
   change(event) {
-    var getSelectProduct = this.filterItems.filter( (item)=> {
-      if (item.subCat == event.value ) {
-        this.filterSubCategory.push(item)
-        return item;
+    console.log(event.itemData.subCatName,"itemsitems")
+    console.log(this.items,"itemsitems11");
+    this.ngOnInit();
+    this.filterSubCategory=[];
+    var getSelectProduct=this.items.map((x)=>{
+      if(x.subCat== event.itemData.subCatName){
+        console.log("imageeee",x.image)
+        this.filterSubCategory.push(x);
       }
-    });
-    if(this.filterSubCategory.length>0)
-    {
-      this.items=[...new Set(this.filterSubCategory)];
-    }
+    })
+
+    // var getSelectProduct = this.items.filter((item)=> {
+    //   if (item.subCat == event.itemData.subCatName ) {
+    //     console.log("hiiiiiiiii")
+    //     this.filterSubCategory.push(item)
+    //     return this.filterSubCategory;
+    //   }
+    // });
+    //this.items=[];
+    // this.items=getSelectProduct;
+    //  console.log("filterItemsfilterItems",getSelectProduct,"dataa",this.items)
+    // if(getSelectProduct.length>0)
+    // {
+    //   this.items=[...new Set(getSelectProduct)];
+    //   console.log("itemmm",this.items)
+    // }
   }
 
   carouselOptions = {

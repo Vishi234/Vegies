@@ -29,8 +29,7 @@ export class MyChecklistComponent implements OnInit {
     this._login.user().subscribe(result => {
       this.userDetails = result;
       error => console.log("Error is", error);
-    }
-    )
+    })
   }
 
   ngOnInit() {
