@@ -31,7 +31,7 @@ export class OrderReportComponent implements OnInit {
       type: 'column'
     },
     title: {
-      text: 'Browser market shares. January, 2018'
+      text: 'Daily Order History. `this.reportData.`, 2018'
     },
     subtitle: {
       text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
@@ -129,7 +129,6 @@ export class OrderReportComponent implements OnInit {
         this.vendorOrders.map((x: any) => {
           var date = new Date(x.bookingDate);
           var newDate = ((date != null || date != undefined) ? date.toString().split(" ")[2] + "-" + date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3] : date);
-          console.log(newDate);
           this.reportData.push({ name: newDate, y: Number(x.newPrice) })
         })
         console.log("dasdasdsa", this.reportData)
