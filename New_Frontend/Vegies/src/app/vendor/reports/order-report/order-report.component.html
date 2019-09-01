@@ -21,7 +21,7 @@
             cssClass="e-info">
         </ejs-radiobutton>
     </div>
-    <ejs-grid [dataSource]='tabularData' *ngIf="custom" id="orderreport" #old [allowPaging]='true' [allowSorting]='true'
+    <ejs-grid [dataSource]='tabularData' #old *ngIf="custom" id="orderreport"  [allowPaging]='true' [allowSorting]='true'
         [allowFiltering]='true' [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
         <e-columns>
             <e-column field='orderId' headerText='Order Id' width='120'></e-column>
