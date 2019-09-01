@@ -63,13 +63,7 @@ export class OrderReportComponent implements OnInit {
       pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
     },
 
-    series: [
-      {
-        name: "Browsers",
-        colorByPoint: true,
-        data: []
-      }
-    ],
+    series: [],
 
   }
   constructor(private _configList: configList, private _login: LoginService, private _setAddress: setAddress) {
@@ -137,7 +131,7 @@ export class OrderReportComponent implements OnInit {
             this.monthlyReportData.push(da);
           }
         })
-        this.options.series.push({ data: this.monthlyReportData })
+        this.options.series.push({name:"Order", data: this.monthlyReportData })
         Highcharts.chart('container', this.options);
       }, (error) => {
         console.log('error is ', error)
@@ -155,16 +149,15 @@ export class OrderReportComponent implements OnInit {
         this.monthlyReportData.push(fil)
       }
     })
-    console.log("fffffffff", this.monthlyReportData)
-    console.log("fffffffff", this.options.series[0].data)
-    document.getElementById('container').nodeValue=""
+    debugger;
+    this.options.series=[];
     if (this.monthlyReportData.length > 0) {
-      this.options.series.push({ data: this.monthlyReportData })
-      Highcharts.chart('container', this.options).update(this.options,true);
+      this.options.series.push({name:"Order",data:this.monthlyReportData})
+      Highcharts.chart('container', this.options);
     }
     else {
-      this.options.series.push({ data: [] })
-      Highcharts.chart('container', this.options).update(this.options,true)
+      this.options.series.push({name:"Order",data:[]})
+      Highcharts.chart('container', this.options);
     }
   }
 
