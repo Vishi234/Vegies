@@ -67,7 +67,7 @@ export class OrderReportComponent implements OnInit {
       {
         name: "Browsers",
         colorByPoint: true,
-        data: this.reportData
+        data: []
       }
     ],
 
