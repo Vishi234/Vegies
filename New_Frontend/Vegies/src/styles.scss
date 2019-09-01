@@ -36,6 +36,10 @@ ul {
 ul li {
   list-style: none;
 }
+.highcharts-root
+{
+  font-family: inherit!important;
+}
 .cdk-global-scrollblock {
   overflow-y: auto !important;
 }

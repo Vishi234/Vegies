@@ -3,27 +3,56 @@
     <div class="panel-name">
         <span><i class="fas fa-clipboard-list"></i></span>
         <span>
-            Category Master
+            Manage Category
             <p>Content section goes here</p>
         </span>
     </div>
     <div class="panel-filter">
-        <div class="btn-group">
+        <!-- <div class="btn-group">
             <button mat-button class="btn btn-primary" (click)="addNewCategory();">Add Category</button>
             <button mat-button class="btn btn-danger">Remove Category</button>
             <button mat-button class="btn btn-info">Update Category</button>
-        </div>
+        </div> -->
     </div>
 </div>
-<div class="checklistgrid">
-    <ejs-grid [dataSource]='data' [toolbar]='toolbarOptions' [editSettings]='editOptions'  [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
-        [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
-        <e-columns>
-            <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='60'></e-column>
-            <e-column field='_id' headerText='Category Id' textAlign='left' width='80'></e-column>
-            <e-column field='catName' headerText='Category Name' textAlign='left' width='100'></e-column>
-            <e-column field='catAlias' textAlign='left' headerText='Category Alias' format='c2' width='100'></e-column>
-            <e-column field='Active'  headerText='Active' textAlign='left' width='50'></e-column>
-        </e-columns>
-    </ejs-grid>
+<div class="checklistgrid pt-3">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panelheader">
+                Category
+            </div>
+            <ejs-grid [dataSource]='categorydata' [toolbar]='toolbarOptions' [editSettings]='editOptions'
+                [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true' [filterSettings]='filterSettings'
+                [pageSettings]='pageSettings' [allowGrouping]='false'>
+                <e-columns>
+                    <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='30'></e-column>
+                    <!-- <e-column field='_id' headerText='Category Id' textAlign='left' width='80'></e-column> -->
+                    <e-column field='catName' headerText='Category Name' textAlign='left' width='100'></e-column>
+                    <!-- <e-column field='catAlias' textAlign='left' headerText='Category Alias' format='c2' width='100'>
+                    </e-column> -->
+                    <e-column field='Active' headerText='Active' textAlign='left' width='50'></e-column>
+                </e-columns>
+            </ejs-grid>
+        </div>
+        <div class="col-lg-6">
+            <div class="panelheader">
+                Sub Category
+            </div>
+            <ejs-grid [dataSource]='categorydata' [toolbar]='toolbarOptions' [editSettings]='editOptions'
+                [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true' [filterSettings]='filterSettings'
+                [pageSettings]='pageSettings' [allowGrouping]='false'>
+                <e-columns>
+                    <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='30'></e-column>
+                    <!-- <e-column field='_id' headerText='Category Id' textAlign='left' width='80'></e-column> -->
+                    <e-column field='catName' headerText='Category Name' textAlign='left' width='100'></e-column>
+                    <!-- <e-column field='catAlias' textAlign='left' headerText='Category Alias' format='c2' width='100'>
+                    </e-column> -->
+                    <e-column field='Active' headerText='Active' textAlign='left' width='50'></e-column>
+                </e-columns>
+            </ejs-grid>
+        </div>
+    </div>
+
+
+
 </div>

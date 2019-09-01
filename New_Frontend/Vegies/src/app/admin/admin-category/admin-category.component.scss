@@ -17,6 +17,12 @@
 .btn-group .btn:last-child {
   margin-right: 0px;
 }
+.panelheader {
+  border: 1px solid #e0e0e0;
+  border-bottom: 0px;
+  background: #fff;
+  padding: 10px;
+}
 @media (max-width: 768px) {
   .panel-filter {
     width: 100%;

@@ -1,3 +1,14 @@
+@-webkit-keyframes autofill {
+  to {
+      color: #fff;
+      background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
 .login-base {
   background-image: url("../../assets/img/bg.jpg");
   height: 100%;
