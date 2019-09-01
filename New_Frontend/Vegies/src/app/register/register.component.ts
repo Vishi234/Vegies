@@ -13,9 +13,8 @@ export class RegisterComponent implements OnInit {
   registerUser = new registerModel(1,'','','','','',1,1,0);
   constructor(public vendorRegis:RegisterService,private router:Router,private _toastr:ToastrService) { }
   vendorSignup() {
-    console.log("data",this.registerUser)
     this.vendorRegis.vendorRegistration(this.registerUser).subscribe(response => {
-      console.log("ooooooooooooooo",response)
+      debugger;
       if(response.errmsg)
       this._toastr.error("Email id all ready exist");
       this._toastr.success(response.status);
