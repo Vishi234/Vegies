@@ -28,11 +28,11 @@ export class SetSchedulerComponent implements OnInit {
   public editSettings: EditSettingsModel;
   public vendorAddress: any;
   public fields: Object = { text: 'address', value: '_id' };
-  public schedulerFromDate:any;
-  public schedulerToDate:any;
+  public schedulerFromDate: any;
+  public schedulerToDate: any;
   @ViewChild('grid', { static: true }) public grid: GridComponent;
   @ViewChild('select', { static: true }) select;
-  constructor(public dialog: MatDialog, private _addProductList: configurationwizard, private _login: LoginService, private _setScheduler: setScheduler, @Inject(MAT_DIALOG_DATA) public scheduleData: any, private _setAddress: setAddress,private _toastr:ToastrService) {
+  constructor(public dialog: MatDialog, private _addProductList: configurationwizard, private _login: LoginService, private _setScheduler: setScheduler, @Inject(MAT_DIALOG_DATA) public scheduleData: any, private _setAddress: setAddress, private _toastr: ToastrService) {
     this._login.user().subscribe(result => {
       this.userDetails = result;
       error => console.log("Error is", error);
@@ -55,34 +55,38 @@ export class SetSchedulerComponent implements OnInit {
         console.log('error is ', error)
       });
     }, 1000)
-
-    // this._addProductList.GetAddedProductList().subscribe((response) => {
-    //   this.orderedPro = response;
-    //   this.uniqueAddress = [...new Set(this.orderedPro.map((i: any) => {
-    //     return i.address
-    //   }))]
-    // }, (error) => {
-    //   console.log('error is ', error)
-    // });
   }
 
-    addScheduler(){
-    console.log("hiiiiiiiiiiiii",this.data);
-    this.data.map((ele:any)=>{
-      ele.schedulerFromDate=this.schedulerFromDate,
-      ele.schedulerToDate=this.schedulerToDate,
-      ele.address=this.uniqueAddress,
-      ele.scheduleDate=new Date()
-    })
-    console.log("scheduleDataaaaaaa",this.data)
-    this._setScheduler.addScheduler(this.data).subscribe((res) => {
-      this._toastr.success(res.status)
-    }, (error) => {
-      console.log('error is ', error)
-    })
+  addScheduler() {
+    if (this.schedulerFromDate != undefined && this.schedulerToDate != undefined && this.uniqueAddress != undefined) {
+      var d1 = new Date(this.schedulerFromDate);
+      var d2 = new Date(this.schedulerToDate);
+      var timeDiff = d2.getTime() - d1.getTime();
+      var DaysDiff = timeDiff / (1000 * 3600 * 24);
+      if (DaysDiff < 7) {
+        alert("Difference between from date and to date should be greater than 7")
+      }
+      else {
+        this.data.map((ele: any) => {
+          ele.schedulerFromDate = this.schedulerFromDate,
+            ele.schedulerToDate = this.schedulerToDate,
+            ele.address = this.uniqueAddress,
+            ele.scheduleDate = new Date()
+        })
+        this._setScheduler.addScheduler(this.data).subscribe((res) => {
+          console.log(res.status);
+          this._toastr.success(res.status)
+        }, (error) => {
+          console.log('error is ', error)
+        })
+      }
     }
+    else {
+      alert("Please select from date ,to date and address");
+    }
+  }
 
-    removeScheduler(x, y) {
+  removeScheduler(x, y) {
     if (confirm("Are You Sure To Delete this Informations ?")) {
       this.data = this.data.filter((idx: any) => {
         if (idx._id != y) {
@@ -93,16 +97,16 @@ export class SetSchedulerComponent implements OnInit {
     }
   }
   onChangeFrom(args) {
-    this.schedulerFromDate=args.value;
-    console.log("selected datesssss",args.value)
+    this.schedulerFromDate = args.value;
+    console.log("selected datesssss", args.value)
   }
   onChangeTo(args) {
-    this.schedulerToDate=args.value;
-    console.log("selected datesssss",args.value)
+    this.schedulerToDate = args.value;
+    console.log("selected datesssss", args.value)
   }
 
   changeAddress() {
-    let dialogRef  = this.dialog.open(SetAddressComponent, { disableClose: true })
+    let dialogRef = this.dialog.open(SetAddressComponent, { disableClose: true })
     dialogRef.afterClosed()
       .subscribe(() => {
         this.ngOnInit();
