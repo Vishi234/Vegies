@@ -12,26 +12,26 @@ let More = require('highcharts/highcharts-more');
 Boost(Highcharts);
 noData(Highcharts);
 More(Highcharts);
-noData(Highcharts);
 @Component({
   selector: 'app-order-report',
   templateUrl: './order-report.component.html',
   styleUrls: ['./order-report.component.scss']
 })
 export class OrderReportComponent implements OnInit {
-  public start: Date = new Date("10-Jul-2017");
-  public end: Date = new Date("11-Aug-2017");
+  public start: Date = new Date();
+  public end: Date = new Date();
   public vendorOrders: any
   public vendorAddress: any
   public data: any = [];
   public userDetails: any;
   public reportData: any = [];
+  public monthlyReportData: any = [];
   public options: any = {
     chart: {
       type: 'column'
     },
     title: {
-      text: 'Daily Order History. `this.reportData.`, 2018'
+      text: 'Daily Order History. , 2018'
     },
     subtitle: {
       text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
@@ -67,7 +67,7 @@ export class OrderReportComponent implements OnInit {
       {
         name: "Browsers",
         colorByPoint: true,
-        data: this.reportData
+        data: []
       }
     ],
 
@@ -127,35 +127,45 @@ export class OrderReportComponent implements OnInit {
           })
         })
         this.vendorOrders.map((x: any) => {
-          var date = new Date(x.bookingDate);
-          var newDate = ((date != null || date != undefined) ? date.toString().split(" ")[2] + "-" + date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3] : date);
-          this.reportData.push({ name: newDate, y: Number(x.newPrice) })
+          this.reportData.push({ name: x.bookingDate, y: Number(x.newPrice) })
         })
-        console.log("dasdasdsa", this.reportData)
+        var currentDate = new Date().toString().split(" ")[1] + "-" + new Date().toString().split(" ")[3]
+        this.reportData.filter((da) => {
+          var date = new Date(da.name);
+          var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
+          if (monYear == currentDate) {
+            this.monthlyReportData.push(da);
+          }
+        })
+        this.options.series.push({ data: this.monthlyReportData })
         Highcharts.chart('container', this.options);
       }, (error) => {
         console.log('error is ', error)
       });
     }, 1000);
+  }
 
-    // setTimeout(() => {
-    //   Highcharts.chart('container', this.options);
-    // }, 1000);
-    // this.data = [
-    //   { "name": "project1", "data": [50291, 7410, 2013, 2013, 524, 201] },
-    //   { "name": "project2", "data": [1776995, 758630, 25633, 4120054, 24521, 2045] }
-    // ];
-
-    // this.data.forEach(element => {
-    //   this.options.series.push
-    //     ({
-    //       name: element.name,
-    //       data: element.data
-    //     })
-
-    // });
-
-
+  getDate(event) {
+    var date = event.value;
+    var startDate = date.toString().split(",")[0];
+    var endDate = date.toString().split(",")[1];
+    this.monthlyReportData = [];
+    this.reportData.filter((fil) => {
+      if (new Date(fil.name) >= new Date(startDate) && new Date(fil.name) <= new Date(endDate)) {
+        this.monthlyReportData.push(fil)
+      }
+    })
+    console.log("fffffffff", this.monthlyReportData)
+    console.log("fffffffff", this.options.series[0].data)
+    document.getElementById('container').nodeValue=""
+    if (this.monthlyReportData.length > 0) {
+      this.options.series.push({ data: this.monthlyReportData })
+      Highcharts.chart('container', this.options).update(this.options,true);
+    }
+    else {
+      this.options.series.push({ data: [] })
+      Highcharts.chart('container', this.options).update(this.options,true)
+    }
   }
 
 }

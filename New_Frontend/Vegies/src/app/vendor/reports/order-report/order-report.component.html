@@ -8,7 +8,7 @@
         </span>
     </div>
     <div class="panel-filter">
-        <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
+        <ejs-daterangepicker format='dd-MMM-yyyy' (change)="getDate($event);" id='daterangepicker' placeholder='Select a range' [startDate]='start'
             [endDate]='end'>
         </ejs-daterangepicker>
     </div>
