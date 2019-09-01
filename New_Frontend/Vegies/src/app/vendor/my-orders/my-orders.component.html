@@ -16,7 +16,7 @@
 <!-- <div *ngFor='let data of orders'> -->
 <div class="order-base pt-4">
     <div class="order-card" *ngFor='let order of vendorOrders'>
-        <span class="order-id pull-left">ORD1231234323<!--{{order._id}}-->
+        <span class="order-id pull-left">{{order.orderId}}<!--{{order._id}}-->
             <br>
             <span class="dt">Order on {{order.bookingDate | date:'dd-MMM-yyyy'}}</span>
         </span>

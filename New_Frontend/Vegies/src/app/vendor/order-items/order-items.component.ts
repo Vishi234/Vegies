@@ -30,6 +30,7 @@ export class OrderItemsComponent implements OnInit {
         setTimeout((a) => {
             this._configList.getOrderList(this.userDetails).subscribe((response) => {
                 this.data = response;
+                console.log("idddddddddddd",this.data._id)
                this.orderSummary= this.data.filter((x)=>{
                 if(x.bookingDate==this.orderDate){
                     return x;

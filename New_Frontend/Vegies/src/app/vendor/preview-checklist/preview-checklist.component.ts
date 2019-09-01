@@ -37,7 +37,8 @@ export class PreviewChecklistComponent implements OnInit {
     this.myCheckList = this.data.ChecklistData;
     console.log("this.myCheckListthis.myCheckList",this.myCheckList);
     setTimeout(() => {
-      console.log("fffff", this.userDetails)
+      var x=new Date();
+      console.log("fffff111", Number(x));
       this._setAddress.getAddressList(this.userDetails).subscribe((response) => {      
         this.vendorAddress = response;
         this.vendorAddress=this.vendorAddress.map((val: any) => {
@@ -63,12 +64,13 @@ export class PreviewChecklistComponent implements OnInit {
   }
   getAddress(event){
     this.uniqueAddress=event.value;
-      console.log("addressssssssss",event.value)
   }
   purchaseOrder() {
     this.myCheckList.map(v => {
       v.address = this.uniqueAddress
       v.bookingDate=new Date();
+      v.orderId="ORD"+Number(new Date());
+      v.status="Pending"
       delete v._id
     })
      console.log("finalDataa",this.myCheckList)
