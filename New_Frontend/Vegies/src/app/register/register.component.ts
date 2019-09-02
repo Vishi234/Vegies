@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
     this.vendorRegis.vendorRegistration(this.registerUser).subscribe(response => {
       debugger;
       if(response.errmsg)
-      this._toastr.error("Email id all ready exist");
+      this._toastr.error("Email id allready exist");
       this._toastr.success(response.status);
       this.router.navigate(["/login"]);
     }, (error) => {
