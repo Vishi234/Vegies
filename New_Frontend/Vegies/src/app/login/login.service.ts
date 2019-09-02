@@ -20,6 +20,7 @@ export class LoginService {
   private _vendorLogout = this._global.baseAppUrl + 'vendor/logout';
   private _vendorName= this._global.baseAppUrl + 'vendor/user'
   private _changePwd= this._global.baseAppUrl + 'vendor/changePwd'
+  private _forgetPwd= this._global.baseAppUrl + 'vendor/forgetPwd'
 
   public extractData(res: Response) {
     this.userDetails = res;
@@ -69,6 +70,15 @@ export class LoginService {
   }
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  forgetPassword(email:any){
+    console.log("forgotPassword",email)
+    return this.http.post<any>(this._forgetPwd,email,{
+      observe:'body',
+      headers:new HttpHeaders().append('Content-Type','application/json')
+    })
+    //return this.http.post<any>(this._forgetPwd, email);
   }
 
   user(){
