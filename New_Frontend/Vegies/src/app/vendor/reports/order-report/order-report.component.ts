@@ -4,6 +4,7 @@ import { dataBound } from '@syncfusion/ej2-grids';
 import { configList } from '../../dashboard/configList.service'
 import { LoginService } from '../../../login/login.service'
 import { setAddress } from '../../set-address/set-address.service'
+import { GridComponent, CommandModel, EditSettingsModel } from '@syncfusion/ej2-angular-grids'
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -30,6 +31,7 @@ export class OrderReportComponent implements OnInit {
   public pageSettings: object;
   public custom: any = true;
   public tabularData: any = [];
+  @ViewChild('old', { static: false }) public grid: GridComponent;
   public options: any = {
     chart: {
       type: 'column'
@@ -38,7 +40,7 @@ export class OrderReportComponent implements OnInit {
       text: 'Daily Order History. , 2018'
     },
     subtitle: {
-      text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+      text: ''
     },
     xAxis: {
       type: 'category'
@@ -90,7 +92,6 @@ export class OrderReportComponent implements OnInit {
     setTimeout(() => {
       this._configList.getOrderList(this.userDetails).subscribe((response) => {
         this.data = response;
-
         var currentDate = new Date().toString().split(" ")[1] + "-" + new Date().toString().split(" ")[3]
         this.data.filter((da) => {
           var date = new Date(da.bookingDate);
@@ -99,7 +100,7 @@ export class OrderReportComponent implements OnInit {
             this.tabularData.push(da);
           }
         })
-
+        this.grid.refresh();
         var obj = [];
         const unique = [...new Set(this.data.map(item => item.bookingDate))];
         function search(nameKey, myArray) {
@@ -135,7 +136,10 @@ export class OrderReportComponent implements OnInit {
           })
         })
         this.vendorOrders.map((x: any) => {
-          this.reportData.push({ name: x.bookingDate, y: Number(x.newPrice) })
+          var d1=new Date(x.bookingDate);
+          var d2= (d1.toString().split(" ")[2] + "-" + d1.toString().split(" ")[1] +"-"+d1.toString().split(" ")[3])
+          
+          this.reportData.push({ name: d2, y: Number(x.newPrice) })
         })
         this.reportData.filter((da) => {
           var date = new Date(da.name);
@@ -167,31 +171,38 @@ export class OrderReportComponent implements OnInit {
     var startDate = date.toString().split(",")[0];
     var endDate = date.toString().split(",")[1];
     this.monthlyReportData = [];
-    this.reportData.filter((fil) => {
-      if (new Date(fil.name) >= new Date(startDate) && new Date(fil.name) <= new Date(endDate)) {
-        this.monthlyReportData.push(fil)
-      }
-    })
-
-    this.data.filter((key)=>{
-      console.log(new Date(key.bookingDate) >= new Date(startDate),"hi",new Date(key.bookingDate) <= new Date(endDate));
-      if(new Date(key.bookingDate) >= new Date(startDate) && new Date(key.bookingDate) <= new Date(endDate)){
-        this.tabularData.push(key);
-      }
-    })
-    this.options.series = [];
-    if (this.monthlyReportData.length > 0) {
-      this.options.series.push({ name: "Order", data: this.monthlyReportData })
-      if (!this.custom) {
-        Highcharts.chart('container', this.options);
-      }
+    this.tabularData = []
+    if (this.custom) {
+      this.data.filter((key) => {
+        console.log(new Date(key.bookingDate) >= new Date(startDate), "hi", new Date(key.bookingDate) <= new Date(endDate));
+        if (new Date(key.bookingDate) >= new Date(startDate) && new Date(key.bookingDate) <= new Date(endDate)) {
+          this.tabularData.push(key);
+          this.grid.refresh();
+        }
+      })
     }
     else {
-      this.options.series.push({ name: "Order", data: [] })
-      if (!this.custom) {
-        Highcharts.chart('container', this.options);
+      this.reportData.filter((fil) => {
+        if (new Date(fil.name) >= new Date(startDate) && new Date(fil.name) <= new Date(endDate)) {
+          var d1=new Date(fil.name);
+          date = (d1.toString().split(" ")[2] + "-" + d1.toString().split(" ")[1] +"-"+d1.toString().split(" ")[3])
+          this.monthlyReportData.push({name :date , y:fil.y})
+        }
+      })
+
+      this.options.series = [];
+      if (this.monthlyReportData.length > 0) {
+        this.options.series.push({ name: "Order", data: this.monthlyReportData })
+        if (!this.custom) {
+          Highcharts.chart('container', this.options);
+        }
+      }
+      else {
+        this.options.series.push({ name: "Order", data: [] })
+        if (!this.custom) {
+          Highcharts.chart('container', this.options);
+        }
       }
     }
   }
-
 }
