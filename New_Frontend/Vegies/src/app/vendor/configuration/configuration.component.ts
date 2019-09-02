@@ -10,7 +10,7 @@ import { configurationwizard } from './configurationwizard.service'
 import { AppGlobals } from '../../app.global';
 import { Router } from '@angular/router'
 import { ToastrService } from 'ngx-toastr'
-import {configList} from '../dashboard/configList.service'
+import { configList } from '../dashboard/configList.service'
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -44,7 +44,7 @@ export class ConfigurationComponent implements OnInit {
     this._login.user()
       .subscribe(
         data => this.currentLogged = data
-       
+
       )
   }
 
@@ -53,7 +53,7 @@ export class ConfigurationComponent implements OnInit {
 
   }
   onValChange(lbl, value) {
-    console.log("daaaaa111111",value.length)
+    console.log("daaaaa111111", value.length)
     if (value.length > 0) {
       document.getElementById("lblName" + lbl).innerHTML = "Selected";
       this.selectedPro.push(this.getProductById(lbl));
@@ -73,19 +73,19 @@ export class ConfigurationComponent implements OnInit {
 
   getAddress(address: string) {
     this.selectedAddress = address;
-    this.userConfigList = this.selectedPro.map((el)=>{
+    this.userConfigList = this.selectedPro.map((el) => {
       var o = Object.assign({}, el);
       o.address = address,
-      o.userName = this.currentLogged._id
+        o.userName = this.currentLogged._id
       return o;
     })
   }
 
   addConfigureList() {
     this._configurationwizard.AddConfigProduc(this.userConfigList).subscribe((res) => {
-    this._toastr.success(res.status)
-    this.closeModal()
-    window.location.reload();
+      this._toastr.success(res.status)
+      this.closeModal()
+      window.location.reload();
     }, (error) => {
       console.log('error is ', error)
     })
@@ -146,32 +146,12 @@ export class ConfigurationComponent implements OnInit {
   }
 
   change(event) {
-    console.log(event.itemData.subCatName,"itemsitems")
-    console.log(this.items,"itemsitems11");
-    this.ngOnInit();
-    this.filterSubCategory=[];
-    var getSelectProduct=this.items.map((x)=>{
-      if(x.subCat== event.itemData.subCatName){
-        console.log("imageeee",x.image)
-        this.filterSubCategory.push(x);
+    this.items = [];
+    this.filterItems.map((x) => {
+      if (x.subCat == event.itemData.subCatName) {
+        this.items.push(x);
       }
     })
-
-    // var getSelectProduct = this.items.filter((item)=> {
-    //   if (item.subCat == event.itemData.subCatName ) {
-    //     console.log("hiiiiiiiii")
-    //     this.filterSubCategory.push(item)
-    //     return this.filterSubCategory;
-    //   }
-    // });
-    //this.items=[];
-    // this.items=getSelectProduct;
-    //  console.log("filterItemsfilterItems",getSelectProduct,"dataa",this.items)
-    // if(getSelectProduct.length>0)
-    // {
-    //   this.items=[...new Set(getSelectProduct)];
-    //   console.log("itemmm",this.items)
-    // }
   }
 
   carouselOptions = {

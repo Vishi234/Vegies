@@ -37,10 +37,10 @@ export class OrderReportComponent implements OnInit {
       type: 'column'
     },
     title: {
-      text: 'Daily Order History. , 2018'
+      text: 'Daily Order History.........'
     },
     subtitle: {
-      text: ''
+      text: ''  
     },
     xAxis: {
       type: 'category'
@@ -138,7 +138,6 @@ export class OrderReportComponent implements OnInit {
         this.vendorOrders.map((x: any) => {
           var d1=new Date(x.bookingDate);
           var d2= (d1.toString().split(" ")[2] + "-" + d1.toString().split(" ")[1] +"-"+d1.toString().split(" ")[3])
-          
           this.reportData.push({ name: d2, y: Number(x.newPrice) })
         })
         this.reportData.filter((da) => {
