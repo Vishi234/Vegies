@@ -22,7 +22,7 @@
             <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='30'></e-column>
             <e-column field='OrderID' headerText='Orders Id' textAlign='left' width='50'>
                 <ng-template #template let-data>
-                    <a href="javascript:void(0)" class="font-weight-bolder">
+                    <a href="javascript:void(0)" (click)="ViewOrderDetails();" class="font-weight-bolder">
                         <u>{{data.OrderID}}</u>
                     </a>
                 </ng-template>

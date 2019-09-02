@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialog } from '@angular/material'
+import { OrderDetailsComponent } from '../order-details/order-details.component'
 @Component({
   selector: 'app-user-orders',
   templateUrl: './user-orders.component.html',
@@ -9,7 +10,7 @@ export class UserOrdersComponent implements OnInit {
   public filterSettings: Object;
   public pageSettings: object;
   public data: Object = [];
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
   ngOnInit() {
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: true, pageSize: 10 };
@@ -20,5 +21,7 @@ export class UserOrdersComponent implements OnInit {
         ShipRegion: 'CJ', ShipPostalCode: '51100', ShipCountry: 'France', Freight: 32.38, Verified: !0
       }]
   }
-
+  ViewOrderDetails() {
+    this.dialog.open(OrderDetailsComponent, { disableClose: true });
+  }
 }
