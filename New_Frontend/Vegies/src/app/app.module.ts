@@ -58,6 +58,7 @@ import { OrderReportComponent } from './vendor/reports/order-report/order-report
 import { UserListComponent } from './admin/users/user-list/user-list.component';
 import { UserChecklistComponent } from './admin/users/user-checklist/user-checklist.component';
 import { UserOrdersComponent } from './admin/users/user-orders/user-orders.component';
+import { OrderDetailsComponent } from './admin/users/order-details/order-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +92,8 @@ import { UserOrdersComponent } from './admin/users/user-orders/user-orders.compo
     OrderReportComponent,
     UserListComponent,
     UserChecklistComponent,
-    UserOrdersComponent
+    UserOrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
