@@ -14,13 +14,15 @@ app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 var dbConfig=require("./config/dbConfig");
 var vendor=require('./routes/vendor/vendorServer')
 var adminCategory = require('./routes/adminCategory/adminCategory');
-var configProduct=require('./routes/configProduct/configProduct')
+var configProduct=require('./routes/configProduct/configProduct');
+var userDetails=require('./routes/getUserDetails/userDetails')
 // app.use(cors({
 //     origin:['http://localhost:4200'],
 //     credentials:true
 // }))
 app.use('/api/admin', adminCategory);
 app.use('/api/configProduct', configProduct);
+app.use('/api/userDetails', userDetails);
 
 app.use(session({
     name:'hello',
