@@ -1,1 +1,40 @@
-<p>user-orders works!</p>
+<link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+<div class="content-ttl">
+    <div class="panel-name">
+        <span><i class="fas fa-clipboard-list"></i></span>
+        <span>
+            Manage Orders
+            <p>Content section goes here</p>
+        </span>
+    </div>
+    <div class="panel-filter">
+        <!-- <div class="btn-group">
+            <button mat-button class="btn btn-primary" (click)="addNewCategory();">Add Category</button>
+            <button mat-button class="btn btn-danger">Remove Category</button>
+            <button mat-button class="btn btn-info">Update Category</button>
+        </div> -->
+    </div>
+</div>
+<div class="user-grid pt-3">
+    <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+        [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+        <e-columns>
+            <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='30'></e-column>
+            <e-column field='OrderID' headerText='Orders Id' textAlign='left' width='50'>
+                <ng-template #template let-data>
+                    <a href="javascript:void(0)" class="font-weight-bolder">
+                        <u>{{data.OrderID}}</u>
+                    </a>
+                </ng-template>
+            </e-column>
+            <e-column field='OrderID' headerText='MRP' textAlign='left' width='50'></e-column>
+            <e-column field='OrderID' headerText='Discount(%)' textAlign='left' width='50'></e-column>
+            <e-column field='OrderID' headerText='Total Amount' textAlign='left' width='50'></e-column>
+            <e-column field='OrderID' headerText='Order Status' textAlign='left' width='50'>
+                <ng-template #template let-data>
+                    <span class="text-danger grid-status font-weight-bolder">Pending</span>
+                </ng-template>
+            </e-column>
+        </e-columns>
+    </ejs-grid>
+</div>

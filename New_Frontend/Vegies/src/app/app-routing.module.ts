@@ -20,6 +20,8 @@ import { MyOrdersComponent } from './vendor/my-orders/my-orders.component'
 import { OrderItemsComponent } from './vendor/order-items/order-items.component'
 import { OrderReportComponent } from './vendor/reports/order-report/order-report.component'
 import { UserListComponent } from './admin/users/user-list/user-list.component'
+import { UserChecklistComponent } from './admin/users/user-checklist/user-checklist.component'
+import{UserOrdersComponent} from './admin/users/user-orders/user-orders.component'
 const routes: Routes = [
   {
     path: '',
@@ -89,6 +91,14 @@ const routes: Routes = [
       },
       {
         path: 'admin/user-list', component: UserListComponent
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/user-checklist', component: UserChecklistComponent
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/user-orders', component: UserOrdersComponent
         //,canActivate:[AuthGuard]
       }
     ]
