@@ -40,7 +40,7 @@ export class OrderReportComponent implements OnInit {
       text: 'Daily Order History.........'
     },
     subtitle: {
-      text: ''  
+      text: ''
     },
     xAxis: {
       type: 'category'

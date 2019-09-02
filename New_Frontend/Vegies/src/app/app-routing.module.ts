@@ -8,7 +8,7 @@ import { VendorContainerComponent } from './vendor/container/container.component
 import { DashboardComponent } from './vendor/dashboard/dashboard.component'
 import { ProductListComponent } from './vendor/product-list/product-list.component'
 import { MyChecklistComponent } from './vendor/my-checklist/my-checklist.component'
-import {CategoryComponent} from './admin/category/category.component'
+import { CategoryComponent } from './admin/category/category.component'
 import { AuthGuard } from './auth.guard';
 import { AdminContainerComponent } from './admin/admin-container/admin-container.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -16,9 +16,10 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { AdminSubcategoryComponent } from './admin/admin-subcategory/admin-subcategory.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
-import{MyOrdersComponent} from './vendor/my-orders/my-orders.component'
-import{OrderItemsComponent} from './vendor/order-items/order-items.component'
-import{OrderReportComponent} from './vendor/reports/order-report/order-report.component'
+import { MyOrdersComponent } from './vendor/my-orders/my-orders.component'
+import { OrderItemsComponent } from './vendor/order-items/order-items.component'
+import { OrderReportComponent } from './vendor/reports/order-report/order-report.component'
+import { UserListComponent } from './admin/users/user-list/user-list.component'
 const routes: Routes = [
   {
     path: '',
@@ -45,19 +46,19 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
-        path:'mychecklist', component: MyChecklistComponent
+        path: 'mychecklist', component: MyChecklistComponent
         //,canActivate:[AuthGuard]
       },
       {
-        path:'orders', component: MyOrdersComponent
+        path: 'orders', component: MyOrdersComponent
         //,canActivate:[AuthGuard]
       },
       {
-        path:'orders/items/:id', component: OrderItemsComponent
+        path: 'orders/items/:id', component: OrderItemsComponent
         //,canActivate:[AuthGuard]
       },
       {
-        path:'reports/order-report', component: OrderReportComponent
+        path: 'reports/order-report', component: OrderReportComponent
         //,canActivate:[AuthGuard]
       }
     ]
@@ -85,14 +86,18 @@ const routes: Routes = [
       {
         path: 'admin/product', component: AdminProductComponent
         //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/user-list', component: UserListComponent
+        //,canActivate:[AuthGuard]
       }
     ]
   },
   { path: 'admin/login', component: AdminLoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path :'admin/category',component:CategoryComponent,canActivate:[AuthGuard]}
-   
+  { path: 'admin/category', component: CategoryComponent, canActivate: [AuthGuard] }
+
 ];
 
 @NgModule({

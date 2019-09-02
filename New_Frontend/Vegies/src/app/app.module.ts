@@ -55,6 +55,9 @@ import { NewProductComponent } from './admin/new-product/new-product.component';
 import { MyOrdersComponent } from './vendor/my-orders/my-orders.component';
 import { OrderItemsComponent } from './vendor/order-items/order-items.component';
 import { OrderReportComponent } from './vendor/reports/order-report/order-report.component';
+import { UserListComponent } from './admin/users/user-list/user-list.component';
+import { UserChecklistComponent } from './admin/users/user-checklist/user-checklist.component';
+import { UserOrdersComponent } from './admin/users/user-orders/user-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +88,10 @@ import { OrderReportComponent } from './vendor/reports/order-report/order-report
     NewProductComponent,
     MyOrdersComponent,
     OrderItemsComponent,
-    OrderReportComponent
+    OrderReportComponent,
+    UserListComponent,
+    UserChecklistComponent,
+    UserOrdersComponent
   ],
   imports: [
     BrowserModule,
