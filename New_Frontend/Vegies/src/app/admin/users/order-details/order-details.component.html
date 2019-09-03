@@ -12,22 +12,22 @@
     <div class="modal-body">
         <div class="order-info">
             <h2>Web Designers Hub</h2>
-            <h4>A-155D Chander Vihar Vikas Vihar Nilothi Extn Nangloi New Delhi 110041</h4>
+            <h4>{{orderDetails.address}}</h4>
             <div class="operson">
-                <span class="pull-left">Contact Person : <span class="font-weight-bolder">Vishal Singh</span></span>
-                <span class="pull-right">Contact No. : <span class="font-weight-bolder">9650402952</span></span>
+                <span class="pull-left">Contact Person : <span class="font-weight-bolder">{{userDetails.fullName}}</span></span>
+                <span class="pull-right">Contact No. : <span class="font-weight-bolder">{{userDetails.mobile}}</span></span>
             </div>
         </div>
-        <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+        <ejs-grid [dataSource]='orderSummary' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
             [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
             <e-columns>
-                <e-column field='OrderID' headerText='Product Name' textAlign='left' width='50'></e-column>
-                <e-column field='OrderID' headerText='MRP' textAlign='left' width='50'></e-column>
-                <e-column field='OrderID' headerText='Discount(%)' textAlign='left' width='50'></e-column>
-                <e-column field='OrderID' headerText='Total Amount' textAlign='left' width='50'></e-column>
-                <e-column field='OrderID' headerText='Order Status' textAlign='left' width='50'>
+                <e-column field='name' headerText='Product Name' textAlign='left' width='50'></e-column>
+                <e-column field='oldPrice' headerText='MRP' textAlign='left' width='50'></e-column>
+                <e-column field='discount' headerText='Discount(%)' textAlign='left' width='50'></e-column>
+                <e-column field='newPrice' headerText='Total Amount' textAlign='left' width='50'></e-column>
+                <e-column field='status' headerText='Order Status' textAlign='left' width='50'>
                     <ng-template #template let-data>
-                        <span class="text-danger grid-status font-weight-bolder">Pending</span>
+                        <span class="text-danger grid-status font-weight-bolder">{{data.status}}</span>
                     </ng-template>
                 </e-column>
             </e-columns>
@@ -37,11 +37,11 @@
                 Order Status :
             </span>
             <span class="pull-left">
-                <ejs-dropdownlist id='ddlelement' #samples [dataSource]='status' [fields]='fields' [placeholder]='text'
-                    [value]='value'></ejs-dropdownlist>
+                <ejs-dropdownlist id='ddlelement'  (change)="getStatus($event);" #samples [dataSource]='status' [fields]='fields' [placeholder]='text'
+                    [value]='text'></ejs-dropdownlist>
             </span>
             <span class="pull-left">
-                <button class="btn btn-deep-orange">Update</button>
+                <button class="btn btn-deep-orange" (click)="updateStatus();">Update</button>
             </span>
         </div>
     </div>

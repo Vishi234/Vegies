@@ -44,6 +44,10 @@ app.use(passport.session());
 //app.use(session({secret: 'keyboard cat', resave: true, saveUninitialized: true,cookie: { path: '/', httpOnly: true, maxAge: 30 * 30000 },rolling: true}));
 app.use('/api/vendor', vendor);
 
+app.use('/api/admin', adminCategory);
+app.use('/api/configProduct', configProduct);
+app.use('/api/userDetails', userDetails);
+
 //Setting up server
 var server = app.listen(process.env.PORT || dbConfig.app.port, function () {
     var port = server.address().port;

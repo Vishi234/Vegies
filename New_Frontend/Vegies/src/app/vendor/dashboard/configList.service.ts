@@ -31,6 +31,7 @@ export class configList {
         return this.http.delete(this._removeProductURL + id);
     }
     addProductList(configProductList: any) {
+        console.log("jjjjjjjjjjjjjj",configProductList)
         return this.http.post<any>(this._addProductURL, configProductList);
     }
 }

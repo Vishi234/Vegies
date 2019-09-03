@@ -23,8 +23,8 @@ const config = {
    mongoose.set('useNewUrlParser', true);
    mongoose.set('useCreateIndex', true);
    const { db: { host, port, name } } = config;
-   // const connectionString = `mongodb://${host}:${port}/${name}`;
-   const connectionString =`mongodb://admin:admin@vegies-shard-00-00-lclv2.mongodb.net:27017,vegies-shard-00-01-lclv2.mongodb.net:27017,vegies-shard-00-02-lclv2.mongodb.net:27017/vegies?ssl=true&replicaSet=Vegies-shard-0&authSource=admin&retryWrites=true&w=majority`
+   const connectionString = `mongodb://${host}:${port}/${name}`;
+   //const connectionString =`mongodb://admin:admin@vegies-shard-00-00-lclv2.mongodb.net:27017,vegies-shard-00-01-lclv2.mongodb.net:27017,vegies-shard-00-02-lclv2.mongodb.net:27017/vegies?ssl=true&replicaSet=Vegies-shard-0&authSource=admin&retryWrites=true&w=majority`
    
    const options = {
     useNewUrlParser: true,

@@ -194,7 +194,7 @@ router.get('/user',isValidUser,function(req,res,next){
                         //res.status(200).json({successMsg:'Mail has been successfully send'});
                         //console.log("Update user Password");
                         model.register.updateOne({ email: userDetails.email }, { $set: { password:  model.register.hashPassword(password),loginAttemp:0 } }, (attempCount)=> {
-                            res.status(200).json({ status:'Mail has been send successfully.'});
+                            res.status(200).json({ successMsg:'Mail has been send successfully.'});
                           })
                           //res.status(200).json({successMsg:'Mail has been successfully send'});
                     }).catch(function (err) {
