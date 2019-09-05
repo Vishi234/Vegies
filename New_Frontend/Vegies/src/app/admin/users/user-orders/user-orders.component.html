@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="user-grid pt-3">
-    <ejs-grid [dataSource]='vendorOrders' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+    <ejs-grid [dataSource]='vendorOrders' #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
         [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
         <e-columns>
             <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='30'></e-column>

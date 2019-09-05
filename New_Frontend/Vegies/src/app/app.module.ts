@@ -59,6 +59,7 @@ import { UserListComponent } from './admin/users/user-list/user-list.component';
 import { UserChecklistComponent } from './admin/users/user-checklist/user-checklist.component';
 import { UserOrdersComponent } from './admin/users/user-orders/user-orders.component';
 import { OrderDetailsComponent } from './admin/users/order-details/order-details.component';
+import { productListResolver } from './vendor/product-list/product-list-resolver.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -147,7 +148,7 @@ import { OrderDetailsComponent } from './admin/users/order-details/order-details
       useClass: TokenInterceptorService,
       multi: true
     },
-    AppGlobals, DatePipe],
+    AppGlobals, DatePipe,productListResolver],
   bootstrap: [AppComponent],
   entryComponents: [ForgotPasswordComponent, ChangePasswordComponent,
     ConfigurationComponent, SetSchedulerComponent, NewCategoryComponent, SetAddressComponent, PreviewChecklistComponent, NewSubcategoryComponent,

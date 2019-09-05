@@ -22,6 +22,7 @@ import { OrderReportComponent } from './vendor/reports/order-report/order-report
 import { UserListComponent } from './admin/users/user-list/user-list.component'
 import { UserChecklistComponent } from './admin/users/user-checklist/user-checklist.component'
 import{UserOrdersComponent} from './admin/users/user-orders/user-orders.component'
+import { productListResolver } from './vendor/product-list/product-list-resolver.service';
 const routes: Routes = [
   {
     path: '',
@@ -40,11 +41,13 @@ const routes: Routes = [
         //,canActivate:[AuthGuard] 
       },
       {
-        path: 'dashboard', component: DashboardComponent
+        path: 'dashboard', component: DashboardComponent,
+        resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard]
       },
       {
-        path: 'products/:id', component: ProductListComponent
+        path: 'products/:id', component: ProductListComponent,
+        resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard]
       },
       {

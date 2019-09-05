@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material'
 import { OrderDetailsComponent } from '../order-details/order-details.component'
 import { configList } from '../../../vendor/dashboard/configList.service'
 import { ToastrService } from 'ngx-toastr'
 import { LoginService } from '../../../login/login.service'
 import { setAddress } from '../../../vendor/set-address/set-address.service'
-
+import { GridComponent, CommandModel, EditSettingsModel } from '@syncfusion/ej2-angular-grids'
 @Component({
   selector: 'app-user-orders',
   templateUrl: './user-orders.component.html',
@@ -19,6 +19,7 @@ export class UserOrdersComponent implements OnInit {
   public data: any;
   public vendorOrders: any
   public vendorAddress: any
+  @ViewChild('old', { static: false }) public grid: GridComponent;
   constructor(public dialog: MatDialog,private _configList: configList, private _toastr: ToastrService, private _setAddress: setAddress, private _login: LoginService) {
     this._login.user().subscribe(result => {
       this.userDetails = result;
@@ -81,21 +82,26 @@ export class UserOrdersComponent implements OnInit {
 
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: true, pageSize: 10 };
-    this.data = [
-      {
-        OrderID: 10248, CustomerID: 'VINET', EmployeeID: 5, OrderDate: new Date(8364186e5),
-        ShipName: 'Vins et alcools Chevalier', ShipCity: 'Reims', ShipAddress: '59 rue de l Abbaye',
-        ShipRegion: 'CJ', ShipPostalCode: '51100', ShipCountry: 'France', Freight: 32.38, Verified: !0
-      }]
+    // this.data = [
+    //   {
+    //     OrderID: 10248, CustomerID: 'VINET', EmployeeID: 5, OrderDate: new Date(8364186e5),
+    //     ShipName: 'Vins et alcools Chevalier', ShipCity: 'Reims', ShipAddress: '59 rue de l Abbaye',
+    //     ShipRegion: 'CJ', ShipPostalCode: '51100', ShipCountry: 'France', Freight: 32.38, Verified: !0
+    //   }]
   }
   ViewOrderDetails(orderId:any) {
     console.log("orderisssssssss",this.vendorOrders.address)
-    this.dialog.open(OrderDetailsComponent, {
+     var  dialogRef=this.dialog.open(OrderDetailsComponent, {
       disableClose: true, data: {
         "orderId": orderId,
         "address":this.vendorOrders[0].address
       }
     })
+
+    dialogRef.afterClosed()
+      .subscribe(() => {
+        this.grid.refresh();
+      })
 
     //this.dialog.open(OrderDetailsComponent, { disableClose: true });
   }

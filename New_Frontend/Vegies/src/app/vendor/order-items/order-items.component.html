@@ -22,7 +22,7 @@
                 Order Date : <span>{{orderDate | date:'dd-MMM-yyyy'}}</span>
             </li>
             <li>
-                Status : <span class="text-danger status pull-right">Pending</span>
+                Status : <span class="text-danger status pull-right">{{orderSummary[0].status}}</span>
             </li>
         </ul>
     </div>
