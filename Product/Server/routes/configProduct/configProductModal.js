@@ -22,7 +22,9 @@ var orderedCheckList = new Schema({
     discount: { type: String, require: true },
     unitMeasure: { type: String, require: true },
     Qnty: { type: String },
-    bookingDate: { type: String }
+    bookingDate: { type: String },
+    orderId: { type: String },
+    status: { type: String }
 })
 
 var setScheduler = new Schema({
@@ -47,13 +49,13 @@ var setAddress = new Schema({
 })
 
 var configList = mongoose.model('configList', configProduct, 'configListStore');
-var orderedCheckList = mongoose.model('orderedCheckList', configProduct, 'orderedCheckList');
+var orderedList = mongoose.model('orderedList', orderedCheckList, 'orderedCheckList');
 var setScheduler = mongoose.model('setScheduler', configProduct, 'setScheduler');
 var setAddress = mongoose.model('setAddress', configProduct, 'setAddress');
 
 module.exports = {
     configList: configList,
-    orderedCheckList: orderedCheckList,
+    orderedCheckList: orderedList,
     setScheduler:setScheduler,
     setAddress:setAddress
 }

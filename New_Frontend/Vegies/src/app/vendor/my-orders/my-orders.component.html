@@ -20,7 +20,7 @@
             <br>
             <span class="dt">Order on {{order.bookingDate | date:'dd-MMM-yyyy'}}</span>
         </span>
-        <span class="text-danger status pull-right">Pending</span>
+        <span class="text-danger status pull-right">{{order.status}}</span>
         <div class="order-details">
             <div class="discount">
                 <label class="pull-left">Total Items</label><span class="pull-right">{{order.count}} (<a

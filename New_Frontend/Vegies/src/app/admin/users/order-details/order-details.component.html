@@ -18,7 +18,7 @@
                 <span class="pull-right">Contact No. : <span class="font-weight-bolder">{{userDetails.mobile}}</span></span>
             </div>
         </div>
-        <ejs-grid [dataSource]='orderSummary' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+        <ejs-grid [dataSource]='orderSummary' #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
             [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
             <e-columns>
                 <e-column field='name' headerText='Product Name' textAlign='left' width='50'></e-column>
