@@ -10,7 +10,7 @@ import { configurationwizard } from './configurationwizard.service'
 import { AppGlobals } from '../../app.global';
 import { Router } from '@angular/router'
 import { ToastrService } from 'ngx-toastr'
-import {configList} from '../dashboard/configList.service'
+import { configList } from '../dashboard/configList.service'
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -44,21 +44,8 @@ export class ConfigurationComponent implements OnInit {
     this._login.user()
       .subscribe(
         data => this.currentLogged = data
-       
+
       )
-    this._vendorDetails.GetProductList().subscribe((response) => {
-      Object.entries(response).forEach(
-        ([key, value]) => {
-          this.items.push({
-            "name": value.productName + '(' + value.productAlias + ')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
-            image: _global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1, "productAlias": value.productAlias, "subCat": value.subCatName
-          })
-        }
-      );
-      this.filterItems = this.items
-    }, (error) => {
-      console.log('error is ', error)
-    });
   }
 
   inreaseHeight() {
@@ -66,7 +53,7 @@ export class ConfigurationComponent implements OnInit {
 
   }
   onValChange(lbl, value) {
-    console.log("daaaaa111111",value.length)
+    console.log("daaaaa111111", value.length)
     if (value.length > 0) {
       document.getElementById("lblName" + lbl).innerHTML = "Selected";
       this.selectedPro.push(this.getProductById(lbl));
@@ -86,7 +73,7 @@ export class ConfigurationComponent implements OnInit {
 
   getAddress(address: string) {
     this.selectedAddress = address;
-    this.userConfigList = this.selectedPro.map((el)=>{
+    this.userConfigList = this.selectedPro.map((el) => {
       var o = Object.assign({}, el);
       o.address = address,
         o.userName = this.currentLogged._id
@@ -96,9 +83,9 @@ export class ConfigurationComponent implements OnInit {
 
   addConfigureList() {
     this._configurationwizard.AddConfigProduc(this.userConfigList).subscribe((res) => {
-    this._toastr.success(res.status)
-    this.closeModal()
-    window.location.reload();
+      this._toastr.success(res.status)
+      this.closeModal()
+      window.location.reload();
     }, (error) => {
       console.log('error is ', error)
     })
@@ -106,6 +93,21 @@ export class ConfigurationComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this._vendorDetails.GetProductList().subscribe((response) => {
+      Object.entries(response).forEach(
+        ([key, value]) => {
+          this.items.push({
+            "name": value.productName + '(' + value.productAlias + ')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+            image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1, "productAlias": value.productAlias, "subCat": value.subCatName
+          })
+        }
+      );
+      this.filterItems = this.items
+    }, (error) => {
+      console.log('error is ', error)
+    });
+
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -144,16 +146,12 @@ export class ConfigurationComponent implements OnInit {
   }
 
   change(event) {
-    var getSelectProduct = this.filterItems.filter( (item)=> {
-      if (item.subCat == event.value ) {
-        this.filterSubCategory.push(item)
-        return item;
+    this.items = [];
+    this.filterItems.map((x) => {
+      if (x.subCat == event.itemData.subCatName) {
+        this.items.push(x);
       }
-    });
-    if(this.filterSubCategory.length>0)
-    {
-      this.items=[...new Set(this.filterSubCategory)];
-    }
+    })
   }
 
   carouselOptions = {

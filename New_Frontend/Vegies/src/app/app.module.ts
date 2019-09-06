@@ -7,12 +7,12 @@ import {
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
-import { DateRangePickerModule,DatePickerModule } from '@syncfusion/ej2-angular-calendars';
-import { GridModule,EditService,ToolbarService } from '@syncfusion/ej2-angular-grids';
+import { DateRangePickerModule, DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { GridModule, EditService, ToolbarService } from '@syncfusion/ej2-angular-grids';
 import { PageService, SortService, FilterService, GroupService, FreezeService, SelectionService } from '@syncfusion/ej2-angular-grids';
-import { CheckBoxModule,SwitchModule,RadioButtonModule  } from '@syncfusion/ej2-angular-buttons'
+import { CheckBoxModule, SwitchModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons'
 import { DropDownListModule, AutoCompleteModule } from '@syncfusion/ej2-angular-dropdowns';
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule, IconsModule, CheckboxModule } from 'angular-bootstrap-md';
@@ -43,7 +43,7 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { NewCategoryComponent } from './admin/new-category/new-category.component';
 import { AppGlobals } from './app.global';
-import {ToastrModule} from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { OwlModule } from 'ngx-owl-carousel';
 import { ChangePasswordComponent } from './vendor/change-password/change-password.component';
 import { SetAddressComponent } from './vendor/set-address/set-address.component';
@@ -55,6 +55,11 @@ import { NewProductComponent } from './admin/new-product/new-product.component';
 import { MyOrdersComponent } from './vendor/my-orders/my-orders.component';
 import { OrderItemsComponent } from './vendor/order-items/order-items.component';
 import { OrderReportComponent } from './vendor/reports/order-report/order-report.component';
+import { UserListComponent } from './admin/users/user-list/user-list.component';
+import { UserChecklistComponent } from './admin/users/user-checklist/user-checklist.component';
+import { UserOrdersComponent } from './admin/users/user-orders/user-orders.component';
+import { OrderDetailsComponent } from './admin/users/order-details/order-details.component';
+import { productListResolver } from './vendor/product-list/product-list-resolver.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +90,11 @@ import { OrderReportComponent } from './vendor/reports/order-report/order-report
     NewProductComponent,
     MyOrdersComponent,
     OrderItemsComponent,
-    OrderReportComponent
+    OrderReportComponent,
+    UserListComponent,
+    UserChecklistComponent,
+    UserOrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -127,22 +136,22 @@ import { OrderReportComponent } from './vendor/reports/order-report/order-report
     SwitchModule,
     RadioButtonModule,
     ToastrModule.forRoot({
-      timeOut:1000,
-      positionClass:'toast-top-right',
-      preventDuplicates:true
+      timeOut: 1000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
     }),
     OwlModule
   ],
-  providers: [PageService,EditService,ToolbarService, SortService, FilterService, GroupService, AuthGuard, FreezeService, SelectionService,
+  providers: [PageService, EditService, ToolbarService, SortService, FilterService, GroupService, AuthGuard, FreezeService, SelectionService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
     },
-    AppGlobals,DatePipe],
+    AppGlobals, DatePipe,productListResolver],
   bootstrap: [AppComponent],
-  entryComponents: [ForgotPasswordComponent,ChangePasswordComponent, 
-    ConfigurationComponent,SetSchedulerComponent,NewCategoryComponent,SetAddressComponent,PreviewChecklistComponent,NewSubcategoryComponent,
-  NewProductComponent]
+  entryComponents: [ForgotPasswordComponent, ChangePasswordComponent,
+    ConfigurationComponent, SetSchedulerComponent, NewCategoryComponent, SetAddressComponent, PreviewChecklistComponent, NewSubcategoryComponent,
+    NewProductComponent, OrderDetailsComponent]
 })
 export class AppModule { }

@@ -30,9 +30,12 @@ export class ProductListComponent implements OnInit {
   public selectedCat: any;
   
   constructor(private _categoryList: AdminCategoryService, private _global: AppGlobals, public _login: LoginService, public _configList: configList, private _configurationwizard: configurationwizard, private _toastr: ToastrService, private router: Router,private route: ActivatedRoute) {
-    this._login.user().subscribe(result => {
-      this.userDetails = result;
-    })
+    // this._login.user().
+    // subscribe(
+    //   result =>"",
+    //   error=>this.router.navigate['./login']    
+    // );
+    this.userDetails=this.route.snapshot.data['userData'];
   }
 
   addConfigureList() {
@@ -54,6 +57,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.selectedCat = this.route.snapshot.paramMap.get('id');
     setTimeout(() => {
+      console.log("000000011",this.userDetails)
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.configData = response;
         this.uniqueProductList = this.productList.filter((objFromA) => {
@@ -62,9 +66,7 @@ export class ProductListComponent implements OnInit {
           })
         })
         this.allProduct = this.uniqueProductList;
-        console.log("fffffffffgg11", this.productList)
-        console.log("fffffffffgg22", this.configData)
-        console.log("fffffffffgg33", this.userDetails)
+        console.log("fffffffffgg33", this.allProduct)
 
       }, (error) => {
         console.log('error is ', error)
@@ -96,7 +98,7 @@ export class ProductListComponent implements OnInit {
     {
       Object.entries(response).forEach(
         ([key, value]) => {
-          console.log('this.productList',this.productList);
+          //console.log('this.productList',this.productList);
           this.productList.push(
             {
             "name": value.productName +'('+ value.productAlias+')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
@@ -125,12 +127,7 @@ export class ProductListComponent implements OnInit {
   // {
   //   if (item._id ==this.selectedCat) {  return true; }
   // })
-  
-  
-  debugger;
-  
-  
-  
+   
   }
 
   onValChange(lbl,id) {

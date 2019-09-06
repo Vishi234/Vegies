@@ -129,6 +129,7 @@ router.get('/verify', function (req, res) {
 });
 
 async function sendMail(user, callback) {
+    user=(user.email)?user:user.body;
     rand = Math.floor((Math.random() * 100) + 54);
     link = "http://" + host + "/api/vendor/verify?id=" + rand;
     let transporter = nodemailer.createTransport({
@@ -149,6 +150,7 @@ async function sendMail(user, callback) {
         html: "<b>Email</b>: " + user.email + "<br><b>Password</b>:" + password +
             "<br>Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"// html body
     };
+    //console.log("mailllllllllll",mailOptions)
     let info = await transporter.sendMail(mailOptions);
     callback(info);
 }
@@ -167,12 +169,9 @@ router.get('/user',isValidUser,function(req,res,next){
       var userDetails=req.body;   
       if(req.body.newPassword===req.body.confirmPassword){
         console.log("changePwdchangePwd",req.body)
-
         model.register.updateOne({ email: userDetails.email }, { $set: { password:  model.register.hashPassword(userDetails.newPassword) } }, (attempCount)=> {
             res.status(200).json({ status:'Password Changed successfully'});
           })
-
-
       }else{
         console.log("changePwdchangePwd11",req.body)
         return res.status(200).json({'err':"New Password and Confirm Password are not Matched"});
@@ -181,6 +180,33 @@ router.get('/user',isValidUser,function(req,res,next){
     //return res.status(200).json(req.user);
 
   });
+
+  router.post('/forgetPwd',function(req,res){ 
+    var userDetails=req.body; 
+    model.register.findOne({ email: userDetails.email }, (error, user) => {
+            if (error) {
+                console.log(error);
+            } else {
+                if (!user) {
+                    res.status(200).json({errorMsg:'Email Id does not present in the system'});
+                } else{
+                    sendMail(req, info => {
+                        //res.status(200).json({successMsg:'Mail has been successfully send'});
+                        //console.log("Update user Password");
+                        model.register.updateOne({ email: userDetails.email }, { $set: { password:  model.register.hashPassword(password),loginAttemp:0 } }, (attempCount)=> {
+                            res.status(200).json({ successMsg:'Mail has been send successfully.'});
+                          })
+                          //res.status(200).json({successMsg:'Mail has been successfully send'});
+                    }).catch(function (err) {
+                        console.log("Mail Sending errors", err)
+                    });
+                }
+            }
+        })
+  //console.log("user details",req.user);
+  //return res.status(200).json(req.user);
+
+});
   
 
 module.exports = router;

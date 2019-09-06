@@ -22,24 +22,26 @@ export class DashboardComponent implements OnInit {
   public userDetails: any;
   items: Array<any> = [];
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private _vendorDetails: AdminCategoryService, public _configList: configList, public _login: LoginService) {
-    this._login.user().subscribe(result => {
-      this.userDetails = result;
-    }
-    )
+    // this._login.user().subscribe(result => {
+    //   this.userDetails = result;
+    // }
+    // )
+    this.userDetails=this.route.snapshot.data['userData'];
   }
   ngOnInit() {
-    setTimeout(() => {
+    //setTimeout(() => {
+
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.data = response;
-        console.log("consgigureList isss", this.data.length)
+        console.log("outttttttt",this.data,"jjjjjjj",this.userDetails)
         if (this.data.length <= 0) {
-          console.log("dataaa us", this.data)
+          console.log("outttttttt1111",this.userDetails)
           this.dialog.open(ConfigurationComponent, { disableClose: true });
         }
       }, (error) => {
         console.log('error is ', error)
       });
-    }, 1000);
+   // }, 1000);
 
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: false, pageSize: 5 };

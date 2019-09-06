@@ -1,4 +1,3 @@
-<link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
 <div class="content-ttl">
     <div class="panel-name">
         <span><i class="fas fa-tachometer-alt"></i></span>
@@ -16,14 +15,16 @@
 <!-- <div *ngFor='let data of orders'> -->
 <div class="order-base pt-4">
     <div class="order-card" *ngFor='let order of vendorOrders'>
-        <span class="order-id pull-left">ORD1231234323<!--{{order._id}}-->
+        <span class="order-id pull-left">{{order.orderId}}
+            <!--{{order._id}}-->
             <br>
             <span class="dt">Order on {{order.bookingDate | date:'dd-MMM-yyyy'}}</span>
         </span>
-        <span class="text-danger status pull-right">Pending</span>
-        <div class="order-details">                                                                     
+        <span class="text-danger status pull-right">{{order.status}}</span>
+        <div class="order-details">
             <div class="discount">
-                <label class="pull-left">Total Items</label><span class="pull-right">{{order.count}} (<a [routerLink]="['/orders/items',order.bookingDate]">View items</a>)</span>
+                <label class="pull-left">Total Items</label><span class="pull-right">{{order.count}} (<a
+                        [routerLink]="['/orders/items',order.bookingDate]">View items</a>)</span>
             </div>
             <div class="discount">
                 <label class="pull-left">Total MRP </label><span class="pull-right">{{order.oldPrice}}</span>
@@ -42,6 +43,9 @@
         <div class="ship-add">
             <label>Shipping Address</label>
             <span>{{order.address}}</span>
+        </div>
+        <div class="btn-group cancelbtn">
+            <a href="javascript:void(0)" class="text-danger">Cancel Order</a>
         </div>
         <div class="view-btn">
             <a href="javascript:void(0)">

@@ -1,0 +1,48 @@
+<div class="modalbase">
+    <div class="modal-header">
+        <span class="title pull-left">
+            Order Details
+        </span>
+        <span class="pull-right close">
+            <a href="javbascript:void(0)" (click)="Close();">
+                <i class="fas fa-times"></i>
+            </a>
+        </span>
+    </div>
+    <div class="modal-body">
+        <div class="order-info">
+            <h2>Web Designers Hub</h2>
+            <h4>{{orderDetails.address}}</h4>
+            <div class="operson">
+                <span class="pull-left">Contact Person : <span class="font-weight-bolder">{{userDetails.fullName}}</span></span>
+                <span class="pull-right">Contact No. : <span class="font-weight-bolder">{{userDetails.mobile}}</span></span>
+            </div>
+        </div>
+        <ejs-grid [dataSource]='orderSummary' #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+            [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+            <e-columns>
+                <e-column field='name' headerText='Product Name' textAlign='left' width='50'></e-column>
+                <e-column field='oldPrice' headerText='MRP' textAlign='left' width='50'></e-column>
+                <e-column field='discount' headerText='Discount(%)' textAlign='left' width='50'></e-column>
+                <e-column field='newPrice' headerText='Total Amount' textAlign='left' width='50'></e-column>
+                <e-column field='status' headerText='Order Status' textAlign='left' width='50'>
+                    <ng-template #template let-data>
+                        <span class="text-danger grid-status font-weight-bolder">{{data.status}}</span>
+                    </ng-template>
+                </e-column>
+            </e-columns>
+        </ejs-grid>
+        <div class="order-action">
+            <span class="pull-left">
+                Order Status :
+            </span>
+            <span class="pull-left">
+                <ejs-dropdownlist id='ddlelement'  (change)="getStatus($event);" #samples [dataSource]='status' [fields]='fields' [placeholder]='text'
+                    [value]='text'></ejs-dropdownlist>
+            </span>
+            <span class="pull-left">
+                <button class="btn btn-deep-orange" (click)="updateStatus();">Update</button>
+            </span>
+        </div>
+    </div>
+</div>

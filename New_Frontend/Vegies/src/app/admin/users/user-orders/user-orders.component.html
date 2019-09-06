@@ -1,0 +1,39 @@
+<div class="content-ttl">
+    <div class="panel-name">
+        <span><i class="fas fa-clipboard-list"></i></span>
+        <span>
+            Manage Orders
+            <p>Content section goes here</p>
+        </span>
+    </div>
+    <div class="panel-filter">
+        <!-- <div class="btn-group">
+            <button mat-button class="btn btn-primary" (click)="addNewCategory();">Add Category</button>
+            <button mat-button class="btn btn-danger">Remove Category</button>
+            <button mat-button class="btn btn-info">Update Category</button>
+        </div> -->
+    </div>
+</div>
+<div class="user-grid pt-3">
+    <ejs-grid [dataSource]='vendorOrders' #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+        [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+        <e-columns>
+            <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='30'></e-column>
+            <e-column field='orderId' headerText='Orders Id' textAlign='left' width='50'>
+                <ng-template #template let-data>
+                    <a href="javascript:void(0)" (click)="ViewOrderDetails(data.orderId);" class="font-weight-bolder">
+                        <u>{{data.orderId}}</u>
+                    </a>
+                </ng-template>
+            </e-column>
+            <e-column field='oldPrice' headerText='MRP' textAlign='left' width='50'></e-column>
+            <e-column field='discount' headerText='Discount(%)' textAlign='left' width='50'></e-column>
+            <e-column field='newPrice' headerText='Total Amount' textAlign='left' width='50'></e-column>
+            <e-column field='orderStatus' headerText='Order Status' textAlign='center' width='50'>
+                <ng-template #template let-data>
+                    <span class="text-danger grid-status font-weight-bolder">{{data.status}}</span>
+                </ng-template>
+            </e-column>
+        </e-columns>
+    </ejs-grid>
+</div>

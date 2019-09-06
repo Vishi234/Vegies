@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@import "syncfusion-material.css";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Muli", sans-serif !important;
+  font: 500 14px "Muli", sans-serif !important;
+  overflow: hidden;
+}
+.btn {
+    text-transform: none;
+  }
+  img {
+    height: 100%;
+    min-width: 100%;
+  }
+  .pull-left {
+    float: left;
+  }
+  .pull-right {
+    float: right;
+  }
+  ul {
+    background: 0;
+    font-weight: inherit;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+  }
+  
+  ul li {
+    list-style: none;
+  }

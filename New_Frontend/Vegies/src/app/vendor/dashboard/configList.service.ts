@@ -13,6 +13,7 @@ export class configList {
     private _getOrderURL = this._global.baseAppUrl + 'configProduct/getOrder/';
 
     getProductList(userId: any) {
+        console.log("daaaaaaa------>",userId)
         return this.http.get(this._configProductURL, {
             params: {
                 userId: userId._id,
@@ -31,6 +32,7 @@ export class configList {
         return this.http.delete(this._removeProductURL + id);
     }
     addProductList(configProductList: any) {
+        console.log("jjjjjjjjjjjjjj",configProductList)
         return this.http.post<any>(this._addProductURL, configProductList);
     }
 }

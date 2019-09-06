@@ -32,9 +32,10 @@ export class VendorContainerComponent implements OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
     this._login.user()
       .subscribe(
-        data => this.currentUser = data,
+        data => {this.currentUser = data; console.log("222222",this.currentUser)},
         error => this.router.navigate(['/login'])
       )
+      
   }
   openChangeModal() {
     this.dialog.open(ChangePasswordComponent, { disableClose: true });
@@ -46,7 +47,14 @@ export class VendorContainerComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
+  ngOnInit() {
+    this._login.user()
+      .subscribe(
+        data => {this.currentUser = data;console.log("1111111",this.currentUser)},
+        error => this.router.navigate(['/login'])
+      )
+      
+  }
   logout() {
     this._login.logoutUser()
       .subscribe(

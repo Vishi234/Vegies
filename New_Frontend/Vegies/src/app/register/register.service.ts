@@ -14,7 +14,6 @@ export class RegisterService {
   
   vendorRegistration(body:any)
   {
-    console.log("test register",body)
     return this.http.post<any>(this._vendorRegistration,body,{
       observe:'body',
       headers:new HttpHeaders().append('Content-Type','application/json')

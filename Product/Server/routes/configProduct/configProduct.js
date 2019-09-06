@@ -1,12 +1,12 @@
 var app = require('express').Router();
 var model = require('./configProductModal');
 var db = require("../../config/dbConfig");
+var uniqid = require('uniqid');
 
 module.exports = (function () {
 
     app.post("/saveList", function (req, res) {
         let configData = req.body;
-        console.log("configList-----------", configData);
         model.configList.collection.insertMany(configData, function (err, docs) {
             if (err) {
                 return console.error(err);
@@ -19,8 +19,6 @@ module.exports = (function () {
 
     app.get("/getList", function (req, res) {
         let userDetails = req.query;
-        //console.log("getListttttttttt2",req)
-        //console.log("getListttttttttt1",userDetails.userId)
         model.configList.find({ userName: userDetails.userId }).then(res1 => {
             //console.log("outputttttttttttt",res1)
             res.send(res1);
@@ -40,6 +38,8 @@ module.exports = (function () {
 
     app.post("/addList", function (req, res) {
         let configData = req.body;
+        configData.orderId=req.body.orderId+1;
+        //console.log("configData",configData)
         model.orderedCheckList.collection.insertMany(configData, function (err, docs) {
             if (err) {
                 return console.error(err);

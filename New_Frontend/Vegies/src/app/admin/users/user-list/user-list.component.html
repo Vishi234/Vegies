@@ -1,0 +1,53 @@
+<div class="content-ttl">
+    <div class="panel-name">
+        <span><i class="fas fa-clipboard-list"></i></span>
+        <span>
+            Manage Users
+            <p>Content section goes here</p>
+        </span>
+    </div>
+    <div class="panel-filter">
+        <!-- <div class="btn-group">
+            <button mat-button class="btn btn-primary" (click)="addNewCategory();">Add Category</button>
+            <button mat-button class="btn btn-danger">Remove Category</button>
+            <button mat-button class="btn btn-info">Update Category</button>
+        </div> -->
+    </div>
+</div>
+<div class="user-grid pt-3">
+    <ejs-grid [dataSource]='data' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+        [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+        <e-columns>
+            <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='30'></e-column>
+            <e-column field='orgName' headerText='Organisation Name' textAlign='left' width='100'></e-column>
+            <e-column field='fullName' headerText='Full Name' textAlign='left' width='50'></e-column>
+            <e-column field='email' headerText='Email Address' textAlign='left' width='50'></e-column>
+            <e-column field='password' headerText='Password' textAlign='left' width='50'></e-column>
+            <e-column field='mobile' headerText='Mobile' textAlign='left' width='50'></e-column>
+            <e-column field='mailVerify' headerText='Mail Verification Status' textAlign='left' width='50'>
+                <!-- <ng-template #template let-data>
+                    <span class="text-danger grid-status">Pending</span>
+                </ng-template> -->
+            </e-column>
+            <e-column field='OrderID' headerText='Mobile Verification' textAlign='left' width='50'>
+                <ng-template #template let-data>
+                    <span class="text-danger grid-status">Pending</span>
+                </ng-template>
+            </e-column>
+            <e-column field='loginAttemp' headerText='Login Attempt' textAlign='left' width='50'></e-column>
+            <e-column field='OrderID' headerText='Action' textAlign='left' width='50'>
+                <ng-template #template let-data>
+                    <div class="action">
+                        <a href="javascript:void(0)" class="pull-left" title="Edit">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="pull-left" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+
+                </ng-template>
+            </e-column>
+        </e-columns>
+    </ejs-grid>
+</div>

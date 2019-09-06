@@ -1,4 +1,3 @@
-<link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
 <div class="content-ttl">
     <div class="panel-name">
         <span><i class="fas fa-clipboard-list"></i></span>
@@ -9,8 +8,8 @@
     </div>
     <div class="panel-filter">
         <div class="btn-group">
-            <button mat-button class="btn btn-info">Add Item</button>
-            <button mat-button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="sendRequirement()">Send Requirement</button>
+            <button mat-button class="btn btn-info" routerLink='/products'>Add Item</button>
+            <button mat-button class="btn btn-primary" (click)="sendRequirement()">Send Requirement</button>
             <button mat-button class="btn btn-deep-orange" (click)="openScheduler();">Set Scheduler</button>
             <button mat-button class="btn btn-danger" (click)="removeProduct($event)">Remove Items</button>
         </div>
