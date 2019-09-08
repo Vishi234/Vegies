@@ -1,0 +1,44 @@
+<div class="login-header d-flex">
+    <div class="login-logo pull-left">
+        Vegies
+    </div>
+    <div class="pull-right reglnk">
+        <span><a routerLink="/mobile/register">Not have an account?</a></span>
+    </div>
+</div>
+<div class="login-base">
+    <div class="login-form">
+        <form class="text-center" autocomplete="off" (ngSubmit)="visitorSignin()">
+            <div class="md-form">
+                <input mdbInput mdbValidate name="email" [(ngModel)]="loginUser.email" #email="ngModel" required
+                    pattern="[^ @]*@[^ @]*" type="email" autocomplete="off" id="email" class="form-control">
+                <label for="email">Email Address/Username</label>
+                <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)"><i class="fas fa-exclamation-triangle"></i> Input invalid</mdb-error>
+                <mdb-success *ngIf="email.valid && (email.dirty || email.touched)"><i class="fas fa-check"></i> Input valid</mdb-success>
+            </div>
+            <div class="md-form">
+                <input mdbInput mdbValidate name="password" [(ngModel)]="loginUser.password" #password="ngModel"
+                    required type="password" id="password" class="form-control">
+                <label for="password">Password</label>
+                <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)"><i class="fas fa-exclamation-triangle"></i> Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="password.valid && (password.dirty || password.touched)"><i class="fas fa-check"></i> Input valid
+                </mdb-success>
+            </div>
+            <div class="btn-group d-block mb-2">
+                <button mdbBtn class="btn btn-primary w-100 waves-effect z-depth-0" mdbWavesEffect type="submit">Sign
+                    In</button>
+            </div>
+        </form>
+        <a routerLink="/mobile/forgotpassword" class="frgtlink d-block w-100 text-center mt-2">Forgot Password?</a>
+        <div class="social-login mt-5">
+            <a href="javascript:void(0)" class="facebook pull-left"><i class="fab fa-facebook"></i>
+                <span>Facebook</span></a>
+            <a href="javascript:void(0)" class="google pull-right"><i class="fab fa-google-plus"></i>
+                <span> Google</span></a>
+        </div>
+    </div>
+</div>
+<div class="login-footer d-flex">
+    <span class="justify-align-bottom align-items-end">powerdby Vishal Singh</span>
+</div>

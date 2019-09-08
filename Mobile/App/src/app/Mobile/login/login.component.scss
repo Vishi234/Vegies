@@ -1,0 +1,112 @@
+@-webkit-keyframes autofill {
+    to {
+      color: #000;
+      background: transparent;
+    }
+  }
+  
+  input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+  }
+  .login-header {
+    padding: 10px;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .reglnk {
+    float: left;
+      padding: 3px;
+      font-weight: 300;
+      width: 50%;
+      text-align: right;
+      text-decoration: underline;
+  }
+  .reglnk a {
+    color: #333;
+  }
+  .login-logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #e40000;
+    width: 50%;
+  }
+  
+  .login-base {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 84%;
+  }
+  .login-footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+  .login-footer span {
+    width: 100%;
+  }
+  .login-form {
+    width: 80%;
+  }
+  .login-form .e-input {
+    border-bottom: 1px solid #cacaca;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    font-weight: 400;
+    color: #000;
+    transition: all 0.2s ease-in-out 0s;
+    font-size: 14px;
+    margin: 0;
+    background: #fff;
+    border-radius: 0;
+    display: inline-block;
+    padding: 0;
+    position: relative;
+    vertical-align: middle;
+    z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+  }
+  .login-form .btn-primary {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 300;
+  }
+  .frgtlink {
+    font-size: 14px;
+    font-weight: 600;
+    color: #723f96;
+  }
+  .social-login .facebook {
+    background: #3b589c;
+    border-color: #314d96;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    width: 135px;
+  }
+  .social-login .google {
+    background: #f14336;
+    border-color: #f14336;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    width: 135px;
+  }
+  
+  .social-login i {
+    font-size: 24px;
+    padding: 0px;
+    margin-right: 10px;
+    padding-right: 10px;
+    float: left;
+  }
+  .social-login span {
+    float: left;
+    margin-top: 3px;
+  }
+  

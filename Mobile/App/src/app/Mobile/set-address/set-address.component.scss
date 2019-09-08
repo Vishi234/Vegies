@@ -1,0 +1,45 @@
+.srch {
+  display: inline-block;
+  width: 100%;
+}
+.srch .srch-icon {
+  padding-left: 12px;
+  font-size: 16px;
+}
+.srch input {
+  float: left;
+  width: 84%;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.8);
+  color: #fff;
+  font-size: 14px;
+  padding: 11px 3px;
+}
+.srch input::-webkit-input-placeholder {
+  color: rgba(204, 204, 204, 0.8);
+}
+.srch input:focus {
+  border-bottom: 1px solid rgba(204, 204, 204, 0.8) !important;
+}
+.current-loc {
+  margin-top: 15%;
+  display: inline-block;
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+  color: #808080;
+  font-size: 13px;
+  border: 1px solid #ebebeb;
+  cursor: pointer;
+}
+.current-loc > i {
+  float: left;
+  padding: 2px;
+  padding-left: 0px;
+  width: 30px;
+}
+input.e-input:hover {
+  border-color: rgba(204, 204, 204, 0.8) !important;
+}
+input.e-input:focus {
+  border-color: rgba(204, 204, 204, 0.8) !important;
+}

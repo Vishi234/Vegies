@@ -1,37 +1,270 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "slider.scss";
 @import "syncfusion-material.css";
-
 html,
 body {
   height: 100%;
   margin: 0;
   font-family: "Muli", sans-serif !important;
   font: 500 14px "Muli", sans-serif !important;
-  overflow: hidden;
+  overflow: auto;
 }
 .btn {
-    text-transform: none;
-  }
-  img {
-    height: 100%;
-    min-width: 100%;
-  }
-  .pull-left {
-    float: left;
-  }
-  .pull-right {
-    float: right;
-  }
-  ul {
-    background: 0;
-    font-weight: inherit;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    outline: 0;
-    vertical-align: top;
-  }
-  
-  ul li {
-    list-style: none;
-  }
+  text-transform: none;
+}
+img {
+  height: 100%;
+  min-width: 100%;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+ul {
+  background: 0;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: top;
+}
+
+ul li {
+  list-style: none;
+}
+input.e-input {
+  font-family: inherit;
+}
+
+.e-control {
+  font-family: inherit;
+}
+.error-message {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  font-size: 0.8rem;
+  color: #ee8d06;
+  font-weight: 600;
+}
+.success-message {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  font-size: 0.8rem;
+  /* color: #ee8d06; */
+  font-weight: 600;
+}
+.btn-primary {
+  background-color: #59727e !important;
+  color: #fff;
+  text-transform: capitalize;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.btn-primary:not([disabled]):not(.disabled).active,
+.btn-primary:not([disabled]):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  background-color: #59727e;
+}
+
+.btn-primary:hover {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  background-color: #59727e;
+}
+.btn-primary:not([disabled]):not(.disabled):active,
+.btn-primary:not([disabled]):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  background-color: #59727e !important;
+  border-color: #59727e;
+}
+.custom-toastr-class {
+  display: inherit;
+  opacity: 1;
+
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+
+  position: relative;
+  overflow: hidden;
+  margin: 10px auto;
+  padding: 10px;
+  width: 45%;
+  border-radius: 3px 3px 3px 3px;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  box-shadow: 0 0 12px #999999;
+  color: #ffffff;
+
+  text-align: center;
+  background-color: #464343 !important;
+  background-image: none !important;
+  box-shadow: none;
+}
+.form-error {
+  color: #ee8d06;
+}
+.md-form {
+  margin: 0px;
+  height: 70px;
+}
+.md-form input {
+  border-bottom: 1px solid #cacaca;
+  font-family: inherit;
+}
+.md-form input:focus:not([readonly]) {
+  box-shadow: none !important;
+  border-bottom: 1px solid #723f96 !important;
+}
+.md-form input:focus:not([readonly]) + label {
+  color: #723f96 !important;
+}
+.md-form input.form-control.validate-error.ng-invalid.ng-touched {
+  box-shadow: none !important;
+  border-bottom: 1px solid #ee8d06 !important;
+}
+.md-form input.form-control.validate-error.ng-invalid.ng-touched + label {
+  color: #ee8d06 !important;
+}
+.header {
+  display: inline-block;
+  width: 100%;
+  /* padding: 12px; */
+  background: #4a5f68;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  height: 50px;
+}
+.header a {
+  color: #fff;
+}
+.header .pull-left {
+  padding: 16px 11px;
+  padding-left: 0px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.header .pull-left a {
+  padding: 16px 11px;
+}
+.header .pull-right a {
+  display: block;
+  padding: 16px 11px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.mat-tab-list {
+  transform: inherit !important;
+}
+.mat-tab-label-container {
+  overflow: scroll !important;
+}
+.mat-tab-header {
+  position: fixed !important;
+  z-index: 9999999;
+  background: #fff;
+  width: 100%;
+}
+.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+  display: none !important;
+}
+.mat-tab-header,
+.mat-tab-nav-bar {
+  border-bottom: 1px solid #ebebeb !important;
+}
+.mat-tab-label {
+  height: 45px !important;
+  padding: 0 30px !important;
+  font-family: inherit !important;
+  font-size: 12px !important;
+  color: #666;
+}
+.mat-tab-label-active {
+  color: rgba(0, 0, 0, 0.87) !important;
+  font-weight: 700 !important;
+}
+.mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: #723f96 !important;
+}
+.mat-tab-group {
+  font-family: inherit;
+}
+.mat-tab-body-wrapper {
+  margin-top: 12%;
+}
+
+.badge {
+  box-shadow: none !important;
+  border-radius: 0.125rem;
+  padding: 5px;
+  margin-left: 20px;
+  color: #fff !important;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.content-body {
+  position: relative;
+  height: 100%;
+  background: #f4f4f4;
+  padding: 0 6px;
+}
+.pac-container {
+  width: 97% !important;
+  /* position: absolute !important; */
+  left: 6px !important;
+  top: 20% !important;
+  display: block !important;
+  /* margin-top: -118% !important; */
+  font-family: inherit !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  border-top: none !important;
+}
+.pac-item {
+  cursor: default !important;
+  padding: 0 4px !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  line-height: 30px !important;
+  text-align: left !important;
+  border-top: 1px solid #e6e6e6 !important;
+  font-size: 12px !important;
+  color: #808080 !important;
+  font-weight: 100;
+}
+.pac-icon {
+  width: 0px !important;
+  height: 0px !important;
+  margin-right: 0px !important;
+  margin-top: 0px !important;
+  display: inline-block !important;
+  vertical-align: top !important;
+  background-image: none !important;
+  background-size: 34px !important;
+}
+.pac-item-query {
+  font-size: 12px !important;
+  padding-right: 3px !important;
+  color: #808080 !important;
+  font-weight: 100 !important;
+}
+.pac-matched {
+  font-weight: 100 !important;
+}
+.pac-logo:after {
+  background-image: none !important;
+}
