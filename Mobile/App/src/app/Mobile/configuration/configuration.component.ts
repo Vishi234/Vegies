@@ -25,7 +25,7 @@ export class ConfigurationComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   toppings = new FormControl();
-  
+
   public currentLogged: any
   public filterItems: any
   google: any;
@@ -49,7 +49,7 @@ export class ConfigurationComponent implements OnInit {
 
   }
   onValChange(lbl, value) {
-    
+
     if (value.length > 0) {
       document.getElementById("lblName" + lbl).innerHTML = "Selected";
       this.selectedPro.push(this.getProductById(lbl));
@@ -89,7 +89,7 @@ export class ConfigurationComponent implements OnInit {
 
 
   ngOnInit() {
-    
+
     this._vendorDetails.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
@@ -110,7 +110,7 @@ export class ConfigurationComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    
+
     this._vendorDetails.GetSubCategoryList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
@@ -123,10 +123,10 @@ export class ConfigurationComponent implements OnInit {
     }, (error) => {
       console.log('error is ', error)
     });
-    console.log("dasdas",this.subCatList)
+    console.log("dasdas", this.subCatList)
   }
-  
- 
+
+
 
   change(event) {
     this.items = [];
@@ -135,6 +135,17 @@ export class ConfigurationComponent implements OnInit {
         this.items.push(x);
       }
     })
+  }
+  fetchSubCat(subCategory) {
+    this.items = [];
+    this.filterItems.map((x) => {
+      if (x.subCat == subCategory) {
+        this.items.push(x);
+      }
+    })
+  }
+  checksubCat($x) {
+    console.log("x.value", this.fetchSubCat(this.subCatList[$x.index].subCatName));
   }
 
   carouselOptions = {
