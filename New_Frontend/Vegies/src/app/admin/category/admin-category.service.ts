@@ -14,7 +14,9 @@ export class AdminCategoryService {
   private _productUrl = this._global.baseAppUrl + 'admin/product';
   private _productImg = this._global.baseAppUrl + 'admin/product/images';
 
-  AddCategory(user: any) {
+  AddCategory(user: any) 
+  {
+    console.log('user-->',user);
     return this.http.post<any>(this._adminCategoryUrl, user);
   }
   GetCategoryList() {

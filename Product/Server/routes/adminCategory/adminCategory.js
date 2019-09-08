@@ -26,12 +26,13 @@ module.exports = (function () {
 
     app.post("/category", function (req, res) {
 
-       
+       console.log('Request Data--',req.body)
         let categoryData = req.body;
-        let categorySave = new model.Category(categoryData)
+        let categorySave = new model.Category(categoryData);
         categorySave.save().then((items => {
             res.status(200).send(items);
         })).catch(err => {
+            console.log("ddddddddd",err);
             res.status(400).send("unable to save to database");
         })
     });
