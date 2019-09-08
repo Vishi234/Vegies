@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema
 , ObjectId = Schema.ObjectId;
 var categorySchema = new Schema({
-    productCat: {type: String, require: true},
     catName: {type: String, unique: true, require: true},
     catAlias: {type: String, require: true},
     Active: {type: Number, require: true},
