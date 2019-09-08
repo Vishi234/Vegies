@@ -1,1 +1,14 @@
-<p>dashboard works!</p>
+<div class="header">
+    <span class="pull-left">
+        <a href="javascript:void(0)" [class.active]="toggleActive" (click)="toggleRightSidenav()"><i class="fas fa-bars"></i></a>
+        <span class="addtop">
+            Delivery Location
+            <span class="add">A-155D Chander Vihar Vikas Vihar <i class="fas fa-pencil-alt"></i></span>
+        </span>
+    </span>
+    <span class="pull-right"><a routerLink="/mobile/setadress"><i class="far fa-bell"></i></a></span>
+</div>
+<div class="pro-body">
+
+</div>
+<app-side-nav></app-side-nav>

@@ -37,6 +37,7 @@ import { DashboardComponent } from './Mobile/dashboard/dashboard.component';
 import { SetAddressComponent } from './Mobile/set-address/set-address.component';
 import { PasswordChangeComponent } from './Mobile/password-change/password-change.component';
 import { ForgotPasswordComponent } from './Mobile/forgot-password/forgot-password.component';
+import { SideNavComponent } from './Mobile/side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ForgotPasswordComponent } from './Mobile/forgot-password/forgot-passwor
     SetAddressComponent,
     PasswordChangeComponent,
     ForgotPasswordComponent,
+    SideNavComponent,
   
   ],
   imports: [

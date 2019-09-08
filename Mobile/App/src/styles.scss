@@ -9,6 +9,7 @@ body {
   font-family: "Muli", sans-serif !important;
   font: 500 14px "Muli", sans-serif !important;
   overflow: auto;
+  background: #f4f4f4;
 }
 .btn {
   text-transform: none;
@@ -116,7 +117,7 @@ input.e-input {
 }
 .md-form {
   margin: 0px;
-  height: 70px;
+  height: 75px;
 }
 .md-form input {
   border-bottom: 1px solid #cacaca;
@@ -133,8 +134,14 @@ input.e-input {
   box-shadow: none !important;
   border-bottom: 1px solid #ee8d06 !important;
 }
+.md-form input.form-control.validate-success.ng-invalid.ng-touched {
+  box-shadow: none !important;
+}
 .md-form input.form-control.validate-error.ng-invalid.ng-touched + label {
   color: #ee8d06 !important;
+}
+.mat-drawer-transition .mat-drawer-backdrop {
+  z-index: 999;
 }
 .header {
   display: inline-block;

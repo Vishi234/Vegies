@@ -1,0 +1,32 @@
+<mat-sidenav-container class="nav-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+        <mat-sidenav [opened]="mobileQuery.matches ? 'false' : 'true'" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches" fixedTopGap="0">
+            <div class="welcome">
+                <span class="wlcm-msg">Welcome, Web Designers Hub</span>
+                <span><a href="javascript:void(0)"><i class="fas fa-cog"></i> Profile & Setting</a></span>
+            </div>
+            <div class="side-add">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>A-155D Chande Vihar Vikas Vihar Nilothi Extn New Delhi <i class="fas fa-pencil-alt"></i></span>
+            </div>
+            <div class="menu">
+                <span class="itm dashlink"><i class="fas fa-chart-line"></i> Dashboard</span>
+                <span class="itmttl">Checklist</span>
+                <span class="itm"><i class="fas fa-clipboard-list"></i> My Checklist</span>
+                <span class="itm"><i class="fas fa-tools"></i> Checklist Configuration</span>
+                <span class="itm"><i class="fab fa-opencart"></i> My Orders</span>
+                <span class="itmttl">Reports</span>
+                <span class="itm"><i class="fas fa-chart-line"></i> Checklist Report</span>
+                <span class="itm"><i class="fas fa-chart-pie"></i> Payment Reports</span>
+                <span class="itmttl">Others</span>
+                <span class="itm"><i class="far fa-envelope-open"></i> Customer Support</span>
+                <span class="itm"><i class="far fa-star"></i> Rate Us</span>
+                <span class="itm"><i class="fas fa-share-alt"></i> Share</span>
+                <span class="itm"><i class="fas fa-info-circle"></i> About Us</span>
+                <span class=""></span>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+    
+        </mat-sidenav-content>
+    </mat-sidenav-container>
