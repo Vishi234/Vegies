@@ -15,13 +15,14 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { AdminSubcategoryComponent } from './admin/admin-subcategory/admin-subcategory.component';
+import { NewProductComponent } from './admin/new-product/new-product.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 import { MyOrdersComponent } from './vendor/my-orders/my-orders.component'
 import { OrderItemsComponent } from './vendor/order-items/order-items.component'
 import { OrderReportComponent } from './vendor/reports/order-report/order-report.component'
 import { UserListComponent } from './admin/users/user-list/user-list.component'
 import { UserChecklistComponent } from './admin/users/user-checklist/user-checklist.component'
-import{UserOrdersComponent} from './admin/users/user-orders/user-orders.component'
+import { UserOrdersComponent} from './admin/users/user-orders/user-orders.component'
 import { productListResolver } from './vendor/product-list/product-list-resolver.service';
 const routes: Routes = [
   {
@@ -89,7 +90,7 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
-        path: 'admin/product', component: AdminProductComponent
+        path: 'admin/product', component: NewProductComponent
         //,canActivate:[AuthGuard]
       },
       {

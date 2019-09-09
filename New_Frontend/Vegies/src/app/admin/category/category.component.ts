@@ -121,13 +121,13 @@ export class CategoryComponent implements OnInit {
    if(this.oper)
     {
 
-    this._adminCategory.AddProduct(this.productData,this.imageUrl)
-      .subscribe((res) => {
-        console.log('Response body---', res);
-      },
-        (error) => {
-          console.log(error);
-        });
+    // this._adminCategory.AddProduct(this.productData,this.imageUrl)
+    //   .subscribe((res) => {
+    //     console.log('Response body---', res);
+    //   },
+    //     (error) => {
+    //       console.log(error);
+    //     });
       }
       else{
         this._adminCategory.UpdateProduct(this.productData)
