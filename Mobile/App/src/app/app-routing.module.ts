@@ -13,13 +13,13 @@ import { DashboardComponent } from './Mobile/dashboard/dashboard.component'
 const routes: Routes = [
   { path: '', redirectTo: 'mobile/splash-screen', pathMatch: 'full' },
   { path: 'mobile/splash-screen', component: SplashScreenComponent },
-  { path: 'mobile/login', component: LoginComponent },
-  { path: 'mobile/register', component: RegisterComponent },
-  { path: 'mobile/configuration', component: ConfigurationComponent },
-  { path: 'mobile/setadress', component: SetAddressComponent },
-  { path: 'mobile/passwordchange', component: PasswordChangeComponent },
-  { path: 'mobile/forgotpassword', component: ForgotPasswordComponent },
-  { path: 'mobile/dashboard', component: DashboardComponent },
+  { path: 'mobile/login', component: LoginComponent, data: { animation: 'FilterPage' } },
+  { path: 'mobile/register', component: RegisterComponent, data: { animation: 'FilterPage' } },
+  { path: 'mobile/configuration', component: ConfigurationComponent, data: { animation: 'FilterPage' } },
+  { path: 'mobile/setadress', component: SetAddressComponent, data: { animation: 'FilterPage' } },
+  { path: 'mobile/passwordchange', component: PasswordChangeComponent, data: { animation: 'FilterPage' } },
+  { path: 'mobile/forgotpassword', component: ForgotPasswordComponent, data: { animation: 'FilterPage' } },
+  { path: 'mobile/dashboard', component: DashboardComponent, data: { animation: 'FilterPage' } },
 ];
 
 @NgModule({
