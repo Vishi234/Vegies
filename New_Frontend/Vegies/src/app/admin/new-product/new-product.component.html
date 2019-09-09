@@ -1,64 +1,114 @@
+<div class="content-ttl">
+        <div class="panel-name">
+            <span><i class="fas fa-clipboard-list"></i></span>
+            <span>
+                Sub-Category Master
+                <p>Content section goes here</p>
+            </span>
+        </div>
+        <div class="panel-filter">
+            <div class="btn-group">
+                <button mat-button class="btn btn-primary" (click)="addNewCategory();">Add Category</button>
+                <button mat-button class="btn btn-danger">Remove Category</button>
+                <button mat-button class="btn btn-info">Update Category</button>
+            </div>
+        </div>
+    </div>
+    <div class="checklistgrid">
+        <ejs-grid [dataSource]='productData' allowPaging='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar'
+            (actionBegin)='actionBegin($event)' (actionComplete)='actionComplete($event)'>
+        <e-columns>
+                <e-column field='catName' headerText='Category Name' textAlign='Right' width='200'></e-column>
+                <e-column field='subCatName' headerText='Sub Category' width='200'></e-column>
+                <e-column field='product' headerText='Product' width='150'></e-column>
+                <e-column field='productAlias' headerText='Alias' textAlign='Right' width='150'></e-column>
+                <e-column field='price' headerText='Price' textAlign='Right' width='150'></e-column>
+                <e-column field='discount' headerText='Discount' textAlign='Right' width='150'></e-column>
+                <e-column field='actualPrice' headerText='Actual price' textAlign='Right' width='150'></e-column>     
+                <e-column field='active' headerText='Status' width='150'></e-column>
+                <e-column field='upload' headerText='Upload Image' textAlign='Right' width='350'></e-column>
+        </e-columns>
+    
+        <ng-template #editSettingsTemplate let-data>
+                <div [formGroup]="orderForm">
+                    <table class="e-table e-inline-edit" cellspacing="0.25">
+                        <colgroup>
+                            <col style="width: 200px;">
+                            <col style="width: 200px;">
+                            <col style="width: 150px;">
+                            <col style="width: 150px;">
+                            <col style="width: 150px;">
+                            <col style="width: 150px;">
+                            <col style="width: 150px;">
+                            <col style="width: 150px;">
+                            <col style="width: 350px;">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td class='e-rowcell' style="display:none">
+                                            <div class="e-input-group">
+                                                <input class="e-input e-field" name='_id' formControlName="_id" type="text" 
+                                                />
+                                            </div>
+                                </td>  
+                                <td style="text-align: right" class='e-rowcell'>
+                                    <ejs-dropdownlist id="catName" name="catName" formControlName="catName" [dataSource]='categorydata' [fields]="{text: 'catName', value: 'catName' }"
+                                        popupHeight='300px'  (change)='onChangeCategroy($event)' floatLabelType='Never'></ejs-dropdownlist>
+                                </td>
+    
+                                <td style="text-align: right" class='e-rowcell'>
+                                        <ejs-dropdownlist id="subCatName" name="subCatName" formControlName="subCatName" [dataSource]='subCategoryList' [fields]="{text: 'subCatName', value: 'subCatName' }"
+                                            popupHeight='300px' floatLabelType='Never'></ejs-dropdownlist>
+                                </td>
+                                 <td class='e-rowcell'>
+                                        <div class="e-input-group">
+                                            <input class="e-input e-field" name='product' formControlName="product" type="text" 
+                                            />
+                                        </div>
+                                    </td>
+                                    <td class='e-rowcell'>
+                                         <div class="e-input-group">
+                                                <input class="e-input e-field" name='productAlias' formControlName="productAlias" type="text" 
+                                                />
+                                         </div>
+                                    </td>
+                                    <td class='e-rowcell'>
+                                            <div class="e-input-group">
+                                                   <input class="e-input e-field" name='price' formControlName="price" type="text" 
+                                                   />
+                                            </div>
+                                       </td>
+                                       <td class='e-rowcell'>
+                                            <div class="e-input-group">
+                                                   <input class="e-input e-field" name='discount' formControlName="discount" type="text"  (blur)="onChangeDiscount($event)" />
+                                            </div>
+                                       </td>
+                                       <td class='e-rowcell'>
+                                            <div class="e-input-group">
+                                                   <input class="e-input e-field"  name='actualPrice' formControlName="actualPrice" type="text" 
+                                                   />
+                                            </div>
+                                       </td>
+                                       <td class='e-rowcell'>
+                                            <div class="e-input-group">
+                                                <input class="e-input e-field" name='active' formControlName="active" type="text" 
+                                                />
+                                            </div>
+                                        </td>  
 
-<div class="modalbase">
-    <div class="modal-header">
-        <span class="title pull-left">
-            Add Product
-        </span>
-        <span class="pull-right close">
-            <a href="javbascript:void(0)" (click)="closeModal();">
-                <i class="fas fa-times"></i>
-            </a>
-        </span>
+                                  <td class='e-rowcell'>                                   
+                                    <form #form action="http://localhost:8084/api/admin/product/images" enctype="multipart/form-data"
+                                        method="POST" >
+                                        <input type="file" name="myFile" id="myFile" required multiple />
+                                        <input type="submit" (click)="form.submit()"  class="btn btn-primary" value="Upload" />  
+                                    </form>
+                                </td>
+    
+                                                      
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-template>
+       </ejs-grid>
     </div>
-    <div class="modal-body">
-        <div class="form_cat">
-            <ul>
-                <li>
-                    <ejs-dropdownlist id='ddlelement' #select [dataSource]='subCatList' [fields]='fields'
-                        placeholder="Select category" required>
-                    </ejs-dropdownlist>
-                </li>
-                <li>
-                    <ejs-dropdownlist id='ddlelement2' #select [dataSource]='subCatList' [fields]='fields'
-                        placeholder="Select Sub category" required>
-                    </ejs-dropdownlist>
-                </li>
-                <li>
-                    <ejs-dropdownlist id='ddlelement3' #select [dataSource]='subCatList' [fields]='fields'
-                        placeholder="Select Unit Measure" required>
-                    </ejs-dropdownlist>
-                </li>
-                <li>
-                    <input class="e-input" type="text" placeholder="Product Name" />
-                </li>
-                <li>
-                    <input class="e-input" type="text" placeholder="Alias" />
-                </li>
-                <li>
-                    <input class="e-input" type="text" placeholder="Price" />
-                </li>
-                <li>
-                    <input class="e-input" type="text" placeholder="Discount" />
-                </li>
-                <li>
-                    <input class="e-input" type="text" placeholder="Actual Price" />
-                </li>
-                <li>
-                    <ejs-switch #switch [(ngModel)]="checked"></ejs-switch>
-                    <label>Active</label>
-                </li>
-                <li>
-                    <form #form action="http://localhost:8080/api/admin/product/images" enctype="multipart/form-data"
-                        method="POST">
-                        <input type="file" name="myFile" id="myFile" required multiple />
-                        <input type="submit" (click)="form.submit()" class="btn btn-primary" value="Upload" />
-                    </form>
-                </li>
-            </ul>
-        </div>
-        <div class="btn-group">
-            <button mat-button class="btn btn-primary">Add Product</button>
-            <button mat-button class="btn btn-danger">Reset</button>
-        </div>
-    </div>
-</div>

@@ -24,13 +24,17 @@ export class AdminCategoryComponent implements OnInit {
   //public filterSettings: Object;
   public pageSettings: object;
   public orderForm: FormGroup;
+  public ActiveDDL: any;
 
   constructor(public dialog: MatDialog,private _adminCategory: AdminCategoryService,private _router:Router) { }
 
   ngOnInit() 
   {
     this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal' };
-    this.toolbar = ['Add', 'Edit', 'Delete','Update'];
+    this.toolbar = ['Add', 'Edit', 'Delete','Update','Cancel'];
+
+    this.ActiveDDL=[{'id':'1','value':'Active'},{'id':'2','value':'Deactive'}];
+    
 
     this.pageSettings = { pageSizes: true, pageSize: 10 };
     this._adminCategory.GetCategoryList().subscribe((response) => {
@@ -56,23 +60,21 @@ createFormGroup(data1: IOrderModel): FormGroup {
       catName: new FormControl(data1.catName, Validators.required),
       catAlias: new FormControl(data1.catAlias, Validators.required),
       Active: new FormControl(data1.Active, Validators.required),
-  
+      _id:new FormControl(data1._id,Validators.required)
   });
 }
 
-actionBegin(args: SaveEventArgs): void {
-  debugger;
+actionBegin(args: SaveEventArgs): void 
+{
   if (args.requestType === 'beginEdit' || args.requestType === 'add') {
       this.orderForm = this.createFormGroup(args.rowData);
   }
-  if (args.requestType === 'save') {
+  if(args.action=='add')
+  {
+    debugger
       if (this.orderForm.valid) {
           args.data = this.orderForm.value;
-         // var myArr = JSON.parse(args.data);
-        
-          console.log("daaaa",args.data)
-          
-//console.log("fffffff",)
+          console.log("daaaa",args.data)    
           this._adminCategory.AddCategory(args.data).subscribe(response => {
             console.log("Response is",response);
           }, (error) => {
@@ -83,10 +85,25 @@ actionBegin(args: SaveEventArgs): void {
           args.cancel = true;
       }
   }
+  else if(args.action=="edit")
+   {
+    if (this.orderForm.valid) {
+      args.data = this.orderForm.value;
+      console.log("daaaa",args.data)    
+      this._adminCategory.UpdateCategory(args.data).subscribe(response => {
+        console.log("Response is",response);
+       }, (error) => {
+        console.log('error is ', error)
+       })
+
+  } else {
+      args.cancel = true;
+  }
+  }
+  
 }
 
 actionComplete(args: DialogEditEventArgs): void {
-  debugger;
   if (args.requestType === 'beginEdit' || args.requestType === 'add') {
       // Set initail Focus
       if (args.requestType === 'beginEdit') {
@@ -117,5 +134,5 @@ export interface IOrderModel {
   catName?: string;
   catAlias?: string;
   Active?: number;
-  
+  _id?:string;
 }

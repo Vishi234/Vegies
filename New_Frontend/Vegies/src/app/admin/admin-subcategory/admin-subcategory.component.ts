@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NewSubcategoryComponent } from '../new-subcategory/new-subcategory.component'
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { AdminCategoryService } from '../category/admin-category.service';
+import { Router } from '@angular/router';
+import { EditSettingsModel, DialogEditEventArgs, ToolbarItems, SaveEventArgs } from '@syncfusion/ej2-angular-grids';
+import { FormGroup, AbstractControl, FormControl, Validators } from '@angular/forms';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { Query, DataManager } from '@syncfusion/ej2-data';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-subcategory',
@@ -8,38 +16,132 @@ import { NewSubcategoryComponent } from '../new-subcategory/new-subcategory.comp
   styleUrls: ['./admin-subcategory.component.scss']
 })
 export class AdminSubcategoryComponent implements OnInit {
-  
-  public data: Object[];
-  public filterSettings: Object;
+
+  public data: any;
+  public editSettings: EditSettingsModel;
+  public toolbar: ToolbarItems[];
+  public categorydata: any;
+  public subCategoryData: any;
+  public subCategoryList: any;
+  //public catData: Array<any> = [];
+  //public filterSettings: Object;
   public pageSettings: object;
-  constructor(public dialog: MatDialog) { }
+  public orderForm: FormGroup;
+  public countryElem: HTMLElement;
+  public countryObj: DropDownList;
+  public stateElem: HTMLElement;
+  public stateObj: DropDownList;
+  public ActiveDDL:any;
+
+  constructor(public dialog: MatDialog, private _adminCategory: AdminCategoryService, private _router: Router,private _toastr: ToastrService) { }
 
   ngOnInit() {
-    this.filterSettings = { type: 'Menu' };
+
+    this.ActiveDDL=[{'id':'1','value':'Active'},{'id':'2','value':'Deactive'}];
+    this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal' };
+    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
     this.pageSettings = { pageSizes: true, pageSize: 10 };
-    this.data = [
-      { OrderID: 10248, CustomerID: 'VINET', Freight: 32.38, ShipCountry: 'France' },
-      { OrderID: 10249, CustomerID: 'TOMSP', Freight: 11.61, ShipCountry: ' Germany' },
-      { OrderID: 10250, CustomerID: 'HANAR', Freight: 65.83, ShipCountry: 'Brazil' },
-      { OrderID: 10251, CustomerID: 'VICTE', Freight: 41.34, ShipCountry: 'France' },
-      { OrderID: 10252, CustomerID: 'SUPRD', Freight: 51.3, ShipCountry: 'Belgium' },
-      { OrderID: 10253, CustomerID: 'HANAR', Freight: 58.17, ShipCountry: 'Brazil' },
-      { OrderID: 10254, CustomerID: 'CHOPS', Freight: 22.98, ShipCountry: 'Switzerland' },
-      { OrderID: 10255, CustomerID: 'RICSU', Freight: 148.33, ShipCountry: 'Switzerland' },
-      { OrderID: 10256, CustomerID: 'SUPRD', Freight: 13.97, ShipCountry: 'Brazil' },
-      { OrderID: 10257, CustomerID: 'WELLI', Freight: 14.23, ShipCountry: 'Venezuela' },
-      { OrderID: 10258, CustomerID: 'VICTE', Freight: 18.33, ShipCountry: 'France' },
-      { OrderID: 10259, CustomerID: 'WELLI', Freight: 28.13, ShipCountry: 'Brazil' },
-      { OrderID: 10260, CustomerID: 'CHOPS', Freight: 48.34, ShipCountry: 'Switzerland' },
-      { OrderID: 10261, CustomerID: 'SUPRD', Freight: 32.73, ShipCountry: ' Germany' },
-      { OrderID: 10262, CustomerID: 'TOMSP', Freight: 12.31, ShipCountry: 'Switzerland' },
-      { OrderID: 10263, CustomerID: 'VICTE', Freight: 23.77, ShipCountry: 'Brazil' },
-      { OrderID: 10264, CustomerID: 'SUPRD', Freight: 43.47, ShipCountry: 'Venezuela' },
-      { OrderID: 10265, CustomerID: 'CHOPS', Freight: 53.37, ShipCountry: 'Belgium' },
-    ];
-  }
-  addNewCategory() {
-    this.dialog.open(NewSubcategoryComponent, { disableClose: true })
+
+    this._adminCategory.GetCategoryList().subscribe((response) => 
+    {
+      this.data = response;
+      this.data.map((val: any) => {
+        return ({ "_id": val._id, "catName": val.catName, "catAlias": val.catAlias })
+      });
+      this.categorydata = this.data;
+
+    }, (error) => {
+      console.log('error is 00', error instanceof HttpErrorResponse, "00", error);
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 401) {
+
+          this._router.navigate(['/'])
+        }
+      }
+    });
+    this._adminCategory.GetSubCategoryList().subscribe((response) => {
+      this.subCategoryData = response;
+      this.subCategoryData.map((val: any) => {
+        return ({ "_id": val._id,"catName":val.catName, "subCatName": val.subCatName, "subCatAlias": val.subCatName, "active": val.Active })
+      });
+      this.subCategoryData = this.subCategoryData;
+      this.subCategoryList=response;
+
+    }, (error) => {
+      console.log('error is 00', error instanceof HttpErrorResponse, "00", error);
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 401) {
+
+          this._router.navigate(['/'])
+        }
+      }
+    });
+   }
+
+  createFormGroup(data1: IOrderModel): FormGroup {
+    return new FormGroup({
+        catName: new FormControl(data1.catName, Validators.required),
+        subCatName: new FormControl(data1.subCatName, Validators.required),
+        subCatAlias: new FormControl(data1.subCatAlias, Validators.required),
+        active: new FormControl(data1.active, Validators.required),
+        _id:new FormControl(data1._id, Validators.required),
+    });
   }
 
+
+  actionBegin(args: SaveEventArgs): void 
+  {
+    if (args.requestType === 'beginEdit' || args.requestType === 'add') {
+        this.orderForm = this.createFormGroup(args.rowData);
+    }
+    if(args.action=='add')
+    {
+            args.data = this.orderForm.value;
+            console.log("daaaa",args.data)    
+            this._adminCategory.AddSubCategory(args.data).subscribe(response => {
+            //  this._toastr.success(response);
+            }, (error) => {
+              this._toastr.success(error.error.text);
+              console.log('error is ', error)
+            });
+       
+    }
+    else if(args.action=="edit")
+     {
+      if (this.orderForm.valid) 
+      {
+        args.data = this.orderForm.value;
+        console.log("daaaa",args.data)    
+        this._adminCategory.UpdateSubCategory(args.data).subscribe(response => {
+          console.log("Response is",response);
+          this._toastr.success(response.status);
+         }, (error) => {
+               console.log('error is ', error)
+         })
+  
+     } else {
+        args.cancel = true;
+    }
+    } 
+  }
+  
+  actionComplete(args: DialogEditEventArgs): void 
+  {
+    if (args.requestType === 'beginEdit' || args.requestType === 'add') {
+        // Set initail Focus
+        if (args.requestType === 'beginEdit') {
+            (args.form.elements.namedItem('CustomerID') as HTMLInputElement).focus();
+        } else if (args.requestType === 'add') {
+            (args.form.elements.namedItem('OrderID') as HTMLInputElement).focus();
+        }
+    }
+  }
+}
+export interface IOrderModel 
+{
+  catName?: string;
+  subCatName?:string;
+  subCatAlias?: string;
+  active?: number; 
+  _id?:string;
 }

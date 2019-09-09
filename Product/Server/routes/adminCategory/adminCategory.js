@@ -8,24 +8,22 @@ const upload = multer({ dest: './uploads/' });
 
 module.exports = (function () {
     'use strict';
-
-    app.get("/category", function (req, res) {
-        console.log("getCategoryyyyyyy-----------")
+    app.get("/category", function (req, res) 
+    {
         model.Category.find().then(getCategory=>{
-            //console.log("getCategoryyyyyyy",getCategory)
             res.send(getCategory);
         })
     });
     app.get("/subCategory", function (req, res) {
 
-        model.subCategory.find().then(getsubCategory=>{
-           // console.log("getCategoryyyyyyy",getsubCategory)
+        model.subCategory.find().then(getsubCategory=>
+            {
             res.send(getsubCategory);
         })	
     });
 
-    app.post("/category", function (req, res) {
-
+    app.post("/category", function (req, res) 
+    {
        console.log('Request Data--',req.body)
         let categoryData = req.body;
         let categorySave = new model.Category(categoryData);
@@ -36,26 +34,54 @@ module.exports = (function () {
             res.status(400).send("unable to save to database");
         })
     });
+    app.put("/category", function (req, res) 
+    {
+        let categoryData = req.body;
+        let categorySave = new model.Category(categoryData);
+        categorySave.update.then((items => {
+        res.status(200).send(items);
+         })).catch(err => {
+           console.log("ddddddddd",err);
+           res.status(400).send("unable to save to database");
+          })
+        });
 
-    app.post("/subCategory", function (req, res) {
-       
-        
+    app.post("/subCategory", function (req, res) 
+    {            
         let subCategoryData = req.body;
-        console.log("getCategoryyyyyyy",subCategoryData)
+        console.log("subCatData-->",subCategoryData)
         let subCategorySave = new model.subCategory(subCategoryData)
+        console.log('--->  ',subCategorySave)
         subCategorySave.save().then((items => {
             res.status(200).send("Sub Category added successfully");
         })).catch(err => {
+            console.log(err);
             res.status(400).send("unable to save to database");
         })
     });
+    app.put("/subCategory", function (req, res) 
+    {            
+        let subCategoryData = req.body;
+        console.log('---->',subCategoryData);
+        model.subCategory.updateOne({ _id: subCategoryData._id }, { $set: { catName: subCategoryData.catName ,subCatName:subCategoryData.subCatName,subCatAlias:subCategoryData.subCatAlias,active:subCategoryData.active } }, (attempCount)=> {
+            res.status(200).json({ status:'SuCategory data has been updated successfully'});
+          })
+    });
+
+
+
+
+    
     app.post("/product", function (req, res) 
 	{ 
         let productData = req.body;
         productData.imageUrl=productData.catName+"/"+productData.imageUrl;
+        console.log('productData--',productData);
+
         let productDataSave = new model.product(productData)
         productDataSave.save().then((items => 
 		{
+           // console.log()
             res.status(400).send("Product added successfully");
         })).catch(err => {
             res.status(400).send("unable to save to database");
@@ -81,6 +107,7 @@ module.exports = (function () {
             if(err) {
                 return res.end("Error uploading file.");
             }
+           // res.status(200).json({ message:'Product data has been updated successfully'});
             res.json({'message': 'File uploaded'});
         });      
     });
@@ -89,15 +116,22 @@ module.exports = (function () {
     app.put("/product", function (req, res)
      {
         let productData = req.body;
-        productData.imageUrl=productData.catName+"/"+productData.imageUrl;
-        let productDataSave = new model.product(productData)
-        productDataSave.save().then((items => 
-		{
-            res.status(200).send("Product updated successfully");
-        })).catch(err => {
-            //console.log("errwwww", err)
-            res.status(400).send("unable to save to database");
-        })
+
+        model.product.updateOne({ _id: productData._id }, { $set: { catName: productData.catName ,price:productData.price } }, (attempCount)=> {
+            res.status(200).json({ status:'Product data has been updated successfully'});
+          })
+
+        // console.log('update data===',productData);
+
+        // productData.imageUrl=productData.catName+"/"+productData.imageUrl;
+        // let productDataSave = new model.product(productData)
+        // productDataSave.save().then((items => 
+		// {
+        //     res.status(200).send("Product updated successfully");
+        // })).catch(err => {
+        //     //console.log("errwwww", err)
+        //     res.status(400).send("unable to save to database");
+        // })
     });
     app.get("/product", function (req, res) {
         model.product.find().then(getproduct=>{

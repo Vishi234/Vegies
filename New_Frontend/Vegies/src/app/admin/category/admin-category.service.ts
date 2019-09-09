@@ -13,12 +13,20 @@ export class AdminCategoryService {
   private _subCatUrl = this._global.baseAppUrl + 'admin/subCategory';
   private _productUrl = this._global.baseAppUrl + 'admin/product';
   private _productImg = this._global.baseAppUrl + 'admin/product/images';
+  //private _productImg = this._global.baseAppUrl + 'admin/product/images';
 
   AddCategory(user: any) 
   {
     console.log('user-->',user);
     return this.http.post<any>(this._adminCategoryUrl, user);
   }
+  
+  UpdateCategory(user: any) 
+  {
+    console.log('Category Data-->',user);
+    return this.http.put<any>(this._adminCategoryUrl, user);
+  }
+  
   GetCategoryList() {
     return this.http.get(this._adminCategoryUrl)
   }
@@ -26,13 +34,23 @@ export class AdminCategoryService {
     debugger;
     return this.http.post<any>(this._subCatUrl, user);
   }
+  UpdateSubCategory(user: any) {
+    debugger;
+    return this.http.put<any>(this._subCatUrl, user);
+  }
   GetSubCategoryList() {
     return this.http.get(this._subCatUrl)
   }
-  AddProduct(user: any, imageUrl: any) {
-    user.imageUrl = imageUrl;
+  AddProduct(user: any) 
+  {
+    debugger;
     return this.http.post<any>(this._productUrl, user)
   }
+  
+  // AddProduct(user: any, imageUrl: any) {
+  //   user.imageUrl = imageUrl;
+  //   return this.http.post<any>(this._productUrl, user)
+  // }
   GetProductList() {
     return this.http.get(this._productUrl)
   }
