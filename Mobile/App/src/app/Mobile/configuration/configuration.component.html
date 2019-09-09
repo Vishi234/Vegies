@@ -1,0 +1,170 @@
+<div class="header">
+    <span class="pull-left"><a href="javascript:void(0)"><i class="fas fa-arrow-left"></i></a> Configuration</span>
+    <span class="pull-right"><a routerLink="/mobile/setadress">Next</a></span>
+</div>
+<div class="pro-body">
+    <div class="category-tab">
+        <mat-tab-group (selectedTabChange)="checksubCat($event)">
+            <mat-tab *ngFor="let subCatName of subCatList" (click)="fetchSubCat(subCatName.subCatName)">
+                <ng-template mat-tab-label>
+                    {{subCatName.subCatName}}
+                </ng-template>
+                <div class="pro-list">
+                    <ul>
+                        <li *ngFor="let item of items">
+                            <div class="pro-base">
+                                <div class="pro-img pull-left d-flex">
+                                    <img class="justify-content-center align-self-center"
+                                        src="{{item.image}}" /></div>
+                                <div class="pro-content pull-left">
+                                    <span class="price">
+                                        <i class="fas fa-rupee-sign"></i>{{item.newPrice}}
+                                        <span class="old"><i class="fas fa-rupee-sign"></i>{{item.oldPrice}}</span>
+                                        <span class="badge badge-success"> {{item.discount}}% off</span>
+                                    </span>
+                                    <span class="title mt-2 mb-2">
+                                        {{item.name}}
+                                    </span>
+                                    <div class="option">
+                                        <span class="unit pull-left">16 units</span>
+                                        <span class="pull-right">
+                                            <a href="javascript:void(0)">Select</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- <li>
+                            <div class="pro-base">
+                                <div class="pro-img pull-left d-flex">
+                                    <img class="justify-content-center align-self-center"
+                                        src="../../../assets/Broccoli.jpg" /></div>
+                                <div class="pro-content pull-left">
+                                    <span class="price">
+                                        <i class="fas fa-rupee-sign"></i>698
+                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
+                                        <span class="badge badge-success"> 20% off</span>
+                                    </span>
+                                    <span class="title mt-2 mb-2">
+                                        Papert Boat Coconut Water
+                                    </span>
+                                    <div class="option">
+                                        <span class="unit pull-left">16 units</span>
+                                        <span class="pull-right">
+                                            <a href="javascript:void(0)">Select</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pro-base">
+                                <div class="pro-img pull-left d-flex">
+                                    <img class="justify-content-center align-self-center"
+                                        src="../../../assets/Broccoli.jpg" /></div>
+                                <div class="pro-content pull-left">
+                                    <span class="price">
+                                        <i class="fas fa-rupee-sign"></i>698
+                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
+                                        <span class="badge badge-success"> 20% off</span>
+                                    </span>
+                                    <span class="title mt-2 mb-2">
+                                        Papert Boat Coconut Water
+                                    </span>
+                                    <div class="option">
+                                        <span class="unit pull-left">16 units</span>
+                                        <span class="pull-right">
+                                            <a href="javascript:void(0)">Select</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pro-base">
+                                <div class="pro-img pull-left d-flex">
+                                    <img class="justify-content-center align-self-center"
+                                        src="../../../assets/Broccoli.jpg" /></div>
+                                <div class="pro-content pull-left">
+                                    <span class="price">
+                                        <i class="fas fa-rupee-sign"></i>698
+                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
+                                        <span class="badge badge-success"> 20% off</span>
+                                    </span>
+                                    <span class="title mt-2 mb-2">
+                                        Papert Boat Coconut Water
+                                    </span>
+                                    <div class="option">
+                                        <span class="unit pull-left">16 units</span>
+                                        <span class="pull-right">
+                                            <a href="javascript:void(0)">Select</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pro-base">
+                                <div class="pro-img pull-left d-flex">
+                                    <img class="justify-content-center align-self-center"
+                                        src="../../../assets/Broccoli.jpg" /></div>
+                                <div class="pro-content pull-left">
+                                    <span class="price">
+                                        <i class="fas fa-rupee-sign"></i>698
+                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
+                                        <span class="badge badge-success"> 20% off</span>
+                                    </span>
+                                    <span class="title mt-2 mb-2">
+                                        Papert Boat Coconut Water
+                                    </span>
+                                    <div class="option">
+                                        <span class="unit pull-left">16 units</span>
+                                        <span class="pull-right">
+                                            <a href="javascript:void(0)">Select</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pro-base">
+                                <div class="pro-img pull-left d-flex">
+                                    <img class="justify-content-center align-self-center"
+                                        src="../../../assets/Broccoli.jpg" /></div>
+                                <div class="pro-content pull-left">
+                                    <span class="price">
+                                        <i class="fas fa-rupee-sign"></i>698
+                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
+                                        <span class="badge badge-success"> 20% off</span>
+                                    </span>
+                                    <span class="title mt-2 mb-2">
+                                        Papert Boat Coconut Water
+                                    </span>
+                                    <div class="option">
+                                        <span class="unit pull-left">16 units</span>
+                                        <span class="pull-right">
+                                            <a href="javascript:void(0)">Select</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+            </mat-tab>
+            <!-- <mat-tab label="Second"> Content 2 </mat-tab>
+            <mat-tab label="Third"> Content 3 </mat-tab>
+            <mat-tab label="Third"> Content 3 </mat-tab>
+            <mat-tab label="Third"> Content 3 </mat-tab>
+            <mat-tab label="Third"> Content 3 </mat-tab>
+            <mat-tab label="Third"> Content 3 </mat-tab> -->
+        </mat-tab-group>
+    </div>
+    <ul>
+        <li>
+            <div class="pro-base">
+
+            </div>
+        </li>
+    </ul>
+</div>

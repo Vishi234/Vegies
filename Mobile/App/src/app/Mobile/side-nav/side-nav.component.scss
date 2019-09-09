@@ -1,0 +1,85 @@
+.mat-drawer-container {
+  z-index: 99999;
+  width: 100%;
+  display: contents;
+}
+
+.mat-sidenav {
+  width: 260px;
+}
+.mat-drawer {
+  background-color: #fff;
+  color: #212529;
+  border-right: none !important;
+  position: fixed;
+  top: 0px;
+  z-index: 99999;
+}
+.nav-sidenav-container .mat-drawer-inner-container {
+  margin-top: 25px;
+}
+.welcome {
+  padding: 8px;
+  background: #eee;
+}
+.welcome .wlcm-msg {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+}
+.welcome span a {
+  font-size: 12px;
+  font-weight: 600;
+}
+.side-add {
+  padding: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  border-bottom: 1px solid #ebebeb;
+}
+.side-add i {
+  float: left;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.side-add span {
+  display: contents;
+  float: left;
+}
+.side-add span i:last-child {
+  float: right;
+  margin-top: -10px;
+  margin-right: -2px;
+  font-size: 16px;
+  color: #723f96;
+}
+.menu {
+  overflow: auto;
+  max-height: 100%;
+}
+.menu .itm {
+  display: block;
+  font-size: 12px;
+  padding: 8px;
+  color: #666;
+}
+.menu .itm i {
+  margin-right: 10px;
+}
+// .menu .itm:last-child {
+//   border-bottom: 1px solid #ebebeb;
+// }
+.menu .itmttl {
+  display: block;
+  font-size: 13px;
+  padding: 8px;
+  /* color: #666; */
+  font-weight: 700;
+  border-bottom: 1px solid #ebebeb;
+}
+.dashlink {
+  background: #723f96;
+  color: #fff !important;
+}

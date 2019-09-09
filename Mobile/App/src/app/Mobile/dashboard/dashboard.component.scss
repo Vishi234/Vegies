@@ -1,0 +1,64 @@
+.header > span > a > i {
+  font-size: 18px;
+}
+.addtop {
+  float: right;
+  font-size: 12px;
+  font-weight: 200;
+  margin-top: -7px;
+  line-height: 17px;
+}
+.addtop .add {
+  display: block;
+  font-weight: 500;
+  font-size: 12px;
+}
+.pro-body {
+  margin-top: 60px;
+}
+.dtl > ul > li {
+  display: inline-block;
+  margin: 8px;
+}
+.dtl > ul > li > .leg {
+  display: inline-block;
+  margin-right: 10px;
+  height: 80px;
+  width: 80px;
+  border: 3px solid #ccc;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 60px;
+  border: 3px solid #808080;
+  color: #808080;
+  font-size: 18px;
+}
+.dtl > ul > li > .leg .justify-content-center {
+  margin: 0 auto;
+}
+
+.custom-card {
+  background: #fff;
+  box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+  margin: 11px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 11px;
+  border: 1px solid #ebebeb;
+}
+.custom-card .ttl {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-align: left;
+  color: #666;
+}
+.dtl > ul > li .ttl2 {
+  display: block;
+  width: 95px;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #808080;
+}

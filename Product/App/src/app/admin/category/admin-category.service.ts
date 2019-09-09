@@ -12,7 +12,7 @@ export class AdminCategoryService
   private _adminCategoryUrl='http://localhost:8080/api/admin/category';
   private _subCatUrl='http://localhost:8080/api/admin/subCategory';
   private _productUrl='http://localhost:8080/api/admin/product';
-  private _productImg='http://localhost:8080/api/admin/product/images';
+  private _productImg='http://localhost:8084/api/admin/product/images';
 
   AddCategory(user:any)
   {

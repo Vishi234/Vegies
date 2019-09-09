@@ -93,7 +93,7 @@
              
               <!-- <img [(ngModel)]="productData.url" [src]="url"  height="50" name ="url"> <br/>
               <input type='file' (change)="onSelectFile($event)" multiple> -->
-              <form #form action="http://localhost:8080/api/admin/product/images" enctype="multipart/form-data" method="POST">
+              <form #form action="http://localhost:8084/api/admin/product/images" (keydown.enter)="$event.preventDefault()" enctype="multipart/form-data" method="POST">
                 <input type="file" name="myFile" id="myFile" required multiple />
                 <input type="submit" (click)="form.submit()" value="Upload" />
             </form>

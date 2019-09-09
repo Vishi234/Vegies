@@ -13,7 +13,6 @@ export class configList {
     private _getOrderURL = this._global.baseAppUrl + 'configProduct/getOrder/';
 
     getProductList(userId: any) {
-        console.log("daaaaaaa------>",userId)
         return this.http.get(this._configProductURL, {
             params: {
                 userId: userId._id,

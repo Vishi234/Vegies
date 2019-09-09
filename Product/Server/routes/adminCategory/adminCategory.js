@@ -102,13 +102,17 @@ module.exports = (function () {
       var upload = multer({ storage : storage }).array('myFile',2);
       
     app.post('/product/images',  (req, res) => {
+        console.log("kkkkkkkkkkkk");
         upload(req,res,function(err) 
         {
             if(err) {
                 return res.end("Error uploading file.");
             }
-           // res.status(200).json({ message:'Product data has been updated successfully'});
-            res.json({'message': 'File uploaded'});
+        //    // res.status(200).json({ message:'Product data has been updated successfully'});
+        //     res.json({'message': 'File uploaded'});
+            //res.redirect('/test');
+            res.redirect('http://localhost:4200/admin/category')
+            //res.json({'message': 'File uploaded'});
         });      
     });
 

@@ -1,0 +1,10 @@
+<div class="header">
+    <div class="srch">
+        <span class="pull-left srch-icon"><i class="fas fa-search"></i></span>
+        <input type="text"  matGoogleMapsAutocomplete #address
+        (onLocationSelected)="onLocationSelected($event)" class="e-input pull-right" placeholder="Search for nearby landmark,locality" />
+    </div>
+</div>
+<div class="content-body">
+    <span class="current-loc"><i class="fas fa-location-arrow"></i> Use my location</span>
+</div>
