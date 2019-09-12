@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   toggleRightSidenav() {
     this.toggleActive = !this.toggleActive;
     this.sidenav.toggle();
+
   }
   ngOnInit() {
   }

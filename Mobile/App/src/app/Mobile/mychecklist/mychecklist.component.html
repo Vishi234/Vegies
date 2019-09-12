@@ -1,0 +1,56 @@
+<div class="header">
+    <span class="pull-left"><a href="javascript:void(0)"><i class="fas fa-arrow-left"></i></a> My Checklist</span>
+</div>
+<div class="pro-body">
+    <div class="category-tab">
+        <div class="custom-card">
+            <ul>
+                <li><span class="ttl pull-left">M.R.P</span><span class="value pull-right"><i class="fas fa-rupee-sign"></i>625</span></li>
+                <li><span class="ttl pull-left">Product Discount</span><span class="value pull-right">- 625</span></li>
+                <li><span class="ttl pull-left">Shippping Charges</span><span class="value pull-right">FREE</span></li>
+            </ul>
+            <hr>
+            <div class="total">
+                    <span class="ttl pull-left">Sub Total</span><span class="value pull-right"><i class="fas fa-rupee-sign"></i>625</span>
+            </div>
+        </div>
+        <div class="pro-list">
+            <ul>
+                <li>
+                    <div class="pro-base">
+                        <div class="pro-img pull-left d-flex">
+                            <img class="justify-content-center align-self-center" src="../../../assets/Broccoli.jpg" />
+                        </div>
+                        <div class="pro-content pull-left">
+                            <span class="price">
+                                <i class="fas fa-rupee-sign"></i>675
+                                <span class="old"><i class="fas fa-rupee-sign"></i>300</span>
+                                <span class="badge badge-success ml-2"> 20% off</span>
+                            </span>
+                            <span class="title mt-2 mb-2">
+                                Chakki Atta
+                            </span>
+                            <div class="option">
+                                <span class="unit pull-left">16 units</span>
+                                <span class="pull-right">
+                                    <mat-button-toggle-group multiple="true" class="btn btn-primary" appearance="legacy"
+                                        (change)="onValChange(item.id,$event.value)" name="fontStyle"
+                                        aria-label="Font Style">
+                                        <mat-button-toggle value="0">
+                                            <label id="lblName">
+                                                Select
+                                            </label>
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                    <!-- <a href="javascript:void(0)">Select</a> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</div>
