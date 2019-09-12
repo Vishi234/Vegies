@@ -39,7 +39,7 @@
 
 .custom-card {
   background: #fff;
-  box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
   margin: 11px;
   padding: 10px;
   text-align: center;
@@ -54,6 +54,12 @@
   text-align: left;
   color: #666;
 }
+.custom-card .ttl a {
+  float: right;
+  font-size: 12px;
+  text-decoration: underline;
+  color: #723f96;
+}
 .dtl > ul > li .ttl2 {
   display: block;
   width: 95px;
@@ -61,4 +67,81 @@
   margin-top: 10px;
   font-size: 12px;
   color: #808080;
+}
+
+.pro-img {
+  height: 100px;
+  width: 100px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.pro-img img {
+  width: 100%;
+}
+.pro-content {
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+}
+.pro-content .price {
+  font-weight: 700;
+  font-size: 16px;
+}
+.pro-content .price .old {
+  color: #666;
+  text-decoration: line-through;
+  margin-left: 5px;
+  font-weight: 600;
+  font-size: 12px;
+}
+.pro-content .price > i {
+  font-size: 14px;
+  margin-right: 2px;
+}
+.title {
+  display: block;
+  font-size: 13px;
+  height: 50px;
+  overflow: hidden;
+  font-weight: 600;
+}
+.unit {
+  color: #808080;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 1px;
+}
+.option {
+  display: inline-block;
+  width: 100%;
+}
+.option > span:nth-child(2) a {
+  display: block;
+  background: #59727e;
+  color: #fff;
+  padding: 5px;
+  min-width: 70px;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 2px;
+}
+.pro-list {
+  display: inline-block;
+}
+.pro-list > ul > li {
+  display: block;
+  width: 50%;
+  background: #fff;
+  float: left;
+}
+.pro-list > ul > li:not(:nth-child(even)) {
+  border-right: 1px solid #ebebeb !important;
+}
+.pro-base .badge {
+  float: left;
+}
+.pro-base .btn-primary {
+  display: block;
+  line-height: 10px;
+  margin: 0px;
 }

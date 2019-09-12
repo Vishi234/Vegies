@@ -1,2 +1,5 @@
-<app-loading></app-loading>
-<router-outlet></router-outlet>
+<div class="routebase" [@routeAnimations]="o && o.activatedRouteData 
+&& o.activatedRouteData['animation']">
+    <app-loading></app-loading>
+    <router-outlet #o="outlet"></router-outlet>
+</div>
