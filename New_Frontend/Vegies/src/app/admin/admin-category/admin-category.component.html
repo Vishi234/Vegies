@@ -20,13 +20,13 @@
             <div class="panelheader">
                 Category
             </div>
-            <ejs-grid [dataSource]='data' allowPaging='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar' (actionBegin)='actionBegin($event)' (actionComplete)='actionComplete($event)'>
+            <ejs-grid [dataSource]='data' allowPaging='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar' (actionBegin)='actionBegin($event)' >
                 
                     <e-columns>
-                            <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='30'></e-column>
+                             <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='30'></e-column>
                              <e-column field='catName' headerText='Category Name' textAlign='left' width='100'></e-column>
                              <e-column field='catAlias' headerText='Category Description' textAlign='left' width='100'></e-column>
-                             <e-column field='Active' headerText='Status' textAlign='left' width='50'></e-column>
+                             <e-column field='status' headerText='Status' textAlign='left' width='50'></e-column>
                         </e-columns>  
 
                 <ng-template #editSettingsTemplate let-data>
@@ -40,30 +40,25 @@
                             </colgroup>
                             <tbody>
                                 <tr>
-
-                                        <td style="text-align: right" class='e-rowcell'>
+                                                <td style="text-align: right" class='e-rowcell'>
                                                 <!-- <ejs-dropdownlist id="catName" name="catName" formControlName="catName" [dataSource]='categorydata' [fields]="{text: 'catName', value: 'catName' }" popupHeight='300px' floatLabelType='Never'></ejs-dropdownlist> -->
                                                 <div class="e-input-group">
-                                                    <input class="e-input e-field" name='catName' formControlName="catName" type="text" (focus)="focusIn($event.target)"
-                                                        (blur)="focusOut($event.target)" />
+                                                    <input class="e-input e-field" name='catName' formControlName="catName" type="text" />
                                                 </div>
                                             </td>
                                     <td class='e-rowcell'>
                                         <div class="e-input-group">
-                                            <input class="e-input e-field" name='catAlias' formControlName="catAlias" type="text" (focus)="focusIn($event.target)"
-                                                (blur)="focusOut($event.target)" />
+                                            <input class="e-input e-field" name='catAlias' formControlName="catAlias" type="text" />
                                         </div>
                                     </td>
 
                                     <td class='e-rowcell'>
                                             <div class="e-input-group">
-                                                    <ejs-dropdownlist id="Active" name="Active" formControlName="Active" [dataSource]='ActiveDDL' [fields]="{text: 'value', value: 'id' }" popupHeight='300px' floatLabelType='Never'></ejs-dropdownlist>
+                                                    <ejs-dropdownlist id="status" name="status" formControlName="status" [dataSource]='statusDDL' [fields]="{text: 'value', value: 'id' }" popupHeight='300px' floatLabelType='Never'></ejs-dropdownlist>
                                                 <!-- <input class="e-input e-field" name='Active' formControlName="Active" type="text" (focus)="focusIn($event.target)"
                                                     (blur)="focusOut($event.target)" /> -->
                                             </div>
                                         </td>
-                                  
-                                  
                                 </tr>
                             </tbody>
                         </table>

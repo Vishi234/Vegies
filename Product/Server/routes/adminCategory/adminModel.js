@@ -4,7 +4,8 @@ var Schema = mongoose.Schema
 var categorySchema = new Schema({
     catName: {type: String, unique: true, require: true},
     catAlias: {type: String, require: true},
-    Active: {type: Number, require: true},
+    status: {type: String, require: true},
+    createDate:{type:Date,require:true}
     })
     var Category = mongoose.model('category', categorySchema);
 
@@ -12,7 +13,8 @@ var categorySchema = new Schema({
         catName: {type: String, require: true},
         subCatName: {type: String, require: true},
         subCatAlias: {type: String, require: true},
-        active: {type: Number, require: true},
+        status: {type: String, require: true},
+        createDate:{type:Date,require:true},
         })
         var subCategory = mongoose.model('subCategory', subCategorySchema);
  
@@ -25,8 +27,9 @@ var categorySchema = new Schema({
             productAlias: {type: String, require: true},
             price: {type: String, require: true},
             discount: {type: String, require: true},
-            active: {type: Number, require: true},
-            imageUrl:{type: String, require: true}
+            imageUrl:{type: String, require: true},
+            status: {type: String, require: true},
+            
             })
             var product = mongoose.model('product', productSchema);
             

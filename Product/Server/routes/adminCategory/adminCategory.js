@@ -27,8 +27,9 @@ module.exports = (function () {
        console.log('Request Data--',req.body)
         let categoryData = req.body;
         let categorySave = new model.Category(categoryData);
-        categorySave.save().then((items => {
-            res.status(200).send(items);
+        categorySave.save().then((items => 
+            {
+            res.status(200).send("Category added successfully");
         })).catch(err => {
             console.log("ddddddddd",err);
             res.status(400).send("unable to save to database");
@@ -36,15 +37,15 @@ module.exports = (function () {
     });
     app.put("/category", function (req, res) 
     {
-        let categoryData = req.body;
-        let categorySave = new model.Category(categoryData);
-        categorySave.update.then((items => {
-        res.status(200).send(items);
-         })).catch(err => {
-           console.log("ddddddddd",err);
-           res.status(400).send("unable to save to database");
-          })
-        });
+         console.log('Request Data--',req.body)
+         let categoryData = req.body;
+          model.Category.updateOne({ _id: categoryData._id }, { $set: { catName: categoryData.catName ,catAlias:categoryData.catAlias,status:categoryData.status } }, (attempCount)=> {
+              res.status(200).json({ status:'Category data has been updated successfully'});
+            }).catch(err => {
+                console.log("ddddddddd",err);
+                res.status(400).send("unable to save to database");
+            })
+     });
 
     app.post("/subCategory", function (req, res) 
     {            
@@ -75,6 +76,7 @@ module.exports = (function () {
     app.post("/product", function (req, res) 
 	{ 
         let productData = req.body;
+        console.log('productData--',productData);
         productData.imageUrl=productData.catName+"/"+productData.imageUrl;
         console.log('productData--',productData);
 
@@ -99,22 +101,24 @@ module.exports = (function () {
         }
       });
       
-      var upload = multer({ storage : storage }).array('myFile',2);
+      var upload = multer({ storage : storage }).array('imageUrl',2);
       
-    app.post('/product/images',  (req, res) => {
-        console.log("kkkkkkkkkkkk");
+        app.post('/product/images',  (req, res) => 
+        {
+       // console.log("kkkkkkkkkkkk",req.body);
         upload(req,res,function(err) 
         {
             if(err) {
                 return res.end("Error uploading file.");
             }
-        //    // res.status(200).json({ message:'Product data has been updated successfully'});
+         res.status(200).json({ message:'Product data has been updated successfully'});
         //     res.json({'message': 'File uploaded'});
             //res.redirect('/test');
-            res.redirect('http://localhost:4200/admin/category')
+     ////       res.redirect('http://localhost:4200/admin/category')
             //res.json({'message': 'File uploaded'});
         });      
     });
+    
 
 
     app.put("/product", function (req, res)

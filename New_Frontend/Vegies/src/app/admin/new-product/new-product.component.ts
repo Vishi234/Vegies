@@ -24,22 +24,22 @@ export class NewProductComponent implements OnInit {
   public categorydata: any;
   public subCategoryData: any;
   public subCategoryList: any;
-  //public catData: Array<any> = [];
-  //public filterSettings: Object;
   public pageSettings: object;
   public orderForm: FormGroup;
   public countryElem: HTMLElement;
   public countryObj: DropDownList;
   public stateElem: HTMLElement;
   public stateObj: DropDownList;
-  public actPrice="";
+  public actPrice="";public imageUrl="";
+  public ActiveDDL:any;
+
   @ViewChild('form', { static: true }) public form;
   constructor(public dialog: MatDialog, private _adminCategory: AdminCategoryService, private _router: Router,private _toastr: ToastrService) { }
 
   ngOnInit() {
-
+    this.ActiveDDL=[{'id':'Active','value':'Active'},{'id':'InActive','value':'InActive'}];
     this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal' };
-    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+    this.toolbar = ['Add', 'Edit', 'Update', 'Cancel'];
     this.pageSettings = { pageSizes: true, pageSize: 10 };
 
     this._adminCategory.GetProductList().subscribe((response) => {
@@ -48,10 +48,9 @@ export class NewProductComponent implements OnInit {
        {
         return ({ "_id": val._id, "catName": val.catName, "subCatName": val.subCatName, "product": val.product,
         "productAlias":val.productAlias,"price":val.price,"discount":val.discount,"actualPrice":val.actualPrice,
-        "active":val.active,"imageUrl":val.imageUrl});
+        "status":val.status,"imageUrl":val.imageUrl});
       });
-      console.log( "  this.productData ", this.productData );
-    //  this.productData = this.data;
+      console.log( "this.productData ", this.productData );
 
     }, (error) => {
       console.log('error is 00', error instanceof HttpErrorResponse, "00", error);
@@ -66,7 +65,7 @@ export class NewProductComponent implements OnInit {
     this._adminCategory.GetCategoryList().subscribe((response) => {
       this.data = response;
       this.data.map((val: any) => {
-        return ({ "_id": val._id, "catName": val.catName, "catAlias": val.catAlias, "Active": val.Active })
+        return ({ "_id": val._id, "catName": val.catName, "catAlias": val.catAlias, "status": val.status })
       });
       this.categorydata = this.data;
 
@@ -82,11 +81,10 @@ export class NewProductComponent implements OnInit {
     this._adminCategory.GetSubCategoryList().subscribe((response) => {
       this.subCategoryData = response;
       this.subCategoryData.map((val: any) => {
-        return ({ "_id": val._id,"catName":val.catName, "subCatName": val.subCatName, "subCatAlias": val.subCatName, "Active": val.Active })
+        return ({ "_id": val._id,"catName":val.catName, "subCatName": val.subCatName, "subCatAlias": val.subCatName, "status": val.status })
       });
       this.subCategoryData = this.subCategoryData;
       this.subCategoryList=response;
-
     }, (error) => {
       console.log('error is 00', error instanceof HttpErrorResponse, "00", error);
       if (error instanceof HttpErrorResponse) {
@@ -150,6 +148,25 @@ export class NewProductComponent implements OnInit {
 
 
   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   }
 
   onChangeCategroy(evt)
@@ -160,6 +177,7 @@ export class NewProductComponent implements OnInit {
     });
   }
 
+  
   createFormGroup(data1: IOrderModel): FormGroup {
     return new FormGroup({
         catName: new FormControl(data1.catName, Validators.required),
@@ -169,8 +187,8 @@ export class NewProductComponent implements OnInit {
         price: new FormControl(data1.price, Validators.required),
         discount: new FormControl(data1.discount, Validators.required),
         actualPrice: new FormControl(data1.actualPrice, Validators.required),
-        imageUrl: new FormControl("test", Validators.required),
-        active: new FormControl(data1.active, Validators.required),
+        imageUrl: new FormControl(data1.imageUrl, Validators.required),
+        status: new FormControl(data1.status, Validators.required),
         _id:new FormControl(data1._id, Validators.required),
     });
   }
@@ -178,46 +196,34 @@ export class NewProductComponent implements OnInit {
 
   actionBegin(args: SaveEventArgs): void 
   {
-    debugger;
     if (args.requestType === 'beginEdit' || args.requestType === 'add')
     {
         this.orderForm = this.createFormGroup(args.rowData);
     }
     if(args.action=='add')
-    {
+    {      
       debugger;
+      this.orderForm.value.imageUrl=  this.imageUrl;
+      this.orderForm.value.imageUrl=(this.orderForm.value.imageUrl)||'testImage';
       this.orderForm.value.actualPrice=(this.actPrice)?this.actPrice:0;
-    //  this.orderForm.value
-        // if (this.orderForm.valid) 
-        // {
-            args.data = this.orderForm.value;
+       args.data = this.orderForm.value;
             console.log("daaaa",args.data)    
             this._adminCategory.AddProduct(args.data).subscribe(response => {
               console.log("Response is",response);
             }, (error) => {
               console.log('error is ', error)
             });
-        // } else {
-        //     args.cancel = true;
-        // }
     }
     else if(args.action=="edit")
      {
-      // if (this.orderForm.valid) 
-      // {
-        debugger;
         args.data = this.orderForm.value;
         console.log("daaaa",args.data)    
         this._adminCategory.UpdateProduct(args.data).subscribe(response => {
-          this._toastr.success(response.status);
+        this._toastr.success(response.status);
          }, (error) => {
           console.log('error is ', error)
          })
-  
-    //  } else {
-    //     args.cancel = true;
-    // }
-    } 
+      } 
   }
   
   actionComplete(args: DialogEditEventArgs): void 
@@ -241,10 +247,13 @@ export class NewProductComponent implements OnInit {
     e.target.parentElement.parentElement.nextSibling.children[0].children[0].value=totalPrice-(totalPrice*dd)/100;
    this.actPrice= e.target.parentElement.parentElement.nextSibling.children[0].children[0].value
   }
-  // submitForm(e){
-  //   alert(1);
-  //   e.preventDefault();
-  // }
+
+  onImageChanged(e){
+    debugger;
+    const file = e.target.files[0];
+   // this.imageUrl=
+  }
+
 }
 export interface IOrderModel 
 {
@@ -256,9 +265,7 @@ export interface IOrderModel
   discount?:string,
   actualPrice?:string,
   imageUrl?: string;
-  active?: number; 
+  status?: string; 
   _id?:string;
-
-
 }
 

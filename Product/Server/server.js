@@ -1,7 +1,10 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+
 var app = express(); 
-const jwt=require('jsonwebtoken');
+// app.use(bodyParser.json({limit: '10mb', extended: true}))
+// app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
+// const jwt=require('jsonwebtoken');
 
 app.use(express.static('uploads'));
 var passport=require('passport')

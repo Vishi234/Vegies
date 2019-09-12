@@ -37,9 +37,9 @@ export class AdminSubcategoryComponent implements OnInit {
 
   ngOnInit() {
 
-    this.ActiveDDL=[{'id':'1','value':'Active'},{'id':'2','value':'Deactive'}];
+    this.ActiveDDL=[{'id':'Active','value':'Active'},{'id':'InActive','value':'InActive'}];
     this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal' };
-    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+    this.toolbar = ['Add', 'Edit',  'Update', 'Cancel'];
     this.pageSettings = { pageSizes: true, pageSize: 10 };
 
     this._adminCategory.GetCategoryList().subscribe((response) => 
@@ -62,10 +62,10 @@ export class AdminSubcategoryComponent implements OnInit {
     this._adminCategory.GetSubCategoryList().subscribe((response) => {
       this.subCategoryData = response;
       this.subCategoryData.map((val: any) => {
-        return ({ "_id": val._id,"catName":val.catName, "subCatName": val.subCatName, "subCatAlias": val.subCatName, "active": val.Active })
+        return ({ "_id": val._id,"catName":val.catName, "subCatName": val.subCatName, "subCatAlias": val.subCatName, "status": val.status })
       });
       this.subCategoryData = this.subCategoryData;
-      this.subCategoryList=response;
+     // this.subCategoryList=response;
 
     }, (error) => {
       console.log('error is 00', error instanceof HttpErrorResponse, "00", error);
@@ -83,7 +83,7 @@ export class AdminSubcategoryComponent implements OnInit {
         catName: new FormControl(data1.catName, Validators.required),
         subCatName: new FormControl(data1.subCatName, Validators.required),
         subCatAlias: new FormControl(data1.subCatAlias, Validators.required),
-        active: new FormControl(data1.active, Validators.required),
+        status: new FormControl(data1.status, Validators.required),
         _id:new FormControl(data1._id, Validators.required),
     });
   }
@@ -142,6 +142,6 @@ export interface IOrderModel
   catName?: string;
   subCatName?:string;
   subCatAlias?: string;
-  active?: number; 
+  status?: number; 
   _id?:string;
 }
