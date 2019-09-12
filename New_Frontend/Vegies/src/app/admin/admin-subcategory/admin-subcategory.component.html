@@ -22,7 +22,7 @@
             <e-column field='catName' headerText='Category Name' textAlign='Left' width='150'></e-column>
             <e-column field='subCatName' headerText='Sub Category' textAlign='Left' width='150'></e-column>
             <e-column field='subCatAlias' headerText='Alias' textAlign='Left' width='150'></e-column>
-            <e-column field='active' headerText='Status' textAlign='Left' width='150'></e-column>
+            <e-column field='status' headerText='Status' textAlign='Left' width='150'></e-column>
     </e-columns>
 
     <ng-template #editSettingsTemplate let-data>
@@ -61,7 +61,7 @@
                             </td>
                             <td class='e-rowcell'>
                                 <div class="e-input-group">
-                                        <ejs-dropdownlist id="active" name="active" formControlName="active" [dataSource]='ActiveDDL' [fields]="{text: 'value', value: 'id' }" popupHeight='300px' floatLabelType='Never'></ejs-dropdownlist>
+                                        <ejs-dropdownlist id="status" name="status" formControlName="status" [dataSource]='ActiveDDL' [fields]="{text: 'value', value: 'id' }" popupHeight='300px' floatLabelType='Never'></ejs-dropdownlist>
                                         
                                 </div>
                             </td>                         

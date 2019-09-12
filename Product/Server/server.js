@@ -1,7 +1,10 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+
 var app = express(); 
-const jwt=require('jsonwebtoken');
+// app.use(bodyParser.json({limit: '10mb', extended: true}))
+// app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
+// const jwt=require('jsonwebtoken');
 
 app.use(express.static('uploads'));
 var passport=require('passport')
@@ -12,7 +15,7 @@ app.use(bodyParser.json());
 var cors=require('cors');
 
 //CORS Middleware
-app.use(cors({credentials: true, origin: 'http://192.168.0.104:4200'}));
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 var dbConfig=require("./config/dbConfig");
 var vendor=require('./routes/vendor/vendorServer')
 var adminCategory = require('./routes/adminCategory/adminCategory');
