@@ -9,7 +9,7 @@
             <mdb-card-body class="px-lg-5 pt-2">
 
                 <!-- Form -->
-                <form class="text-center" autocomplete="off" (ngSubmit)=vendorSignup()>
+                <form class="text-center" autocomplete="off" #registerForm="ngForm" (ngSubmit)=vendorSignup()>
                     <div class="md-form">
                         <input mdbInput mdbValidate name="organisationName" [(ngModel)]="registerUser.orgName"
                             #organisationName="ngModel" required autocomplete="off" type="text" autocomplete="off"
@@ -53,7 +53,7 @@
                         </mdb-success>
                     </div>
                     <button mdbBtn type="button" class="btn btn-deep-orange my-4 waves-effect z-depth-0" rounded="true"
-                        block="true" mdbWavesEffect type="submit">Register</button>
+                        block="true" mdbWavesEffect type="submit" [disabled]="registerForm.form.invalid">Register</button>
                     <p>Already have an account?
                         <a routerLink='/login'>Login</a>
                     </p>

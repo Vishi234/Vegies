@@ -17,8 +17,10 @@ export class RegisterComponent implements OnInit {
       debugger;
       if(response.errmsg)
       this._toastr.error("Email id allready exist");
-      this._toastr.success(response.status);
-      this.router.navigate(["/login"]);
+      else{
+        this._toastr.success(response.status);
+        this.router.navigate(["/login"]);
+      }
     }, (error) => {
       console.log('error is ', error.errmsg)
     })

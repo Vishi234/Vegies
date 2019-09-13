@@ -9,7 +9,7 @@
             <mdb-card-body class="px-lg-5 pt-2">
 
                 <!-- Form -->
-                <form class="text-center" autocomplete="off" (ngSubmit)="visitorSignin()">
+                <form class="text-center" #loginForm="ngForm" autocomplete="off" (ngSubmit)="visitorSignin()">
                     <div class="md-form">
                         <input mdbInput mdbValidate name="email" [(ngModel)]="loginUser.email" #email="ngModel" required
                             pattern="[^ @]*@[^ @]*" type="email" autocomplete="off" id="email"
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <button mdbBtn type="button" class="btn btn-deep-orange my-4 waves-effect z-depth-0" rounded="true"
-                        block="true" mdbWavesEffect type="submit">Sign in</button>
+                        block="true" mdbWavesEffect type="submit" [disabled]="loginForm.form.invalid">Sign in</button>
                     <p>Not a member?
                         <a routerLink='/register'>Register</a>
                     </p>
