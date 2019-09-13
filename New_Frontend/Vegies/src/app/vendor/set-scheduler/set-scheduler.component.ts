@@ -30,6 +30,7 @@ export class SetSchedulerComponent implements OnInit {
   public fields: Object = { text: 'address', value: '_id' };
   public schedulerFromDate: any;
   public schedulerToDate: any;
+  public isConfigureAddress:any;
   @ViewChild('grid', { static: true }) public grid: GridComponent;
   @ViewChild('select', { static: true }) select;
   constructor(public dialog: MatDialog, private _addProductList: configurationwizard, private _login: LoginService, private _setScheduler: setScheduler, @Inject(MAT_DIALOG_DATA) public scheduleData: any, private _setAddress: setAddress, private _toastr: ToastrService) {
@@ -49,8 +50,8 @@ export class SetSchedulerComponent implements OnInit {
         this.vendorAddress = this.vendorAddress.map((val: any) => {
           return ({ "address": val.address, "_id": val._id })
         })
+        this.isConfigureAddress=this.vendorAddress.length>0?"Change":"Add"
         this.select.refresh();
-        console.log("addssssssss1111", this.uniqueAddress);
       }, (error) => {
         console.log('error is ', error)
       });
@@ -74,8 +75,8 @@ export class SetSchedulerComponent implements OnInit {
             ele.scheduleDate = new Date()
         })
         this._setScheduler.addScheduler(this.data).subscribe((res) => {
-          console.log(res.status);
           this._toastr.success(res.status)
+          this.dialog.closeAll();
         }, (error) => {
           console.log('error is ', error)
         })

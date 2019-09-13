@@ -23,6 +23,7 @@ export class MyChecklistComponent implements OnInit {
   public quantity: any = 1;
   public myCheckList: any
   public userDetails: any;
+  public selectedRow: any;
 
   @ViewChild('old', { static: true }) public grid: GridComponent;
   constructor(public dialog: MatDialog, private _configList: configList, private _login: LoginService, private _toastr: ToastrService, private _setScheduler: setScheduler) {
@@ -40,9 +41,9 @@ export class MyChecklistComponent implements OnInit {
 
   getProductList() {
     setTimeout(() => {
-      console.log("fffff", this.userDetails)
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.data = response;
+        console.log("daaaaaaaa",this.data)
       }, (error) => {
         console.log('error is ', error)
       });
@@ -50,12 +51,13 @@ export class MyChecklistComponent implements OnInit {
   }
 
   openScheduler() {
-    this.getScheduleList();
-    this.dialog.open(SetSchedulerComponent, {
-      disableClose: true, data: {
-        "scheduleData": this.myCheckList
-      }
-    })
+    if(this.getScheduleList()==undefined){
+      this.dialog.open(SetSchedulerComponent, {
+        disableClose: true, data: {
+          "scheduleData": this.myCheckList
+        }
+      })
+  }
     //this.addScheduleList();
   }
   onChange(event: any) {
@@ -67,10 +69,10 @@ export class MyChecklistComponent implements OnInit {
 
   removeProduct(event: any) {
     var del;
-    var idx = this.grid.getSelectedRowIndexes();
-    if (idx.length > 0) {
+    this.selectedRow = this.grid.getSelectedRowIndexes();
+    if (this.selectedRow.length > 0) {
       if (confirm("Do you want to delete this item from the checklist?")) {
-        del = idx.map((e) => {
+        del = this.selectedRow.map((e) => {
           return this.data[e]['_id']
         })
         this._configList.delete(del).subscribe((res: any) => {
@@ -87,11 +89,10 @@ export class MyChecklistComponent implements OnInit {
     }
   }
   sendRequirement() {
-    var selectedRow = this.grid.getSelectedRowIndexes();
-
-    if (selectedRow.length > 0) {
+    this.selectedRow = this.grid.getSelectedRowIndexes();
+    if (this.selectedRow.length > 0) {
       var table = document.getElementsByTagName("table");
-      this.myCheckList = selectedRow.map((e) => {
+      this.myCheckList = this.selectedRow.map((e) => {
         this.data[e]["oldPrice"] = table[1].children[1].children[e].children[4].textContent;
         this.data[e]["newPrice"] = table[1].children[1].children[e].children[6].textContent;
         this.data[e]["Qnty"] = this.quantity;
@@ -116,24 +117,20 @@ export class MyChecklistComponent implements OnInit {
 
 
   getScheduleList() {
-    var selectedRow = this.grid.getSelectedRowIndexes();
-    if(selectedRow.length>0)
-    {
+    this.selectedRow = this.grid.getSelectedRowIndexes();
+    if (this.selectedRow.length > 0) {
       var table = document.getElementsByTagName("table");
-      this.myCheckList = selectedRow.map((e) => {
+      this.myCheckList = this.selectedRow.map((e) => {
         this.data[e]["oldPrice"] = table[1].children[1].children[e].children[4].textContent;
         this.data[e]["newPrice"] = table[1].children[1].children[e].children[6].textContent;
         this.data[e]["Qnty"] = this.quantity;//(this.quantity=='undefined')?1:
         return this.data[e];
       })
     }
-    else
-    {
+    else {
       alert("Please select items to schedule.");
       return false;
     }
-
-
   }
 
 }

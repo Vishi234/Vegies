@@ -19,6 +19,7 @@ export class PreviewChecklistComponent implements OnInit {
   public userDetails: any;
   public uniqueAddress:any;
   public vendorAddress:any;
+  public isConfigureAddress:any;
   public fields: Object = { text: 'address', value: '_id' };
   @ViewChild('address', { static: true }) public grid;
   @ViewChild('select', { static: true }) select;
@@ -44,6 +45,7 @@ export class PreviewChecklistComponent implements OnInit {
         this.vendorAddress=this.vendorAddress.map((val: any) => {
           return ({  "address": val.address ,"_id":val._id})
         })
+        this.isConfigureAddress=this.vendorAddress.length>0?"Change":"Add"
         this.select.refresh();
         console.log("addssssssss1111",this.uniqueAddress);
       }, (error) => {
@@ -75,7 +77,8 @@ export class PreviewChecklistComponent implements OnInit {
     })
      console.log("finalDataa",this.myCheckList)
     this._configList.addProductList(this.myCheckList).subscribe((res) => {
-      this._toastr.success(res.status)
+      this._toastr.success(res.status);
+      this.dialog.closeAll();
     }, (error) => {
       console.log('error is ', error)
     })

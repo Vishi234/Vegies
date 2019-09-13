@@ -24,7 +24,7 @@
         <hr />
         <div class="shiploc">
             <h4>
-                Shipping Location [<a href="javascript:void(0)" (click)="changeAddress();">Add Address</a>]
+                Shipping Location [<a href="javascript:void(0)" (click)="changeAddress();">{{isConfigureAddress}} Address</a>]
             </h4>
             <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress' formControlName="firstCtrl"
                 [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required>

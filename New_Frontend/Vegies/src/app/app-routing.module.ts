@@ -52,6 +52,11 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
+        path: 'products', component: ProductListComponent,
+        resolve:{userData:productListResolver}
+        //,canActivate:[AuthGuard]
+      },
+      {
         path: 'mychecklist', component: MyChecklistComponent
         //,canActivate:[AuthGuard]
       },

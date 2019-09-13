@@ -23,7 +23,7 @@
         </div>
         <div class="shiploc">
             <h4>
-                Shipping Location <a href="javascript:void(0)" (click)="changeAddress();">Change Address<i
+                Shipping Location <a href="javascript:void(0)" (click)="changeAddress();">{{isConfigureAddress}} Address<i
                     class="fas fa-pencil-alt"></i></a>
             </h4>
             <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress'

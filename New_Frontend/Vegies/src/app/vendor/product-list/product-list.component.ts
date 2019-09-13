@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
- 
+
 import { DropDownListComponent, AutoCompleteComponent } from '@syncfusion/ej2-angular-dropdowns';
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
 import { AppGlobals } from '../../app.global';
 import { LoginService } from '../../login/login.service'
 import { configList } from '../dashboard/configList.service'
-import {configurationwizard} from '../configuration/configurationwizard.service'
+import { configurationwizard } from '../configuration/configurationwizard.service'
 import { ToastrService } from 'ngx-toastr'
 import { Router } from '@angular/router'
 
@@ -25,24 +25,24 @@ export class ProductListComponent implements OnInit {
   public configData: any;
   public uniqueProductList: Array<any> = [];
   public allProduct: Object[];
-  public selectedPro : Array<any> = [];
+  public selectedPro: Array<any> = [];
   userConfigList: any;
   public selectedCat: any;
-  
-  constructor(private _categoryList: AdminCategoryService, private _global: AppGlobals, public _login: LoginService, public _configList: configList, private _configurationwizard: configurationwizard, private _toastr: ToastrService, private router: Router,private route: ActivatedRoute) {
+
+  constructor(private _categoryList: AdminCategoryService, private _global: AppGlobals, public _login: LoginService, public _configList: configList, private _configurationwizard: configurationwizard, private _toastr: ToastrService, private router: Router, private route: ActivatedRoute) {
     // this._login.user().
     // subscribe(
     //   result =>"",
     //   error=>this.router.navigate['./login']    
     // );
-    this.userDetails=this.route.snapshot.data['userData'];
+    this.userDetails = this.route.snapshot.data['userData'];
   }
 
   addConfigureList() {
     this.userConfigList = this.selectedPro.map((el) => {
       var o = Object.assign({}, el);
       o.address = "test",
-      o.userName = this.userDetails._id
+        o.userName = this.userDetails._id
       return o;
     })
 
@@ -57,7 +57,6 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.selectedCat = this.route.snapshot.paramMap.get('id');
     setTimeout(() => {
-      console.log("000000011",this.userDetails)
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.configData = response;
         this.uniqueProductList = this.productList.filter((objFromA) => {
@@ -66,15 +65,12 @@ export class ProductListComponent implements OnInit {
           })
         })
         this.allProduct = this.uniqueProductList;
-        console.log("fffffffffgg33", this.allProduct)
-
       }, (error) => {
         console.log('error is ', error)
       });
     }, 1000);
 
     this._categoryList.GetCategoryList().subscribe((response) => {
-      // debugger
       Object.entries(response).forEach(
         ([key, value]) => {
           this.catList.push(value);
@@ -94,51 +90,35 @@ export class ProductListComponent implements OnInit {
       console.log('error is ', error)
     });
 
-    this._categoryList.GetProductList().subscribe((response) => 
-    {
+    this._categoryList.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
-          //console.log('this.productList',this.productList);
           this.productList.push(
             {
-            "name": value.productName +'('+ value.productAlias+')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
-            image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1,"productAlias":value.productAlias,"subCat":value.subCatName
-        
-          });
-        
+              "name": value.productName + '(' + value.productAlias + ')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+              image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1, "productAlias": value.productAlias, "subCat": value.subCatName
+            });
         }
       );
-      if(this.selectedCat!="1")
-      {
-      this.productList=this.productList.filter((item)=>
-      {
-      //  debugger
-        if (item.subCat ==this.selectedCat) {  return item; }
-      });
-    }
-    console.log("lllllllll",this.productList)
-     }, (error) => {
+      if (this.selectedCat) {
+        this.productList = this.productList.filter((item) => {
+          if (item.subCat == this.selectedCat) { return item; }
+        });
+      }
+    }, (error) => {
       console.log('error is ', error)
     });
-
-
-  
-  // this.productList=this.productList.filter(function(item)
-  // {
-  //   if (item._id ==this.selectedCat) {  return true; }
-  // })
-   
   }
 
-  onValChange(lbl,id) {
-    if(lbl.checked){
+  onValChange(lbl, id) {
+    if (lbl.checked) {
       this.selectedPro.push(this.getProductById(id))
-    }else{
+    } else {
       this.selectedPro = this.selectedPro.filter((pro: any) => {
-            if (pro.id !== id) {
-              return pro
-            }
-          })
+        if (pro.id !== id) {
+          return pro
+        }
+      })
     }
   }
 
@@ -156,7 +136,7 @@ export class ProductListComponent implements OnInit {
   public subCatData: Object[] = this.subCatList;
   public productData: Object[] = this.productList;
 
-  
+
 
   // maps the appropriate column to fields property
   public catfields: Object = { text: 'catName', value: '_id' };
@@ -192,7 +172,15 @@ export class ProductListComponent implements OnInit {
   public profields: Object = { value: 'name' };
   public proWaterMark: string = 'Start typing to find product...';
   public onProChange(args: any): void {
+    if (args.value) {
+      this.allProduct = this.uniqueProductList.filter((fil) => {
+        return fil.name == args.value
+      })
+    } else {
+      this.allProduct = this.uniqueProductList
+    }
     let valueEle: HTMLInputElement = document.getElementsByClassName('e-input')[0] as HTMLInputElement;
+
     // make empty the input value when typed characters is 'null' in input element
     if (this.proObj.value === "null" || this.proObj.value === null || this.proObj.value === "") {
       valueEle.value = '';
