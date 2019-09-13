@@ -39,15 +39,14 @@
   display: inline-block;
   width: 100%;
 }
-.option .btn-primary
-{
+.option .btn-primary {
   padding: 0px;
   margin: 0px;
 }
 
 .option > span:nth-child(2) a {
   display: block;
-  background: #723f96;
+  background: #59727e;
   color: #fff;
   padding: 5px;
   min-width: 70px;
@@ -65,15 +64,45 @@
   margin-top: 51px;
 }
 
-.seleted-pro
-{
+.seleted-pro {
   position: fixed;
   bottom: 0;
   background: #723f96;
   width: 100%;
   padding: 10px;
   color: #fff;
-  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   z-index: 999;
   text-align: right;
+}
+.custom-card {
+  background: #fff;
+  //box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  margin: 11px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #dee2e6 !important;
+  display: inline-block;
+}
+.custom-card > ul > li {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.custom-card > ul > li > span {
+  color: #808080;
+  font-size: 13px;
+}
+.custom-card > ul > li:nth-child(2) span:nth-child(2) {
+  color: red;
+}
+.custom-card > ul > li:nth-child(3) span:nth-child(2) {
+  color: #00c851;
+  font-weight: 600;
+}
+.custom-card hr {
+  margin: 10px 0px;
+}
+.custom-card .total span {
+  font-weight: 600;
 }

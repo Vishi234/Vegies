@@ -9,6 +9,7 @@ import { SetAddressComponent } from './Mobile/set-address/set-address.component'
 import { PasswordChangeComponent } from './Mobile/password-change/password-change.component'
 import { ForgotPasswordComponent } from './Mobile/forgot-password/forgot-password.component'
 import { DashboardComponent } from './Mobile/dashboard/dashboard.component'
+import{MychecklistComponent} from './Mobile/mychecklist/mychecklist.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'mobile/splash-screen', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'mobile/passwordchange', component: PasswordChangeComponent, data: { animation: 'FilterPage' } },
   { path: 'mobile/forgotpassword', component: ForgotPasswordComponent, data: { animation: 'FilterPage' } },
   { path: 'mobile/dashboard', component: DashboardComponent, data: { animation: 'FilterPage' } },
+  { path: 'mobile/mychecklist', component: MychecklistComponent, data: { animation: 'FilterPage' } },
 ];
 
 @NgModule({

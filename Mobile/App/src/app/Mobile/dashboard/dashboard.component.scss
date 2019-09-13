@@ -18,7 +18,7 @@
 }
 .dtl > ul > li {
   display: inline-block;
-  margin: 8px;
+  // margin: 8px;
 }
 .dtl > ul > li > .leg {
   display: inline-block;
@@ -39,18 +39,17 @@
 
 .custom-card {
   background: #fff;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  //box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
   margin: 11px;
   padding: 10px;
   text-align: center;
-  border-radius: 11px;
-  border: 1px solid #ebebeb;
+  border: 1px solid #dee2e6!important;
 }
 .custom-card .ttl {
   display: block;
   font-size: 14px;
   margin-bottom: 10px;
-  font-weight: 600;
+  font-weight: 700;
   text-align: left;
   color: #666;
 }
@@ -85,14 +84,14 @@
 }
 .pro-content .price {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 13px;
 }
 .pro-content .price .old {
   color: #666;
   text-decoration: line-through;
   margin-left: 5px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
 }
 .pro-content .price > i {
   font-size: 14px;
@@ -101,14 +100,14 @@
 .title {
   display: block;
   font-size: 13px;
-  height: 50px;
+  height: 35px;
   overflow: hidden;
   font-weight: 600;
 }
 .unit {
   color: #808080;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12px;
   margin-top: 1px;
 }
 .option {
@@ -127,15 +126,27 @@
 }
 .pro-list {
   display: inline-block;
+  overflow: auto;
+  width: 100%;
+  padding: 10px 0px;
+}
+.pro-list > ul {
+  display: flex;
 }
 .pro-list > ul > li {
   display: block;
-  width: 50%;
-  background: #fff;
-  float: left;
+    width: 100%;
+    background: #fff;
+    float: left;
+    border: 1px solid #dee2e6 !important;
+    padding: 10px;
+    margin-right: 15px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
 }
-.pro-list > ul > li:not(:nth-child(even)) {
-  border-right: 1px solid #ebebeb !important;
+
+.pro-base {
+  width: 150px;
+  overflow: hidden;
 }
 .pro-base .badge {
   float: left;
@@ -144,4 +155,37 @@
   display: block;
   line-height: 10px;
   margin: 0px;
+}
+.viewall {
+  background: #723f96;
+}
+.viewall a {
+  color: #fff;
+  display: inline-block;
+  width: 100%;
+}
+.catexp {
+  width: 320px !important;
+}
+.catexp .pro-img {
+  float: left;
+}
+.catexp .pro-content {
+  width: 67% !important;
+  float: left;
+}
+.catexp .pro-content .text-success {
+  font-size: 14px;
+  font-weight: 700;
+}
+.catexp .pro-content .title
+{
+  font-weight: 700!important;
+  height: auto!important;
+}
+.catexp .pro-content .unit
+{
+  width: 100%;
+  word-break: break-all;
+  font-weight: 500;
 }

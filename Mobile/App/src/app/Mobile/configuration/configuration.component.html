@@ -14,13 +14,12 @@
                         <li *ngFor="let item of items">
                             <div class="pro-base">
                                 <div class="pro-img pull-left d-flex">
-                                    <img class="justify-content-center align-self-center"
-                                        src="{{item.image}}" /></div>
+                                    <img class="justify-content-center align-self-center" src="{{item.image}}" /></div>
                                 <div class="pro-content pull-left">
                                     <span class="price">
                                         <i class="fas fa-rupee-sign"></i>{{item.newPrice}}
                                         <span class="old"><i class="fas fa-rupee-sign"></i>{{item.oldPrice}}</span>
-                                        <span class="badge badge-success"> {{item.discount}}% off</span>
+                                        <span class="badge badge-success ml-2"> {{item.discount}}% off</span>
                                     </span>
                                     <span class="title mt-2 mb-2">
                                         {{item.name}}
@@ -28,127 +27,22 @@
                                     <div class="option">
                                         <span class="unit pull-left">1 {{item.unitMeasure}}</span>
                                         <span class="pull-right">
-                                            <a href="javascript:void(0)">Select</a>
+                                            <mat-button-toggle-group multiple="true" class="btn btn-primary" appearance="legacy"
+                                                (change)="onValChange(item.id,$event.value)" name="fontStyle"
+                                                aria-label="Font Style">
+                                                <mat-button-toggle value="0">
+                                                    <label id="lblName{{item.id}}">
+                                                        Select
+                                                    </label>
+                                                </mat-button-toggle>
+                                            </mat-button-toggle-group>
+                                            <!-- <a href="javascript:void(0)">Select</a> -->
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <!-- <li>
-                            <div class="pro-base">
-                                <div class="pro-img pull-left d-flex">
-                                    <img class="justify-content-center align-self-center"
-                                        src="../../../assets/Broccoli.jpg" /></div>
-                                <div class="pro-content pull-left">
-                                    <span class="price">
-                                        <i class="fas fa-rupee-sign"></i>698
-                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
-                                        <span class="badge badge-success"> 20% off</span>
-                                    </span>
-                                    <span class="title mt-2 mb-2">
-                                        Papert Boat Coconut Water
-                                    </span>
-                                    <div class="option">
-                                        <span class="unit pull-left">16 units</span>
-                                        <span class="pull-right">
-                                            <a href="javascript:void(0)">Select</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="pro-base">
-                                <div class="pro-img pull-left d-flex">
-                                    <img class="justify-content-center align-self-center"
-                                        src="../../../assets/Broccoli.jpg" /></div>
-                                <div class="pro-content pull-left">
-                                    <span class="price">
-                                        <i class="fas fa-rupee-sign"></i>698
-                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
-                                        <span class="badge badge-success"> 20% off</span>
-                                    </span>
-                                    <span class="title mt-2 mb-2">
-                                        Papert Boat Coconut Water
-                                    </span>
-                                    <div class="option">
-                                        <span class="unit pull-left">16 units</span>
-                                        <span class="pull-right">
-                                            <a href="javascript:void(0)">Select</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="pro-base">
-                                <div class="pro-img pull-left d-flex">
-                                    <img class="justify-content-center align-self-center"
-                                        src="../../../assets/Broccoli.jpg" /></div>
-                                <div class="pro-content pull-left">
-                                    <span class="price">
-                                        <i class="fas fa-rupee-sign"></i>698
-                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
-                                        <span class="badge badge-success"> 20% off</span>
-                                    </span>
-                                    <span class="title mt-2 mb-2">
-                                        Papert Boat Coconut Water
-                                    </span>
-                                    <div class="option">
-                                        <span class="unit pull-left">16 units</span>
-                                        <span class="pull-right">
-                                            <a href="javascript:void(0)">Select</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="pro-base">
-                                <div class="pro-img pull-left d-flex">
-                                    <img class="justify-content-center align-self-center"
-                                        src="../../../assets/Broccoli.jpg" /></div>
-                                <div class="pro-content pull-left">
-                                    <span class="price">
-                                        <i class="fas fa-rupee-sign"></i>698
-                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
-                                        <span class="badge badge-success"> 20% off</span>
-                                    </span>
-                                    <span class="title mt-2 mb-2">
-                                        Papert Boat Coconut Water
-                                    </span>
-                                    <div class="option">
-                                        <span class="unit pull-left">16 units</span>
-                                        <span class="pull-right">
-                                            <a href="javascript:void(0)">Select</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="pro-base">
-                                <div class="pro-img pull-left d-flex">
-                                    <img class="justify-content-center align-self-center"
-                                        src="../../../assets/Broccoli.jpg" /></div>
-                                <div class="pro-content pull-left">
-                                    <span class="price">
-                                        <i class="fas fa-rupee-sign"></i>698
-                                        <span class="old"><i class="fas fa-rupee-sign"></i>1041</span>
-                                        <span class="badge badge-success"> 20% off</span>
-                                    </span>
-                                    <span class="title mt-2 mb-2">
-                                        Papert Boat Coconut Water
-                                    </span>
-                                    <div class="option">
-                                        <span class="unit pull-left">16 units</span>
-                                        <span class="pull-right">
-                                            <a href="javascript:void(0)">Select</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li> -->
+                      
                     </ul>
                 </div>
             </mat-tab>
@@ -160,11 +54,7 @@
             <mat-tab label="Third"> Content 3 </mat-tab> -->
         </mat-tab-group>
     </div>
-    <ul>
-        <li>
-            <div class="pro-base">
-
-            </div>
-        </li>
-    </ul>
+</div>
+<div class="seleted-pro">
+    <span>Product Selected ({{selectedPro.length}})</span>
 </div>

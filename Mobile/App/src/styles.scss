@@ -61,7 +61,7 @@ input.e-input {
   font-weight: 600;
 }
 .btn-primary {
-  background-color: #59727e !important;
+  background-color: #723f96 !important;
   color: #fff;
   text-transform: capitalize;
   box-shadow: none;
@@ -73,19 +73,19 @@ input.e-input {
 .show > .btn-primary.dropdown-toggle {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  background-color: #59727e;
+  background-color: #723f96;
 }
 
 .btn-primary:hover {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  background-color: #59727e;
+  background-color: #723f96;
 }
 .btn-primary:not([disabled]):not(.disabled):active,
 .btn-primary:not([disabled]):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-  background-color: #59727e !important;
-  border-color: #59727e;
+  background-color: #723f96 !important;
+  border-color: #723f96;
 }
 .custom-toastr-class {
   display: inherit;
@@ -222,7 +222,6 @@ input.e-input {
   box-shadow: none !important;
   border-radius: 0.125rem;
   padding: 5px;
-  margin-left: 20px;
   color: #fff !important;
   font-size: 10px;
   text-transform: uppercase;
@@ -279,4 +278,21 @@ input.e-input {
 }
 .pac-logo:after {
   background-image: none !important;
+}
+.mat-button-toggle-label-content>*
+{
+  margin-bottom: 0px;
+}
+.option .btn-primary .mat-button-toggle-label-content
+{
+  display: block;
+    background: #723f96;
+    color: #fff;
+    padding: 5px;
+    min-width: 70px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 2px;
+    padding: 15px;
+    line-height: 0px;
 }

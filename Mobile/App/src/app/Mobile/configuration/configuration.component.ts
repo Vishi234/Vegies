@@ -55,7 +55,7 @@ export class ConfigurationComponent implements OnInit {
       this.selectedPro.push(this.getProductById(lbl));
     }
     else {
-      document.getElementById("lblName" + lbl).innerHTML = "Select Item";
+      document.getElementById("lblName" + lbl).innerHTML = "Select";
       this.selectedPro = this.selectedPro.filter((pro: any) => {
         if (pro.id !== lbl) {
           return pro
