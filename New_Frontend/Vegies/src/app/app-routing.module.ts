@@ -61,7 +61,7 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
-        path: 'orders', component: MyOrdersComponent
+        path: 'orders', component: MyOrdersComponent,
         //,canActivate:[AuthGuard]
       },
       {
@@ -69,7 +69,8 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
-        path: 'reports/order-report', component: OrderReportComponent
+        path: 'reports/order-report', component: OrderReportComponent,
+        resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard]
       }
     ]

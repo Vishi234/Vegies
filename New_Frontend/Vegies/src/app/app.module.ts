@@ -60,6 +60,8 @@ import { UserChecklistComponent } from './admin/users/user-checklist/user-checkl
 import { UserOrdersComponent } from './admin/users/user-orders/user-orders.component';
 import { OrderDetailsComponent } from './admin/users/order-details/order-details.component';
 import { productListResolver } from './vendor/product-list/product-list-resolver.service';
+import { BnNgIdleService } from 'bn-ng-idle'; // import bn-ng-idle service
+import {CookieService} from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -148,7 +150,7 @@ import { productListResolver } from './vendor/product-list/product-list-resolver
       useClass: TokenInterceptorService,
       multi: true
     },
-    AppGlobals, DatePipe,productListResolver],
+    AppGlobals, DatePipe,productListResolver,BnNgIdleService,CookieService],
   bootstrap: [AppComponent],
   entryComponents: [ForgotPasswordComponent, ChangePasswordComponent,
     ConfigurationComponent, SetSchedulerComponent, NewCategoryComponent, SetAddressComponent, PreviewChecklistComponent, NewSubcategoryComponent,

@@ -5,26 +5,39 @@ import { Router } from '@angular/router'
 import { LoginService } from './login.service'
 import { ToastrService } from 'ngx-toastr'
 import { ChangePasswordComponent } from '../vendor/change-password/change-password.component'
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(public dialog: MatDialog, private router: Router, private _login: LoginService, private _toastr: ToastrService) {
+  loginUser: any = {}
+  remember:any;
+  constructor(public dialog: MatDialog, private router: Router, private _login: LoginService, private _toastr: ToastrService, private cookie: CookieService) {
+    if (this.cookie.get('remember')) {
+      this.loginUser.email = this.cookie.get('email');
+      this.loginUser.password = this.cookie.get('password');
+      this.remember=this.cookie.get('remember');
+    }
   }
-  loginUser = {}
+  changeValue(event) {
+    this.remember =event.checked;
+  }
 
   visitorSignin() {
-    console.log("login-register")
+    this.cookie.set('email',this.loginUser.email);
+    this.cookie.set('password',this.loginUser.password);
+    this.cookie.set('remember',this.remember);
     this._login.vendorLogin(this.loginUser)
       .subscribe(
         res => {
           if (res.msg) {
             this._toastr.success(res.msg)
-            if (res.loginAttemp <= 1) {
+            if (res.loginAttemp < 1) {
               this.showChangePassModal();
+            } else if (res.status == 401) {
+              this.router.navigate(['/login']);
             } else {
               this.router.navigate(['/dashboard']);
             }

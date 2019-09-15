@@ -80,14 +80,14 @@ export class DashboardComponent implements OnInit {
         })
         var daysCount=new Date(new Date().getMonth() + 1,new Date().getFullYear(),0).getDate();
         this.monthlyExpenCount=Number(parseFloat((expenseSum/Number(daysCount)).toString()).toFixed(2));
-        this.monthlyOrderCount=parseFloat((this.monthlyData.length/Number(daysCount)).toString()).toFixed(2);       
+        this.monthlyOrderCount=(parseFloat((this.monthlyData.length/Number(daysCount)).toString()).toFixed(2))?parseFloat((this.monthlyData.length/Number(daysCount)).toString()).toFixed(2):"0";       
       }, (error) => {
         console.log('error is ', error)
       });
       
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.data = response;
-        this.configDataCount=this.data.length<10?"0"+this.data.length:this.data.length;
+        this.configDataCount=(!this.data)?"0":this.data.length<10?"0"+this.data.length:this.data.length;
         if (this.data.length <= 0) {
           this.dialog.open(ConfigurationComponent, { disableClose: true });
         }

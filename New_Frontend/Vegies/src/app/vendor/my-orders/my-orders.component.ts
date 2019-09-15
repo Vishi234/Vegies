@@ -77,5 +77,15 @@ export class MyOrdersComponent implements OnInit {
 
   }
 
+  cancelOrder(orderId){
+  console.log("orderID is _configList",orderId)
+  this._configList.cancelOrder(orderId).subscribe((res: any) => {
+    this._toastr.success(res.status)
+    //this.getProductList();
+  }, (error) => {
+    console.log('error is ', error)
+  });
+  }
+
 
 }

@@ -38,6 +38,7 @@ export class VendorContainerComponent implements OnDestroy {
       
   }
   openChangeModal() {
+    console.log("hiiiiiiii11")
     this.dialog.open(ChangePasswordComponent, { disableClose: true });
   }
   addName(data) {
@@ -62,6 +63,4 @@ export class VendorContainerComponent implements OnDestroy {
         error => console.error(error)
       )
   }
-
-
 }

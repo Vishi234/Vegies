@@ -11,7 +11,7 @@ module.exports = (function () {
             if (err) {
                 return console.error(err);
             } else {
-                res.status(201).json({status:"Successfully configure your list."})
+                res.status(201).json({ status: "Successfully configure your list." })
                 //console.log("Multiple documents inserted to Collection");
             }
         });
@@ -25,26 +25,55 @@ module.exports = (function () {
         })
     });
 
-    app.delete('/removeList/:id', function (req, res) {       
-        var removeData=(req.params.id).split(',');
-        model.configList.deleteMany({_id: removeData}, function (err, data) {
+    app.delete('/removeList/:id', function (req, res) {
+        var removeData = (req.params.id).split(',');
+        model.configList.deleteMany({ _id: removeData }, function (err, data) {
             if (err) {
                 return console.log(err);
-            }else{
-                res.status(201).json({'status':data.deletedCount+" records deleted from your checklist"});
+            } else {
+                res.status(201).json({ 'status': data.deletedCount + " records deleted from your checklist" });
             }
         });
     });
 
+    app.delete('/cancelOrderList/:orderId', function (req, res) {
+        var removeData = req.params.orderId
+        console.log("data issss", removeData)
+        model.orderedCheckList.find({ orderId: removeData }).then(res1 => {
+            saveCancelOrder(res1)
+        })
+        // model.orderedCheckList.deleteMany({ orderId: removeData }, function (err, data) {
+        //     if (err) {
+        //         return console.log(err);
+        //     } else {
+        //         res.status(201).json({ 'status':"Order has been Cancel successfully" });
+        //     }
+        // });
+    });
+
+    function saveCancelOrder(req) {
+        app.post("/addCancelOrder", (req) => {
+            let configData = req.body;
+            console.log("configData===================", configData)
+            model.cancelOrder.collection.insertMany(configData, function (err, docs) {
+                if (err) {
+                    return console.error(err);
+                } else {
+                    res.status(201).json({ "status": "Order has been Cancel successfully" });
+                }
+            });
+        });
+    }
+
     app.post("/addList", function (req, res) {
         let configData = req.body;
-        configData.orderId=req.body.orderId+1;
+        configData.orderId = req.body.orderId + 1;
         //console.log("configData",configData)
         model.orderedCheckList.collection.insertMany(configData, function (err, docs) {
             if (err) {
                 return console.error(err);
             } else {
-                res.status(201).json({"status":"Order save successfully"});
+                res.status(201).json({ "status": "Order save successfully" });
             }
         });
     });
@@ -54,19 +83,18 @@ module.exports = (function () {
         //console.log("getListttttttttt2",req)
         //console.log("getListttttttttt1",userDetails.userId)
         model.orderedCheckList.find({ userName: userDetails.userId }).then(res1 => {
-            //console.log("outputttttttttttt",res1)
             res.send(res1);
         })
     });
 
     app.post("/setScheduler", function (req, res) {
         let configData = req.body;
-        console.log("setSchedulersetScheduler",configData)
+        console.log("setSchedulersetScheduler", configData)
         model.setScheduler.collection.insertMany(configData, function (err, docs) {
             if (err) {
                 return console.error(err);
             } else {
-                res.status(201).json({"status":"Products are schedule successfully"});
+                res.status(201).json({ "status": "Products are schedule successfully" });
             }
         });
     });
@@ -87,12 +115,12 @@ module.exports = (function () {
     app.post("/addAddress", function (req, res) {
         console.log("uuuuuuuuuoooooooooo")
         let configData = req.body;
-        console.log("setaddresssetaddress",configData)
+        console.log("setaddresssetaddress", configData)
         model.setAddress.collection.insertMany(configData, function (err, docs) {
             if (err) {
                 return console.error(err);
             } else {
-                res.status(201).json({"status":"Address added successfully"});
+                res.status(201).json({ "status": "Address added successfully" });
             }
         });
     });
@@ -103,6 +131,8 @@ module.exports = (function () {
             res.send(res1);
         })
     });
+
+
     return app;
 
 })();

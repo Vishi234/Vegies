@@ -21,7 +21,8 @@ export class ForgotPasswordComponent implements OnInit {
       res => {
         console.log("ooooo",res)
         if (res.successMsg) {
-          this._toastr.success(res.successMsg)
+          this._toastr.success(res.successMsg);
+          this.dialog.closeAll();
         }
         else if(res.errorMsg)
           this._toastr.error(res.errorMsg)

@@ -6,6 +6,7 @@ import { LoginService } from '../../../login/login.service'
 import { setAddress } from '../../set-address/set-address.service'
 import { GridComponent, CommandModel, EditSettingsModel } from '@syncfusion/ej2-angular-grids'
 declare var require: any;
+import { ActivatedRoute } from '@angular/router'
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
 let More = require('highcharts/highcharts-more');
@@ -19,8 +20,9 @@ More(Highcharts);
   styleUrls: ['./order-report.component.scss']
 })
 export class OrderReportComponent implements OnInit {
-  public start: Date = new Date();
-  public end: Date = new Date();
+  public currentMonth = new Date();
+  public start: Date = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), 1);
+  public end: Date = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() + 1, 0);
   public vendorOrders: any
   public vendorAddress: any
   public data: any = [];
@@ -31,13 +33,15 @@ export class OrderReportComponent implements OnInit {
   public pageSettings: object;
   public custom: any = true;
   public tabularData: any = [];
+  public monTabularData: any;
+  public uniqueAddress: any;
   @ViewChild('old', { static: false }) public grid: GridComponent;
   public options: any = {
     chart: {
       type: 'column'
     },
     title: {
-      text: 'Daily Order History.........'
+      text: 'Daily Order History Graph Report'
     },
     subtitle: {
       text: ''
@@ -64,6 +68,7 @@ export class OrderReportComponent implements OnInit {
       }
     },
 
+
     tooltip: {
       headerFormat: '<span style="font-size:11px">{series.name | date : "dd-MMM-yyyy"}</span><br>',
       pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
@@ -72,57 +77,27 @@ export class OrderReportComponent implements OnInit {
     series: [],
 
   }
-  constructor(private _configList: configList, private _login: LoginService, private _setAddress: setAddress) {
-    this._login.user().subscribe(result => {
-      this.userDetails = result;
-      error => console.log("Error is", error);
-    })
+  constructor(private _configList: configList, private _login: LoginService, private _setAddress: setAddress, private route: ActivatedRoute) {
+    this.userDetails = this.route.snapshot.data['userData'];
   }
 
   ngOnInit() {
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: true, pageSize: 10 };
-    setTimeout((x) => {
-      this._setAddress.getAddressList(this.userDetails).subscribe((response) => {
-        this.vendorAddress = response;
-      }, (error) => {
-        console.log('error is ', error)
-      });
-    }, 1000)
-    setTimeout(() => {
-      this._configList.getOrderList(this.userDetails).subscribe((response) => {
-        this.data = response;
+    //setTimeout((x) => {
+    this._setAddress.getAddressList(this.userDetails).subscribe((response) => {
+      this.vendorAddress = response;
+      this._configList.getOrderList(this.userDetails).subscribe((res) => {
+        console.log("respose issssss", res)
+        this.data = res;
         var currentDate = new Date().toString().split(" ")[1] + "-" + new Date().toString().split(" ")[3]
-        this.data.filter((da) => {
-          var date = new Date(da.bookingDate);
-          var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
-          if (monYear == currentDate) {
-            this.tabularData.push(da);
-          }
-        })
+        console.log("original data", this.data, "current", currentDate)
+        
+        console.log("tabiu", this.tabularData)
         this.grid.refresh();
-        var obj = [];
-        const unique = [...new Set(this.data.map(item => item.bookingDate))];
-        function search(nameKey, myArray) {
-          var mrpPrice = 0;
-          var actPrice = 0;
-          var perAvg = 0;
-          obj = [];
-          for (var i = 0; i < myArray.length; i++) {
-            if (myArray[i].bookingDate === nameKey) {
-              mrpPrice = mrpPrice + Number(myArray[i].oldPrice);
-              actPrice = actPrice + Number(myArray[i].newPrice);
-              perAvg = perAvg + Number(myArray[i].discount);
-              myArray[i].oldPrice = Number(mrpPrice).toFixed(2);
-              myArray[i].newPrice = Number(actPrice).toFixed(2);
-              myArray[i].discount = Number(perAvg).toFixed(2)
-              obj.push(myArray[i]);
-            }
-          }
-          return obj;
-        }
-        this.vendorOrders = unique.map((x) => {
-          var test = search(x, this.data);
+        this.uniqueAddress = [...new Set(this.data.map(item => item.bookingDate))];
+        this.vendorOrders = this.uniqueAddress.map((x) => {
+          var test = this.search(x, this.data);
           var cnt = test[test.length - 1]["discount"] / test.length
           test[test.length - 1]["discount"] = Number(cnt).toFixed(2)
           test[test.length - 1]["count"] = test.length
@@ -135,10 +110,28 @@ export class OrderReportComponent implements OnInit {
             }
           })
         })
+
+        // this.vendorOrders.filter((da) => {
+        //   var date = new Date(da.bookingDate);
+        //   var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
+        //   if (monYear == currentDate) {
+        //     this.tabularData.push(da);
+        //   }
+        // })
+
         this.vendorOrders.map((x: any) => {
-          var d1=new Date(x.bookingDate);
-          var d2= (d1.toString().split(" ")[2] + "-" + d1.toString().split(" ")[1] +"-"+d1.toString().split(" ")[3])
+          var d1 = new Date(x.bookingDate);
+          var d2 = (d1.toString().split(" ")[2] + "-" + d1.toString().split(" ")[1] + "-" + d1.toString().split(" ")[3])
           this.reportData.push({ name: d2, y: Number(x.newPrice) })
+        })
+
+        this.vendorOrders.filter((da) => {
+          var date = new Date(da.bookingDate);
+          var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
+          // console.log("zz",this.data,"monYear",monYear)
+          if (monYear == currentDate) {
+            this.tabularData.push(da);
+          }
         })
         this.reportData.filter((da) => {
           var date = new Date(da.name);
@@ -147,15 +140,39 @@ export class OrderReportComponent implements OnInit {
             this.monthlyReportData.push(da);
           }
         })
+        console.log("monthlyReportData", this.monthlyReportData)
         this.options.series.push({ name: "Order", data: this.monthlyReportData })
         if (!this.custom) {
           Highcharts.chart('container', this.options);
         }
-
       }, (error) => {
         console.log('error is ', error)
       });
-    }, 1000);
+    }, (error) => {
+      console.log('error is ', error)
+    })
+    //}, 1000)
+    //setTimeout(() => {
+
+    // }, 1000);
+  }
+  search(nameKey, myArray) {
+    var mrpPrice = 0;
+    var actPrice = 0;
+    var perAvg = 0;
+    var obj = [];
+    for (var i = 0; i < myArray.length; i++) {
+      if (myArray[i].bookingDate === nameKey) {
+        mrpPrice = mrpPrice + Number(myArray[i].oldPrice);
+        actPrice = actPrice + Number(myArray[i].newPrice);
+        perAvg = perAvg + Number(myArray[i].discount);
+        myArray[i].oldPrice = Number(mrpPrice).toFixed(2);
+        myArray[i].newPrice = Number(actPrice).toFixed(2);
+        myArray[i].discount = Number(perAvg).toFixed(2)
+        obj.push(myArray[i]);
+      }
+    }
+    return obj;
   }
   mode(event) {
     if (event.custom == true) {
@@ -172,8 +189,8 @@ export class OrderReportComponent implements OnInit {
     this.monthlyReportData = [];
     this.tabularData = []
     if (this.custom) {
-      this.data.filter((key) => {
-        console.log(new Date(key.bookingDate) >= new Date(startDate), "hi", new Date(key.bookingDate) <= new Date(endDate));
+      this.vendorOrders.filter((key) => {
+        console.log(new Date(key.bookingDate), new Date(startDate), "hi", new Date(key.bookingDate), new Date(endDate));
         if (new Date(key.bookingDate) >= new Date(startDate) && new Date(key.bookingDate) <= new Date(endDate)) {
           this.tabularData.push(key);
           this.grid.refresh();
@@ -183,12 +200,12 @@ export class OrderReportComponent implements OnInit {
     else {
       this.reportData.filter((fil) => {
         if (new Date(fil.name) >= new Date(startDate) && new Date(fil.name) <= new Date(endDate)) {
-          var d1=new Date(fil.name);
-          date = (d1.toString().split(" ")[2] + "-" + d1.toString().split(" ")[1] +"-"+d1.toString().split(" ")[3])
-          this.monthlyReportData.push({name :date , y:fil.y})
+          var d1 = new Date(fil.name);
+          date = (d1.toString().split(" ")[2] + "-" + d1.toString().split(" ")[1] + "-" + d1.toString().split(" ")[3])
+          this.monthlyReportData.push({ name: date, y: fil.y })
         }
       })
-
+      console.log("tabiu1111", this.tabularData)
       this.options.series = [];
       if (this.monthlyReportData.length > 0) {
         this.options.series.push({ name: "Order", data: this.monthlyReportData })

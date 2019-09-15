@@ -11,6 +11,7 @@ export class configList {
     private _removeProductURL = this._global.baseAppUrl + 'configProduct/removeList/';
     private _addProductURL = this._global.baseAppUrl + 'configProduct/addList/';
     private _getOrderURL = this._global.baseAppUrl + 'configProduct/getOrder/';
+    private _cancelOrderURL = this._global.baseAppUrl + 'configProduct/cancelOrderList/';
 
     getProductList(userId: any) {
         return this.http.get(this._configProductURL, {
@@ -29,6 +30,10 @@ export class configList {
 
     delete(id: string) {
         return this.http.delete(this._removeProductURL + id);
+    }
+
+    cancelOrder(orderId){
+        return this.http.delete(this._cancelOrderURL + orderId);
     }
     addProductList(configProductList: any) {
         console.log("jjjjjjjjjjjjjj",configProductList)

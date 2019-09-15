@@ -95,6 +95,9 @@ export class ConfigurationComponent implements OnInit {
   ngOnInit() {
 
     this._vendorDetails.GetProductList().subscribe((response) => {
+     // if(response.status==401){
+        this.router.navigate(['/login']);
+      //}else{
       Object.entries(response).forEach(
         ([key, value]) => {
           this.items.push({
@@ -104,6 +107,7 @@ export class ConfigurationComponent implements OnInit {
         }
       );
       this.filterItems = this.items
+    //  }
     }, (error) => {
       console.log('error is ', error)
     });
@@ -119,6 +123,7 @@ export class ConfigurationComponent implements OnInit {
     this.longitude = 13.404954;
     this.setCurrentPosition();
     this._vendorDetails.GetSubCategoryList().subscribe((response) => {
+      console.log("333333333333333",response)
       Object.entries(response).forEach(
         ([key, value]) => {
           this.subCatList.push(value)

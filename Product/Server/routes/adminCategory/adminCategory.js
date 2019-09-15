@@ -68,11 +68,6 @@ module.exports = (function () {
             res.status(200).json({ status:'SuCategory data has been updated successfully'});
           })
     });
-
-
-
-
-    
     app.post("/product", function (req, res) 
 	{ 
         let productData = req.body;
