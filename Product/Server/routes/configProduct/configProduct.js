@@ -39,8 +39,20 @@ module.exports = (function () {
     app.delete('/cancelOrderList/:orderId', function (req, res) {
         var removeData = req.params.orderId
         console.log("data issss", removeData)
-        model.orderedCheckList.find({ orderId: removeData }).then(res1 => {
-            saveCancelOrder(res1)
+        var cancelOrdered={cancelDate:new Date()};
+        model.orderedCheckList.find({ orderId: removeData }).then(res1 => {  
+            //res1.cancelDate  =new Date()
+            //cancelOrdered=res1;
+            var out=Object.assign(cancelOrdered,res1)
+            //cancelOrdered.cancelDate=new Date() 
+            console.log("cancelOrderedcancelOrdered",out)    
+            model.cancelOrder.collection.insertMany(res1, function (err, docs) {
+                if (err) {
+                    return console.error(err);
+                } else {
+                    res.status(201).json({ "status": "Order has been Cancel successfully" });
+                }
+            });
         })
         // model.orderedCheckList.deleteMany({ orderId: removeData }, function (err, data) {
         //     if (err) {
@@ -50,20 +62,6 @@ module.exports = (function () {
         //     }
         // });
     });
-
-    function saveCancelOrder(req) {
-        app.post("/addCancelOrder", (req) => {
-            let configData = req.body;
-            console.log("configData===================", configData)
-            model.cancelOrder.collection.insertMany(configData, function (err, docs) {
-                if (err) {
-                    return console.error(err);
-                } else {
-                    res.status(201).json({ "status": "Order has been Cancel successfully" });
-                }
-            });
-        });
-    }
 
     app.post("/addList", function (req, res) {
         let configData = req.body;

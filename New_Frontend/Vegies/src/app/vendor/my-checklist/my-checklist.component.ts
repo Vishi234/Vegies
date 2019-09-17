@@ -26,6 +26,9 @@ export class MyChecklistComponent implements OnInit {
   public selectedRow: any;
   public oldPrice:any=[];
   public newPrice:any=[];
+  public totalMRP:any=0;
+  public totalActualValue:any=0;
+  public totalDiscount:any=0;
 
   @ViewChild('old', { static: true }) public grid: GridComponent;
   constructor(public dialog: MatDialog, private _configList: configList, private _login: LoginService, private _toastr: ToastrService, private _setScheduler: setScheduler) {
@@ -63,15 +66,21 @@ export class MyChecklistComponent implements OnInit {
     //this.addScheduleList();
   }
   onChange(event: any) {
-    //this.selectedRow = this.grid.getSelectedRowIndexes();
-    this.quantity[this.grid.selectedRowIndex]= event.target.value;
     var parentId = event.target.parentElement.parentElement;
+    if(event.target.value<1){
+    alert("Quantity should be greater than 1")
+    this.data[parentId.rowIndex]["Qnty"]=1;
+    this.ngOnInit();
+    }else{
+    this.quantity[this.grid.selectedRowIndex]= event.target.value;
+    console.log("changesss is",this.grid.selectedRowIndex)
     //parentId.children[2].nodeValue=this.quantity ;
     parentId.children[4].innerText = event.target.value * this.data[parentId.rowIndex]["oldPrice"];
     parentId.children[6].innerText = parentId.children[4].innerText - (parentId.children[4].innerText * parentId.children[5].innerText) / 100;
 
     this.oldPrice[this.grid.selectedRowIndex] = event.target.value * this.data[parentId.rowIndex]["oldPrice"];
     this.newPrice[this.grid.selectedRowIndex] = this.oldPrice[this.grid.selectedRowIndex] - (this.oldPrice[this.grid.selectedRowIndex] * this.data[parentId.rowIndex]["discount"]) / 100;
+    }
   };
 
   removeProduct(event: any) {
@@ -100,9 +109,12 @@ export class MyChecklistComponent implements OnInit {
     if (this.selectedRow.length > 0) {
       var table = document.getElementsByTagName("table");
       this.myCheckList = this.selectedRow.map((e) => {
-        this.data[e]["oldPrice"] = this.oldPrice[e];
-        this.data[e]["newPrice"] = this.newPrice[e];
+        this.data[e]["oldPrice"] = (this.oldPrice[e])?this.oldPrice[e]:this.data[e]["oldPrice"];
+        this.data[e]["newPrice"] = (this.newPrice[e])?this.newPrice[e]:this.data[e]["newPrice"];
         this.data[e]["Qnty"] = (this.quantity[e])?(this.quantity[e]):1;
+        // this.totalMRP=this.totalMRP+this.data[e]["oldPrice"];
+        // this.totalActualValue=this.totalActualValue+this.data[e]["newPrice"];
+        // this.totalDiscount=this.totalDiscount+this.data[e]["discount"];
         return this.data[e];
       });
       this.dialog.open(PreviewChecklistComponent,
@@ -120,16 +132,14 @@ export class MyChecklistComponent implements OnInit {
 
   }
 
-
-
   getScheduleList() {
     this.selectedRow = this.grid.getSelectedRowIndexes();
     if (this.selectedRow.length > 0) {
       var table = document.getElementsByTagName("table");
       this.myCheckList = this.selectedRow.map((e) => {
-        this.data[e]["oldPrice"] = table[1].children[1].children[e].children[4].textContent;
-        this.data[e]["newPrice"] = table[1].children[1].children[e].children[6].textContent;
-        this.data[e]["Qnty"] = this.quantity;//(this.quantity=='undefined')?1:
+        this.data[e]["oldPrice"] = (this.oldPrice[e])?this.oldPrice[e]:this.data[e]["oldPrice"];
+        this.data[e]["newPrice"] = (this.newPrice[e])?this.newPrice[e]:this.data[e]["newPrice"];
+        this.data[e]["Qnty"] = (this.quantity[e])?(this.quantity[e]):1;
         return this.data[e];
       })
     }

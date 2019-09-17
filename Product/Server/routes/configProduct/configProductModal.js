@@ -60,7 +60,8 @@ var cancelOrderList = new Schema({
     Qnty: { type: String },
     bookingDate: { type: String },
     orderId: { type: String },
-    status: { type: String }
+    status: { type: String },
+    cancelDate: { type: String }
 })
 
 var configList = mongoose.model('configList', configProduct, 'configListStore');

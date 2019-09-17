@@ -15,9 +15,9 @@
                 Schedule Date 
             </h4>
             <div class="input-group">
-                <ejs-datepicker [value]='startDate' format='dd-MMM-yyyy' (change)='onChangeFrom($event)'
+                <ejs-datepicker [value]='startDate' [min]='minDate' format='dd-MMM-yyyy' (change)='onChangeFrom($event)'
                     placeholder='From date' required></ejs-datepicker>
-                <ejs-datepicker [value]='endDate' format='dd-MMM-yyyy' (change)='onChangeTo($event)'
+                <ejs-datepicker [value]='endDate' [min]='minDate' format='dd-MMM-yyyy' (change)='onChangeTo($event)'
                     placeholder='To date' required></ejs-datepicker>
             </div>
         </div>
@@ -26,8 +26,8 @@
                 Shipping Location <a href="javascript:void(0)" (click)="changeAddress();">{{isConfigureAddress}} Address<i
                     class="fas fa-pencil-alt"></i></a>
             </h4>
-            <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress'
-                [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required>
+            <ejs-dropdownlist  [dataSource]='vendorAddress'
+                [fields]='fields' id='ddlelement' #select placeholder="Select Address" (change)="getAddress($event)" required>
             </ejs-dropdownlist>
 
 

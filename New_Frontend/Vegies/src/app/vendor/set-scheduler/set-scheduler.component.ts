@@ -21,6 +21,7 @@ export class SetSchedulerComponent implements OnInit {
   public pageSettings: object;
   public startDate: Date = new Date("dd-MMM-yyyy");
   public endDate: Date = new Date("dd-MMM-yyyy");
+  public minDate: Date = new Date();
   public uniqueAddress: any;
   public userDetails: any;
   public orderedPro: any;
