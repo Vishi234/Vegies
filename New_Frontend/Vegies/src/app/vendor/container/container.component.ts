@@ -4,7 +4,7 @@ import { LoginService } from '../../login/login.service'
 import { Router } from '@angular/router'
 import { MatDialog } from '@angular/material';
 import { ChangePasswordComponent } from '../change-password/change-password.component'
-
+import { ActivatedRoute } from '@angular/router'
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
@@ -25,17 +25,17 @@ export class VendorContainerComponent implements OnDestroy {
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
   private _mobileQueryListener: () => void;
-  constructor(changeDetectorRef: ChangeDetectorRef,
+  constructor(private route: ActivatedRoute, changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher, private _login: LoginService, private router: Router, public dialog: MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this._login.user()
-      .subscribe(
-        data => {this.currentUser = data; console.log("222222",this.currentUser)},
-        error => this.router.navigate(['/login'])
-      )
-      
+    // this._login.user()
+    //   .subscribe(
+    //     data => {this.currentUser = data; console.log("222222",this.currentUser)},
+    //     error => this.router.navigate(['/login'])
+    //   )
+    this.currentUser=this.route.snapshot.data['userData'];
   }
   openChangeModal() {
     console.log("hiiiiiiii11")

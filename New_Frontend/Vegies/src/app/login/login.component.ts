@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     this._login.vendorLogin(this.loginUser)
       .subscribe(
         res => {
+          console.log("response is----->",res)
           if (res.msg) {
             this._toastr.success(res.msg)
             if (res.loginAttemp < 1) {

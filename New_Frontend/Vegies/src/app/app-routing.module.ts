@@ -29,8 +29,8 @@ const routes: Routes = [
     path: '',
     component: ContainerComponent,
     children: [
-      { path: '', redirectTo: 'index', pathMatch: 'full' },
-      { path: 'index', component: HomeComponent },
+      { path: '', redirectTo: 'index', pathMatch: 'full' ,resolve:{userData:productListResolver}},
+      { path: 'index', component: HomeComponent ,resolve:{userData:productListResolver}},
     ]
   },
   {
@@ -38,7 +38,8 @@ const routes: Routes = [
     component: VendorContainerComponent,
     children: [
       {
-        path: '', redirectTo: 'dashboard', pathMatch: 'full'
+        path: '', redirectTo: 'dashboard', pathMatch: 'full',
+        resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard] 
       },
       {
