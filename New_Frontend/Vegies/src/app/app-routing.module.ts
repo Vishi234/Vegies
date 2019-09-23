@@ -24,13 +24,16 @@ import { UserListComponent } from './admin/users/user-list/user-list.component'
 import { UserChecklistComponent } from './admin/users/user-checklist/user-checklist.component'
 import { UserOrdersComponent} from './admin/users/user-orders/user-orders.component'
 import { productListResolver } from './vendor/product-list/product-list-resolver.service';
+import { detailsListResolver } from './vendor/dashboard/details-list-resolver.service';
+import { CancelOrdersComponent } from './vendor/cancel-orders/cancel-orders.component';
+import { CancelOrderItemsComponent } from './vendor/cancel-order-items/cancel-order-items.component';
 const routes: Routes = [
   {
     path: '',
     component: ContainerComponent,
     children: [
-      { path: '', redirectTo: 'index', pathMatch: 'full' ,resolve:{userData:productListResolver}},
-      { path: 'index', component: HomeComponent ,resolve:{userData:productListResolver}},
+      { path: '', redirectTo: 'index', pathMatch: 'full'},
+      { path: 'index', component: HomeComponent },
     ]
   },
   {
@@ -49,7 +52,7 @@ const routes: Routes = [
       },
       {
         path: 'products/:id', component: ProductListComponent,
-        resolve:{userData:productListResolver}
+        resolve:{userData:productListResolver,list:detailsListResolver}
         //,canActivate:[AuthGuard]
       },
       {
@@ -58,11 +61,13 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
-        path: 'mychecklist', component: MyChecklistComponent
+        path: 'mychecklist', component: MyChecklistComponent,
+        resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard]
       },
       {
         path: 'orders', component: MyOrdersComponent,
+        resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard]
       },
       {
@@ -73,7 +78,17 @@ const routes: Routes = [
         path: 'reports/order-report', component: OrderReportComponent,
         resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard]
-      }
+      },
+      {
+        path: 'cancelorders', component: CancelOrdersComponent,
+        resolve:{userData:productListResolver}
+        //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'cancelorders/items/:id', component: CancelOrderItemsComponent,
+        resolve:{userData:productListResolver}
+        //,canActivate:[AuthGuard]
+      },
     ]
   },
   {
@@ -81,11 +96,13 @@ const routes: Routes = [
     component: AdminContainerComponent,
     children: [
       {
-        path: '', redirectTo: 'admin/dashboard', pathMatch: 'full'
+        path: '', redirectTo: 'admin/dashboard', pathMatch: 'full',
+        resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard] 
       },
       {
-        path: 'admin/dashboard', component: AdminDashboardComponent
+        path: 'admin/dashboard', component: AdminDashboardComponent,
+        resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard]
       },
       {
@@ -109,7 +126,8 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
-        path: 'admin/user-orders', component: UserOrdersComponent
+        path: 'admin/user-orders', component: UserOrdersComponent,
+        resolve:{userData:productListResolver}
         //,canActivate:[AuthGuard]
       }
     ]
@@ -117,7 +135,7 @@ const routes: Routes = [
   { path: 'admin/login', component: AdminLoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'admin/category', component: CategoryComponent, canActivate: [AuthGuard] }
+  { path: 'admin/category', component: CategoryComponent }
 
 ];
 

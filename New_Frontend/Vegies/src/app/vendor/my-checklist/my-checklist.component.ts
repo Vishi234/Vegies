@@ -8,6 +8,8 @@ import { LoginService } from '../../login/login.service'
 import { ToastrService } from 'ngx-toastr'
 import { ThrowStmt } from '@angular/compiler';
 import { setScheduler } from '../set-scheduler/set-scheduler.service'
+import { ActivatedRoute } from '@angular/router'
+
 
 @Component({
   selector: 'app-my-checklist',
@@ -29,37 +31,33 @@ export class MyChecklistComponent implements OnInit {
   public totalMRP:any=0;
   public totalActualValue:any=0;
   public totalDiscount:any=0;
-
+  public vendorAddress: any;
   @ViewChild('old', { static: true }) public grid: GridComponent;
-  constructor(public dialog: MatDialog, private _configList: configList, private _login: LoginService, private _toastr: ToastrService, private _setScheduler: setScheduler) {
-    this._login.user().subscribe(result => {
-      this.userDetails = result;
-      error => console.log("Error is", error);
-    })
+  constructor(public dialog: MatDialog, private _configList: configList, private _login: LoginService, private _toastr: ToastrService, private _setScheduler: setScheduler, private route: ActivatedRoute) {
+    this.userDetails = this.route.snapshot.data['userData'];
+    this.getProductList();
   }
 
   ngOnInit() {
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: true, pageSize: 10 };
-    this.getProductList();
   }
 
   getProductList() {
-    setTimeout(() => {
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.data = response;
         console.log("daaaaaaaa",this.data)
       }, (error) => {
         console.log('error is ', error)
       });
-    }, 1000)
   }
 
   openScheduler() {
     if(this.getScheduleList()==undefined){
       this.dialog.open(SetSchedulerComponent, {
         disableClose: true, data: {
-          "scheduleData": this.myCheckList
+          "scheduleData": this.myCheckList,
+          "userDetails":this.userDetails
         }
       })
   }
@@ -71,6 +69,10 @@ export class MyChecklistComponent implements OnInit {
     alert("Quantity should be greater than 1")
     this.data[parentId.rowIndex]["Qnty"]=1;
     this.ngOnInit();
+    }else if(Number(event.target.value)>50){
+      alert("Quantity should be less than equal to 50");
+      this.data[parentId.rowIndex]["Qnty"]=1;
+      this.ngOnInit();
     }else{
     this.quantity[this.grid.selectedRowIndex]= event.target.value;
     console.log("changesss is",this.grid.selectedRowIndex)
@@ -92,7 +94,7 @@ export class MyChecklistComponent implements OnInit {
           return this.data[e]['_id']
         })
         this._configList.delete(del).subscribe((res: any) => {
-          this._toastr.success(res.status)
+          this._toastr.success(res.status);
           this.getProductList();
         }, (error) => {
           console.log('error is ', error)
@@ -121,7 +123,8 @@ export class MyChecklistComponent implements OnInit {
         {
           disableClose: true,
           data: {
-            "ChecklistData": this.myCheckList
+            "ChecklistData": this.myCheckList,
+            "userDetails":this.userDetails
           }
         })
     }

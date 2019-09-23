@@ -21,7 +21,7 @@ export class SetSchedulerComponent implements OnInit {
   public pageSettings: object;
   public startDate: Date = new Date("dd-MMM-yyyy");
   public endDate: Date = new Date("dd-MMM-yyyy");
-  public minDate: Date = new Date();
+  public minStartDate: Date = new Date();
   public uniqueAddress: any;
   public userDetails: any;
   public orderedPro: any;
@@ -35,30 +35,24 @@ export class SetSchedulerComponent implements OnInit {
   @ViewChild('grid', { static: true }) public grid: GridComponent;
   @ViewChild('select', { static: true }) select;
   constructor(public dialog: MatDialog, private _addProductList: configurationwizard, private _login: LoginService, private _setScheduler: setScheduler, @Inject(MAT_DIALOG_DATA) public scheduleData: any, private _setAddress: setAddress, private _toastr: ToastrService) {
-    this._login.user().subscribe(result => {
-      this.userDetails = result;
-      error => console.log("Error is", error);
-    })
   }
   ngOnInit() {
     this.data = this.scheduleData.scheduleData;
+    this.userDetails=this.scheduleData.userDetails;
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: false, pageSize: 5 };
 
-    setTimeout(() => {
-      this._setAddress.getAddressList(this.userDetails).subscribe((response) => {
-        this.vendorAddress = response;
-        this.vendorAddress = this.vendorAddress.map((val: any) => {
-          return ({ "address": val.address, "_id": val._id })
-        })
-        this.isConfigureAddress=this.vendorAddress.length>0?"Change":"Add"
-        this.select.refresh();
-      }, (error) => {
-        console.log('error is ', error)
-      });
-    }, 1000)
+    this._setAddress.getAddressList(this.userDetails).subscribe((response) => {      
+      this.vendorAddress = response;
+      this.vendorAddress=this.vendorAddress.map((val: any) => {
+        return ({  "address": val.address ,"_id":val._id})
+      })
+      this.select.refresh();
+      this.isConfigureAddress=this.vendorAddress.length>0?"Change":"Add"
+    }, (error) => {
+      console.log('error is ', error)
+    });
   }
-
   addScheduler() {
     if (this.schedulerFromDate != undefined && this.schedulerToDate != undefined && this.uniqueAddress != undefined) {
       var d1 = new Date(this.schedulerFromDate);
@@ -100,11 +94,15 @@ export class SetSchedulerComponent implements OnInit {
   }
   onChangeFrom(args) {
     this.schedulerFromDate = args.value;
-    console.log("selected datesssss", args.value)
   }
   onChangeTo(args) {
-    this.schedulerToDate = args.value;
-    console.log("selected datesssss", args.value)
+    if(new Date(this.schedulerFromDate)>new Date(args.value)){
+      alert("To Date Should be greater than From Date");
+      this.endDate=new Date(this.schedulerFromDate);
+    }
+    else{
+      this.schedulerToDate = args.value;
+    }
   }
 
   changeAddress() {
@@ -119,6 +117,5 @@ export class SetSchedulerComponent implements OnInit {
   }
   getAddress(event) {
     this.uniqueAddress = event.value;
-    console.log("addressssssssss", event.value)
   }
 }

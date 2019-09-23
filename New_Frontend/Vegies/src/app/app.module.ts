@@ -62,6 +62,9 @@ import { OrderDetailsComponent } from './admin/users/order-details/order-details
 import { productListResolver } from './vendor/product-list/product-list-resolver.service';
 import { BnNgIdleService } from 'bn-ng-idle'; // import bn-ng-idle service
 import {CookieService} from 'ngx-cookie-service';
+import { detailsListResolver } from './vendor/dashboard/details-list-resolver.service';
+import { CancelOrdersComponent } from './vendor/cancel-orders/cancel-orders.component';
+import { CancelOrderItemsComponent } from './vendor/cancel-order-items/cancel-order-items.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +99,9 @@ import {CookieService} from 'ngx-cookie-service';
     UserListComponent,
     UserChecklistComponent,
     UserOrdersComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    CancelOrdersComponent,
+    CancelOrderItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +155,7 @@ import {CookieService} from 'ngx-cookie-service';
       useClass: TokenInterceptorService,
       multi: true
     },
-    AppGlobals, DatePipe,productListResolver,BnNgIdleService,CookieService],
+    AppGlobals, DatePipe,productListResolver,BnNgIdleService,CookieService,detailsListResolver],
   bootstrap: [AppComponent],
   entryComponents: [ForgotPasswordComponent, ChangePasswordComponent,
     ConfigurationComponent, SetSchedulerComponent, NewCategoryComponent, SetAddressComponent, PreviewChecklistComponent, NewSubcategoryComponent,

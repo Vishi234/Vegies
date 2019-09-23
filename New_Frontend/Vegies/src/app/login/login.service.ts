@@ -25,10 +25,8 @@ export class LoginService {
   public extractData(res: Response) {
     this.userDetails = res;
     if(this.userDetails.status==401){
-      console.log("bodybody111111111111",this.userDetails);
       this.router.navigate(['/login']);
     }else
-    //console.log("bodybody",this.userDetails);
     return this.userDetails || { };
   }
  

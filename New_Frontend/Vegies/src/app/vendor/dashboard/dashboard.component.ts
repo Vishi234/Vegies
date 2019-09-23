@@ -29,6 +29,8 @@ export class DashboardComponent implements OnInit {
   public monthlyExpenCount = 0;
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private _vendorDetails: AdminCategoryService, public _configList: configList, public _login: LoginService) {
     this.userDetails = this.route.snapshot.data['userData'];
+    var da = this.route.snapshot.data['list'];
+    
   }
   ngOnInit() {
     this._configList.getOrderList(this.userDetails).subscribe((response) => {

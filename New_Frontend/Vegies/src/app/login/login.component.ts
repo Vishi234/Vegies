@@ -26,21 +26,23 @@ export class LoginComponent implements OnInit {
   }
 
   visitorSignin() {
-    this.cookie.set('email',this.loginUser.email);
-    this.cookie.set('password',this.loginUser.password);
-    this.cookie.set('remember',this.remember);
     this._login.vendorLogin(this.loginUser)
       .subscribe(
         res => {
           console.log("response is----->",res)
           if (res.msg) {
-            this._toastr.success(res.msg)
             if (res.loginAttemp < 1) {
               this.showChangePassModal();
             } else if (res.status == 401) {
               this.router.navigate(['/login']);
-            } else {
+            } else if(res.userType==100){
+              this.router.navigate(['/admin/user-orders']);
+            }else{
+              this.cookie.set('email',this.loginUser.email);
+              this.cookie.set('password',this.loginUser.password);
+              this.cookie.set('remember',this.remember);
               this.router.navigate(['/dashboard']);
+              this._toastr.success(res.msg)
             }
           }
           else

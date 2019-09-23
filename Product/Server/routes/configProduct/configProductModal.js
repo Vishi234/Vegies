@@ -24,7 +24,7 @@ var orderedCheckList = new Schema({
     Qnty: { type: String },
     bookingDate: { type: String },
     orderId: { type: String },
-    status: { type: String }
+    status: { type: Date }
 })
 
 var setScheduler = new Schema({
@@ -61,7 +61,7 @@ var cancelOrderList = new Schema({
     bookingDate: { type: String },
     orderId: { type: String },
     status: { type: String },
-    cancelDate: { type: String }
+    cancelDate: { type: Date,default:new Date() }
 })
 
 var configList = mongoose.model('configList', configProduct, 'configListStore');

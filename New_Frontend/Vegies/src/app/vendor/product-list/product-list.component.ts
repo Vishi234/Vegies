@@ -30,11 +30,6 @@ export class ProductListComponent implements OnInit {
   public selectedCat: any;
 
   constructor(private _categoryList: AdminCategoryService, private _global: AppGlobals, public _login: LoginService, public _configList: configList, private _configurationwizard: configurationwizard, private _toastr: ToastrService, private router: Router, private route: ActivatedRoute) {
-    // this._login.user().
-    // subscribe(
-    //   result =>"",
-    //   error=>this.router.navigate['./login']    
-    // );
     this.userDetails = this.route.snapshot.data['userData'];
   }
 
@@ -79,6 +74,17 @@ export class ProductListComponent implements OnInit {
     }, (error) => {
       console.log('error is ', error)
     });
+
+    // this._categoryList.GetCategoryList().subscribe((response) => {
+    //   // Object.entries(response).forEach(
+    //   //   ([key, value]) => {
+    //     console.log("---------->",response)
+    //       this.catList.push(response);
+    //   //   }
+    //   // );
+    // }, (error) => {
+    //   console.log('error is ', error)
+    // });
 
     this._categoryList.GetSubCategoryList().subscribe((response) => {
       Object.entries(response).forEach(

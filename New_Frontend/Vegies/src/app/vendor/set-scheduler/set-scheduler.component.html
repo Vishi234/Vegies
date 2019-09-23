@@ -15,9 +15,9 @@
                 Schedule Date 
             </h4>
             <div class="input-group">
-                <ejs-datepicker [value]='startDate' [min]='minDate' format='dd-MMM-yyyy' (change)='onChangeFrom($event)'
+                <ejs-datepicker [value]='startDate' [min]='minStartDate' format='dd-MMM-yyyy' (change)='onChangeFrom($event)'
                     placeholder='From date' required></ejs-datepicker>
-                <ejs-datepicker [value]='endDate' [min]='minDate' format='dd-MMM-yyyy' (change)='onChangeTo($event)'
+                <ejs-datepicker [value]='endDate' [min]='minStartDate' format='dd-MMM-yyyy' (change)='onChangeTo($event)'
                     placeholder='To date' required></ejs-datepicker>
             </div>
         </div>

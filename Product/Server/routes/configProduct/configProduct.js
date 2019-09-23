@@ -38,30 +38,24 @@ module.exports = (function () {
 
     app.delete('/cancelOrderList/:orderId', function (req, res) {
         var removeData = req.params.orderId
-        console.log("data issss", removeData)
-        var cancelOrdered={cancelDate:new Date()};
-        model.orderedCheckList.find({ orderId: removeData }).then(res1 => {  
-            //res1.cancelDate  =new Date()
-            //cancelOrdered=res1;
-            var out=Object.assign(cancelOrdered,res1)
-            //cancelOrdered.cancelDate=new Date() 
-            console.log("cancelOrderedcancelOrdered",out)    
+        model.orderedCheckList.find({ orderId: removeData }).then(res1 => {    
             model.cancelOrder.collection.insertMany(res1, function (err, docs) {
                 if (err) {
                     return console.error(err);
                 } else {
-                    res.status(201).json({ "status": "Order has been Cancel successfully" });
+                    model.cancelOrder.collection.update({orderId:removeData}, {$set: {cancelDate: new Date()}}, {multi: true})
                 }
             });
         })
-        // model.orderedCheckList.deleteMany({ orderId: removeData }, function (err, data) {
-        //     if (err) {
-        //         return console.log(err);
-        //     } else {
-        //         res.status(201).json({ 'status':"Order has been Cancel successfully" });
-        //     }
-        // });
+        model.orderedCheckList.deleteMany({ orderId: removeData }, function (err, data) {
+            if (err) {
+                return console.log(err);
+            } else {
+                res.status(201).json({ 'status':"Order has been Cancel successfully" });
+            }
+        });
     });
+
 
     app.post("/addList", function (req, res) {
         let configData = req.body;
@@ -78,9 +72,15 @@ module.exports = (function () {
 
     app.get("/getOrder", function (req, res) {
         let userDetails = req.query;
-        //console.log("getListttttttttt2",req)
-        //console.log("getListttttttttt1",userDetails.userId)
         model.orderedCheckList.find({ userName: userDetails.userId }).then(res1 => {
+            res.send(res1);
+        })
+    });
+
+    app.get("/getCancelOrder", function (req, res) {
+        let userDetails = req.query;
+        model.cancelOrder.find({ userName: userDetails.userId }).then(res1 => {
+            console.log("getCancelOrdergetCancelOrder",res1)
             res.send(res1);
         })
     });

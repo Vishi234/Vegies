@@ -49,15 +49,13 @@ export class SetAddressComponent implements OnInit {
     this.longitude = location.longitude;
   }
   closeModal() {
-    this.childEvent.emit('hiiiiiii how');
     this.dialogRef.close();
   }
   saveAddress() {
     this.vendorAddress = { "address": this.address.nativeElement.value, "date": new Date(), "userId": this.userDetails._id };
-    console.log("hiiiiiiiiiiiii", this.address.nativeElement.value);
-
     this._setAddress.addAddressList([this.vendorAddress]).subscribe((res) => {
       this._toastr.success(res.status)
+      this.dialogRef.close();
       window.opener.location.reload();
     }, (error) => {
       console.log('error is ', error)
@@ -87,19 +85,5 @@ export class SetAddressComponent implements OnInit {
         console.log('No results found');
       }
     });
-    //let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-    //this..panTo(location);
-
-    // if (!this.marker) {
-    //   this.marker = new google.maps.Marker({
-    //     position: location,
-    //     map: this.map,
-    //     title: 'Got you!'
-    //   });
-    // }
-    // else {
-    //   this.marker.setPosition(location);
-    // }
   }
 }

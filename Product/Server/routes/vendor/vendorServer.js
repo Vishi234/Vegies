@@ -31,21 +31,7 @@ var password = generator.generate({
 router.post("/registration", function (req, res,next) {
     let registerData = req.body;
     registerData.password = password;
-    //let registerationSave = new model.register(registerData)
     addToDB(registerData, res)
-    // registerationSave.save().then((userDetails => {
-    //     console.log("dataaaaaaaaaa", userDetails);
-    //     let payload = { subject: userDetails._id }
-    //     let token = jwt.sign(payload, 'secretKey')
-    //     res.json({ token });
-    //     sendMail(registerData, info => {
-    //     }).catch(function (err) {
-    //         console.log("Mail Sending errors", err)
-    //     });
-    // })).catch(err => {
-    //     console.log("error is", err)
-    //     res.status(400).send("unable to save to database");
-    // })
 });
 
 async function addToDB(req, res) {
@@ -75,7 +61,6 @@ async function addToDB(req, res) {
 }
 
 router.post("/auth", function (req, res,next) {
-console.log("dsadas");
     passport.authenticate('local', function(err, user, info) {
         if (err) {return res.status(401).json(err) }
         if (!user) {console.log("value is ",info);  return res.status(201).json(info); }
@@ -83,33 +68,10 @@ console.log("dsadas");
           if (err) { return res.status(201).json(err); }
           model.register.updateOne({ loginAttemp: user.loginAttemp }, { $set: { loginAttemp: user.loginAttemp + 1 } }, (attempCount)=> {
               console.log("dataaaa",attempCount," --------",user.loginAttemp)
-                                res.status(200).json({ msg:'Successfully Login' ,"loginAttemp":user.loginAttemp});
+                                res.status(200).json({ msg:'Successfully Login' ,"loginAttemp":user.loginAttemp,"userType":user.userType});
             })
-
-
-         // return res.status(200).json({msg:'Successfully Login'});
         });
       })(req, res, next);
-    // let userData = req.body;
-    // model.register.findOne({ email: userData.email }, (error, user) => {
-    //     if (error) {
-    //         console.log(error);
-    //     } else {
-    //         if (!user) {
-    //             res.status(401).send('Invalid email');
-    //         } else {
-    //             if (user.password != userData.password) {
-    //                 res.status(401).send("Invalid Password")
-    //             } else {
-    //                 let payload = { subject: user._id }
-    //                 let token = jwt.sign(payload, 'secretKey')
-    //                 model.register.updateOne({ loginAttemp: user.loginAttemp }, { $set: { loginAttemp: user.loginAttemp + 1 } }, function (attempCount) {
-    //                     res.status(200).send({ "token": token, "userName": user.fullName, "orgName": user.orgName });
-    //                 })
-    //             }
-    //         }
-    //     }
-    // })
 })
 router.get('/verify', function (req, res) {
     if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {

@@ -6,11 +6,11 @@
             <p>Content section goes here</p>
         </span>
     </div>
-    <div class="panel-filter">
+    <!-- <div class="panel-filter">
         <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
             [endDate]='end'>
         </ejs-daterangepicker>
-    </div>
+    </div> -->
 </div>
 <!-- <div *ngFor='let data of orders'> -->
 <div class="order-base pt-4">
@@ -45,7 +45,7 @@
             <span>{{order.address}}</span>
         </div>
         <div class="btn-group cancelbtn">
-            <a *ngIf="order.status=='Pending'" href="javascript:void(0)" (click)="cancelOrder(order.orderId)" class="text-danger">Cancel Order</a>
+            <a *ngIf="order.active" href="javascript:void(0)" (click)="cancelOrder(order.orderId)" class="text-danger">Cancel Order</a>
         </div>
         <div class="view-btn">
             <a href="javascript:void(0)">

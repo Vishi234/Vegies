@@ -12,6 +12,7 @@ export class configList {
     private _addProductURL = this._global.baseAppUrl + 'configProduct/addList/';
     private _getOrderURL = this._global.baseAppUrl + 'configProduct/getOrder/';
     private _cancelOrderURL = this._global.baseAppUrl + 'configProduct/cancelOrderList/';
+    private _getCancelOrderURL = this._global.baseAppUrl + 'configProduct/getCancelOrder';
 
     getProductList(userId: any) {
         return this.http.get(this._configProductURL, {
@@ -28,10 +29,17 @@ export class configList {
         })
     }
 
+    getCancelOrder(userId: any) {
+        return this.http.get(this._getCancelOrderURL, {
+            params: {
+                userId: userId._id,
+            }
+        })
+    }
+
     delete(id: string) {
         return this.http.delete(this._removeProductURL + id);
     }
-
     cancelOrder(orderId){
         return this.http.delete(this._cancelOrderURL + orderId);
     }
