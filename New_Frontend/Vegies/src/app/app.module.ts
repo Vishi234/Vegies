@@ -8,7 +8,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
 import { DateRangePickerModule, DatePickerModule } from '@syncfusion/ej2-angular-calendars';
-import { GridModule, EditService, ToolbarService } from '@syncfusion/ej2-angular-grids';
+import { GridModule, EditService, ToolbarService,AggregateService } from '@syncfusion/ej2-angular-grids';
 import { PageService, SortService, FilterService, GroupService, FreezeService, SelectionService } from '@syncfusion/ej2-angular-grids';
 import { CheckBoxModule, SwitchModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons'
 import { DropDownListModule, AutoCompleteModule } from '@syncfusion/ej2-angular-dropdowns';
@@ -155,7 +155,7 @@ import { CancelOrderItemsComponent } from './vendor/cancel-order-items/cancel-or
       useClass: TokenInterceptorService,
       multi: true
     },
-    AppGlobals, DatePipe,productListResolver,BnNgIdleService,CookieService,detailsListResolver],
+    AppGlobals, DatePipe,productListResolver,BnNgIdleService,CookieService,detailsListResolver,AggregateService],
   bootstrap: [AppComponent],
   entryComponents: [ForgotPasswordComponent, ChangePasswordComponent,
     ConfigurationComponent, SetSchedulerComponent, NewCategoryComponent, SetAddressComponent, PreviewChecklistComponent, NewSubcategoryComponent,

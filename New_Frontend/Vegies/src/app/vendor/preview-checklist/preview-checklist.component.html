@@ -19,6 +19,30 @@
                     <e-column field='discount' headerText='Discount (%)' textAlign='right' width=110></e-column>
                     <e-column field='newPrice' headerText='Actual Price' textAlign='right' width=100></e-column>
                 </e-columns>
+                <e-aggregates>
+                        <!-- <e-aggregate>
+                                <e-columns>
+                                    <e-column field="oldPrice" type="sum">
+                                        <ng-template #footerTemplate let-data1>Total MRP: {{data1.sum}}</ng-template>
+                                    </e-column>
+                                </e-columns>
+                            </e-aggregate>
+                            <e-aggregate>
+                                    <e-columns>
+                                        <e-column field="discount" type="Average">
+                                            <ng-template #footerTemplate let-data1>Average Discount: {{data1.Average}}</ng-template>
+                                        </e-column>
+                                    </e-columns>
+                                </e-aggregate> -->
+
+                        <e-aggregate>
+                            <e-columns width=100>
+                                <e-column field="newPrice" type="sum">
+                                    <ng-template #footerTemplate let-data1>Payment Price: {{data1.sum}}</ng-template>
+                                </e-column>
+                            </e-columns>
+                        </e-aggregate>
+                    </e-aggregates>
             </ejs-grid>
         </div>
         <hr />

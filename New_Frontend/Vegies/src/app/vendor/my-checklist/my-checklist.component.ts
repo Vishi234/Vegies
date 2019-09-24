@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr'
 import { ThrowStmt } from '@angular/compiler';
 import { setScheduler } from '../set-scheduler/set-scheduler.service'
 import { ActivatedRoute } from '@angular/router'
-
+import { SelectionSettingsModel } from '@syncfusion/ej2-angular-grids';
 
 @Component({
   selector: 'app-my-checklist',
@@ -32,6 +32,7 @@ export class MyChecklistComponent implements OnInit {
   public totalActualValue:any=0;
   public totalDiscount:any=0;
   public vendorAddress: any;
+  public selectionOptions: SelectionSettingsModel;
   @ViewChild('old', { static: true }) public grid: GridComponent;
   constructor(public dialog: MatDialog, private _configList: configList, private _login: LoginService, private _toastr: ToastrService, private _setScheduler: setScheduler, private route: ActivatedRoute) {
     this.userDetails = this.route.snapshot.data['userData'];
@@ -40,6 +41,8 @@ export class MyChecklistComponent implements OnInit {
 
   ngOnInit() {
     this.filterSettings = { type: 'Menu' };
+    //selectionSettings.checkboxOnly 
+    this.selectionOptions = { checkboxOnly: true};
     this.pageSettings = { pageSizes: true, pageSize: 10 };
   }
 

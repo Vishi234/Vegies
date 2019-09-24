@@ -27,7 +27,7 @@
 
 <div class="checklistgrid pt-4">
     <ejs-grid [dataSource]='data' id="checklistGrid" #old [allowPaging]='true' [allowSorting]='true'
-        [allowFiltering]='true' [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+        [allowFiltering]='true' [filterSettings]='filterSettings' [selectionSettings]='selectionOptions' [pageSettings]='pageSettings' [allowGrouping]='false'>
         <e-columns>
             <e-column type='checkbox' [allowFiltering]='false' checkboxOnly='true' [allowSorting]='false' width='60'>
             </e-column>
@@ -46,22 +46,7 @@
             <e-column field='discount' headerText='Discount(%)' width='150'></e-column>
             <e-column field='newPrice' headerText='Actual Price(Rs)' width='180'></e-column>
         </e-columns>
-        <!-- <e-aggregates>
-            <e-aggregate>
-                <e-columns>
-                    <e-column field="newPrice" type="sum">
-                        <ng-template #footerTemplate let-data1>Sum: {{data1.sum}}</ng-template>
-                    </e-column>
-                </e-columns>
-            </e-aggregate>
-            <e-aggregate>
-                    <e-columns>
-                        <e-column field="newPrice" type="max">
-                            <ng-template #footerTemplate let-data1>Max: {{data1.max}}</ng-template>
-                        </e-column>
-                    </e-columns>
-                </e-aggregate>
-        </e-aggregates> -->
+       
     </ejs-grid>
 </div>
 
