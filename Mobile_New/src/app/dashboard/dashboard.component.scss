@@ -1,0 +1,330 @@
+.header span:nth-child(1) a svg {
+  height: 20px;
+  width: 20px;
+  fill: #fff;
+}
+.cartbase svg {
+  height: 20px;
+  width: 20px;
+  margin-right: 20px;
+  margin-top: 18px;
+  fill: #fff;
+}
+.cartbase .count {
+  position: absolute;
+  top: 5px;
+  background-color: #689737;
+  height: 28px;
+  width: 28px;
+  border-radius: 40px;
+  text-align: center;
+  font-size: 16px;
+  align-items: center;
+  vertical-align: bottom;
+  padding-top: 1px;
+  margin-left: 13px;
+  border: 1px solid #689737;
+}
+.logo {
+  font-size: 26px;
+  margin: 8px !important;
+  letter-spacing: 2px;
+}
+.add-block {
+  margin-top: 14%;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.6);
+  /* box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1); */
+  font-weight: 600;
+  font-size: 13px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+.add-block span svg:nth-child(1) {
+  height: 20px;
+  width: 20px;
+  float: left;
+  margin-right: 2px;
+  margin-top: -1px;
+}
+.add-block span svg:nth-child(2) {
+  float: right;
+  /* font-size: 19px; */
+  height: 20px;
+  width: 20px;
+  /* margin-right: 2px; */
+  margin-top: -1px;
+}
+.address-modal {
+  position: fixed;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.inc-height-base {
+  height: 100%;
+}
+.add-modal-base {
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  height: 0;
+  padding: 10px;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+.increase-height {
+  height: 50%;
+}
+.add-modal-header span {
+  font-size: 18px;
+  font-weight: 600;
+}
+.add-modal-header p {
+  color: #808080;
+  font-size: 15px;
+  font-weight: 500;
+}
+.default-add {
+  width: 150px;
+  height: 150px;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #689737;
+  border-radius: 4px;
+  background: rgba(104, 151, 55, 0.2);
+}
+.default-add span {
+  font-size: 15px;
+  font-weight: 600;
+}
+.default-add p {
+  color: #808080;
+  font-weight: 500;
+}
+.manage-add-btn span a {
+  width: 150px;
+  height: 150px;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  display: block;
+  border-radius: 4px;
+  text-align: center;
+  padding-top: 50px;
+  font-size: 16px;
+}
+
+.custom-card {
+  background: #fff;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid rgba(204, 204, 204, 0.6);
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.custom-card-header span:nth-child(1) {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 5px;
+}
+.custom-card-header span a {
+  display: block;
+  font-size: 16px;
+  padding: 4px;
+}
+.custom-card-header {
+  display: inline-block;
+  width: 100%;
+}
+.dtl {
+  text-align: center;
+}
+.dtl > ul {
+  padding: 0px;
+  margin: 0px;
+}
+.dtl > ul > li {
+  display: inline-block;
+  // margin: 8px;
+}
+.dtl > ul > li > .leg {
+  display: inline-block;
+  margin-right: 15px;
+  height: 100px;
+  width: 100px;
+  border: 3px solid #ccc;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 60px;
+  border: 4px solid #808080;
+  color: #333;
+  font-size: 18px;
+}
+.dtl > ul > li:last-child > .leg {
+  margin-right: 0px;
+}
+.dtl > ul > li > .leg .justify-content-center {
+  margin: 0 auto;
+}
+.dtl > ul > li .ttl2 {
+  display: block;
+  width: 95px;
+  text-align: center;
+  margin-top: 10px;
+  color: #333;
+  font-weight: 500;
+}
+.senbtn a {
+  border: 1px solid #689737;
+  border-radius: 4px;
+  background: rgba(104, 151, 55, 0.2);
+  color: #333;
+  font-weight: 600;
+  padding: 10px;
+}
+.check-card {
+  background: #fff;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid rgba(204, 204, 204, 0.6);
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.check-card > ul {
+  padding: 0px;
+  margin: 0px;
+}
+.check-card > ul > li {
+  display: inline-block;
+}
+.check-card > .ttl {
+  font-size: 15px;
+  font-weight: 500;
+}
+.pro-base {
+  display: inline-block;
+  width: 100%;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.6);
+  background: #fff;
+}
+
+.pro-list > ul {
+  padding: 0px;
+  margin: 0px;
+}
+.pro-img {
+  height: 122px;
+  width: 100px;
+  padding: 8px;
+}
+.pro-img img {
+  width: 100%;
+  height: 100%;
+}
+.pro-content {
+  padding: 5px;
+  width: 70%;
+}
+.pro-content .price {
+  font-weight: 700;
+  font-size: 16px;
+}
+.pro-content .price .old {
+  color: #666;
+  text-decoration: line-through;
+  margin-left: 5px;
+  font-weight: 600;
+  font-size: 12px;
+}
+.pro-content .price > i {
+  font-size: 14px;
+  margin-right: 2px;
+}
+.title {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  height: 43px;
+}
+.unit {
+  color: #808080;
+  /* font-weight: 600; */
+  font-size: 14px;
+  margin-top: 5px;
+}
+.option {
+  display: inline-block;
+  width: 100%;
+}
+.option .btn-primary {
+  padding: 0px;
+  margin: 0px;
+}
+.option .btn-primary label {
+  margin-bottom: 0px;
+}
+.option > span:nth-child(2) a {
+  display: block;
+  background: #723f96;
+  color: #fff;
+  padding: 5px;
+  min-width: 70px;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 2px;
+}
+.pro-list > ul > li {
+  display: inline-block;
+  width: 100%;
+}
+.view-more-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  font-weight: 700;
+  color: #689737;
+  text-decoration: underline;
+}
+.view-more-btn svg {
+  float: right;
+  margin-top: 3px;
+  margin-left: 5px;
+  font-size: 17px;
+}
+.catlist > ul > li {
+  display: inline-block;
+  width: 50%;
+  height: 150px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.catlist > ul > li:nth-last-child(2) {
+  border-bottom: 0px;
+}
+.catlist > ul > li:last-child {
+  border-bottom: 0px;
+}
+.catlist > ul > li:nth-child(odd) {
+  border-right: 1px solid #ccc;
+}
+.catlist > ul > li img {
+  width: 100px;
+  height: 100px;
+}
+.catlist > ul > li span {
+  display: block;
+  font-weight: 700;
+}
+.hide {
+  display: none;
+}

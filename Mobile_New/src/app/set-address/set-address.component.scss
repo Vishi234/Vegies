@@ -1,0 +1,32 @@
+.add-search {
+  width: 80%;
+  margin: 9px !important;
+}
+.add-search input {
+  width: 100%;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 300;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8) !important;
+  margin-bottom: 0px;
+  padding: 5px !important;
+}
+input.e-input {
+  border-color: rgba(255, 255, 255, 0.8) !important;
+}
+.add-search input:focus {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+.add-search input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.gpsmarker {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+}
+.gpsmarker svg {
+  height: 20px;
+  width: 20px;
+  fill: rgba(255, 255, 255, 0.8);
+}
