@@ -20,8 +20,8 @@
             cssClass="e-info">
         </ejs-radiobutton>
     </div>
-    <ejs-grid [dataSource]='tabularData' #old *ngIf="custom" id="orderreport"  [allowPaging]='true' [allowSorting]='true'
-        [allowFiltering]='true' [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+    <ejs-grid [dataSource]='groupData' #old *ngIf="custom" id="orderreport"  [allowPaging]='true' [allowSorting]='true'
+        [allowFiltering]='true' [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='true' [toolbar]='toolbarOptions'  [groupSettings]="groupOptions" [allowPdfExport]='true' (toolbarClick)='toolbarClick($event)'>
         <e-columns>
             <e-column field='orderId' headerText='Order Id' width='140'></e-column>
             <e-column field='name' headerText='Product Name' width='130'></e-column>
@@ -30,7 +30,21 @@
             <e-column field='discount' headerText='Discount(%)' width='130'></e-column>
             <e-column field='newPrice' headerText='Selling Price' width='130'></e-column>
         </e-columns>
-
+        <!-- <e-aggregates>
+                <e-aggregate>
+                    <e-columns>
+                        <e-column field="oldPrice" type="sum">
+                            <ng-template #groupFooterTemplate let-data>MRP: {{data.sum}}</ng-template>
+                        </e-column>
+                        <e-column field="discount" type="Average">
+                                <ng-template #groupFooterTemplate let-data>Discount: {{data.Average}}%</ng-template>
+                            </e-column>
+                        <e-column field="newPrice" type="sum">
+                            <ng-template #groupFooterTemplate let-data>Price: {{data.sum}}</ng-template>
+                        </e-column>
+                    </e-columns>
+                </e-aggregate>
+            </e-aggregates> -->
     </ejs-grid>
     <div id="container" *ngIf="!custom"  class="graph"></div>
 </div>

@@ -4,7 +4,8 @@ import { dataBound } from '@syncfusion/ej2-grids';
 import { configList } from '../../dashboard/configList.service'
 import { LoginService } from '../../../login/login.service'
 import { setAddress } from '../../set-address/set-address.service'
-import { GridComponent, CommandModel, EditSettingsModel } from '@syncfusion/ej2-angular-grids'
+import { GridComponent, GroupSettingsModel, ToolbarItems } from '@syncfusion/ej2-angular-grids'
+import { ClickEventArgs } from '@syncfusion/ej2-angular-navigations';
 declare var require: any;
 import { ActivatedRoute } from '@angular/router'
 let Boost = require('highcharts/modules/boost');
@@ -35,6 +36,9 @@ export class OrderReportComponent implements OnInit {
   public tabularData: any = [];
   public monTabularData: any;
   public uniqueAddress: any;
+  public groupData: any = [];
+  public toolbarOptions: ToolbarItems[];
+  public groupOptions: GroupSettingsModel = { showDropArea: false, columns: ['orderId'] };
   @ViewChild('old', { static: false }) public grid: GridComponent;
   public options: any = {
     chart: {
@@ -82,6 +86,7 @@ export class OrderReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.toolbarOptions = ['PdfExport'];
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: true, pageSize: 10 };
     //setTimeout((x) => {
@@ -92,7 +97,7 @@ export class OrderReportComponent implements OnInit {
         this.data = res;
         var currentDate = new Date().toString().split(" ")[1] + "-" + new Date().toString().split(" ")[3]
         console.log("original data", this.data, "current", currentDate)
-        
+
         console.log("tabiu", this.tabularData)
         this.grid.refresh();
         this.uniqueAddress = [...new Set(this.data.map(item => item.bookingDate))];
@@ -111,14 +116,23 @@ export class OrderReportComponent implements OnInit {
           })
         })
 
-        // this.vendorOrders.filter((da) => {
-        //   var date = new Date(da.bookingDate);
-        //   var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
-        //   if (monYear == currentDate) {
-        //     this.tabularData.push(da);
-        //   }
-        // })
+        //Added for group start
+        this.data.map((add) => {
+          this.vendorAddress.map((ord) => {
+            if (ord._id == add.address) {
+              add.address = ord.address
+            }
+          })
+        })
 
+        this.data.filter((da) => {
+          var date = new Date(da.bookingDate);
+          var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
+          if (monYear == currentDate) {
+            this.groupData.push(da);
+          }
+        })
+        //end
         this.vendorOrders.map((x: any) => {
           var d1 = new Date(x.bookingDate);
           var d2 = (d1.toString().split(" ")[2] + "-" + d1.toString().split(" ")[1] + "-" + d1.toString().split(" ")[3])
@@ -156,6 +170,14 @@ export class OrderReportComponent implements OnInit {
 
     // }, 1000);
   }
+
+  toolbarClick(args: ClickEventArgs): void {
+    console.log("argsargs",args.item,"valuessssssss",this.grid)
+    if (args.item.id === 'orderreport_pdfexport') { // 'Grid_pdfexport' -> Grid component id + _ + toolbar item name
+    console.log("jjjjjjjjjjsssssss")  
+    this.grid.pdfExport();
+    }
+  }
   search(nameKey, myArray) {
     var mrpPrice = 0;
     var actPrice = 0;
@@ -187,12 +209,19 @@ export class OrderReportComponent implements OnInit {
     var startDate = date.toString().split(",")[0];
     var endDate = date.toString().split(",")[1];
     this.monthlyReportData = [];
-    this.tabularData = []
+    //this.tabularData = []
+    this.groupData = []
     if (this.custom) {
-      this.vendorOrders.filter((key) => {
-        console.log(new Date(key.bookingDate), new Date(startDate), "hi", new Date(key.bookingDate), new Date(endDate));
+      // this.vendorOrders.filter((key) => {
+      //   if (new Date(key.bookingDate) >= new Date(startDate) && new Date(key.bookingDate) <= new Date(endDate)) {
+      //     this.tabularData.push(key);
+      //     this.grid.refresh();
+      //   }
+      // })
+      this.data.filter((key) => {
         if (new Date(key.bookingDate) >= new Date(startDate) && new Date(key.bookingDate) <= new Date(endDate)) {
-          this.tabularData.push(key);
+          //this.tabularData.push(key);
+          this.groupData.push(key);
           this.grid.refresh();
         }
       })

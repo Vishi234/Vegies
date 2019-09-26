@@ -46,7 +46,21 @@
             <e-column field='discount' headerText='Discount(%)' width='150'></e-column>
             <e-column field='newPrice' headerText='Actual Price(Rs)' width='180'></e-column>
         </e-columns>
-       
+        <!-- <e-aggregates>
+                <e-aggregate>
+                    <e-columns>
+                        <e-column field="oldPrice" type="sum" width=300>
+                            <ng-template #footerTemplate let-data2>Price: {{data2.sum}}</ng-template>
+                        </e-column>
+                        <e-column field="discount" type="Average">
+                            <ng-template #footerTemplate let-data1>Discount: {{data1.Average}}</ng-template>
+                        </e-column>
+                        <e-column field="newPrice" type="sum">
+                            <ng-template #footerTemplate let-data1>Price: {{data1.sum}}</ng-template>
+                        </e-column>
+                    </e-columns>
+                </e-aggregate>
+            </e-aggregates> -->
     </ejs-grid>
 </div>
 
