@@ -102,7 +102,7 @@
                                     <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
                                       <form #form action="http://localhost:8084/api/admin/product/images" enctype="multipart/form-data"
                                         method="POST" target="dummyframe">
-                                        <input type="file" name="imageUrl"  id="imageUrl"  multiple />
+                                        <input type="file" [(ngModel)]='testImage' name="imageUrl"  id="imageUrl"  multiple />
                                         <input type="submit" (click)="form.submit()"  class="btn btn-primary" value="Upload" />  
                                     </form>
                                 </td>                

@@ -1,5 +1,5 @@
 ///<reference types="@types/googlemaps" />
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,Inject } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
@@ -11,6 +11,7 @@ import { AppGlobals } from '../../app.global';
 import { Router } from '@angular/router'
 import { ToastrService } from 'ngx-toastr'
 import { configList } from '../dashboard/configList.service'
+import { MAT_DIALOG_DATA } from '@angular/material';
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -39,13 +40,9 @@ export class ConfigurationComponent implements OnInit {
   filterSubCategory: Array<any> = [];
   public fields: Object = { text: 'subCatName', value: '_id' };
   @ViewChild('select', { static: true }) select;
-  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router: Router, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard, private _global: AppGlobals, private _toastr: ToastrService) {
-
-    this._login.user()
-      .subscribe(
-        data => this.currentLogged = data
-
-      )
+  constructor(public dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data: any, private _formBuilder: FormBuilder, private router: Router, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard, private _global: AppGlobals, private _toastr: ToastrService) {
+    this.currentLogged = this.data
+    console.log("currentLoggedcurrentLogged",this.currentLogged)
   }
 
   inreaseHeight() {
@@ -53,7 +50,6 @@ export class ConfigurationComponent implements OnInit {
 
   }
   onValChange(lbl, value) {
-    console.log("daaaaa111111", value.length)
     if (value.length > 0) {
       document.getElementById("lblName" + lbl).innerHTML = "Selected";
       this.selectedPro.push(this.getProductById(lbl));
@@ -95,6 +91,9 @@ export class ConfigurationComponent implements OnInit {
   ngOnInit() {
 
     this._vendorDetails.GetProductList().subscribe((response) => {
+     // if(response.status==401){
+        //this.router.navigate(['/login']);
+      //}else{
       Object.entries(response).forEach(
         ([key, value]) => {
           this.items.push({
@@ -104,6 +103,7 @@ export class ConfigurationComponent implements OnInit {
         }
       );
       this.filterItems = this.items
+    //  }
     }, (error) => {
       console.log('error is ', error)
     });
@@ -119,6 +119,7 @@ export class ConfigurationComponent implements OnInit {
     this.longitude = 13.404954;
     this.setCurrentPosition();
     this._vendorDetails.GetSubCategoryList().subscribe((response) => {
+      console.log("333333333333333",response)
       Object.entries(response).forEach(
         ([key, value]) => {
           this.subCatList.push(value)
@@ -181,6 +182,7 @@ export class ConfigurationComponent implements OnInit {
     }
   }
   closeModal() {
+    console.log("hiiiiiiii");
     this.dialog.closeAll();
   }
 }

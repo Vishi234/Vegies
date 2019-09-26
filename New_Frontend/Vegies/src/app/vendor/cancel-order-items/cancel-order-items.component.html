@@ -1,0 +1,46 @@
+<div class="content-ttl">
+        <div class="panel-name">
+            <span><i class="fas fa-tachometer-alt"></i></span>
+            <span>
+               Canceled Order Items
+                <p>Content section goes here</p>
+            </span>
+        </div>
+        <div class="panel-filter">
+            <!-- <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
+                [endDate]='end'>
+            </ejs-daterangepicker> -->
+        </div>
+    </div>
+    <div class="item-grid pt-4">
+        <div class="grid-head mb-2">
+            <ul>
+                <li>
+                    Order Number : <span>{{orderSummary[0].orderId}}</span>
+                </li>
+                <li>
+                    Cancel Ordered Date : <span>{{orderDate | date:'dd-MMM-yyyy'}}</span>
+                </li>
+                <li>
+                    Status : <span class="text-danger status pull-right">Closed</span>
+                </li>
+            </ul>
+        </div>
+        <ejs-grid [dataSource]='orderSummary' id="checklistGrid" #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+            [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+            <e-columns>
+                <e-column field='name' headerText='Product Name' width='250'></e-column>
+                <e-column field='Qnty' headerText='Quantity' width='130'>
+                
+                </e-column>
+                <e-column field='unitMeasure' headerText="Unit Measure" textAlign='center' width='160'></e-column>
+                <e-column field='oldPrice'  headerText='MRP(Rs)' width='150' >
+                    <ng-template #template let-calcOldPrice>
+                        <span id="old">{{calcOldPrice.oldPrice}}</span>
+                    </ng-template>
+                </e-column>
+                <e-column field='discount' headerText='Discount(%)' width='150'></e-column>
+                <e-column field='newPrice'  headerText='Actual Price(Rs)' width='180'></e-column>
+            </e-columns>
+        </ejs-grid>
+    </div>

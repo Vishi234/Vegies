@@ -9,9 +9,12 @@
     <div class="panel-filter">
         <div class="btn-group">
             <button mat-button class="btn btn-info" routerLink='/products'>Add Item</button>
-            <button mat-button class="btn btn-primary" (click)="sendRequirement()">Send Requirement</button>
-            <button mat-button class="btn btn-deep-orange" (click)="openScheduler();">Set Scheduler</button>
-            <button mat-button class="btn btn-danger" (click)="removeProduct($event)">Remove Items</button>
+            <button mat-button class="btn btn-primary" [disabled]="!data.length" (click)="sendRequirement()">Send
+                Requirement</button>
+            <button mat-button class="btn btn-deep-orange" [disabled]="!data.length" (click)="openScheduler();">Set
+                Scheduler</button>
+            <button mat-button class="btn btn-danger" [disabled]="!data.length" (click)="removeProduct($event)">Remove
+                Items</button>
         </div>
         <!-- <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
             [endDate]='end'>
@@ -23,29 +26,43 @@
 
 
 <div class="checklistgrid pt-4">
-    <ejs-grid [dataSource]='data' id="checklistGrid" #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
-        [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
+    <ejs-grid [dataSource]='data' id="checklistGrid" #old [allowPaging]='true' [allowSorting]='true'
+        [allowFiltering]='true' [filterSettings]='filterSettings' [selectionSettings]='selectionOptions' [pageSettings]='pageSettings' [allowGrouping]='false'>
         <e-columns>
-            <e-column type='checkbox' [allowFiltering]='false' [allowSorting]='false' width='60'>
+            <e-column type='checkbox' [allowFiltering]='false' checkboxOnly='true' [allowSorting]='false' width='60'>
             </e-column>
             <e-column field='name' headerText='Product Name' width='250'></e-column>
             <e-column field='Qnty' headerText='Quantity' width='130'>
                 <ng-template #template let-clientData>
-                    <input type="text" [value]="clientData.Qnty" class="e-input" (change)="onChange($event)"/>
+                    <input type="text" [value]="clientData.Qnty" class="e-input" (change)="onChange($event)" />
                 </ng-template>
             </e-column>
             <e-column field='unitMeasure' headerText="Unit Measure" textAlign='center' width='160'></e-column>
-            <e-column field='oldPrice'  headerText='MRP(Rs)' width='150' >
+            <e-column field='oldPrice' headerText='MRP(Rs)' width='150'>
                 <ng-template #template let-calcOldPrice>
                     <span id="old">{{calcOldPrice.oldPrice}}</span>
                 </ng-template>
             </e-column>
             <e-column field='discount' headerText='Discount(%)' width='150'></e-column>
-            <e-column field='newPrice'  headerText='Actual Price(Rs)' width='180'></e-column>
+            <e-column field='newPrice' headerText='Actual Price(Rs)' width='180'></e-column>
         </e-columns>
+        <!-- <e-aggregates>
+                <e-aggregate>
+                    <e-columns>
+                        <e-column field="oldPrice" type="sum" width=300>
+                            <ng-template #footerTemplate let-data2>Price: {{data2.sum}}</ng-template>
+                        </e-column>
+                        <e-column field="discount" type="Average">
+                            <ng-template #footerTemplate let-data1>Discount: {{data1.Average}}</ng-template>
+                        </e-column>
+                        <e-column field="newPrice" type="sum">
+                            <ng-template #footerTemplate let-data1>Price: {{data1.sum}}</ng-template>
+                        </e-column>
+                    </e-columns>
+                </e-aggregate>
+            </e-aggregates> -->
     </ejs-grid>
 </div>
 
 
 <!-- <div id="myModal" class="modal modalbase"> -->
-

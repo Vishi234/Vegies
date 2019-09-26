@@ -3,6 +3,8 @@ import { configList } from '../dashboard/configList.service'
 import { ToastrService } from 'ngx-toastr'
 import { LoginService } from '../../login/login.service'
 import { setAddress } from '../set-address/set-address.service'
+import { ActivatedRoute } from '@angular/router'
+
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
@@ -13,25 +15,19 @@ export class MyOrdersComponent implements OnInit {
   public data: any;
   public vendorOrders: any
   public vendorAddress: any
-  constructor(private _configList: configList, private _toastr: ToastrService, private _setAddress: setAddress, private _login: LoginService) {
-    this._login.user().subscribe(result => {
-      this.userDetails = result;
-      error => console.log("Error is", error);
-    })
+  public currentDate:any;
+  public orderDate:any;
+  constructor(private _configList: configList, private _toastr: ToastrService, private _setAddress: setAddress, private _login: LoginService, private route: ActivatedRoute) {
+    this.userDetails = this.route.snapshot.data['userData'];
+    this._setAddress.getAddressList(this.userDetails).subscribe((response) => {
+      this.vendorAddress = response;
+    }, (error) => {
+      console.log('error is ', error)
+    });
   }
 
   ngOnInit() {
-    setTimeout((x) => {
-      this._setAddress.getAddressList(this.userDetails).subscribe((response) => {
-        this.vendorAddress = response;
-        console.log("objjjjj3344", this.vendorAddress)
-      }, (error) => {
-        console.log('error is ', error)
-      });
-    }, 1000)
 
-
-    setTimeout(() => {
       this._configList.getOrderList(this.userDetails).subscribe((response) => {
         this.data = response;
         var obj = [];
@@ -61,6 +57,7 @@ export class MyOrdersComponent implements OnInit {
           test[test.length - 1]["count"] = test.length
           return test[test.length - 1];
         });
+        this.currentDate= new Date();
         this.vendorOrders.map((add) => {
           this.vendorAddress.map((ord) => {
             if (ord._id == add.address) {
@@ -68,13 +65,25 @@ export class MyOrdersComponent implements OnInit {
               //z= ord;//[...new Set(this.data.map(ord))];
             }
           })
-        })
-        console.log("objjjjj11", this.vendorOrders)
+          add.active=(Number(((new Date(add.bookingDate)).toISOString().split('T')[0]).replace(/-/g,''))>=Number(((new Date()).toISOString().split('T')[0]).replace(/-/g,'')))
+        })  
+        //this.vendorOrders=this.vendorOrders.slice(Math.max(this.vendorOrders.length - 8, 1))
+        this.vendorOrders=this.vendorOrders.length>9?this.vendorOrders.slice(Math.max(this.vendorOrders.length - 8, 1)):this.vendorOrders
+        console.log("vendororderssss",this.vendorOrders,"lengthhh",this.vendorOrders.length) 
       }, (error) => {
         console.log('error is ', error)
       });
-    }, 1000);
+    //}, 1000);
+  }
 
+  cancelOrder(orderId){
+  console.log("orderID is _configList",orderId)
+  this._configList.cancelOrder(orderId).subscribe((res: any) => {
+    this._toastr.success(res.status)
+    this.ngOnInit();
+  }, (error) => {
+    console.log('error is ', error)
+  });
   }
 
 

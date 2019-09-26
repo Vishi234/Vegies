@@ -32,8 +32,10 @@ export class NewProductComponent implements OnInit {
   public stateObj: DropDownList;
   public actPrice="";public imageUrl="";
   public ActiveDDL:any;
+  public testImage:any;
 
   @ViewChild('form', { static: true }) public form;
+
   constructor(public dialog: MatDialog, private _adminCategory: AdminCategoryService, private _router: Router,private _toastr: ToastrService) { }
 
   ngOnInit() {
@@ -146,25 +148,6 @@ export class NewProductComponent implements OnInit {
     }
     };
 
-
-  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
  
  
   }
@@ -200,12 +183,14 @@ export class NewProductComponent implements OnInit {
     {
         this.orderForm = this.createFormGroup(args.rowData);
     }
+    debugger;
+    var imgName=this.testImage;
+    var lastIndex=imgName.lastIndexOf("\\");
+    this.orderForm.value.imageUrl=imgName.substr(lastIndex+1,imgName.length);
+    this.orderForm.value.actualPrice=(this.actPrice)?this.actPrice:0;
+
     if(args.action=='add')
     {      
-      debugger;
-      this.orderForm.value.imageUrl=  this.imageUrl;
-      this.orderForm.value.imageUrl=(this.orderForm.value.imageUrl)||'testImage';
-      this.orderForm.value.actualPrice=(this.actPrice)?this.actPrice:0;
        args.data = this.orderForm.value;
             console.log("daaaa",args.data)    
             this._adminCategory.AddProduct(args.data).subscribe(response => {

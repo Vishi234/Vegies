@@ -8,7 +8,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
 import { DateRangePickerModule, DatePickerModule } from '@syncfusion/ej2-angular-calendars';
-import { GridModule, EditService, ToolbarService } from '@syncfusion/ej2-angular-grids';
+import { GridModule, EditService, ToolbarService,AggregateService,PdfExportService } from '@syncfusion/ej2-angular-grids';
 import { PageService, SortService, FilterService, GroupService, FreezeService, SelectionService } from '@syncfusion/ej2-angular-grids';
 import { CheckBoxModule, SwitchModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons'
 import { DropDownListModule, AutoCompleteModule } from '@syncfusion/ej2-angular-dropdowns';
@@ -60,6 +60,11 @@ import { UserChecklistComponent } from './admin/users/user-checklist/user-checkl
 import { UserOrdersComponent } from './admin/users/user-orders/user-orders.component';
 import { OrderDetailsComponent } from './admin/users/order-details/order-details.component';
 import { productListResolver } from './vendor/product-list/product-list-resolver.service';
+import { BnNgIdleService } from 'bn-ng-idle'; // import bn-ng-idle service
+import {CookieService} from 'ngx-cookie-service';
+import { detailsListResolver } from './vendor/dashboard/details-list-resolver.service';
+import { CancelOrdersComponent } from './vendor/cancel-orders/cancel-orders.component';
+import { CancelOrderItemsComponent } from './vendor/cancel-order-items/cancel-order-items.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +99,9 @@ import { productListResolver } from './vendor/product-list/product-list-resolver
     UserListComponent,
     UserChecklistComponent,
     UserOrdersComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    CancelOrdersComponent,
+    CancelOrderItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -148,7 +155,7 @@ import { productListResolver } from './vendor/product-list/product-list-resolver
       useClass: TokenInterceptorService,
       multi: true
     },
-    AppGlobals, DatePipe,productListResolver],
+    AppGlobals, DatePipe,productListResolver,BnNgIdleService,CookieService,detailsListResolver,AggregateService,PdfExportService],
   bootstrap: [AppComponent],
   entryComponents: [ForgotPasswordComponent, ChangePasswordComponent,
     ConfigurationComponent, SetSchedulerComponent, NewCategoryComponent, SetAddressComponent, PreviewChecklistComponent, NewSubcategoryComponent,

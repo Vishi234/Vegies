@@ -20,81 +20,92 @@ export class DashboardComponent implements OnInit {
   public subCatList: Array<any> = [];
   public currentLogged: any;
   public userDetails: any;
-  public configDataCount:any;
-  public monthlyOrderCount:any;
-  public monthlyData:any=[];
-  public finalData:any;
+  public configDataCount: any;
+  public monthlyOrderCount: any;
+  public monthlyData: any = [];
+  public finalData: any;
+  public configData:any;
   items: Array<any> = [];
-  public monthlyExpenCount=0;
+  public monthlyExpenCount = 0;
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private _vendorDetails: AdminCategoryService, public _configList: configList, public _login: LoginService) {
-    this.userDetails=this.route.snapshot.data['userData'];
+    this.userDetails = this.route.snapshot.data['userData'];
+    var da = this.route.snapshot.data['list'];
+    
   }
   ngOnInit() {
-    //setTimeout(() => {
-      this._configList.getOrderList(this.userDetails).subscribe((response) => {
-        this.data = response;
-        var currentDate = new Date().toString().split(" ")[1] + "-" + new Date().toString().split(" ")[3]
-        this.data.filter((da) => {
-          var date = new Date(da.bookingDate);
-        })
-        var obj = [];
-        const unique = [...new Set(this.data.map(item => item.bookingDate))];
-        function search(nameKey, myArray) {
-          var mrpPrice = 0;
-          var actPrice = 0;
-          var perAvg = 0;
-          obj = [];
-          for (var i = 0; i < myArray.length; i++) {
-            if (myArray[i].bookingDate === nameKey) {
-              mrpPrice = mrpPrice + Number(myArray[i].oldPrice);
-              actPrice = actPrice + Number(myArray[i].newPrice);
-              perAvg = perAvg + Number(myArray[i].discount);
-              myArray[i].oldPrice = Number(mrpPrice).toFixed(2);
-              myArray[i].newPrice = Number(actPrice).toFixed(2);
-              myArray[i].discount = Number(perAvg).toFixed(2)
-              obj.push(myArray[i]);
-            }
+    this._configList.getOrderList(this.userDetails).subscribe((response) => {
+      this.data = response;
+      var currentDate = new Date().toString().split(" ")[1] + "-" + new Date().toString().split(" ")[3]
+      this.data.filter((da) => {
+        var date = new Date(da.bookingDate);
+      })
+      var obj = [];
+      const unique = [...new Set(this.data.map(item => item.bookingDate))];
+      function search(nameKey, myArray) {
+        var mrpPrice = 0;
+        var actPrice = 0;
+        var perAvg = 0;
+        obj = [];
+        for (var i = 0; i < myArray.length; i++) {
+          if (myArray[i].bookingDate === nameKey) {
+            mrpPrice = mrpPrice + Number(myArray[i].oldPrice);
+            actPrice = actPrice + Number(myArray[i].newPrice);
+            perAvg = perAvg + Number(myArray[i].discount);
+            myArray[i].oldPrice = Number(mrpPrice).toFixed(2);
+            myArray[i].newPrice = Number(actPrice).toFixed(2);
+            myArray[i].discount = Number(perAvg).toFixed(2)
+            obj.push(myArray[i]);
           }
-          return obj;
         }
-        this.finalData = unique.map((x) => {
-          var test = search(x, this.data);
-          var cnt = test[test.length - 1]["discount"] / test.length
-          test[test.length - 1]["discount"] = Number(cnt).toFixed(2)
-          test[test.length - 1]["count"] = test.length
-          return test[test.length - 1];
-        });
+        return obj;
+      }
+      this.finalData = unique.map((x) => {
+        var test = search(x, this.data);
+        var cnt = test[test.length - 1]["discount"] / test.length
+        test[test.length - 1]["discount"] = Number(cnt).toFixed(2)
+        test[test.length - 1]["count"] = test.length
+        return test[test.length - 1];
+      });
 
-        this.finalData.filter((da) => {
-          var date = new Date(da.bookingDate);
-          var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
-          if (monYear == currentDate) {
-            this.monthlyData.push(da);
-          }
-        })
-        console.log("monthly dataaaaaaaa",this.finalData)
-        console.log("monthly dataaaaaaaa11",this.monthlyData)
-        var expenseSum=0;
-        this.monthlyData.map((monthly)=>{
-          expenseSum=expenseSum+Number(monthly.newPrice);
-        })
-        var daysCount=new Date(new Date().getMonth() + 1,new Date().getFullYear(),0).getDate();
-        this.monthlyExpenCount=Number(parseFloat((expenseSum/Number(daysCount)).toString()).toFixed(2));
-        this.monthlyOrderCount=parseFloat((this.monthlyData.length/Number(daysCount)).toString()).toFixed(2);       
-      }, (error) => {
-        console.log('error is ', error)
-      });
-      
+      this.finalData.filter((da) => {
+        var date = new Date(da.bookingDate);
+        var monYear = (date.toString().split(" ")[1] + "-" + date.toString().split(" ")[3])
+        if (monYear == currentDate) {
+          this.monthlyData.push(da);
+        }
+      })
+      console.log("monthly dataaaaaaaa", this.finalData)
+      console.log("monthly dataaaaaaaa11", this.monthlyData)
+      var expenseSum = 0;
+      this.monthlyData.map((monthly) => {
+        expenseSum = expenseSum + Number(monthly.newPrice);
+      })
+      var daysCount = new Date(new Date().getMonth() + 1, new Date().getFullYear(), 0).getDate();
+      this.monthlyExpenCount = Number(parseFloat((expenseSum / Number(daysCount)).toString()).toFixed(2));
+      this.monthlyOrderCount = (parseFloat((this.monthlyData.length / Number(daysCount)).toString()).toFixed(2)) ? parseFloat((this.monthlyData.length / Number(daysCount)).toString()).toFixed(2) : "0";
+
+
       this._configList.getProductList(this.userDetails).subscribe((response) => {
-        this.data = response;
-        this.configDataCount=this.data.length<10?"0"+this.data.length:this.data.length;
-        if (this.data.length <= 0) {
-          this.dialog.open(ConfigurationComponent, { disableClose: true });
+        console.log('error is ')
+        this.configData = response;
+        this.configDataCount = (!this.configData) ? "0" : this.configData.length < 10 ? "0" + this.configData.length : this.configData.length;
+        console.log("this.data.length is", this.configData.length)
+        if (this.configData.length <= 0) {
+          this.dialog.open(ConfigurationComponent, {
+            disableClose: true, data: {
+              "userDetails": this.userDetails
+            }
+          });
         }
       }, (error) => {
         console.log('error is ', error)
       });
-   // }, 1000);
+     
+
+    }, (error) => {
+      console.log('error is ', error)
+    });
+
 
     this.filterSettings = { type: 'Menu' };
     this.pageSettings = { pageSizes: false, pageSize: 5 };

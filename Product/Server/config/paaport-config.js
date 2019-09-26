@@ -33,6 +33,6 @@ passport.serializeUser(function(user, done) {
 
   module.exports= function isValidUser(req,res,next){
       if(req.isAuthenticated()) next()
-      else res.status(401).json({msg:'Unauthorized request'})
+      else res.redirect('/login');// res.status(401).json({msg:'Unauthorized request'})
   }
   

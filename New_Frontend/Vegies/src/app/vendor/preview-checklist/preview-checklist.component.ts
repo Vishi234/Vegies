@@ -14,20 +14,16 @@ import { ToastrService } from 'ngx-toastr'
   styleUrls: ['./preview-checklist.component.scss']
 })
 export class PreviewChecklistComponent implements OnInit {
-@Input() addressData:any
+@Input() addressData:any;
   public myCheckList: any;
   public userDetails: any;
   public uniqueAddress:any;
   public vendorAddress:any;
+  public isConfigureAddress:any;
   public fields: Object = { text: 'address', value: '_id' };
   @ViewChild('address', { static: true }) public grid;
   @ViewChild('select', { static: true }) select;
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any,private _setAddress:setAddress, private _login: LoginService,private _formBuilder: FormBuilder, private _configList: configList,private _toastr:ToastrService) { 
-    this._login.user().subscribe(result => {
-      this.userDetails = result;
-      error => console.log("Error is", error);
-    }
-    )
   }
   firstFormGroup: FormGroup;
   ngOnInit() {
@@ -35,21 +31,21 @@ export class PreviewChecklistComponent implements OnInit {
       firstCtrl: ['', Validators.required]
     });
     this.myCheckList = this.data.ChecklistData;
-    console.log("this.myCheckListthis.myCheckList",this.myCheckList);
-    setTimeout(() => {
+    this.userDetails=this.data.userDetails;
+
       var x=new Date();
-      console.log("fffff111", Number(x));
       this._setAddress.getAddressList(this.userDetails).subscribe((response) => {      
         this.vendorAddress = response;
         this.vendorAddress=this.vendorAddress.map((val: any) => {
           return ({  "address": val.address ,"_id":val._id})
         })
         this.select.refresh();
+        this.isConfigureAddress=this.vendorAddress.length>0?"Change":"Add"
         console.log("addssssssss1111",this.uniqueAddress);
       }, (error) => {
         console.log('error is ', error)
       });
-    }, 1000)
+  
 
   }
   closeModal() {
@@ -75,7 +71,8 @@ export class PreviewChecklistComponent implements OnInit {
     })
      console.log("finalDataa",this.myCheckList)
     this._configList.addProductList(this.myCheckList).subscribe((res) => {
-      this._toastr.success(res.status)
+      this._toastr.success(res.status);
+      this.dialog.closeAll();
     }, (error) => {
       console.log('error is ', error)
     })

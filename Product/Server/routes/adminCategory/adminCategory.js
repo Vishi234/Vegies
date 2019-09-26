@@ -68,25 +68,18 @@ module.exports = (function () {
             res.status(200).json({ status:'SuCategory data has been updated successfully'});
           })
     });
-
-
-
-
-    
     app.post("/product", function (req, res) 
 	{ 
-        let productData = req.body;
-        console.log('productData--',productData);
+        let productData = req.body;   
         productData.imageUrl=productData.catName+"/"+productData.imageUrl;
         console.log('productData--',productData);
 
         let productDataSave = new model.product(productData)
         productDataSave.save().then((items => 
 		{
-           // console.log()
             res.status(400).send("Product added successfully");
         })).catch(err => {
-            res.status(400).send("unable to save to database");
+            res.status(400).send("unable to save to database"+err);
         })
     });
     

@@ -90,7 +90,6 @@ export class UserOrdersComponent implements OnInit {
     //   }]
   }
   ViewOrderDetails(orderId:any) {
-    console.log("orderisssssssss",this.vendorOrders.address)
      var  dialogRef=this.dialog.open(OrderDetailsComponent, {
       disableClose: true, data: {
         "orderId": orderId,
