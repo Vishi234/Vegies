@@ -1,0 +1,52 @@
+.custom-card {
+  background: #fff;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid rgba(204, 204, 204, 0.6);
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.body > span:nth-child(1) {
+  font-size: 18px;
+  font-weight: 600;
+}
+.body > p {
+  margin: 0px;
+}
+.custom-card > span:nth-child(1) {
+  text-align: center;
+  display: block;
+  color: #808080;
+  margin-bottom: 10px;
+}
+.order-details > ul > li {
+  display: inline-block;
+  width: 100%;
+}
+.order-details > ul > li:nth-child(1) span {
+  font-weight: 600;
+  font-size: 14px;
+}
+.order-details > ul > li > span {
+  font-size: 13px;
+  font-weight: 500;
+}
+.proceed-btn {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+.proceed-btn span {
+  background: #689737;
+  color: #fff;
+  font-size: 15px;
+}
+.subtotal span:nth-child(1) {
+  font-size: 16px;
+  font-weight: 600;
+}
+.subtotal span:nth-child(2) {
+  font-size: 16px;
+  font-weight: 600;
+  color: #689737;
+}

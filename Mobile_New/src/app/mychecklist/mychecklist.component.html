@@ -1,0 +1,291 @@
+<div class="inner-body">
+    <div class="header">
+        <span class="pull-left">
+            <a routerLink="/dashboard">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </span>
+        <span class="pull-left">
+            My Checklist
+        </span>
+
+        <span class="pull-right cartbase" (click)="searchexpand();">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px" width="485.213px" height="485.213px" viewBox="0 0 485.213 485.213"
+                style="enable-background:new 0 0 485.213 485.213;" xml:space="preserve">
+                <g>
+                    <g>
+                        <path d="M363.909,181.955C363.909,81.473,282.44,0,181.956,0C81.474,0,0.001,81.473,0.001,181.955s81.473,181.951,181.955,181.951
+                       C282.44,363.906,363.909,282.437,363.909,181.955z M181.956,318.416c-75.252,0-136.465-61.208-136.465-136.46
+                       c0-75.252,61.213-136.465,136.465-136.465c75.25,0,136.468,61.213,136.468,136.465
+                       C318.424,257.208,257.206,318.416,181.956,318.416z" />
+                        <path d="M471.882,407.567L360.567,296.243c-16.586,25.795-38.536,47.734-64.331,64.321l111.324,111.324
+                       c17.772,17.768,46.587,17.768,64.321,0C489.654,454.149,489.654,425.334,471.882,407.567z" />
+                    </g>
+                </g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+                <g></g>
+            </svg>
+        </span>
+        <span class="pull-right cartbase">
+            <svg height="512pt" viewBox="0 -31 512.00026 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="m164.960938 300.003906h.023437c.019531 0 .039063-.003906.058594-.003906h271.957031c6.695312 0 12.582031-4.441406 14.421875-10.878906l60-210c1.292969-4.527344.386719-9.394532-2.445313-13.152344-2.835937-3.757812-7.269531-5.96875-11.976562-5.96875h-366.632812l-10.722657-48.253906c-1.527343-6.863282-7.613281-11.746094-14.644531-11.746094h-90c-8.285156 0-15 6.714844-15 15s6.714844 15 15 15h77.96875c1.898438 8.550781 51.3125 230.917969 54.15625 243.710938-15.941406 6.929687-27.125 22.824218-27.125 41.289062 0 24.8125 20.1875 45 45 45h272c8.285156 0 15-6.714844 15-15s-6.714844-15-15-15h-272c-8.269531 0-15-6.730469-15-15 0-8.257812 6.707031-14.976562 14.960938-14.996094zm312.152343-210.003906-51.429687 180h-248.652344l-40-180zm0 0" />
+                <path
+                    d="m150 405c0 24.8125 20.1875 45 45 45s45-20.1875 45-45-20.1875-45-45-45-45 20.1875-45 45zm45-15c8.269531 0 15 6.730469 15 15s-6.730469 15-15 15-15-6.730469-15-15 6.730469-15 15-15zm0 0" />
+                <path
+                    d="m362 405c0 24.8125 20.1875 45 45 45s45-20.1875 45-45-20.1875-45-45-45-45 20.1875-45 45zm45-15c8.269531 0 15 6.730469 15 15s-6.730469 15-15 15-15-6.730469-15-15 6.730469-15 15-15zm0 0" />
+            </svg>
+            <p class="count">2</p>
+        </span>
+        <span class="add-search">
+            <input type="text" #search class="e-input" placeholder="Type here to search..." />
+            <a href="javascript:void(0)" (click)="searchexpand();">
+                <i class="fas fa-times"></i>
+            </a>
+        </span>
+    </div>
+    <div class="body">
+        <div class="pro-list">
+            <ul>
+                <li>
+                    <div class="pro-base">
+                        <div class="pro-img pull-left d-flex">
+                            <img class="justify-content-center align-self-center" src="../../assets/Broccoli.jpg" />
+                        </div>
+                        <div class="pro-content pull-left">
+                            <span class="price">
+                                <i class="fas fa-rupee-sign"></i>400
+                                <span class="old"><i class="fas fa-rupee-sign"></i>500</span>
+                                <span class="badge badge-success ml-2"> 20% off</span>
+                            </span>
+                            <span class="title mt-2 mb-2">
+                                this is item name
+                            </span>
+                            <div class="option">
+                                <span class="unit pull-left"><a href="javascript:void(0)" class="btn btn-primary"
+                                        (click)="increment($event,'minus')">-</a>
+                                    <b id="unit">4</b> <a href="javascript:void(0)" class="btn btn-primary"
+                                        (click)="increment($event,'plus')">+</a></span>
+                                <span class="pull-right">
+                                    <mat-button-toggle-group multiple="true" class="btn btn-secondary"
+                                        appearance="legacy" (change)="onValChange(item.id,$event.value)"
+                                        name="fontStyle" aria-label="Font Style">
+                                        <mat-button-toggle value="0">
+                                            <label id="lblName1">
+                                                Select
+                                            </label>
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                    <!-- <a href="javascript:void(0)">Select</a> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pro-base">
+                        <div class="pro-img pull-left d-flex">
+                            <img class="justify-content-center align-self-center" src="../../assets/Broccoli.jpg" />
+                        </div>
+                        <div class="pro-content pull-left">
+                            <span class="price">
+                                <i class="fas fa-rupee-sign"></i>400
+                                <span class="old"><i class="fas fa-rupee-sign"></i>500</span>
+                                <span class="badge badge-success ml-2"> 20% off</span>
+                            </span>
+                            <span class="title mt-2 mb-2">
+                                this is item name
+                            </span>
+                            <div class="option">
+                                <span class="unit pull-left"><a href="javascript:void(0)" class="btn btn-primary"
+                                        (click)="increment($event,'minus')">-</a>
+                                    <b id="unit">4</b> <a href="javascript:void(0)" class="btn btn-primary"
+                                        (click)="increment($event,'plus')">+</a></span>
+                                <span class="pull-right">
+                                    <mat-button-toggle-group multiple="true" class="btn btn-secondary"
+                                        appearance="legacy" (change)="onValChange(item.id,$event.value)"
+                                        name="fontStyle" aria-label="Font Style">
+                                        <mat-button-toggle value="0">
+                                            <label id="lblName1">
+                                                Select
+                                            </label>
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                    <!-- <a href="javascript:void(0)">Select</a> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pro-base">
+                        <div class="pro-img pull-left d-flex">
+                            <img class="justify-content-center align-self-center" src="../../assets/Broccoli.jpg" />
+                        </div>
+                        <div class="pro-content pull-left">
+                            <span class="price">
+                                <i class="fas fa-rupee-sign"></i>400
+                                <span class="old"><i class="fas fa-rupee-sign"></i>500</span>
+                                <span class="badge badge-success ml-2"> 20% off</span>
+                            </span>
+                            <span class="title mt-2 mb-2">
+                                this is item name
+                            </span>
+                            <div class="option">
+                                <span class="unit pull-left"><a href="javascript:void(0)" class="btn btn-primary"
+                                        (click)="increment($event,'minus')">-</a>
+                                    <b id="unit">4</b> <a href="javascript:void(0)" class="btn btn-primary"
+                                        (click)="increment($event,'plus')">+</a></span>
+                                <span class="pull-right">
+                                    <mat-button-toggle-group multiple="true" class="btn btn-secondary"
+                                        appearance="legacy" (change)="onValChange(item.id,$event.value)"
+                                        name="fontStyle" aria-label="Font Style">
+                                        <mat-button-toggle value="0">
+                                            <label id="lblName1">
+                                                Select
+                                            </label>
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                    <!-- <a href="javascript:void(0)">Select</a> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pro-base">
+                        <div class="pro-img pull-left d-flex">
+                            <img class="justify-content-center align-self-center" src="../../assets/Broccoli.jpg" />
+                        </div>
+                        <div class="pro-content pull-left">
+                            <span class="price">
+                                <i class="fas fa-rupee-sign"></i>400
+                                <span class="old"><i class="fas fa-rupee-sign"></i>500</span>
+                                <span class="badge badge-success ml-2"> 20% off</span>
+                            </span>
+                            <span class="title mt-2 mb-2">
+                                this is item name
+                            </span>
+                            <div class="option">
+                                <span class="unit pull-left"><a href="javascript:void(0)" class="btn btn-primary"
+                                        (click)="increment($event,'minus')">-</a>
+                                    <b id="unit">4</b> <a href="javascript:void(0)" class="btn btn-primary"
+                                        (click)="increment($event,'plus')">+</a></span>
+                                <span class="pull-right">
+                                    <mat-button-toggle-group multiple="true" class="btn btn-secondary"
+                                        appearance="legacy" (change)="onValChange(item.id,$event.value)"
+                                        name="fontStyle" aria-label="Font Style">
+                                        <mat-button-toggle value="0">
+                                            <label id="lblName1">
+                                                Select
+                                            </label>
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                    <!-- <a href="javascript:void(0)">Select</a> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="sub-total">
+        <div class="total-base">
+            <div class="total-header" (click)="expandtotal();">
+                <span class="pull-left">
+                    Cart Subtotal(1 Item)
+                </span>
+                <span class="pull-right">
+                    <i class="fas fa-rupee-sign"></i> 3250
+                </span>
+            </div>
+            <div class="total-body">
+                <ul>
+                    <li>
+                        <span class="pull-left">
+                            <img src="assets/Broccoli.jpg" />
+                        </span>
+                        <span class="pull-left">
+                            <p>This is a product title</p>
+                            <p>4 Unit</p>
+                        </span>
+                        <span class="pull-right indprice"><i class="fas fa-rupee-sign"></i> 300</span>
+                    </li>
+                    <li>
+                        <span class="pull-left">
+                            <img src="assets/Broccoli.jpg" />
+                        </span>
+                        <span class="pull-left">
+                            <p>This is a product title</p>
+                            <p>4 Unit</p>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="pull-left">
+                            <img src="assets/Broccoli.jpg" />
+                        </span>
+                        <span class="pull-left">
+                            <p>This is a product title</p>
+                            <p>4 Unit</p>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="pull-left">
+                            <img src="assets/Broccoli.jpg" />
+                        </span>
+                        <span class="pull-left">
+                            <p>This is a product title</p>
+                            <p>4 Unit</p>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="pull-left">
+                            <img src="assets/Broccoli.jpg" />
+                        </span>
+                        <span class="pull-left">
+                            <p>This is a product title</p>
+                            <p>4 Unit</p>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="pull-left">
+                            <img src="assets/Broccoli.jpg" />
+                        </span>
+                        <span class="pull-left">
+                            <p>This is a product title</p>
+                            <p>4 Unit</p>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="pull-left">
+                            <img src="assets/Broccoli.jpg" />
+                        </span>
+                        <span class="pull-left">
+                            <p>This is a product title</p>
+                            <p>4 Unit</p>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="total-footer">
+                <span class="pull-left"><a href="javascript:void(0)">View Items</a></span>
+                <span class="pull-right"><a href="javascript:void(0)" routerLink="/itemdetails" class="btn btn-primary">Proceed to Send</a></span>
+            </div>
+        </div>
+    </div>
+</div>
