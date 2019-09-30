@@ -120,7 +120,7 @@
                         <div class="leg">
                             <div class="container d-flex h-100 ">
                                 <div class="row justify-content-center align-self-center">
-                                    245
+                                    {{configDataCount }}
                                 </div>
                             </div>
                         </div>
@@ -130,21 +130,21 @@
                         <div class="leg">
                             <div class="container d-flex h-100 ">
                                 <div class="row justify-content-center align-self-center">
-                                    245
+                                    {{monthlyOrderCount}}
                                 </div>
                             </div>
                         </div>
-                        <span class="ttl2">Total Checklist Items</span>
+                        <span class="ttl2">Monthly Order Items(Avg.)</span>
                     </li>
                     <li>
                         <div class="leg">
                             <div class="container d-flex h-100 ">
                                 <div class="row justify-content-center align-self-center">
-                                    245
+                                    {{monthlyExpenCount}}
                                 </div>
                             </div>
                         </div>
-                        <span class="ttl2">Total Checklist Items</span>
+                        <span class="ttl2">Total Monthly Expense(Avg.)</span>
                     </li>
                 </ul>
                 <div class="d-block mt-3 text-center mb-3 senbtn">
@@ -156,54 +156,22 @@
             <div class="d-block w-100 text-left ttl mb-1">Configured Checklist</div>
             <div class="pro-list">
                 <ul>
-                    <li>
+                    <li *ngFor='let config of configData'>
                         <div class="pro-base">
                             <div class="pro-img pull-left d-flex">
-                                <img class="justify-content-center align-self-center" src="../../assets/login-bg.jpg" />
+                                <img class="justify-content-center align-self-center" src={{config.image}}/>
                             </div>
                             <div class="pro-content pull-left">
                                 <span class="price">
-                                    <i class="fas fa-rupee-sign"></i>500
-                                    <span class="old"><i class="fas fa-rupee-sign"></i>320</span>
-                                    <span class="badge badge-success ml-2"> 20% off</span>
+                                    <i class="fas fa-rupee-sign"></i>{{config.newPrice}}
+                                    <span class="old"><i class="fas fa-rupee-sign"></i>{{config.oldPrice}}</span>
+                                    <span class="badge badge-success ml-2">{{config.discount}}% off</span>
                                 </span>
                                 <span class="title mt-1">
-                                    This is my product title
+                                    {{config.name}}
                                 </span>
                                 <div class="option">
-                                    <span class="unit pull-left">16 units</span>
-                                    <span class="pull-right">
-                                        <mat-button-toggle-group multiple="true" class="btn btn-secondary"
-                                            appearance="legacy" (change)="onValChange(item.id,$event.value)"
-                                            name="fontStyle" aria-label="Font Style">
-                                            <mat-button-toggle value="0">
-                                                <label id="lblName0">
-                                                    Select
-                                                </label>
-                                            </mat-button-toggle>
-                                        </mat-button-toggle-group>
-                                        <!-- <a href="javascript:void(0)">Select</a> -->
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pro-base">
-                            <div class="pro-img pull-left d-flex">
-                                <img class="justify-content-center align-self-center" src="../../assets/login-bg.jpg" />
-                            </div>
-                            <div class="pro-content pull-left">
-                                <span class="price">
-                                    <i class="fas fa-rupee-sign"></i>500
-                                    <span class="old"><i class="fas fa-rupee-sign"></i>320</span>
-                                    <span class="badge badge-success ml-2"> 20% off</span>
-                                </span>
-                                <span class="title mt-1">
-                                    This is my product title
-                                </span>
-                                <div class="option">
-                                    <span class="unit pull-left">16 units</span>
+                                    <span class="unit pull-left">1 {{config.unitMeasure}}</span>
                                     <span class="pull-right">
                                         <mat-button-toggle-group multiple="true" class="btn btn-secondary"
                                             appearance="legacy" (change)="onValChange(item.id,$event.value)"
