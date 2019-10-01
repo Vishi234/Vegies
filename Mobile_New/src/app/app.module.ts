@@ -34,6 +34,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { MychecklistComponent } from './mychecklist/mychecklist.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { OrderplacedComponent } from './orderplaced/orderplaced.component';
+import { detailsListResolver } from './dashboard/details-list-resolver.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +90,7 @@ import { OrderplacedComponent } from './orderplaced/orderplaced.component';
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
       multi: true
-    },AppGlobals, DatePipe
+    },AppGlobals, DatePipe,detailsListResolver
   ],
   bootstrap: [AppComponent]
 })

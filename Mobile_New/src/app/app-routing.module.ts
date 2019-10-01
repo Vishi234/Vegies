@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 import { MychecklistComponent } from './mychecklist/mychecklist.component'
 import { ItemDetailsComponent } from './item-details/item-details.component'
 import { OrderplacedComponent } from './orderplaced/orderplaced.component'
+import { detailsListResolver } from './dashboard/details-list-resolver.service';
 const routes: Routes = [
   { path: '', redirectTo: 'splash-screen', pathMatch: 'full', data: { animation: 'FilterPage' } },
   { path: 'splash-screen', component: SplashScreenComponent, data: { animation: 'FilterPage' } },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'forgot', component: ForgotPasswordComponent, data: { animation: 'FilterPage' } },
   { path: 'configuration', component: ConfigurationComponent, data: { animation: 'FilterPage' } },
   { path: 'address', component: SetAddressComponent, data: { animation: 'FilterPage' } },
-  { path: 'dashboard', component: DashboardComponent, data: { animation: 'FilterPage' } },
+  { path: 'dashboard', component: DashboardComponent, data: { animation: 'FilterPage' },
+    resolve:{userData:detailsListResolver} },
   { path: 'mychecklist', component: MychecklistComponent, data: { animation: 'FilterPage' } },
   { path: 'itemdetails', component: ItemDetailsComponent, data: { animation: 'FilterPage' } },
   { path: 'placed', component: OrderplacedComponent, data: { animation: 'FilterPage' } },
