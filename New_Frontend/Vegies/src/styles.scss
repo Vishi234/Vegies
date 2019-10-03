@@ -13,6 +13,12 @@ body {
 .btn {
   text-transform: none;
 }
+.btn-deep-orange {
+  background-color: #f54336 !important;
+}
+.btn-deep-orange:hover {
+  background-color: #da3928 !important;
+}
 img {
   height: 100%;
   min-width: 100%;
@@ -36,9 +42,8 @@ ul {
 ul li {
   list-style: none;
 }
-.highcharts-root
-{
-  font-family: inherit!important;
+.highcharts-root {
+  font-family: inherit !important;
 }
 .cdk-global-scrollblock {
   overflow-y: auto !important;
@@ -52,9 +57,8 @@ input:-webkit-autofill {
   background-color: #faffbd !important;
 }
 .mat-content-sec {
-  margin-top: 4%;
   background: #f4f4f4;
-  height: 93vh !important;
+  height: 100vh !important;
   overflow: auto !important;
 }
 .navbar {
@@ -101,7 +105,7 @@ input:-webkit-autofill {
 }
 
 .loginform .card {
-  background-color: rgba(36, 53, 92, 0.5);
+  background-color: rgba(22, 25, 30, 0.6);
   top: 10%;
   color: #fff !important;
 }
@@ -187,7 +191,7 @@ input:-webkit-autofill {
 .panel-name span:nth-child(1) {
   box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
     0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
-  background: #ff7043;
+  background: #f54336;
   padding: 8px;
   float: left;
   font-size: 16px;
@@ -276,7 +280,7 @@ input:-webkit-autofill {
 }
 .e-checkbox-wrapper .e-frame,
 .e-css.e-checkbox-wrapper .e-frame {
-  border-color: #ff7043 !important;
+  border-color: #f54336 !important;
   border: 1px solid !important;
   height: 15px !important;
   width: 15px !important;
@@ -284,7 +288,7 @@ input:-webkit-autofill {
 }
 .e-checkbox-wrapper .e-frame.e-check,
 .e-css.e-checkbox-wrapper .e-frame.e-check {
-  background-color: #ff7043 !important;
+  background-color: #f54336 !important;
 }
 .e-grid .e-rowcell {
   padding: 0px 21px !important;
@@ -310,21 +314,21 @@ input:-webkit-autofill {
 }
 .e-pager .e-currentitem,
 .e-pager .e-currentitem:hover {
-  background: #ff7043 !important;
+  background: #f54336 !important;
   padding: 7px !important;
   opacity: 1 !important;
 }
 .e-grid .e-icons {
-  color: #ff7043 !important;
+  color: #f54336 !important;
 }
 .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before {
-  background: #ff7043 !important;
+  background: #f54336 !important;
 }
 .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after {
-  background: #ff7043 !important;
+  background: #f54336 !important;
 }
 .e-input:focus:not(.e-success):not(.e-warning):not(.e-error) {
-  border-color: #ff7043 !important;
+  border-color: #f54336 !important;
 }
 @media (max-width: 544px) {
   .content-sec {
@@ -426,7 +430,7 @@ input:-webkit-autofill {
     height: 98vh !important;
   }
   .order-card {
-    width: 100%!important;
+    width: 100% !important;
   }
   .item-content .mat-button-toggle-label-content {
     line-height: 30px !important;
@@ -650,19 +654,15 @@ input:-webkit-autofill {
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 }
 @media only screen and (min-width: 1030px) and (max-width: 1366px) {
-  .order-card
-  {
-    width: 242px!important;
+  .order-card {
+    width: 242px !important;
   }
   .values-top > ul > li > a {
-    width: 232px!important;
+    width: 232px !important;
   }
-  .fixed-action {
-    width: 84% !important;
-    left: 16% !important;
-  }
+
   .content-sec {
-    padding-top: 2%;
+    padding-top: 5%;
   }
   // .items
   // {

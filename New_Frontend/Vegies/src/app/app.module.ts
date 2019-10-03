@@ -65,12 +65,15 @@ import {CookieService} from 'ngx-cookie-service';
 import { detailsListResolver } from './vendor/dashboard/details-list-resolver.service';
 import { CancelOrdersComponent } from './vendor/cancel-orders/cancel-orders.component';
 import { CancelOrderItemsComponent } from './vendor/cancel-order-items/cancel-order-items.component';
+import { LoadingComponent } from './loading/loading.component';
+import { LoadingInterceptor } from './loading/loading.interceptors';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ContainerComponent,
     HomeComponent,
+    LoadingComponent,
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
@@ -153,6 +156,11 @@ import { CancelOrderItemsComponent } from './vendor/cancel-order-items/cancel-or
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true
     },
     AppGlobals, DatePipe,productListResolver,BnNgIdleService,CookieService,detailsListResolver,AggregateService,PdfExportService],

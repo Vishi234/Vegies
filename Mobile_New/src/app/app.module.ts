@@ -34,6 +34,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { MychecklistComponent } from './mychecklist/mychecklist.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { OrderplacedComponent } from './orderplaced/orderplaced.component';
+import { ProductsComponent } from './products/products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { OrderplacedComponent } from './orderplaced/orderplaced.component';
     SideNavComponent,
     MychecklistComponent,
     ItemDetailsComponent,
-    OrderplacedComponent
+    OrderplacedComponent,
+    ProductsComponent
   ],
   imports: [
     ReactiveFormsModule,

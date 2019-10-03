@@ -28,14 +28,8 @@ import { detailsListResolver } from './vendor/dashboard/details-list-resolver.se
 import { CancelOrdersComponent } from './vendor/cancel-orders/cancel-orders.component';
 import { CancelOrderItemsComponent } from './vendor/cancel-order-items/cancel-order-items.component';
 const routes: Routes = [
-  {
-    path: '',
-    component: ContainerComponent,
-    children: [
-      { path: '', redirectTo: 'index', pathMatch: 'full'},
-      { path: 'index', component: HomeComponent },
-    ]
-  },
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: 'login', component: LoginComponent },
   {
     path: '',
     component: VendorContainerComponent,
@@ -133,7 +127,6 @@ const routes: Routes = [
     ]
   },
   { path: 'admin/login', component: AdminLoginComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin/category', component: CategoryComponent }
 

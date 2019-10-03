@@ -1,7 +1,15 @@
+.overlay {
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 @-webkit-keyframes autofill {
   to {
-      color: #fff;
-      background: transparent;
+    color: #fff;
+    background: transparent;
   }
 }
 
@@ -10,44 +18,43 @@ input:-webkit-autofill {
   -webkit-animation-fill-mode: both;
 }
 .login-base {
-    background-image: url("../../assets/img/bg.jpg");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  background-image: url(https://cdn.pixabay.com/photo/2015/09/21/14/24/supermarket-949913_960_720.jpg);
+  /* background-color: yellow; */
+  height: 100%;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.loginform {
+  display: block;
+  width: 25%;
+  margin: 0 auto;
+  padding-top: 10%;
+}
+.loginform a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 700 !important;
+  opacity: 0.7;
+}
+@media (max-width: 767px) {
   .loginform {
-    display: block;
+    width: 90%;
+    padding-top: 40%;
+  }
+  .login-base {
+    background-position: inherit;
+  }
+}
+
+@media (min-width: 992px) {
+  .loginform {
     width: 25%;
-    margin: 0 auto;
-    padding-top: 10%;
   }
-  .loginform a {
-    color: #fff;
-    text-decoration: underline;
-    font-weight: 700 !important;
-    opacity: 0.7;
-  }
-  @media (max-width: 767px) {
-    .loginform {
-      width: 90%;
-      padding-top: 40%;
-    }
-    .login-base
-    {
-      background-position: inherit;
-    }
-  }
-  
-  @media (min-width: 992px) {
-    .loginform {
-      width: 25%;
-    }
-  }
-  
-  // @media (min-width: 768px) {
-  //   .loginform {
-  //     width: 40%;
-  //   }
-  // }
-  
+}
+
+// @media (min-width: 768px) {
+//   .loginform {
+//     width: 40%;
+//   }
+// }

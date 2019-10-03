@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 import { MychecklistComponent } from './mychecklist/mychecklist.component'
 import { ItemDetailsComponent } from './item-details/item-details.component'
 import { OrderplacedComponent } from './orderplaced/orderplaced.component'
+import{ProductsComponent} from './products/products.component'
 const routes: Routes = [
   { path: '', redirectTo: 'splash-screen', pathMatch: 'full', data: { animation: 'FilterPage' } },
   { path: 'splash-screen', component: SplashScreenComponent, data: { animation: 'FilterPage' } },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'mychecklist', component: MychecklistComponent, data: { animation: 'FilterPage' } },
   { path: 'itemdetails', component: ItemDetailsComponent, data: { animation: 'FilterPage' } },
   { path: 'placed', component: OrderplacedComponent, data: { animation: 'FilterPage' } },
+  { path: 'products', component: ProductsComponent, data: { animation: 'FilterPage' } },
 ];
 
 @NgModule({
