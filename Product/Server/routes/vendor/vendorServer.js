@@ -61,6 +61,7 @@ async function addToDB(req, res) {
 }
 
 router.post("/auth", function (req, res,next) {
+    console.log("jjjjjjjjjjjjjjjj")
     passport.authenticate('local', function(err, user, info) {
         if (err) {return res.status(401).json(err) }
         if (!user) {console.log("value is ",info);  return res.status(201).json(info); }

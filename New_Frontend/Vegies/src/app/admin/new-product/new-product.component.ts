@@ -35,6 +35,7 @@ export class NewProductComponent implements OnInit {
   public testImage:any;
 
   @ViewChild('form', { static: true }) public form;
+  
 
   constructor(public dialog: MatDialog, private _adminCategory: AdminCategoryService, private _router: Router,private _toastr: ToastrService) { }
 
@@ -224,6 +225,9 @@ export class NewProductComponent implements OnInit {
     }
   }
 
+  submit(){
+    alert(12);
+  }
   onChangeDiscount(e)
   {
    debugger;
