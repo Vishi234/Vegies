@@ -1,0 +1,45 @@
+<div class="content-ttl">
+    <div class="panel-name">
+        <span><i class="fas fa-clipboard-list"></i></span>
+        <span>
+            Raise Ticket
+            <p>Content section goes here</p>
+        </span>
+    </div>
+    <div class="panel-filter">
+    </div>
+</div>
+<div class="ticket-base pt-2">
+    <div class="ticket-form">
+        <ul>
+            <li>
+                <label>Ticket Type</label>
+                <ejs-dropdownlist [dataSource]='vendorAddress' [fields]='fields' id='ddlelement' #select
+                    placeholder="Select Description" (change)="getAddress($event)" required>
+                </ejs-dropdownlist>
+            </li>
+            <li>
+                <label>Severity</label>
+                <ejs-dropdownlist [dataSource]='vendorAddress' [fields]='fields' id='ddlelement' #select
+                    placeholder="Select Severity" (change)="getAddress($event)" required>
+                </ejs-dropdownlist>
+            </li>
+            <li>
+                <label>Contact Medium</label>
+                <ejs-dropdownlist [dataSource]='vendorAddress' [fields]='fields' id='ddlelement' #select
+                    placeholder="Select Severity" (change)="getAddress($event)" required>
+                </ejs-dropdownlist>
+            </li>
+            <li>
+                <label>Problem (In Details)</label>
+                <textarea class="form-control w-100" rows="5" cols="10"></textarea>
+            </li>
+            <li>
+                <div class="btn-group d-block w-100 text-center">
+                    <button mdbBtn type="button" class="btn btn-deep-orange my-4 waves-effect z-depth-0" rounded="true"
+                        mdbWavesEffect>Raise Ticket</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

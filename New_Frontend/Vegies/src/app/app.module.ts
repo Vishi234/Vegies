@@ -67,6 +67,9 @@ import { CancelOrdersComponent } from './vendor/cancel-orders/cancel-orders.comp
 import { CancelOrderItemsComponent } from './vendor/cancel-order-items/cancel-order-items.component';
 import { LoadingComponent } from './loading/loading.component';
 import { LoadingInterceptor } from './loading/loading.interceptors';
+import { MyaccountComponent } from './vendor/my-account/myaccount.component';
+import { RaiseticketComponent } from './vendor/raiseticket/raiseticket.component';
+import { NotificationSettingComponent } from './vendor/notification-setting/notification-setting.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +107,10 @@ import { LoadingInterceptor } from './loading/loading.interceptors';
     UserOrdersComponent,
     OrderDetailsComponent,
     CancelOrdersComponent,
-    CancelOrderItemsComponent
+    CancelOrderItemsComponent,
+    MyaccountComponent,
+    RaiseticketComponent,
+    NotificationSettingComponent
   ],
   imports: [
     BrowserModule,

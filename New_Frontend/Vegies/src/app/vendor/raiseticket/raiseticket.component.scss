@@ -1,0 +1,13 @@
+.ticket-form {
+    width: 65%;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 40px;
+    border: 1px solid #ced4da;
+    background: #fff;
+}
+.ticket-form > ul > li {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+}

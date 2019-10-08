@@ -22,13 +22,16 @@ import { OrderItemsComponent } from './vendor/order-items/order-items.component'
 import { OrderReportComponent } from './vendor/reports/order-report/order-report.component'
 import { UserListComponent } from './admin/users/user-list/user-list.component'
 import { UserChecklistComponent } from './admin/users/user-checklist/user-checklist.component'
-import { UserOrdersComponent} from './admin/users/user-orders/user-orders.component'
+import { UserOrdersComponent } from './admin/users/user-orders/user-orders.component'
 import { productListResolver } from './vendor/product-list/product-list-resolver.service';
 import { detailsListResolver } from './vendor/dashboard/details-list-resolver.service';
 import { CancelOrdersComponent } from './vendor/cancel-orders/cancel-orders.component';
 import { CancelOrderItemsComponent } from './vendor/cancel-order-items/cancel-order-items.component';
+import { MyaccountComponent } from './vendor/my-account/myaccount.component'
+import { RaiseticketComponent } from './vendor/raiseticket/raiseticket.component'
+import { NotificationSettingComponent } from './vendor/notification-setting/notification-setting.component'
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: '',
@@ -36,32 +39,32 @@ const routes: Routes = [
     children: [
       {
         path: '', redirectTo: 'dashboard', pathMatch: 'full',
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard] 
       },
       {
         path: 'dashboard', component: DashboardComponent,
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
       },
       {
         path: 'products/:id', component: ProductListComponent,
-        resolve:{userData:productListResolver,list:detailsListResolver}
+        resolve: { userData: productListResolver, list: detailsListResolver }
         //,canActivate:[AuthGuard]
       },
       {
         path: 'products', component: ProductListComponent,
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
       },
       {
         path: 'mychecklist', component: MyChecklistComponent,
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
       },
       {
         path: 'orders', component: MyOrdersComponent,
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
       },
       {
@@ -70,18 +73,27 @@ const routes: Routes = [
       },
       {
         path: 'reports/order-report', component: OrderReportComponent,
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
       },
       {
         path: 'cancelorders', component: CancelOrdersComponent,
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
       },
       {
         path: 'cancelorders/items/:id', component: CancelOrderItemsComponent,
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'myaccount', component: MyaccountComponent
+      },
+      {
+        path: 'raiseticket', component: RaiseticketComponent
+      },
+      {
+        path: 'notificationsetting', component: NotificationSettingComponent
       },
     ]
   },
@@ -91,12 +103,12 @@ const routes: Routes = [
     children: [
       {
         path: '', redirectTo: 'admin/dashboard', pathMatch: 'full',
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard] 
       },
       {
         path: 'admin/dashboard', component: AdminDashboardComponent,
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
       },
       {
@@ -121,7 +133,7 @@ const routes: Routes = [
       },
       {
         path: 'admin/user-orders', component: UserOrdersComponent,
-        resolve:{userData:productListResolver}
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
       }
     ]
