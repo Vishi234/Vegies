@@ -23,11 +23,10 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-primary dropdown-menu-left">
-                            <a class="dropdown-item" href="#"><i class="fas fa-address-book"></i> My Account</a>
-                            <a class="dropdown-item" (click)="openChangeModal()"><i class="fas fa-key"></i>
-                                Change Password</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-sliders-h"></i> Setting</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-envelope"></i> Message</a>
+                            <a class="dropdown-item" routerLink="/myaccount"><i class="fas fa-user-circle"></i> My Account</a>
+                            <a class="dropdown-item" (click)="openChangeModal();"><i class="fas fa-key"></i> Change Password</a>
+                            <a class="dropdown-item" routerLink="/notificationsetting"><i class="fas fa-bell"></i> Notification Setting</a>
+                            <a class="dropdown-item" routerLink="/raiseticket"><i class="fas fa-ticket-alt"></i> Raise Ticket</a>
                             <a class="dropdown-item"  (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </div>
@@ -121,13 +120,8 @@
                         <div class="sidelist">
                             <ul>
                                 <li>
-                                    <a href="javascript:void(0)">
-                                        Checklist Reports
-                                    </a>
-                                </li>
-                                <li>
                                     <a routerLink='/reports/order-report'>
-                                        Payment Reports
+                                        Order Reports
                                     </a>
                                 </li>
                             </ul>
@@ -136,31 +130,17 @@
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Setting
+                                Scheduler
                             </mat-panel-title>
                             <mat-panel-description>
-                                manage all settings.
+                                manage all scheduler.
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <div class="sidelist">
                             <ul>
                                 <li>
                                     <a href="javascript:void(0)">
-                                        Checklist Scheduler
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        Manage Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a (click)="openChangeModal()">
-                                        Change Password</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        Raise Ticket
+                                        Order Scheduler
                                     </a>
                                 </li>
                             </ul>

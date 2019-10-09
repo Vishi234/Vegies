@@ -16,14 +16,6 @@ export class VendorContainerComponent implements OnDestroy {
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
   currentUser: any;
-
-  fillerContent = Array.from({ length: 50 }, () =>
-    `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
-
   private _mobileQueryListener: () => void;
   constructor(private route: ActivatedRoute, changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher, private _login: LoginService, private router: Router, public dialog: MatDialog) {
@@ -38,7 +30,6 @@ export class VendorContainerComponent implements OnDestroy {
     this.currentUser=this.route.snapshot.data['userData'];
   }
   openChangeModal() {
-    console.log("hiiiiiiii11")
     this.dialog.open(ChangePasswordComponent, { disableClose: true });
   }
   addName(data) {
@@ -51,7 +42,7 @@ export class VendorContainerComponent implements OnDestroy {
   ngOnInit() {
     this._login.user()
       .subscribe(
-        data => {this.currentUser = data;console.log("1111111",this.currentUser)},
+        data => {this.currentUser = data;},
         error => this.router.navigate(['/login'])
       )
       
@@ -63,4 +54,5 @@ export class VendorContainerComponent implements OnDestroy {
         error => console.error(error)
       )
   }
+
 }
