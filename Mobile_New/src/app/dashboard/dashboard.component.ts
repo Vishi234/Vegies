@@ -92,7 +92,8 @@ export class DashboardComponent implements OnInit {
         this.configDataCount = (!this.configData) ? "0" : this.configData.length < 10 ? "0" + this.configData.length : this.configData.length;
       }, (error) => {
         console.log('error is ', error)
-      });    
+      });
+    
     }, (error) => {
       console.log('error is ', error)
     });

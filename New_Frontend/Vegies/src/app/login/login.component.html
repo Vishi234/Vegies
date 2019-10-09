@@ -9,13 +9,13 @@
             </mdb-card-header>
             <mdb-card-body class="px-lg-5 pt-2">
 
-                <!-- Form -->
+                <!-- Form pattern="[^ @]*@[^ @]*"-->
                 <form class="text-center" #loginForm="ngForm" autocomplete="off" (ngSubmit)="visitorSignin()">
                     <div class="md-form">
                         <input mdbInput mdbValidate name="email" [(ngModel)]="loginUser.email" #email="ngModel" required
-                            pattern="[^ @]*@[^ @]*" type="email" autocomplete="off" id="email"
+                             type="email" autocomplete="off" id="email"
                             class="form-control">
-                        <label for="email">E-mail</label>
+                        <label for="email">E-mail/Mobile</label>
                         <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">Input invalid</mdb-error>
                         <mdb-success *ngIf="email.valid && (email.dirty || email.touched)">Input valid</mdb-success>
                     </div>

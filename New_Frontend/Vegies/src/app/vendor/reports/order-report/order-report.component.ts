@@ -208,6 +208,7 @@ export class OrderReportComponent implements OnInit {
     var date = event.value;
     var startDate = date.toString().split(",")[0];
     var endDate = date.toString().split(",")[1];
+    console.log("startDate",startDate,"endDate",endDate)
     this.monthlyReportData = [];
     //this.tabularData = []
     this.groupData = []
@@ -220,6 +221,7 @@ export class OrderReportComponent implements OnInit {
       // })
       this.data.filter((key) => {
         if (new Date(key.bookingDate) >= new Date(startDate) && new Date(key.bookingDate) <= new Date(endDate)) {
+          console.log("ggggg",key.bookingDate)
           //this.tabularData.push(key);
           this.groupData.push(key);
           this.grid.refresh();

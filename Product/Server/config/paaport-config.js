@@ -7,6 +7,8 @@ passport.use('local',new LocalStrategy({
     passwordField:'password'
 },
   function(username, password, done) {
+    console.log("answer is",username.includes("@"))
+    if(username.includes("@")){
     model.register.findOne({ email: username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
@@ -17,6 +19,18 @@ passport.use('local',new LocalStrategy({
       }
       return done(null, user);
     });
+  }else{
+    model.register.findOne({ mobile: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.isValid(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
   }
 ));
 
