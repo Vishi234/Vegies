@@ -87,7 +87,8 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
-        path: 'myaccount', component: MyaccountComponent
+        path: 'myaccount', component: MyaccountComponent,
+        resolve: { userData: productListResolver }
       },
       {
         path: 'raiseticket', component: RaiseticketComponent

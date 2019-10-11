@@ -28,6 +28,7 @@ var loginSchema = new Schema({
         }
         var register = mongoose.model('register', registerSchema);
 
+        
         var configProductSchema = new Schema({
             name: {type: String, require: true},
             oldPrice: {type: Number, require: true, require: true},

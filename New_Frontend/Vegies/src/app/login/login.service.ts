@@ -21,6 +21,7 @@ export class LoginService {
   private _vendorName= this._global.baseAppUrl + 'vendor/user'
   private _changePwd= this._global.baseAppUrl + 'vendor/changePwd'
   private _forgetPwd= this._global.baseAppUrl + 'vendor/forgetPwd'
+  private _googleAuth= this._global.baseAppUrl + 'vendor/auth/google'
 
   public extractData(res: Response) {
     this.userDetails = res;
@@ -82,6 +83,9 @@ export class LoginService {
     })
     //return this.http.post<any>(this._forgetPwd, email);
   }
+  getGoogleAuth() {
+    return this.http.get(this._googleAuth);
+}
 
   user(){
     return this.http.get(this._vendorName,{

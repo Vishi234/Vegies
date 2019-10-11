@@ -20,15 +20,15 @@
         <div class="form-inline">
             <div class="form-group w-50 mb-2">
                 <label>Company Name</label>
-                <input type="text" class="form-control w-100" placeholder="Eg:XYZ" />
+                <input type="text" class="form-control w-100" [(ngModel)]="userDetails.orgName" placeholder="Eg:XYZ" />
             </div>
             <div class="form-group w-50 mb-2">
                 <label>Full Name</label>
-                <input type="text" class="form-control w-100" placeholder="Eg:Vishal Singh" />
+                <input type="text" class="form-control w-100" [(ngModel)]="userDetails.fullName" placeholder="Eg:Vishal Singh" />
             </div>
             <div class="form-group w-25 mb-2">
                 <label>Mobile No</label>
-                <input type="text" class="form-control w-100" placeholder="Eg:+(91)-1234567890" />
+                <input type="text" class="form-control w-100" [(ngModel)]="userDetails.mobile" placeholder="Eg:+(91)-1234567890" />
             </div>
             <div class="form-group w-25 mb-2">
                 <label>Phone No</label>
@@ -124,15 +124,15 @@
         <div class="form-inline">
             <div class="form-group w-50 mb-2">
                 <label>Email Address</label>
-                <input type="text" class="form-control w-100" disabled />
+                <input type="text" [(ngModel)]="userDetails.email" class="form-control w-100" disabled />
             </div>
             <div class="form-group w-25 mb-2">
                 <label>Password</label>
-                <input type="password" class="form-control w-100" />
+                <input type="password" [(ngModel)]="password" class="form-control w-100" />
             </div>
             <div class="form-group w-25 mb-2">
                 <label>Confirm</label>
-                <input type="password" class="form-control w-100" />
+                <input type="password" (change)="pwdValidate($event)" class="form-control w-100" />
             </div>
         </div>
         <div class="btn-group d-block w-100 text-center">
@@ -162,12 +162,12 @@
             </div>
         </div>
         <div class="add-right pull-right w-50 pl-2">
-            <ejs-grid [dataSource]='data' id="checklistGrid" #old [allowPaging]='true' [allowSorting]='true'
+            <ejs-grid [dataSource]='vendorAddress' id="checklistGrid" #old [allowPaging]='true' [allowSorting]='true'
                 [allowFiltering]='true' [filterSettings]='filterSettings' [selectionSettings]='selectionOptions'
                 [pageSettings]='pageSettings' [allowGrouping]='false'>
                 <e-columns>
-                    <e-column field='name' headerText='Address' width='220'></e-column>
-                    <e-column field='discount' headerText='Action' width='80'></e-column>
+                    <e-column field='address' headerText='Address' width='220'></e-column>
+                    <!-- <e-column field='discount' headerText='Action' width='80'></e-column> -->
                 </e-columns>
             </ejs-grid>
         </div>

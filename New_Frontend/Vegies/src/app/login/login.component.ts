@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
     this._login.vendorLogin(this.loginUser)
       .subscribe(
         res => {
-          console.log("response is----->",res)
           if (res.msg) {
             if (res.loginAttemp < 1) {
               this.showChangePassModal();
@@ -54,6 +53,9 @@ export class LoginComponent implements OnInit {
 
   showModal() {
     this.dialog.open(ForgotPasswordComponent, { disableClose: true });
+  }
+  getGoogle(){
+    console.log("hiiiiiii")
   }
 
   showChangePassModal() {

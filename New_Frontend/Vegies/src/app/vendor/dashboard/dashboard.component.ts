@@ -74,8 +74,7 @@ export class DashboardComponent implements OnInit {
           this.monthlyData.push(da);
         }
       })
-      console.log("monthly dataaaaaaaa", this.finalData)
-      console.log("monthly dataaaaaaaa11", this.monthlyData)
+      console.log("final dataaaaaaa",this.finalData[this.finalData.length-1]['bookingDate'] )
       var expenseSum = 0;
       this.monthlyData.map((monthly) => {
         expenseSum = expenseSum + Number(monthly.newPrice);
