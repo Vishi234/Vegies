@@ -18,7 +18,10 @@ var loginSchema = new Schema({
         mailVerify: {type: String},
         mobleVerify: {type: String},
         loginAttemp: {type: Number},
-        creationDate:{type: Date}
+        creationDate:{type: Date},
+        phone:{type: Number},
+        website:{type: String},
+        image:{type: String}
         })
         registerSchema.statics.hashPassword=function hashPassword(password){
             return bcrypt.hashSync(password,10)

@@ -2,6 +2,9 @@ import { Component, OnInit ,ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service';
 import { setAddress } from '../set-address/set-address.service'
+import { LoginService } from '../../login/login.service';
+import { ToastrService } from 'ngx-toastr'
+import { Router } from '@angular/router' 
 @Component({
   selector: 'app-myaccount',
   templateUrl: './myaccount.component.html',
@@ -12,13 +15,19 @@ export class MyaccountComponent implements OnInit {
   public password: any
   public vendorAddress: any;
   public isConfigureAddress:any;
-    public fields: Object = { text: 'address', value: '_id' };
-  @ViewChild('select', { static: true }) select;
-  constructor(private route: ActivatedRoute, private cookie: CookieService,private _setAddress: setAddress) { 
-    this.userDetails = this.route.snapshot.data['userData'];
-    this.password = this.cookie.get('password');
-  }
+  public fields: Object = { text: 'address', value: '_id' };
 
+  public imagePath;
+  imgURL: any;
+  public message: string;
+
+  @ViewChild('select', { static: true }) select;
+  constructor(private route: ActivatedRoute, private cookie: CookieService,private _setAddress: setAddress,private _login: LoginService, private _toastr: ToastrService, private router: Router) { 
+    this.userDetails = this.route.snapshot.data['userData'];
+  }
+  changePwd = {    
+    password:String,
+    confPwd:String};
   ngOnInit() {
     this._setAddress.getAddressList(this.userDetails).subscribe((response) => {      
       this.vendorAddress = response;
@@ -31,9 +40,52 @@ export class MyaccountComponent implements OnInit {
     });
   
   }
-  
+  updBasicInfo(){
+    console.log("ooooo")
+    this._login.updVendorInfo(this.userDetails).subscribe(res=>{
+      console.log("basic info response",res);
+      this._toastr.success(res.msg)
+    })
+  }
+
+  changePassword() {
+    console.log("changePwdchangePwd------",this.changePwd)
+    this._login.changePassword(this.userDetails).subscribe((res) => {
+      if (res.error) {
+        this._toastr.error(res.error)
+      } else {
+        this._toastr.success(res.status)
+        this._login.logoutUser()
+          .subscribe(
+            data => { console.log(data); this.router.navigate(['/login']) },
+            error => console.error(error)
+          )
+      }
+    })
+  }
+
   pwdValidate(evnt){
-    if(this.password!==evnt.target.value && evnt.target.value)
+    console.log("rrrrrrr",this.changePwd.password)
+    if(this.changePwd.password!==evnt.target.value && evnt.target.value)
     alert("Password and confirm password should be same")
+  }
+
+
+  preview(files) {
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+    }
   }
 }

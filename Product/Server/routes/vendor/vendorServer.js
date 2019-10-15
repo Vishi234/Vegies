@@ -61,7 +61,6 @@ async function addToDB(req, res) {
 }
 
 router.post("/auth", function (req, res,next) {
-    console.log("jjjjjjjjjjjjjjjj")
     passport.authenticate('local', function(err, user, info) {
         if (err) {return res.status(401).json(err) }
         if (!user) {console.log("value is ",info);  return res.status(201).json(info); }
@@ -74,6 +73,15 @@ router.post("/auth", function (req, res,next) {
         });
       })(req, res, next);
 })
+
+router.put("/updBasicInfo", function (req, res) {
+          let user = req.body;
+          console.log("kkkkkkkkkkkkk",user)
+          model.register.updateOne({ email: user.email }, { $set: { orgName: user.orgName,fullName:user.fullName,mobile:user.mobile,phone:user.phone,website:user.website,image:user.image} }, (attempCount)=> {
+                                res.status(200).json({ msg:'Basic Information has been updated successfully.'});
+            })
+})
+
 router.get('/verify', function (req, res) {
     if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
         console.log("Domain is matched. Information is from Authentic email");

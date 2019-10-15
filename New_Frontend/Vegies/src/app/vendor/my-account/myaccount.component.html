@@ -16,6 +16,7 @@
     <div class="title">
         <i class="far fa-list-alt"></i> Basic Information
     </div>
+     <!-- <form class="text-center" #loginForm="ngForm"  (ngSubmit)="updBasicInfo()"> -->
     <div class="acount-form mb-2">
         <div class="form-inline">
             <div class="form-group w-50 mb-2">
@@ -32,27 +33,30 @@
             </div>
             <div class="form-group w-25 mb-2">
                 <label>Phone No</label>
-                <input type="text" class="form-control w-100" placeholder="Eg:+(11)-12345678" />
+                <input type="text" class="form-control w-100" [(ngModel)]="userDetails.phone" placeholder="Eg:+(11)-12345678" />
             </div>
             <div class="form-group w-50 mb-2">
                 <label>Website</label>
-                <input type="text" class="form-control w-100" placeholder="Eg:http://www.domain.com" />
+                <input type="text" class="form-control w-100" [(ngModel)]="userDetails.website" placeholder="Eg:http://www.domain.com" />
             </div>
-            <div class="form-group w-50 mb-2">
+             <div class="form-group w-50 mb-2">
+                    <!-- <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
+                    <form #form action="http://localhost:8084/api/admin/product/images" enctype="multipart/form-data" -->
+                    <!-- method="POST" target="dummyframe"> -->
                 <label>Profile Pic</label>
                 <div class="file-field">
-                    <div class="image-base">
-                        <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-                            class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar">
+                    <div class="image-base">                    
+                        <img [src]="imgURL" height="100" *ngIf="imgURL">
                     </div>
                     <div class="d-flex justify-content-center">
                         <div class="fileupload float-left">
-                            <input type="file">
+                                <input #file type="file" accept='image/*' (change)="preview(file.files)" />
                         </div>
                     </div>
                 </div>
+            <!-- </form> -->
             </div>
-            <div class="form-group w-50 mb-2">
+          <!--  <div class="form-group w-50 mb-2">
                 <label>Company Logo</label>
                 <div class="file-field">
                     <div class="image-base">
@@ -65,14 +69,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="btn-group d-block w-100 text-center">
             <button mdbBtn type="button" class="btn btn-deep-orange my-4 waves-effect z-depth-0" rounded="true"
-                mdbWavesEffect>Update</button>
+                mdbWavesEffect (click)="updBasicInfo();">Update</button>
         </div>
     </div>
-    <div class="title">
+
+    <!-- <div class="title">
         <i class="fas fa-receipt"></i> Billing Information
     </div>
     <div class="acount-form mb-2">
@@ -116,7 +121,7 @@
             <button mdbBtn type="button" class="btn btn-deep-orange my-4 waves-effect z-depth-0" rounded="true"
                 mdbWavesEffect>Update</button>
         </div>
-    </div>
+    </div> -->
     <div class="title">
         <i class="fas fa-key"></i> Authentication Information
     </div>
@@ -128,16 +133,16 @@
             </div>
             <div class="form-group w-25 mb-2">
                 <label>Password</label>
-                <input type="password" [(ngModel)]="password" class="form-control w-100" />
+                <input type="password" [(ngModel)]="changePwd.password" class="form-control w-100" />
             </div>
             <div class="form-group w-25 mb-2">
                 <label>Confirm</label>
-                <input type="password" (change)="pwdValidate($event)" class="form-control w-100" />
+                <input type="password" (change)="pwdValidate($event)" [(ngModel)]="changePwd.confPwd" class="form-control w-100" />
             </div>
         </div>
         <div class="btn-group d-block w-100 text-center">
             <button mdbBtn type="button" class="btn btn-deep-orange my-4 waves-effect z-depth-0" rounded="true"
-                mdbWavesEffect>Update</button>
+                mdbWavesEffect (click)="changePassword()">Update</button>
         </div>
     </div>
     <div class="title">

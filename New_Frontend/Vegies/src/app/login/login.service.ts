@@ -22,6 +22,7 @@ export class LoginService {
   private _changePwd= this._global.baseAppUrl + 'vendor/changePwd'
   private _forgetPwd= this._global.baseAppUrl + 'vendor/forgetPwd'
   private _googleAuth= this._global.baseAppUrl + 'vendor/auth/google'
+  private _updBasicInfo= this._global.baseAppUrl + 'vendor/updBasicInfo'
 
   public extractData(res: Response) {
     this.userDetails = res;
@@ -57,6 +58,12 @@ export class LoginService {
   changePassword(changePwd:any){
     console.log("changePwdchangePwd",changePwd)
     return this.http.post<any>(this._changePwd, changePwd);
+  }
+
+  updVendorInfo(basicInfo:any){
+    console.log("changePwdchangePwd",basicInfo)
+    //return this.http.put<any>(this._adminCategoryUrl, user);
+    return this.http.put<any>(this._updBasicInfo, basicInfo);
   }
 
   loggedIn() {
