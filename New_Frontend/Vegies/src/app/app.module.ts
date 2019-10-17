@@ -70,6 +70,7 @@ import { LoadingInterceptor } from './loading/loading.interceptors';
 import { MyaccountComponent } from './vendor/my-account/myaccount.component';
 import { RaiseticketComponent } from './vendor/raiseticket/raiseticket.component';
 import { NotificationSettingComponent } from './vendor/notification-setting/notification-setting.component';
+import {NotificationsService} from '../app/vendor/notification-setting/notification.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -169,7 +170,7 @@ import { NotificationSettingComponent } from './vendor/notification-setting/noti
       useClass: LoadingInterceptor,
       multi: true
     },
-    AppGlobals, DatePipe,productListResolver,BnNgIdleService,CookieService,detailsListResolver,AggregateService,PdfExportService],
+    AppGlobals, DatePipe,productListResolver,BnNgIdleService,CookieService,detailsListResolver,AggregateService,PdfExportService,NotificationsService],
   bootstrap: [AppComponent],
   entryComponents: [ForgotPasswordComponent, ChangePasswordComponent,
     ConfigurationComponent, SetSchedulerComponent, NewCategoryComponent, SetAddressComponent, PreviewChecklistComponent, NewSubcategoryComponent,

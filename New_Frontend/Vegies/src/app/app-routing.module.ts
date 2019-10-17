@@ -136,6 +136,11 @@ const routes: Routes = [
         path: 'admin/user-orders', component: UserOrdersComponent,
         resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/notificationsetting', component: NotificationSettingComponent,
+        resolve: { userData: productListResolver }
+        //,canActivate:[AuthGuard]
       }
     ]
   },

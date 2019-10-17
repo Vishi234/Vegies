@@ -1,0 +1,19 @@
+.notify-options {
+  width: 65%;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid #ced4da;
+  background: #fff;
+}
+.notify-options .hdr {
+  background: #3e454f;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+}
+.notify-options > ul > li {
+  padding: 10px;
+}
+.notify-options > ul > li > span {
+  margin-left: 10px;
+}
