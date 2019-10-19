@@ -67,7 +67,7 @@ module.exports = (function () {
     app.post("/product", function (req, res) 
 	{ 
         let productData = req.body;   
-        productData.imageUrl=productData.catName+"/"+productData.imageUrl;
+        productData.imageUrl=productData.imageUrl;
         console.log('productData--',productData);
 
         let productDataSave = new model.product(productData)
