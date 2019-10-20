@@ -6,7 +6,7 @@
             <p>Content section goes here</p>
         </span>
     </div>
-    <div class="panel-filter">
+    <div class="panel-filter" *ngIf="!finalData">
         <p>Last Order Details</p>
         <div *ngIf="!finalData">aaa{{this.finalData}}</div>
         <span class="d-block w-100">Order Date : <b *ngIf="!finalData">{{this.finalData[this.finalData.length-1]['bookingDate'] | date:'dd-MMM-yyyy'}}</b></span>

@@ -279,6 +279,13 @@ agm-map {
 ejs-dropdownlist > span {
   width: auto;
 }
+.noresult {
+  width: 500px;
+  margin: 5% auto;
+}
+.noresult img {
+  width: 100%;
+}
 @media (max-width: 545px) {
   .modal-footer {
     bottom: 15%;
