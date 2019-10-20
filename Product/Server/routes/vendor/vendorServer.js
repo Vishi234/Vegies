@@ -76,7 +76,6 @@ router.post("/auth", function (req, res,next) {
 
 router.put("/updBasicInfo", function (req, res) {
           let user = req.body;
-          console.log("kkkkkkkkkkkkk",user)
           model.register.updateOne({ email: user.email }, { $set: { orgName: user.orgName,fullName:user.fullName,mobile:user.mobile,phone:user.phone,website:user.website,image:user.image} }, (attempCount)=> {
                                 res.status(200).json({ msg:'Basic Information has been updated successfully.'});
             })
