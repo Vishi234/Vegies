@@ -73,7 +73,6 @@ module.exports = (function () {
     app.get("/getOrder", function (req, res) {
         let userDetails = req.query;
         model.orderedCheckList.find({ userName: userDetails.userId }).then(res1 => {
-            console.log("order dataaaaaaa",res1,"count",res1.length)
             res.send(res1);
         })
     });
@@ -81,7 +80,6 @@ module.exports = (function () {
     app.get("/getCancelOrder", function (req, res) {
         let userDetails = req.query;
         model.cancelOrder.find({ userName: userDetails.userId }).then(res1 => {
-            console.log("getCancelOrdergetCancelOrder",res1)
             res.send(res1);
         })
     });
