@@ -10,13 +10,13 @@ module.exports = (function () {
     'use strict';
     app.get("/category", function (req, res) 
     {
-        model.Category.find().then(getCategory=>{
+        model.Category.find({status:'Active'}).then(getCategory=>{
             res.send(getCategory);
         })
     });
     app.get("/subCategory", function (req, res) {
 
-        model.subCategory.find().then(getsubCategory=>
+        model.subCategory.find({status:'Active'}).then(getsubCategory=>
             {
             res.send(getsubCategory);
         })	
@@ -131,7 +131,7 @@ module.exports = (function () {
         // })
     });
     app.get("/product", function (req, res) {
-        model.product.find().then(getproduct=>{
+        model.product.find({status:'Active'}).then(getproduct=>{
             res.send(getproduct);
         })	
     });

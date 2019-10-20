@@ -71,20 +71,26 @@ export class MyChecklistComponent implements OnInit {
     if(event.target.value<1){
     alert("Quantity should be greater than 1")
     this.data[parentId.rowIndex]["Qnty"]=1;
-    this.ngOnInit();
+    this.getProductList();
     }else if(Number(event.target.value)>50){
       alert("Quantity should be less than equal to 50");
       this.data[parentId.rowIndex]["Qnty"]=1;
-      this.ngOnInit();
+      this.getProductList();
     }else{
     this.quantity[this.grid.selectedRowIndex]= event.target.value;
     console.log("changesss is",this.grid.selectedRowIndex)
-    //parentId.children[2].nodeValue=this.quantity ;
-    parentId.children[4].innerText = event.target.value * this.data[parentId.rowIndex]["oldPrice"];
-    parentId.children[6].innerText = parentId.children[4].innerText - (parentId.children[4].innerText * parentId.children[5].innerText) / 100;
-
-    this.oldPrice[this.grid.selectedRowIndex] = event.target.value * this.data[parentId.rowIndex]["oldPrice"];
-    this.newPrice[this.grid.selectedRowIndex] = this.oldPrice[this.grid.selectedRowIndex] - (this.oldPrice[this.grid.selectedRowIndex] * this.data[parentId.rowIndex]["discount"]) / 100;
+    if(this.grid.selectedRowIndex>=0){
+      parentId.children[4].innerText = event.target.value * this.data[parentId.rowIndex]["oldPrice"];
+      parentId.children[6].innerText = parentId.children[4].innerText - (parentId.children[4].innerText * parentId.children[5].innerText) / 100;
+  
+      this.oldPrice[this.grid.selectedRowIndex] = event.target.value * this.data[parentId.rowIndex]["oldPrice"];
+      this.newPrice[this.grid.selectedRowIndex] = this.oldPrice[this.grid.selectedRowIndex] - (this.oldPrice[this.grid.selectedRowIndex] * this.data[parentId.rowIndex]["discount"]) / 100;
+    }else{
+      debugger
+      alert("Please select checkbox first.");
+      this.data[parentId.rowIndex]["Qnty"]=1;
+      this.getProductList();
+    }
     }
   };
 
@@ -110,6 +116,7 @@ export class MyChecklistComponent implements OnInit {
     }
   }
   sendRequirement() {
+    debugger;
     this.selectedRow = this.grid.getSelectedRowIndexes();
     if (this.selectedRow.length > 0) {
       var table = document.getElementsByTagName("table");
@@ -122,6 +129,7 @@ export class MyChecklistComponent implements OnInit {
         // this.totalDiscount=this.totalDiscount+this.data[e]["discount"];
         return this.data[e];
       });
+      console.log("configuration dataaaaaaaa",this.myCheckList)
       this.dialog.open(PreviewChecklistComponent,
         {
           disableClose: true,

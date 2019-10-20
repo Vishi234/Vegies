@@ -9,8 +9,8 @@
     <div class="panel-filter">
         <p>Last Order Details</p>
         <span class="d-block w-100">Order Date : <b>{{this.finalData[this.finalData.length-1]['bookingDate'] | date:'dd-MMM-yyyy'}}</b></span>
-        <span class="d-block w-100">Items : <a [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b><u>4</u></b></a></span>
-        <span class="d-block w-100">Amount : <b><i class="fas fa-rupee-sign"></i> {{this.finalData[this.finalData.length-1]['newPrice'] }}</b></span>
+        <!-- <span class="d-block w-100">Items : <a [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b><u>4</u></b></a></span> -->
+        <span class="d-block w-100">Amount : <a [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b><i class="fas fa-rupee-sign"></i> {{this.finalData[this.finalData.length-1]['newPrice'] }}</b></a></span>
         <!-- <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
             [endDate]='end'>
         </ejs-daterangepicker> -->
