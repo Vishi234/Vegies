@@ -19,6 +19,17 @@
   box-shadow: none;
   padding: 0px;
   background: none;
+  width: 100%;
+}
+.noresult {
+  width: 500px;
+  display: block;
+  margin: 5% auto;
+  opacity: 0.3;
+}
+.noresult img {
+  height: auto;
+  width: 100%;
 }
 .items {
   width: 210px;
