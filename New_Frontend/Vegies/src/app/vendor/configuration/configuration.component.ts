@@ -38,6 +38,7 @@ export class ConfigurationComponent implements OnInit {
   configList = {};
   userConfigList: any;
   filterSubCategory: Array<any> = [];
+  productName:any="";
   public fields: Object = { text: 'subCatName', value: '_id' };
   @ViewChild('select', { static: true }) select;
   constructor(public dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data: any, private _formBuilder: FormBuilder, private router: Router, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard, private _global: AppGlobals, private _toastr: ToastrService) {
@@ -96,8 +97,9 @@ export class ConfigurationComponent implements OnInit {
       //}else{
       Object.entries(response).forEach(
         ([key, value]) => {
+          this.productName = value.product + ((value.productAlias != null) ? '(' + value.productAlias + ')' : "")
           this.items.push({
-            "name": value.productName + '(' + value.productAlias + ')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+            "name": this.productName, "oldPrice": parseFloat(value.price).toFixed(2), "newPrice": parseFloat(value.actualPrice).toFixed(2), "id": value._id,
             image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1, "productAlias": value.productAlias, "subCat": value.subCatName
           })
         }
