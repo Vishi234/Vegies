@@ -6,12 +6,11 @@
             <p>Content section goes here</p>
         </span>
     </div>
-    <div class="panel-filter">
+    <div class="panel-filter" *ngIf="filterData">
         <p>Last Order Details</p>
-        <div *ngIf="!finalData">aaa{{this.finalData}}</div>
-        <span class="d-block w-100">Order Date : <b *ngIf="!finalData">{{this.finalData[this.finalData.length-1]['bookingDate'] | date:'dd-MMM-yyyy'}}</b></span>
+        <span class="d-block w-100">Order Date : <b>{{this.finalData[this.finalData.length-1]['bookingDate'] | date:'dd-MMM-yyyy'}}</b></span>
         <!-- <span class="d-block w-100">Items : <a [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b><u>4</u></b></a></span> -->
-        <span class="d-block w-100">Amount : <a *ngIf="!finalData" [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b *ngIf="!finalData"><i class="fas fa-rupee-sign"></i> {{this.finalData[this.finalData.length-1]['newPrice'] }}</b></a></span>
+        <span class="d-block w-100">Amount : <a  [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b><i class="fas fa-rupee-sign"></i> {{this.finalData[this.finalData.length-1]['newPrice'] }}</b></a></span>
         <!-- <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
             [endDate]='end'>
         </ejs-daterangepicker> -->

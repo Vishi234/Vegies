@@ -13,21 +13,8 @@ export class detailsListResolver implements Resolve<any>{
 
     }
     resolve(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<any>{
-        // getAuthorWithBooks(id: number): Observable<any> {
-        //     return Observable.forkJoin([
-        //       this.http.get('/api/authors/' + id).map(res => res.json()),
-        //       this.http.get('/api/authors/' + id + '/books').map(res => res.json())
-        //     ])
-        //     .map((data: any[]) => {
-        //       let author: any = data[0];
-        //       let books: any[] = data[1];
-        //       return author.books = books;
-        //     });
-        //   }
         this.userDetails = this._route.snapshot.data['userData'];
         console.log("=======+>>>",this.userDetails)
-        // console.log("00000000000000000000))))))))",this.userDetails)
-        // return this._configList.getProductList('x');
         return this.userDetails;
     }
 }

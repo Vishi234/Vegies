@@ -31,10 +31,14 @@ var password = generator.generate({
 router.post("/registration", function (req, res,next) {
     let registerData = req.body;
     registerData.password = password;
+    registerData.host=req.get('host');
     addToDB(registerData, res)
 });
 
 async function addToDB(req, res) {
+    // var urlobj = url.parse(req.originalUrl);
+    // urlobj.protocol = req.protocol;
+    // urlobj.host = req.get('host');
     var userData = new model.register({
         userType: req.userType,
         orgName: req.orgName,
@@ -67,7 +71,6 @@ router.post("/auth", function (req, res,next) {
         req.logIn(user, function(err) {
           if (err) { return res.status(201).json(err); }
           model.register.updateOne({ loginAttemp: user.loginAttemp }, { $set: { loginAttemp: user.loginAttemp + 1 } }, (attempCount)=> {
-              console.log("dataaaa",attempCount," --------",user.loginAttemp)
                                 res.status(200).json({ msg:'Successfully Login' ,"loginAttemp":user.loginAttemp,"userType":user.userType});
             })
         });
@@ -81,28 +84,12 @@ router.put("/updBasicInfo", function (req, res) {
             })
 })
 
-router.get('/verify', function (req, res) {
-    if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
-        console.log("Domain is matched. Information is from Authentic email");
-        if (req.query.id == rand) {
-            res.redirect('http://localhost:4200')
-            res.end();
-            //res.end("<h1>Email " + mailOptions.to + " is been Successfully verified");
-        }
-        else {
-            console.log("email is not verified");
-            res.end("<h1>Bad Request</h1>");
-        }
-    }
-    else {
-        res.end("<h1>Request is from unknown source");
-    }
-});
-
 async function sendMail(user, callback) {
     user=(user.email)?user:user.body;
     rand = Math.floor((Math.random() * 100) + 54);
-    link = "http://" + host + "/api/vendor/verify?id=" + rand;
+    host=user.host;
+    console.log("mallll",user,"hosttttttt",user.host,"randommmm",rand);
+    link = "http://" + user.host + "/api/vendor/verify?id=" + rand;
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -125,6 +112,24 @@ async function sendMail(user, callback) {
     let info = await transporter.sendMail(mailOptions);
     callback(info);
 }
+
+router.get('/verify', function (req, res) {
+    if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
+        console.log("Domain is matched. Information is from Authentic email");
+        if (req.query.id == rand) {
+            res.redirect('http://localhost:4200')
+            res.end();
+            //res.end("<h1>Email " + mailOptions.to + " is been Successfully verified");
+        }
+        else {
+            console.log("email is not verified");
+            res.end("<h1>Bad Request</h1>");
+        }
+    }
+    else {
+        res.end("<h1>Request is from unknown source");
+    }
+});
 
 router.get('/logout',isValidUser, function(req, res,next) {
     req.logOut();
