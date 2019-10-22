@@ -14,6 +14,9 @@
 </div>
 <!-- <div *ngFor='let data of orders'> -->
 <div class="order-base pt-2">
+        <div class="noresult" *ngIf="vendorOrders.length == 0">
+                <img src="../../../assets/img/noorderfound.png" />
+            </div>
     <div class="order-card" *ngFor='let order of vendorOrders'>
         <span class="order-id pull-left">{{order.orderId}}
             <!--{{order._id}}-->
