@@ -49,6 +49,9 @@ export class MyChecklistComponent implements OnInit {
   getProductList() {
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.data = response;
+        this.data.map((val)=>{
+          val.unitMeasure='KG'
+        })
         console.log("daaaaaaaa",this.data)
       }, (error) => {
         console.log('error is ', error)
@@ -80,11 +83,13 @@ export class MyChecklistComponent implements OnInit {
     this.quantity[this.grid.selectedRowIndex]= event.target.value;
     console.log("changesss is",this.grid.selectedRowIndex)
     if(this.grid.selectedRowIndex>=0){
-      parentId.children[4].innerText = event.target.value * this.data[parentId.rowIndex]["oldPrice"];
-      parentId.children[6].innerText = parentId.children[4].innerText - (parentId.children[4].innerText * parentId.children[5].innerText) / 100;
+      parentId.children[4].innerText = (event.target.value * this.data[parentId.rowIndex]["oldPrice"]).toFixed(2);
+      parentId.children[6].innerText = (parentId.children[4].innerText - (parentId.children[4].innerText * parentId.children[5].innerText) / 100).toFixed(2);
   
-      this.oldPrice[this.grid.selectedRowIndex] = event.target.value * this.data[parentId.rowIndex]["oldPrice"];
-      this.newPrice[this.grid.selectedRowIndex] = this.oldPrice[this.grid.selectedRowIndex] - (this.oldPrice[this.grid.selectedRowIndex] * this.data[parentId.rowIndex]["discount"]) / 100;
+      this.oldPrice[this.grid.selectedRowIndex]=parentId.children[4].innerText;
+      this.newPrice[this.grid.selectedRowIndex]=parentId.children[6].innerText;
+      //this.oldPrice[this.grid.selectedRowIndex] = (event.target.value * this.data[parentId.rowIndex]["oldPrice"]).toFixed(2);
+      //this.newPrice[this.grid.selectedRowIndex] = (this.oldPrice[this.grid.selectedRowIndex] - (this.oldPrice[this.grid.selectedRowIndex] * this.data[parentId.rowIndex]["discount"]) / 100).toFixed(2);
     }else{
       debugger
       alert("Please select checkbox first.");

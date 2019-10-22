@@ -11,6 +11,7 @@ export class setAddress {
     private _addAddressURL = this._global.baseAppUrl + 'configProduct/addAddress/';
 
     getAddressList(userId: any) {
+        console.log("getAddress",userId)
         return this.http.get(this._getAddressURL, {
             params: {
                 userId: userId._id,

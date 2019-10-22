@@ -8,10 +8,9 @@
     </div>
     <div class="panel-filter" *ngIf="!finalData">
         <p>Last Order Details</p>
-        <div *ngIf="!finalData">aaa{{this.finalData}}</div>
-        <span class="d-block w-100">Order Date : <b *ngIf="!finalData">{{this.finalData[this.finalData.length-1]['bookingDate'] | date:'dd-MMM-yyyy'}}</b></span>
+        <span class="d-block w-100">Order Date : <b>{{this.finalData[this.finalData.length-1]['bookingDate'] | date:'dd-MMM-yyyy'}}</b></span>
         <!-- <span class="d-block w-100">Items : <a [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b><u>4</u></b></a></span> -->
-        <span class="d-block w-100">Amount : <a *ngIf="!finalData" [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b *ngIf="!finalData"><i class="fas fa-rupee-sign"></i> {{this.finalData[this.finalData.length-1]['newPrice'] }}</b></a></span>
+        <span class="d-block w-100">Amount : <a  [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b><i class="fas fa-rupee-sign"></i> {{this.finalData[this.finalData.length-1]['newPrice'] }}</b></a></span>
         <!-- <ejs-daterangepicker format='dd-MMM-yyyy' id='daterangepicker' placeholder='Select a range' [startDate]='start'
             [endDate]='end'>
         </ejs-daterangepicker> -->
@@ -61,7 +60,7 @@
                         </span>
                     </div>
                     <div class="checklist-grid">
-                        <ejs-grid [dataSource]='configData' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+                        <ejs-grid [dataSource]='configData'  #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
                             [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
                             <e-columns>
                                 <e-column field='name' headerText='Product Name' width='200'></e-column>

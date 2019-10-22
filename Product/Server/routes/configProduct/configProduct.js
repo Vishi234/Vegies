@@ -7,6 +7,7 @@ module.exports = (function () {
 
     app.post("/saveList", function (req, res) {
         let configData = req.body;
+        console.log("dataaconfig",configData)
         model.configList.collection.insertMany(configData, function (err, docs) {
             if (err) {
                 return console.error(err);
@@ -20,7 +21,6 @@ module.exports = (function () {
     app.get("/getList", function (req, res) {
         let userDetails = req.query;
         model.configList.find({ userName: userDetails.userId }).then(res1 => {
-            //console.log("outputttttttttttt",res1)
             res.send(res1);
         })
     });
@@ -72,7 +72,9 @@ module.exports = (function () {
 
     app.get("/getOrder", function (req, res) {
         let userDetails = req.query;
+        console.log("fffffffff",this.userDetails);
         model.orderedCheckList.find({ userName: userDetails.userId }).then(res1 => {
+            console.log("fffffffff2222222",res1);
             res.send(res1);
         })
     });
@@ -124,7 +126,9 @@ module.exports = (function () {
 
     app.get("/getAddress", function (req, res) {
         let userDetails = req.query;
+        console.log("dtaaaa",userDetails)
         model.setAddress.find({ userId: userDetails.userId }).then(res1 => {
+            console.log("dtaaaa111",res1)
             res.send(res1);
         })
     });

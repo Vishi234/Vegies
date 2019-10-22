@@ -51,6 +51,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.selectedCat = this.route.snapshot.paramMap.get('id');
+    console.log("sub catehoo list",this.selectedCat)
     setTimeout(() => {
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.configData = response;
@@ -74,17 +75,6 @@ export class ProductListComponent implements OnInit {
     }, (error) => {
       console.log('error is ', error)
     });
-
-    // this._categoryList.GetCategoryList().subscribe((response) => {
-    //   // Object.entries(response).forEach(
-    //   //   ([key, value]) => {
-    //     console.log("---------->",response)
-    //       this.catList.push(response);
-    //   //   }
-    //   // );
-    // }, (error) => {
-    //   console.log('error is ', error)
-    // });
 
     this._categoryList.GetSubCategoryList().subscribe((response) => {
       Object.entries(response).forEach(
