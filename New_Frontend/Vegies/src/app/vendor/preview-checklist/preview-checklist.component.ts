@@ -32,10 +32,11 @@ export class PreviewChecklistComponent implements OnInit {
     });
     this.myCheckList = this.data.ChecklistData;
     this.userDetails=this.data.userDetails;
-
       var x=new Date();
+      console.log("userDetailspreview",this.userDetails)
       this._setAddress.getAddressList(this.userDetails).subscribe((response) => {      
         this.vendorAddress = response;
+        console.log("xxxxxxxxxx",this.vendorAddress);
         this.vendorAddress=this.vendorAddress.map((val: any) => {
           return ({  "address": val.address ,"_id":val._id})
         })

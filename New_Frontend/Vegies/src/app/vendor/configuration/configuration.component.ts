@@ -12,6 +12,7 @@ import { Router } from '@angular/router'
 import { ToastrService } from 'ngx-toastr'
 import { configList } from '../dashboard/configList.service'
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { setAddress } from '../set-address/set-address.service'
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -25,6 +26,7 @@ export class ConfigurationComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   toppings = new FormControl();
+  public vendorAddress: {};
   //toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   public appearance = Appearance;
   public zoom: number;
@@ -41,7 +43,7 @@ export class ConfigurationComponent implements OnInit {
   productName:any="";
   public fields: Object = { text: 'subCatName', value: '_id' };
   @ViewChild('select', { static: true }) select;
-  constructor(public dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data: any, private _formBuilder: FormBuilder, private router: Router, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard, private _global: AppGlobals, private _toastr: ToastrService) {
+  constructor(public dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data: any, private _formBuilder: FormBuilder, private router: Router, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard, private _global: AppGlobals, private _toastr: ToastrService,private _setAddress:setAddress) {
     this.currentLogged = this.data
     console.log("currentLoggedcurrentLogged",this.currentLogged)
   }
@@ -68,21 +70,38 @@ export class ConfigurationComponent implements OnInit {
     return this.items.find(x => x.id === id);
   }
 
-  getAddress(address: string) {
+  saveAddress(address: string) {
     this.selectedAddress = address;
-    this.userConfigList = this.selectedPro.map((el) => {
-      var o = Object.assign({}, el);
-      o.address = address,
-        o.userName = this.currentLogged._id
-      return o;
+    this.vendorAddress = { "address":address , "date": new Date(), "userId": this.currentLogged.userDetails._id };
+    this._setAddress.addAddressList([this.vendorAddress]).subscribe((res) => {
+      this._toastr.success(res.status)
+     // this.dialogRef.close();
+      window.opener.location.reload();
+    }, (error) => {
+      console.log('error is ', error)
     })
   }
 
+  // getAddress(address: string) {
+  //   this.selectedAddress = address;
+  //   this.userConfigList = this.selectedPro.map((el) => {
+  //     var o = Object.assign({}, el);
+  //     o.address = address,
+  //       o.userName = this.currentLogged._id
+  //     return o;
+  //   })
+  // }
+
   addConfigureList() {
+    this.userConfigList = this.selectedPro.map((el) => {
+      var o = Object.assign({}, el);
+        o.userName = this.currentLogged.userDetails._id
+      return o;
+    })
     this._configurationwizard.AddConfigProduc(this.userConfigList).subscribe((res) => {
       this._toastr.success(res.status)
       this.closeModal()
-      window.location.reload();
+      //window.location.reload();
     }, (error) => {
       console.log('error is ', error)
     })

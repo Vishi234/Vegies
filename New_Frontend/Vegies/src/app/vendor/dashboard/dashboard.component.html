@@ -60,7 +60,7 @@
                         </span>
                     </div>
                     <div class="checklist-grid">
-                        <ejs-grid [dataSource]='configData' [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
+                        <ejs-grid [dataSource]='configData'  #old [allowPaging]='true' [allowSorting]='true' [allowFiltering]='true'
                             [filterSettings]='filterSettings' [pageSettings]='pageSettings' [allowGrouping]='false'>
                             <e-columns>
                                 <e-column field='name' headerText='Product Name' width='200'></e-column>
