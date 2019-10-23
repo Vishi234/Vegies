@@ -14,27 +14,29 @@ export class VendorContainerComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   panelOpenState = false;
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
-
+  public vendorName:any;
+  public orgName:any;
   currentUser: any;
+  public userDetails: any;
   private _mobileQueryListener: () => void;
   constructor(private route: ActivatedRoute, changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher, private _login: LoginService, private router: Router, public dialog: MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    // this._login.user()
-    //   .subscribe(
-    //     data => {this.currentUser = data; console.log("222222",this.currentUser)},
-    //     error => this.router.navigate(['/login'])
-    //   )
-    this.currentUser=this.route.snapshot.data['userData'];
+            this._login.user().subscribe(result => {
+            this.userDetails = result;
+            this.vendorName=this.userDetails.fullName;
+            this.orgName=this.userDetails.orgName;
+            error => console.log("Error is", error);
+        })
+   // this.currentUser=this.route.snapshot.data['userData'];
   }
   openChangeModal() {
     this.dialog.open(ChangePasswordComponent, { disableClose: true });
   }
   addName(data) {
     this.currentUser = data.username;
-    console.log("data username", this.currentUser)
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

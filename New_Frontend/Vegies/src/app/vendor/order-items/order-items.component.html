@@ -16,13 +16,13 @@
     <div class="grid-head mb-2">
         <ul>
             <li>
-                Order Number : <span>{{orderSummary[0].orderId}}</span>
+                Order Number : <span>{{orderId}}</span>
             </li>
             <li>
                 Order Date : <span>{{orderDate | date:'dd-MMM-yyyy'}}</span>
             </li>
             <li>
-                Status : <span class="text-danger status pull-right">{{orderSummary[0].status}}</span>
+                Status : <span class="text-danger status pull-right">{{orderStatus}}</span>
             </li>
         </ul>
     </div>

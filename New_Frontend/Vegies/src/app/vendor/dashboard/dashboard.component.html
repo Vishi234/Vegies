@@ -6,7 +6,7 @@
             <p>Content section goes here</p>
         </span>
     </div>
-    <div class="panel-filter" *ngIf="!finalData">
+    <div class="panel-filter" *ngIf="finalData">
         <p>Last Order Details</p>
         <span class="d-block w-100">Order Date : <b>{{this.finalData[this.finalData.length-1]['bookingDate'] | date:'dd-MMM-yyyy'}}</b></span>
         <!-- <span class="d-block w-100">Items : <a [routerLink]="['/orders/items',this.finalData[this.finalData.length-1]['bookingDate']]"><b><u>4</u></b></a></span> -->

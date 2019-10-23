@@ -68,7 +68,8 @@ const routes: Routes = [
         //,canActivate:[AuthGuard]
       },
       {
-        path: 'orders/items/:id', component: OrderItemsComponent
+        path: 'orders/items/:id', component: OrderItemsComponent,
+        resolve: { userData: productListResolver }
         //,canActivate:[AuthGuard]
       },
       {

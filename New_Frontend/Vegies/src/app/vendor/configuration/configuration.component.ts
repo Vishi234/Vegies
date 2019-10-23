@@ -45,7 +45,6 @@ export class ConfigurationComponent implements OnInit {
   @ViewChild('select', { static: true }) select;
   constructor(public dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data: any, private _formBuilder: FormBuilder, private router: Router, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard, private _global: AppGlobals, private _toastr: ToastrService,private _setAddress:setAddress) {
     this.currentLogged = this.data
-    console.log("currentLoggedcurrentLogged",this.currentLogged)
   }
 
   inreaseHeight() {
@@ -140,7 +139,6 @@ export class ConfigurationComponent implements OnInit {
     this.longitude = 13.404954;
     this.setCurrentPosition();
     this._vendorDetails.GetSubCategoryList().subscribe((response) => {
-      console.log("333333333333333",response)
       Object.entries(response).forEach(
         ([key, value]) => {
           this.subCatList.push(value)
@@ -203,7 +201,6 @@ export class ConfigurationComponent implements OnInit {
     }
   }
   closeModal() {
-    console.log("hiiiiiiii");
     this.dialog.closeAll();
   }
 }
