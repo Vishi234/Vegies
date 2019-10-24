@@ -16,18 +16,21 @@ export class OrderItemsComponent implements OnInit {
     public orderSummary: any;
     public filterSettings: Object;
     public pageSettings: object;
+    public orderID:any;
+    public orderStatus:any;
     constructor(private route: ActivatedRoute, private _configList: configList, private _toastr: ToastrService, private _login: LoginService) {
-        this._login.user().subscribe(result => {
-            this.userDetails = result;
-            error => console.log("Error is", error);
-        })
+        // this._login.user().subscribe(result => {
+        //     this.userDetails = result;
+        //     error => console.log("Error is", error);
+        // })
+        this.userDetails = this.route.snapshot.data['userData'];
     }
 
     ngOnInit() {
         this.filterSettings = { type: 'Menu' };
         this.pageSettings = { pageSizes: true, pageSize: 10 };
         this.orderDate = this.route.snapshot.paramMap.get('id');
-        setTimeout((a) => {
+       // setTimeout((a) => {
             this._configList.getOrderList(this.userDetails).subscribe((response) => {
                 this.data = response;
                 console.log("idddddddddddd",this.data)
@@ -36,9 +39,11 @@ export class OrderItemsComponent implements OnInit {
                     return x;
                 }
             })
-            console.log("daaaaa",this.orderSummary)
+            this.orderID=this.orderSummary[0].orderId;
+            this.orderStatus=this.orderSummary[0].status;
+            console.log("daaaaa",this.orderSummary[0])
             })
-        }, 1000)
+        //}, 1000)
 
         console.log(this.data,"llllllll")
 

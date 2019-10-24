@@ -8,6 +8,7 @@ import { LoginService } from '../../login/login.service'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { configList } from '../dashboard/configList.service'
 import { ToastrService } from 'ngx-toastr'
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-preview-checklist',
   templateUrl: './preview-checklist.component.html',
@@ -23,7 +24,7 @@ export class PreviewChecklistComponent implements OnInit {
   public fields: Object = { text: 'address', value: '_id' };
   @ViewChild('address', { static: true }) public grid;
   @ViewChild('select', { static: true }) select;
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any,private _setAddress:setAddress, private _login: LoginService,private _formBuilder: FormBuilder, private _configList: configList,private _toastr:ToastrService) { 
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any,private _setAddress:setAddress, private _login: LoginService,private _formBuilder: FormBuilder, private _configList: configList,private _toastr:ToastrService,private _router:Router) { 
   }
   firstFormGroup: FormGroup;
   ngOnInit() {
@@ -74,6 +75,7 @@ export class PreviewChecklistComponent implements OnInit {
     this._configList.addProductList(this.myCheckList).subscribe((res) => {
       this._toastr.success(res.status);
       this.dialog.closeAll();
+      this._router.navigate(['/orders']);
     }, (error) => {
       console.log('error is ', error)
     })
