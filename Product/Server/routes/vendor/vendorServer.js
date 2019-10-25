@@ -144,17 +144,12 @@ router.get('/user',isValidUser,function(req,res,next){
   router.post('/changePwd',function(req,res,next){ 
       var userDetails=req.body;   
       if(req.body.newPassword===req.body.confirmPassword){
-        console.log("changePwdchangePwd",req.body)
         model.register.updateOne({ email: userDetails.email }, { $set: { password:  model.register.hashPassword(userDetails.newPassword) } }, (attempCount)=> {
             res.status(200).json({ status:'Password Changed successfully'});
           })
       }else{
-        console.log("changePwdchangePwd11",req.body)
         return res.status(200).json({'err':"New Password and Confirm Password are not Matched"});
       }
-    //console.log("user details",req.user);
-    //return res.status(200).json(req.user);
-
   });
 
   router.post('/forgetPwd',function(req,res){ 
@@ -167,12 +162,9 @@ router.get('/user',isValidUser,function(req,res,next){
                     res.status(200).json({errorMsg:'Email Id does not present in the system'});
                 } else{
                     sendMail(req, info => {
-                        //res.status(200).json({successMsg:'Mail has been successfully send'});
-                        //console.log("Update user Password");
                         model.register.updateOne({ email: userDetails.email }, { $set: { password:  model.register.hashPassword(password),loginAttemp:0 } }, (attempCount)=> {
                             res.status(200).json({ successMsg:'Mail has been send successfully.'});
                           })
-                          //res.status(200).json({successMsg:'Mail has been successfully send'});
                     }).catch(function (err) {
                         console.log("Mail Sending errors", err)
                     });

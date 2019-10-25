@@ -33,17 +33,15 @@ export class PreviewChecklistComponent implements OnInit {
     });
     this.myCheckList = this.data.ChecklistData;
     this.userDetails=this.data.userDetails;
+    console.log("jjjjjjjjjjjjjj",this.userDetails)
       var x=new Date();
-      console.log("userDetailspreview",this.userDetails)
       this._setAddress.getAddressList(this.userDetails).subscribe((response) => {      
         this.vendorAddress = response;
-        console.log("xxxxxxxxxx",this.vendorAddress);
         this.vendorAddress=this.vendorAddress.map((val: any) => {
           return ({  "address": val.address ,"_id":val._id})
         })
         this.select.refresh();
         this.isConfigureAddress=this.vendorAddress.length>0?"Change":"Add"
-        console.log("addssssssss1111",this.uniqueAddress);
       }, (error) => {
         console.log('error is ', error)
       });
@@ -68,7 +66,8 @@ export class PreviewChecklistComponent implements OnInit {
       v.address = this.uniqueAddress
       v.bookingDate=new Date();
       v.orderId="ORD"+Number(new Date());
-      v.status="Pending"
+      v.status="Pending",
+      v.email=this.userDetails.email,
       delete v._id
     })
      console.log("finalDataa",this.myCheckList)
