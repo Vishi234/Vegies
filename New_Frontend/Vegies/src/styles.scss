@@ -379,6 +379,10 @@ input:-webkit-autofill {
 .dropdown-item:active {
   background-color: transparent !important;
 }
+.e-table .e-summarycell {
+  font-weight: bold;
+  color: #000;
+}
 @media (max-width: 544px) {
   .content-sec {
     padding-top: 15%;

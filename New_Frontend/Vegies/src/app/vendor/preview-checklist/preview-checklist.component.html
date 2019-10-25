@@ -13,23 +13,29 @@
         <div class="schgrid">
             <ejs-grid [dataSource]='myCheckList'>
                 <e-columns>
-                    <e-column field='name' headerText='Product' textAlign='left' width=120></e-column>
+                    <e-column field='name' headerText='Product' textAlign='left' width=200></e-column>
                     <e-column field='Qnty' headerText='Quantity' textAlign='right' width=80></e-column>
-                    <e-column field='oldPrice' headerText='MRP' textAlign='right' width=100></e-column>
+                    <e-column field='oldPrice' headerText='MRP' textAlign='right' width=120></e-column>
                     <e-column field='discount' headerText='Discount (%)' textAlign='right' width=110></e-column>
                     <e-column field='newPrice' headerText='Actual Price' textAlign='right' width=120></e-column>
                 </e-columns>
                 <e-aggregates>
                     <e-aggregate>
                         <e-columns>
-                            <e-column field="oldPrice" type="sum" width=300 >
-                                <ng-template #footerTemplate let-data2>MRP: {{data2.sum | number : '.2-2'}}</ng-template>
+                            <e-column field="Qnty" type="sum" width=400>
+                                <ng-template #footerTemplate let-data2>Total</ng-template>
                             </e-column>
-                            <e-column field="discount" type="Average" >
-                                <ng-template #footerTemplate let-data1>Discount: {{data1.Average | number : '.2-2'}}</ng-template>
+                            <e-column field="oldPrice" type="sum" width=400>
+                                <ng-template #footerTemplate let-data2><i class="fas fa-rupee-sign"></i>
+                                    {{data2.sum | number : '.2-2'}}</ng-template>
                             </e-column>
-                            <e-column field="newPrice" type="sum" >
-                                <ng-template #footerTemplate let-data1>Price: {{data1.sum | number : '.2-2'}}</ng-template>
+                            <e-column field="discount" type="Average" width=400>
+                                <ng-template #footerTemplate let-data1>{{data1.Average | number : '.2-2'}}%
+                                </ng-template>
+                            </e-column>
+                            <e-column field="newPrice" type="sum" width=400>
+                                <ng-template #footerTemplate let-data1><i class="fas fa-rupee-sign"></i>
+                                    {{data1.sum | number : '.2-2'}}</ng-template>
                             </e-column>
                         </e-columns>
                     </e-aggregate>
@@ -37,15 +43,49 @@
             </ejs-grid>
         </div>
         <hr />
-        <div class="shiploc">
-            <h4>
-                Shipping Location [<a href="javascript:void(0)" (click)="changeAddress();">{{isConfigureAddress}}
-                    Address</a>]
-            </h4>
-            <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress' formControlName="firstCtrl"
-                [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required>
-            </ejs-dropdownlist>
+        <div class="row m-0" >
+            <div class="col-lg-6 col-xs-12 col-sm-6">
+                <div class="shiploc">
+                    <h4>
+                        Shipping Location [<a href="javascript:void(0)"
+                            (click)="changeAddress();">{{isConfigureAddress}}
+                            Address</a>]
+                    </h4>
+                    <ejs-dropdownlist id='ddlelement' #select [dataSource]='vendorAddress' formControlName="firstCtrl"
+                        [fields]='fields' placeholder="Select a Address" (change)="getAddress($event)" required>
+                    </ejs-dropdownlist>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xs-12 col-sm-6">
+                <div class="shiploc timeslot">
+                    <h4>
+                        Time Slot
+                    </h4>
+                    <div class="time-block">
+                        <ul>
+                            <li>
+                                <ejs-radiobutton label="06 AM - 09 AM (Tomorrow)" name="custom" checked="true"
+                                    cssClass="e-primary">
+                                </ejs-radiobutton>
+                            </li>
+                            <li>
+                                <ejs-radiobutton label="10 AM - 01 PM (Tomorrow)" name="custom" cssClass="e-primary">
+                                </ejs-radiobutton>
+                            </li>
+                            <li>
+                                <ejs-radiobutton label="04 PM - 07 PM (Tomorrow)" name="custom" cssClass="e-primary">
+                                </ejs-radiobutton>
+                            </li>
+                            <li>
+                                <ejs-radiobutton label="08 PM - 11 PM (Tomorrow)" name="custom" cssClass="e-primary">
+                                </ejs-radiobutton>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
     </div>
     <div class="modal-footer">
