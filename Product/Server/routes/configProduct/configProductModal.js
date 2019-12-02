@@ -24,7 +24,7 @@ var orderedCheckList = new Schema({
     Qnty: { type: String },
     bookingDate: { type: String },
     orderId: { type: String },
-    status: { type: Date }
+    status: { type: String }
 })
 
 var setScheduler = new Schema({

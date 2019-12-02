@@ -15,14 +15,15 @@
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Add product in List</ng-template>
                     <ejs-dropdownlist id='ddlelement' #select [dataSource]='subCatList' formControlName="firstCtrl"
-                             [fields]='fields'(change)="change($event)" placeholder="Select a category" required></ejs-dropdownlist>
+                        [fields]='fields' (change)="change($event)" placeholder="Select a category" required>
+                    </ejs-dropdownlist>
                     <!-- <mat-form-field> -->
-                            <!-- <ejs-dropdownlist id='ddlelement' [dataSource]='data' required placeholder = 'Select a category'>
+                    <!-- <ejs-dropdownlist id='ddlelement' [dataSource]='data' required placeholder = 'Select a category'>
 
                             </ejs-dropdownlist> -->
-                            
 
-                        <!-- <mat-select placeholder="Select Category" #select formControlName="firstCtrl"
+
+                    <!-- <mat-select placeholder="Select Category" #select formControlName="firstCtrl"
                             [formControl]="toppings" multiple>
                             <mat-select-trigger>
                                 {{toppings.value ? toppings.value[0] : ''}}
@@ -36,7 +37,7 @@
                         </mat-select> -->
                     <!-- </mat-form-field> -->
                     <div id="container" class="owl-carousel">
-                        <owl-carousel [options]="{items: 2, dots: false, navigation: true}" [items]="items"
+                        <owl-carousel [options]="{items: 2, dots: false, nav: true, lazyLoad:true}" [items]="items"
                             [carouselClasses]="['owl-theme', 'row', 'sliding']">
                             <div class="item" *ngFor="let item of items;let i = index">
                                 <div class="items">
@@ -65,8 +66,11 @@
                             </div>
                         </owl-carousel>
                     </div>
+                    <div class="noresult" *ngIf="items.length == 0">
+                        <img src="../../../assets/img/no-result-found.png" />
+                    </div>
                     <div class="modal-footer">
-                        <div class="btn-group">
+                        <div class="btn-group" *ngIf="items.length != 0">
                             <button mat-button matStepperNext class="btn btn-primary">Next</button>
                         </div>
                     </div>
@@ -100,7 +104,7 @@
                         <div class="btn-group">
                             <button mat-button matStepperPrevious class="btn btn-danger">Back</button>
                             <button mat-button matStepperNext class="btn btn-primary"
-                                (click)="getAddress(address.value)">Next</button>
+                                (click)="saveAddress(address.value)">Next</button>
                         </div>
                     </div>
                 </form>

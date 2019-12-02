@@ -19,6 +19,17 @@
   box-shadow: none;
   padding: 0px;
   background: none;
+  width: 100%;
+}
+.noresult {
+  width: 500px;
+  display: block;
+  margin: 5% auto;
+  opacity: 0.3;
+}
+.noresult img {
+  height: auto;
+  width: 100%;
 }
 .items {
   width: 210px;
@@ -28,7 +39,7 @@
   margin-right: 7px;
   margin-bottom: 15px;
   border: 1px solid #dee2e6;
-  padding: 20px;
+  padding: 5px;
   border-radius: 6px;
 }
 .items:nth-child(5n) {
@@ -76,6 +87,7 @@
 .price {
   float: right;
   font-size: 11px;
+  margin-top: -4px;
 }
 .price u {
   text-decoration: line-through;
@@ -117,5 +129,5 @@
 }
 // @media(min-width:1200px)
 // {
-  
+
 // }

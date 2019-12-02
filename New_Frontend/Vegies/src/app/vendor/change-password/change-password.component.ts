@@ -17,16 +17,15 @@ export class ChangePasswordComponent implements OnInit {
     }
     )
   }
-  changePwd = {};
+  changePwd = { };
   ngOnInit() {
   }
 
   changePassword() {
     Object.assign(this.changePwd, this.userDetails)
-    console.log("changePwd", this.changePwd)
     this._login.changePassword(this.changePwd).subscribe((res) => {
-      if (res.error) {
-        this._toastr.error(res.error)
+      if (res.err) {
+        this._toastr.error(res.err)
       } else {
         this.closeModal();
         this._toastr.success(res.status)
@@ -39,12 +38,10 @@ export class ChangePasswordComponent implements OnInit {
     })
   }
 
-  // logout() {
-  //   this._login.logoutUser()
-  //     .subscribe(
-  //       data => { console.log(data); this.router.navigate(['/login']) },
-  //       error => console.error(error)
-  //     )
+  // pwdValidate(evnt) {
+  //   if (this.changePwd.newPassword !== evnt.target.value && evnt.target.value)
+  //     alert("Password and confirm password should be same")
+  //     return false
   // }
 
   closeModal() {

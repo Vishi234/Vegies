@@ -28,7 +28,7 @@ export class ProductListComponent implements OnInit {
   public selectedPro: Array<any> = [];
   userConfigList: any;
   public selectedCat: any;
-
+  productName: any = "";
   constructor(private _categoryList: AdminCategoryService, private _global: AppGlobals, public _login: LoginService, public _configList: configList, private _configurationwizard: configurationwizard, private _toastr: ToastrService, private router: Router, private route: ActivatedRoute) {
     this.userDetails = this.route.snapshot.data['userData'];
   }
@@ -51,6 +51,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.selectedCat = this.route.snapshot.paramMap.get('id');
+    console.log("sub catehoo list",this.selectedCat)
     setTimeout(() => {
       this._configList.getProductList(this.userDetails).subscribe((response) => {
         this.configData = response;
@@ -75,17 +76,6 @@ export class ProductListComponent implements OnInit {
       console.log('error is ', error)
     });
 
-    // this._categoryList.GetCategoryList().subscribe((response) => {
-    //   // Object.entries(response).forEach(
-    //   //   ([key, value]) => {
-    //     console.log("---------->",response)
-    //       this.catList.push(response);
-    //   //   }
-    //   // );
-    // }, (error) => {
-    //   console.log('error is ', error)
-    // });
-
     this._categoryList.GetSubCategoryList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
@@ -99,9 +89,10 @@ export class ProductListComponent implements OnInit {
     this._categoryList.GetProductList().subscribe((response) => {
       Object.entries(response).forEach(
         ([key, value]) => {
+          this.productName = value.product + ((value.productAlias != null) ? '(' + value.productAlias + ')' : "")
           this.productList.push(
             {
-              "name": value.productName + '(' + value.productAlias + ')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+              "name": this.productName, "oldPrice":parseFloat(value.price).toFixed(2), "newPrice": parseFloat(value.actualPrice).toFixed(2), "id": value._id,
               image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1, "productAlias": value.productAlias, "subCat": value.subCatName
             });
         }

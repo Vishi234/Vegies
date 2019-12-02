@@ -12,6 +12,7 @@ import { Router } from '@angular/router'
 import { ToastrService } from 'ngx-toastr'
 import { configList } from '../dashboard/configList.service'
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { setAddress } from '../set-address/set-address.service'
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -25,6 +26,7 @@ export class ConfigurationComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   toppings = new FormControl();
+  public vendorAddress: {};
   //toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   public appearance = Appearance;
   public zoom: number;
@@ -38,11 +40,11 @@ export class ConfigurationComponent implements OnInit {
   configList = {};
   userConfigList: any;
   filterSubCategory: Array<any> = [];
+  productName:any="";
   public fields: Object = { text: 'subCatName', value: '_id' };
   @ViewChild('select', { static: true }) select;
-  constructor(public dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data: any, private _formBuilder: FormBuilder, private router: Router, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard, private _global: AppGlobals, private _toastr: ToastrService) {
+  constructor(public dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data: any, private _formBuilder: FormBuilder, private router: Router, private _vendorDetails: AdminCategoryService, private _login: LoginService, private _configurationwizard: configurationwizard, private _global: AppGlobals, private _toastr: ToastrService,private _setAddress:setAddress) {
     this.currentLogged = this.data
-    console.log("currentLoggedcurrentLogged",this.currentLogged)
   }
 
   inreaseHeight() {
@@ -67,21 +69,38 @@ export class ConfigurationComponent implements OnInit {
     return this.items.find(x => x.id === id);
   }
 
-  getAddress(address: string) {
+  saveAddress(address: string) {
     this.selectedAddress = address;
-    this.userConfigList = this.selectedPro.map((el) => {
-      var o = Object.assign({}, el);
-      o.address = address,
-        o.userName = this.currentLogged._id
-      return o;
+    this.vendorAddress = { "address":address , "date": new Date(), "userId": this.currentLogged.userDetails._id };
+    this._setAddress.addAddressList([this.vendorAddress]).subscribe((res) => {
+      this._toastr.success(res.status)
+     // this.dialogRef.close();
+      window.opener.location.reload();
+    }, (error) => {
+      console.log('error is ', error)
     })
   }
 
+  // getAddress(address: string) {
+  //   this.selectedAddress = address;
+  //   this.userConfigList = this.selectedPro.map((el) => {
+  //     var o = Object.assign({}, el);
+  //     o.address = address,
+  //       o.userName = this.currentLogged._id
+  //     return o;
+  //   })
+  // }
+
   addConfigureList() {
+    this.userConfigList = this.selectedPro.map((el) => {
+      var o = Object.assign({}, el);
+        o.userName = this.currentLogged.userDetails._id
+      return o;
+    })
     this._configurationwizard.AddConfigProduc(this.userConfigList).subscribe((res) => {
       this._toastr.success(res.status)
       this.closeModal()
-      window.location.reload();
+      //window.location.reload();
     }, (error) => {
       console.log('error is ', error)
     })
@@ -96,8 +115,9 @@ export class ConfigurationComponent implements OnInit {
       //}else{
       Object.entries(response).forEach(
         ([key, value]) => {
+          this.productName = value.product + ((value.productAlias != null) ? '(' + value.productAlias + ')' : "")
           this.items.push({
-            "name": value.productName + '(' + value.productAlias + ')', "oldPrice": value.price, "newPrice": value.actualPrice, "id": value._id,
+            "name": this.productName, "oldPrice": parseFloat(value.price).toFixed(2), "newPrice": parseFloat(value.actualPrice).toFixed(2), "id": value._id,
             image: this._global.baseImgUrl + value.imageUrl, "discount": value.discount, "unitMeasure": value.unitMeasure, "Qnty": 1, "productAlias": value.productAlias, "subCat": value.subCatName
           })
         }
@@ -119,7 +139,6 @@ export class ConfigurationComponent implements OnInit {
     this.longitude = 13.404954;
     this.setCurrentPosition();
     this._vendorDetails.GetSubCategoryList().subscribe((response) => {
-      console.log("333333333333333",response)
       Object.entries(response).forEach(
         ([key, value]) => {
           this.subCatList.push(value)
@@ -182,7 +201,6 @@ export class ConfigurationComponent implements OnInit {
     }
   }
   closeModal() {
-    console.log("hiiiiiiii");
     this.dialog.closeAll();
   }
 }

@@ -4,7 +4,7 @@ import { AdminCategoryService } from '../category/admin-category.service';
 import { categoryFields } from '../category/categoryFields';
 import { HttpErrorResponse,HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-new-category',
@@ -17,7 +17,7 @@ export class NewCategoryComponent implements OnInit {
   categoryList: any;
   public catData: Array<any> = [];
   public subCatData: Array<any> = [];
-  constructor(public dialog: MatDialog,private _adminCategory: AdminCategoryService,private _router:Router) { }
+  constructor(public dialog: MatDialog,private _adminCategory: AdminCategoryService,private _router:Router, private _toastr: ToastrService) { }
 
   ngOnInit()
    {
@@ -43,8 +43,12 @@ export class NewCategoryComponent implements OnInit {
   }
 
   AddCategory() {
-    this._adminCategory.AddCategory(this.categoryData).subscribe(response => {
-      console.log("Response is",response);
+    this._adminCategory.AddCategory(this.categoryData).subscribe(res => {
+      if (res.status) {
+        this._toastr.success(res.status)
+      }else{
+        this._toastr.error(res.error)
+      }
     }, (error) => {
       console.log('error is ', error)
     })

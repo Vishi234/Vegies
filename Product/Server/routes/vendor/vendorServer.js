@@ -31,10 +31,14 @@ var password = generator.generate({
 router.post("/registration", function (req, res,next) {
     let registerData = req.body;
     registerData.password = password;
+    registerData.host=req.get('host');
     addToDB(registerData, res)
 });
 
 async function addToDB(req, res) {
+    // var urlobj = url.parse(req.originalUrl);
+    // urlobj.protocol = req.protocol;
+    // urlobj.host = req.get('host');
     var userData = new model.register({
         userType: req.userType,
         orgName: req.orgName,
@@ -67,7 +71,6 @@ router.post("/auth", function (req, res,next) {
         req.logIn(user, function(err) {
           if (err) { return res.status(201).json(err); }
           model.register.updateOne({ loginAttemp: user.loginAttemp }, { $set: { loginAttemp: user.loginAttemp + 1 } }, (attempCount)=> {
-              console.log("dataaaa",attempCount," --------",user.loginAttemp)
                                 res.status(200).json({ msg:'Successfully Login' ,"loginAttemp":user.loginAttemp,"userType":user.userType});
             })
         });
@@ -76,34 +79,17 @@ router.post("/auth", function (req, res,next) {
 
 router.put("/updBasicInfo", function (req, res) {
           let user = req.body;
-          console.log("kkkkkkkkkkkkk",user)
           model.register.updateOne({ email: user.email }, { $set: { orgName: user.orgName,fullName:user.fullName,mobile:user.mobile,phone:user.phone,website:user.website,image:user.image} }, (attempCount)=> {
                                 res.status(200).json({ msg:'Basic Information has been updated successfully.'});
             })
 })
 
-router.get('/verify', function (req, res) {
-    if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
-        console.log("Domain is matched. Information is from Authentic email");
-        if (req.query.id == rand) {
-            res.redirect('http://localhost:4200')
-            res.end();
-            //res.end("<h1>Email " + mailOptions.to + " is been Successfully verified");
-        }
-        else {
-            console.log("email is not verified");
-            res.end("<h1>Bad Request</h1>");
-        }
-    }
-    else {
-        res.end("<h1>Request is from unknown source");
-    }
-});
-
 async function sendMail(user, callback) {
     user=(user.email)?user:user.body;
     rand = Math.floor((Math.random() * 100) + 54);
-    link = "http://" + host + "/api/vendor/verify?id=" + rand;
+    host=user.host;
+    console.log("mallll",user,"hosttttttt",user.host,"randommmm",rand);
+    link = "http://" + user.host + "/api/vendor/verify?id=" + rand;
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -127,6 +113,24 @@ async function sendMail(user, callback) {
     callback(info);
 }
 
+router.get('/verify', function (req, res) {
+    if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
+        console.log("Domain is matched. Information is from Authentic email");
+        if (req.query.id == rand) {
+            res.redirect('http://localhost:4200')
+            res.end();
+            //res.end("<h1>Email " + mailOptions.to + " is been Successfully verified");
+        }
+        else {
+            console.log("email is not verified");
+            res.end("<h1>Bad Request</h1>");
+        }
+    }
+    else {
+        res.end("<h1>Request is from unknown source");
+    }
+});
+
 router.get('/logout',isValidUser, function(req, res,next) {
     req.logOut();
     return res.status(200).json({msg:'logout Successfully'})
@@ -140,17 +144,12 @@ router.get('/user',isValidUser,function(req,res,next){
   router.post('/changePwd',function(req,res,next){ 
       var userDetails=req.body;   
       if(req.body.newPassword===req.body.confirmPassword){
-        console.log("changePwdchangePwd",req.body)
         model.register.updateOne({ email: userDetails.email }, { $set: { password:  model.register.hashPassword(userDetails.newPassword) } }, (attempCount)=> {
             res.status(200).json({ status:'Password Changed successfully'});
           })
       }else{
-        console.log("changePwdchangePwd11",req.body)
         return res.status(200).json({'err':"New Password and Confirm Password are not Matched"});
       }
-    //console.log("user details",req.user);
-    //return res.status(200).json(req.user);
-
   });
 
   router.post('/forgetPwd',function(req,res){ 
@@ -163,12 +162,9 @@ router.get('/user',isValidUser,function(req,res,next){
                     res.status(200).json({errorMsg:'Email Id does not present in the system'});
                 } else{
                     sendMail(req, info => {
-                        //res.status(200).json({successMsg:'Mail has been successfully send'});
-                        //console.log("Update user Password");
                         model.register.updateOne({ email: userDetails.email }, { $set: { password:  model.register.hashPassword(password),loginAttemp:0 } }, (attempCount)=> {
                             res.status(200).json({ successMsg:'Mail has been send successfully.'});
                           })
-                          //res.status(200).json({successMsg:'Mail has been successfully send'});
                     }).catch(function (err) {
                         console.log("Mail Sending errors", err)
                     });

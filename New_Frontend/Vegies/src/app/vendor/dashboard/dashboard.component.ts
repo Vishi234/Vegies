@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material'
 import { ConfigurationComponent } from '../configuration/configuration.component'
 import { ActivatedRoute } from '@angular/router'
 import { AdminCategoryService } from '../../admin/category/admin-category.service'
 import { configList } from './configList.service'
 import { LoginService } from '../../login/login.service'
+import { GridComponent, GroupSettingsModel, ToolbarItems } from '@syncfusion/ej2-angular-grids'
 
 @Component({
   selector: 'app-dashboard',
@@ -24,13 +25,14 @@ export class DashboardComponent implements OnInit {
   public monthlyOrderCount: any;
   public monthlyData: any = [];
   public finalData: any;
-  public configData:any;
+  public configData: any;
   items: Array<any> = [];
   public monthlyExpenCount = 0;
+  @ViewChild('old', { static: false }) public grid: GridComponent;
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private _vendorDetails: AdminCategoryService, public _configList: configList, public _login: LoginService) {
     this.userDetails = this.route.snapshot.data['userData'];
     var da = this.route.snapshot.data['list'];
-    
+
   }
   ngOnInit() {
     this._configList.getOrderList(this.userDetails).subscribe((response) => {
@@ -74,7 +76,6 @@ export class DashboardComponent implements OnInit {
           this.monthlyData.push(da);
         }
       })
-      console.log("final dataaaaaaa",this.finalData[this.finalData.length-1]['bookingDate'] )
       var expenseSum = 0;
       this.monthlyData.map((monthly) => {
         expenseSum = expenseSum + Number(monthly.newPrice);
@@ -85,21 +86,23 @@ export class DashboardComponent implements OnInit {
 
 
       this._configList.getProductList(this.userDetails).subscribe((response) => {
-        console.log('error is ')
         this.configData = response;
         this.configDataCount = (!this.configData) ? "0" : this.configData.length < 10 ? "0" + this.configData.length : this.configData.length;
-        console.log("this.data.length is", this.configData.length)
         if (this.configData.length <= 0) {
-          this.dialog.open(ConfigurationComponent, {
+          let dialogRef = this.dialog.open(ConfigurationComponent, {
             disableClose: true, data: {
               "userDetails": this.userDetails
             }
           });
+          dialogRef.afterClosed()
+            .subscribe(() => {
+              this.ngOnInit();
+            })
         }
       }, (error) => {
         console.log('error is ', error)
       });
-     
+
 
     }, (error) => {
       console.log('error is ', error)

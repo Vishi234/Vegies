@@ -104,7 +104,11 @@ export class AdminSubcategoryComponent implements OnInit {
             args.data = this.orderForm.value;
             console.log("daaaa",args.data)    
             this._adminCategory.AddSubCategory(args.data).subscribe(response => {
-            //  this._toastr.success(response);
+            if(response.status){
+              this._toastr.success(response.status);
+            }else{
+              this._toastr.error(response.status);
+            }
             }, (error) => {
               this._toastr.success(error.error.text);
               console.log('error is ', error)
@@ -118,8 +122,11 @@ export class AdminSubcategoryComponent implements OnInit {
         args.data = this.orderForm.value;
         console.log("daaaa",args.data)    
         this._adminCategory.UpdateSubCategory(args.data).subscribe(response => {
-          console.log("Response is",response);
-          this._toastr.success(response.status);
+          if(response.status){
+            this._toastr.success(response.status);
+          }else{
+            this._toastr.error(response.status);
+          }
          }, (error) => {
                console.log('error is ', error)
          })

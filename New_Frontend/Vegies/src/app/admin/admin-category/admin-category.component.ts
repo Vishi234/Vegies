@@ -75,10 +75,14 @@ actionBegin(args: SaveEventArgs): void
       console.log("daaaa",args.data)    
       this._adminCategory.AddCategory(args.data).subscribe(response => 
       {
-        console.log("Response is",response);
+        if(response.status){
+          this._toastr.success(response.status);
+        }else{
+          this._toastr.error(response.status);
+        }
       }, (error) => {
-        this._toastr.success(error.error.text);
-        //console.log('error is ', error)
+        //this._toastr.success(error.error.text);
+        console.log('error is ', error)
       });
   }
   else if(args.action=="edit")
@@ -86,8 +90,11 @@ actionBegin(args: SaveEventArgs): void
       args.data = this.orderForm.value;
       console.log("daaaa",args.data)    
       this._adminCategory.UpdateCategory(args.data).subscribe(response => {
-        this._toastr.success(response);
-        console.log("Response is",response);
+        if(response.status){
+          this._toastr.success(response.status);
+        }else{
+          this._toastr.error(response.status);
+        }
        }, (error) => {
         console.log('error is ', error)
        })
