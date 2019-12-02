@@ -73,13 +73,26 @@ module.exports = (function () {
         let productData = req.body;   
         productData.imageUrl=productData.catName+"/"+productData.imageUrl;
         console.log('productData--',productData);
+        delete productData._id;
+        console.log("data issss",productData);
+
+        // model.product.collection.insert(productData, function (err, docs) {
+        //     if (err) {
+        //         console.log("erre---",err);
+        //         return console.error(err);
+        //     } else {
+        //         res.status(201).json({ "status": "Products are schedule successfully" });
+        //     }
+        // });
+
 
         let productDataSave = new model.product(productData)
         productDataSave.save().then((items => 
 		{
-            res.status(400).send("Product added successfully");
+            res.status(201).send("Product added successfully");
         })).catch(err => {
-            res.status(400).send("unable to save to database"+err);
+console.log("error in product",err);
+            res.status(201).send("unable to save to database"+err);
         })
     });
     
@@ -98,17 +111,13 @@ module.exports = (function () {
       
         app.post('/product/images',  (req, res) => 
         {
-       // console.log("kkkkkkkkkkkk",req.body);
         upload(req,res,function(err) 
         {
             if(err) {
                 return res.end("Error uploading file.");
             }
          res.status(200).json({ message:'Product data has been updated successfully'});
-        //     res.json({'message': 'File uploaded'});
-            //res.redirect('/test');
-     ////       res.redirect('http://localhost:4200/admin/category')
-            //res.json({'message': 'File uploaded'});
+      
         });      
     });
     
@@ -123,7 +132,6 @@ module.exports = (function () {
           })
 
         // console.log('update data===',productData);
-
         // productData.imageUrl=productData.catName+"/"+productData.imageUrl;
         // let productDataSave = new model.product(productData)
         // productDataSave.save().then((items => 

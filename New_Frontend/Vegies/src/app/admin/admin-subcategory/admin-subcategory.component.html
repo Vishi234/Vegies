@@ -23,6 +23,7 @@
             <e-column field='subCatName' headerText='Sub Category' textAlign='Left' width='150'></e-column>
             <e-column field='subCatAlias' headerText='Alias' textAlign='Left' width='150'></e-column>
             <e-column field='status' headerText='Status' textAlign='Left' width='150'></e-column>
+            <e-column field='' headerText='Save Images' textAlign='Left' width='150'></e-column>
     </e-columns>
 
     <ng-template #editSettingsTemplate let-data>
@@ -31,6 +32,7 @@
                     <colgroup>
                         <col style="width: 350px;">
                         <col style="width: 150px;">
+                        <col style="width: 250px;">
                         <col style="width: 250px;">
                         <col style="width: 250px;">
                         <col style="width: 250px;">
@@ -64,7 +66,16 @@
                                         <ejs-dropdownlist id="status" name="status" formControlName="status" [dataSource]='ActiveDDL' [fields]="{text: 'value', value: 'id' }" popupHeight='300px' floatLabelType='Never'></ejs-dropdownlist>
                                         
                                 </div>
-                            </td>                         
+                            </td>
+                            <td class='e-rowcell'>   
+                                
+                               <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
+                                 <form #form action="http://localhost:8084/api/admin/product/images" enctype="multipart/form-data"
+                                   method="POST" target="dummyframe">
+                                   <input type="file" [(ngModel)]='testImage' name="imageUrl"  id="imageUrl"  multiple />
+                                   <input type="submit" style="dispaly:block" (click)="form.submit()" id="submitClick"  class="btn btn-primary" value="Upload" />  
+                               </form>
+                           </td>                               
                         </tr>
                     </tbody>
                 </table>

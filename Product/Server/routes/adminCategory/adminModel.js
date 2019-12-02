@@ -23,7 +23,7 @@ var categorySchema = new Schema({
             subCatName: {type: String, require: true},
             unitMeasure: {type: String, require: true},
             actualPrice: {type: String, require: true}, 
-            product: {type: String,unique: true,  require: true},
+            product: {type: String,  require: true},
             productAlias: {type: String, require: true},
             price: {type: String, require: true},
             discount: {type: String, require: true},
