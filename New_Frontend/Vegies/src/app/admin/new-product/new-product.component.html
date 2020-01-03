@@ -95,15 +95,12 @@
                                         </td>   
 
                                   <td class='e-rowcell'>   
-                                        <!-- <form>
-                                        <input type="file" name="myFile" id="myFile" (change)="onImageChanged($event)"/>
-                                        <input type="submit" (click)="submit()"  class="btn btn-primary" value="Upload" /> 
-                                        </form> -->
+                                     
                                     <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
                                       <form #form action="http://localhost:8084/api/admin/product/images" enctype="multipart/form-data"
                                         method="POST" target="dummyframe">
                                         <input type="file" [(ngModel)]='testImage' name="imageUrl"  id="imageUrl"  multiple />
-                                        <input type="submit" (click)="form.submit()"  class="btn btn-primary" value="Upload" />  
+                                        <input type="submit" (click)="form.submit()" id="submitClick"  class="btn btn-primary" value="Upload" />  
                                     </form>
                                 </td>                
                             </tr>

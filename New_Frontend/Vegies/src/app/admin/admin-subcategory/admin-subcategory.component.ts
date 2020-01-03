@@ -32,6 +32,7 @@ export class AdminSubcategoryComponent implements OnInit {
   public stateElem: HTMLElement;
   public stateObj: DropDownList;
   public ActiveDDL:any;
+  public testImage:any;
 
   constructor(public dialog: MatDialog, private _adminCategory: AdminCategoryService, private _router: Router,private _toastr: ToastrService) { }
 
@@ -84,6 +85,7 @@ export class AdminSubcategoryComponent implements OnInit {
         subCatName: new FormControl(data1.subCatName, Validators.required),
         subCatAlias: new FormControl(data1.subCatAlias, Validators.required),
         status: new FormControl(data1.status, Validators.required),
+        imageUrl: new FormControl(data1.imageUrl, Validators.required),
         _id:new FormControl(data1._id, Validators.required),
     });
   }
@@ -94,6 +96,9 @@ export class AdminSubcategoryComponent implements OnInit {
     if (args.requestType === 'beginEdit' || args.requestType === 'add') {
         this.orderForm = this.createFormGroup(args.rowData);
     }
+    var imgName=this.testImage;
+    var lastIndex=imgName.lastIndexOf("\\");
+    this.orderForm.value.imageUrl=imgName.substr(lastIndex+1,imgName.length);
     if(args.action=='add')
     {
             args.data = this.orderForm.value;
@@ -150,5 +155,6 @@ export interface IOrderModel
   subCatName?:string;
   subCatAlias?: string;
   status?: number; 
+  imageUrl?:string;
   _id?:string;
 }
