@@ -128,7 +128,7 @@ input:-webkit-autofill {
   background-color: transparent;
   border: none;
   padding: 20px !important;
-  height: 80px;
+  height: 90px;
 }
 .loginform .card-header h1 {
   font-size: 30px !important;
@@ -383,6 +383,15 @@ input:-webkit-autofill {
   font-weight: bold;
   color: #000;
 }
+.logo
+{
+  height: 60px;
+  width: 55%;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
 @media (max-width: 544px) {
   .content-sec {
     padding-top: 15%;
